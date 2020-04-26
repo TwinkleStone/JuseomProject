@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.jpetstore.dao.mybatis.mapper.AccountMapper">
+  <cache />
+
+ <insert id="insertBook" parameterType="Book">
+    INSERT INTO Book
+      (BOOKID, USERID, IMAGEURL, NAME, AUTHOR, PUBLISHER, DATE, PRICE, CONDITION, DETAIL, PROGESS, TRADETYPE)
+    VALUES
+      (#{bookId}, #{userId}, #{imageUrl}, #{name}, #{author}, #{publisher}, #{date}, #{price}, #{condition}, #{detail}, #{progess}, #{tradeType})
+  </insert>
+
+  <insert id="insertAuction" parameterType="Auction">
+    INSERT INTO Auction
+      (AUCTIONID, BOOKID, STARTPRICE, PRESENTPRICE, SALESNUMBER, BIDNUMBER, ENDTIME)
+    VALUES
+      (#{auctionId}, #{bookId}, #{startPrice}, #{presentPrice}, #{salesNumber}, #{bidNumber}, #{endTime})
+  </insert>
+
+  <insert id="insertSale" parameterType="Sale">
+    INSERT INTO Sale
+      (SALEID, BOOKID, SUGGESTPRICE)
+    VALUES
+      (#{saleId}, #{bookId}, #{suggestPrice})
+  </insert>
+
+  <insert id="insertShare" parameterType="Share">
+    INSERT INTO Share
+      (SHAREID, BOOKID, SHARENUMBER, ENDTIME, RAFFLETIME, PEOPLENUMBER)
+    VALUES
+      (#{shareId}, #{bookId}, #{shareNumber}, #{endTime}, #{raffleTime}, #{peopleNumber})
+  </insert>
+
+  <select id="getBookListByType" resultType="Book">
+    SELECT
+      BOOKID,
+      USERID,
+      IMAGEURL,
+      NAME,
+      AUTHOR,
+      PUBLISHER,
+      DATE,
+      PRICE,
+      CONDITION,
+      DETAIL,
+      PROGESS,
+      TRADETYPE
+    FROM BOOK
+    WHERE TRADETYPE = #{type}
+  </select>
+
+  <select id="getBook" resultType="Book">
+    SELECT
+      BOOKID,
+      USERID,
+      IMAGEURL,
+      NAME,
+      AUTHOR,
+      PUBLISHER,
+      DATE,
+      PRICE,
+      CONDITION,
+      DETAIL,
+      PROGESS,
+      TRADETYPE
+    FROM BOOK
+    WHERE BOOKID = #{bookId}
+  </select>
+
+  <select id="getAuction" resultType="Auction">
+    SELECT
+      AUCTIONID,
+      BOOKID,
+      STARTPRICE,
+      PRESENTPRICE,
+      SALESNUMBER,
+      BIDNUMBER,
+      ENDTIME
+    FROM AUCTION
+    WHERE BOOKID = #{bookId}
+  </select>
+
+  <select id="getSale" resultType="Sale">
+    SELECT
+      SALEID,
+      BOOKID,
+      SUGGESTPRICE
+    FROM SALE
+    WHERE BOOKID = #{bookId}
+  </select>
+
+  <select id="getShare" resultType="Share">
+    SELECT
+      SHAREID,
+      BOOKID,
+      SHARENUMBER,
+      ENDTIME,
+      RAFFLETIME,
+      PEOPLENUMBER
+    FROM SHARE
+    WHERE BOOKID = #{bookId}
+  </select>
+
+</mapper> 
