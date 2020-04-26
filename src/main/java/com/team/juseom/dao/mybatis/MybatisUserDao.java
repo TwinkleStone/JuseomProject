@@ -6,7 +6,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 import com.team.juseom.dao.UserDao;
-import com.team.juseom.mybatis.mapper.UserMapper;
+import com.team.juseom.dao.mybatis.mapper.UserMapper;
 import com.team.juseom.domain.User;
 
 /**

@@ -2,7 +2,7 @@ package com.team.juseom.domain;
 
 public class Share {
 	String shareId;
-	String bookId;
+	Book book;
 	String shareNumber;
 	String endTime;
 	String raffleTime;
@@ -14,11 +14,11 @@ public class Share {
 	public void setShareId(String shareId) {
 		this.shareId = shareId;
 	}
-	public String getBookId() {
-		return bookId;
+	public Book getBook() {
+		return book;
 	}
-	public void setBookId(String bookId) {
-		this.bookId = bookId;
+	public void setBook(Book book) {
+		this.book = book;
 	}
 	public String getShareNumber() {
 		return shareNumber;

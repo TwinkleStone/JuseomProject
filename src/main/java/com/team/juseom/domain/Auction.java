@@ -2,7 +2,7 @@ package com.team.juseom.domain;
 
 public class Auction {
 	String auctionId;
-	String bookId;
+	Book book;
 	int startPrice;
 	int presentPrice;
 	int salesNumber;
@@ -14,11 +14,11 @@ public class Auction {
 	public void setAuctionId(String auctionId) {
 		this.auctionId = auctionId;
 	}
-	public String getBookId() {
-		return bookId;
+	public Book getBook() {
+		return book;
 	}
-	public void setBookId(String bookId) {
-		this.bookId = bookId;
+	public void setBook(Book book) {
+		this.book = book;
 	}
 	public int getStartPrice() {
 		return startPrice;

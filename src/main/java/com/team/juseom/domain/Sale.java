@@ -2,7 +2,7 @@ package com.team.juseom.domain;
 
 public class Sale {
 	String saleId;
-	String bookId;
+	Book book;
 	int suggestPrice;
 	
 	public String getSaleId() {
@@ -11,11 +11,11 @@ public class Sale {
 	public void setSaleId(String saleId) {
 		this.saleId = saleId;
 	}
-	public String getBookId() {
-		return bookId;
+	public Book getBook() {
+		return book;
 	}
-	public void setBookId(String bookId) {
-		this.bookId = bookId;
+	public void setBook(Book book) {
+		this.book = book;
 	}
 	public int getSuggestPrice() {
 		return suggestPrice;
