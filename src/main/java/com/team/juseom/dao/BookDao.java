@@ -7,6 +7,7 @@ import com.team.juseom.domain.Book;
 import com.team.juseom.domain.Sale;
 import com.team.juseom.domain.Share;
 
+//시작
 public interface BookDao {
 	void insertBook(Book book);
 	void insertAuction(Auction auction);
