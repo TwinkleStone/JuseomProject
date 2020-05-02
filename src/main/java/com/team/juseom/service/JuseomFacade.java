@@ -15,4 +15,13 @@ public interface JuseomFacade {
 	Auction getAuction(String bookId);
 	Category getCategory(String categoryId);
 	List<Book> getBookListByCategory(String categoryId);
+	
+	User getUser(String userId);
+	User getUser(String userId, String password);
+	void insertUser(User user);
+	void updateUser(User user);
+	List<String> getUserIdList();
+	
+	List<Book> searchBookList(Book book);
+	List<Book> getBookListByTradeType(String tradeType);
 }
