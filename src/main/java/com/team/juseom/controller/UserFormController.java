@@ -16,7 +16,7 @@ import org.springframework.web.util.WebUtils;
 import com.team.juseom.domain.Category;
 import com.team.juseom.domain.Book;
 import com.team.juseom.service.UserFormValidator;
-import com.team.juseom.service.BookStoreFacade;
+import com.team.juseom.service.JuseomFacade;
 
 @Controller
 @RequestMapping({"/shop/newAccount.do","/shop/editAccount.do"})
@@ -28,8 +28,8 @@ public class UserFormController {
 	private static final String[] LANGUAGES = {"english", "japanese"};
 	
 	@Autowired
-	private BookStoreFacade bookStore;
-	public void setPetStore(BookStoreFacade bookStore) {
+	private JuseomFacade bookStore;
+	public void setPetStore(JuseomFacade bookStore) {
 		this.bookStore = bookStore;
 	}
 
@@ -58,10 +58,10 @@ public class UserFormController {
 		return LANGUAGES;
 	}
 
-	@ModelAttribute("categories")
+	/*@ModelAttribute("categories")
 	public List<Category> getCategoryList() {
-		return bookStore.getCategoryList();
-	}
+		return bookStore.getBookListByCategory();
+	}*/
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String showForm() {
@@ -94,7 +94,7 @@ public class UserFormController {
 		UserSession userSession = new UserSession(
 				bookStore.getUser(userForm.getUser().getUserId()));
 		PagedListHolder<Book> mainList = new PagedListHolder<Book>(
-				bookStore.getBookListByTradeType("Áß°í"));
+				bookStore.getBookListByTradeType("sale"));
 		mainList.setPageSize(4);
 		userSession.setMainList(mainList);
 		session.setAttribute("userSession", userSession);

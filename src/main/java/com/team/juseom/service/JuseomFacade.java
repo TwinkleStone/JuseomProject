@@ -7,6 +7,7 @@ import com.team.juseom.domain.Book;
 import com.team.juseom.domain.Category;
 import com.team.juseom.domain.Sale;
 import com.team.juseom.domain.Share;
+import com.team.juseom.domain.User;
 
 public interface JuseomFacade {
 	Book getBook(String bookId);

@@ -2,7 +2,6 @@ package com.team.juseom.controller;
 
 import java.io.Serializable;
 
-import com.team.juseom.domain.Account;
 import com.team.juseom.domain.User;
 
 public class UserForm {

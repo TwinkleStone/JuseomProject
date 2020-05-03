@@ -10,15 +10,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.team.juseom.domain.Book;
-import com.team.juseom.service.BookStoreFacade;
+import com.team.juseom.service.JuseomFacade;
 
 
 
 public class SearchBookController {
-	private BookStoreFacade book;
+	private JuseomFacade book;
 
 	@Autowired
-	public void setBook(BookStoreFacade book) {
+	public void setBook(JuseomFacade book) {
 		this.book = book;
 	}
 
