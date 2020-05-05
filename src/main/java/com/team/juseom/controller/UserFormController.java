@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.util.WebUtils;
-import com.team.juseom.domain.Category;
 import com.team.juseom.domain.Book;
 import com.team.juseom.service.UserFormValidator;
 import com.team.juseom.service.JuseomFacade;

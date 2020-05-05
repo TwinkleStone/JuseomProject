@@ -8631,8 +8631,10 @@ h1, h2, h3, h4, h5,
       margin-bottom: 40px; } }
   .property-wrap .img {
     display: block;
-    width: 100%;
-    height: 250px;
+    width: 82px;
+    height: 121px;
+    margin-left: 30%;
+    margin-bottom: 15px;
     position: relative; }
     .property-wrap .img .icon {
       width: 60px;

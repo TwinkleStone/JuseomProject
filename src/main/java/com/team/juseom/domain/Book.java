@@ -13,7 +13,6 @@ public class Book {
 	String detail;
 	String progress;
 	String tradeType;
-	String categoryId;
 	
 	public String getBookId() {
 		return bookId;
@@ -86,11 +85,5 @@ public class Book {
 	}
 	public void setTradeType(String tradeType) {
 		this.tradeType = tradeType;
-	}
-	public String getCategoryId() {
-		return categoryId;
-	}
-	public void setCategoryId(String categoryId) {
-		this.categoryId = categoryId;
 	}
 }

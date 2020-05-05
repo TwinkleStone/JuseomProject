@@ -7,12 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.team.juseom.domain.Auction;
-import com.team.juseom.domain.Book;
 import com.team.juseom.domain.Sale;
 import com.team.juseom.domain.Share;
 import com.team.juseom.service.JuseomFacade;
 
-/*
 @Controller
 public class ViewDetailController {
 	private JuseomFacade juseom;
@@ -24,22 +22,20 @@ public class ViewDetailController {
 
 	@RequestMapping("/shop/viewBook.do")
 	public String handleRequest(
-			@RequestParam("bookId") String bookId, 
-			@RequestParam("categoryId") String categoryId,
+			@RequestParam("bookId") String bookId,
+			@RequestParam("category") String category,
 			ModelMap model) throws Exception {
-		if(categoryId == "1") {
+		if(category.equals("sale")) {
 			Sale sale = this.juseom.getSale(bookId);
-			model.put("book", sale.getBook());
-			model.put("detail", sale);
-		}else if(categoryId == "2") {
-			Share share = this.juseom.getShare(bookId);
-			model.put("book", share.getBook());
-			model.put("detail", share);
-		}else {
+			model.put("sale", sale);
+		}else if(category.equals("auction")) {
 			Auction auction = this.juseom.getAuction(bookId);
-			model.put("book", auction.getBook());
-			model.put("detail", auction);
+			model.put("auction", auction);
+		}else {
+			Share share = this.juseom.getShare(bookId);
+			model.put("share", share);
 		}
+		model.put("category", category);
 		return "Book";
 	}
-}*/
+}
