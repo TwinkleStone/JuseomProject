@@ -12,6 +12,7 @@ import com.team.juseom.domain.Sale;
 import com.team.juseom.domain.Share;
 import com.team.juseom.service.JuseomFacade;
 
+/*
 @Controller
 public class ViewDetailController {
 	private JuseomFacade juseom;
@@ -41,4 +42,4 @@ public class ViewDetailController {
 		}
 		return "Book";
 	}
-}
+}*/

@@ -14,6 +14,7 @@ import com.team.juseom.domain.Book;
 import com.team.juseom.domain.Category;
 import com.team.juseom.service.JuseomFacade;
 
+/*
 @Controller
 @SessionAttributes({"category", "bookList"})
 public class ViewCategoryController { 
@@ -50,4 +51,4 @@ public class ViewCategoryController {
 		else if ("previous".equals(page)) { bookList.previousPage(); }
 		return "Category";
 	}
-}
+}*/
