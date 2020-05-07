@@ -17,8 +17,16 @@ public class MybatisBookDao implements BookDao{
 	@Autowired
 	private BookMapper bookMapper;
 	
-	public List<Book> getBookListByType(String type){
-		return bookMapper.getBookListByType(type);
+	public List<Sale> getBookListBySale(){
+		return bookMapper.getBookListBySale();
+	}
+	
+	public List<Auction> getBookListByAuction(){
+		return bookMapper.getBookListByAuction();
+	}
+	
+	public List<Share> getBookListByShare(){
+		return bookMapper.getBookListByShare();
 	}
 	
 	public Book getBook(String bookId){

@@ -16,7 +16,7 @@ public class ViewAuctionController {
 	private JuseomFacade juseom;
 	
 	@Autowired
-	public void setPetStore(JuseomFacade juseom) {
+	public void setJuseom(JuseomFacade juseom) {
 		this.juseom = juseom;
 	}
 	

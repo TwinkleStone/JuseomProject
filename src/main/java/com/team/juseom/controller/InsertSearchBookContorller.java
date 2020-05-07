@@ -5,65 +5,58 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.team.juseom.domain.Book;
 import com.team.juseom.service.InsertSearchService;
 
 @Controller
-@SessionAttributes("book")
-public class InsertBookContorller {
-	
+public class InsertSearchBookContorller {
 	@ModelAttribute("book")
 	public Book formData() {
 		return new Book();
 	}
 	
-	@RequestMapping("/shop/insert/book")
-	public String insertBookForm(
-			@RequestParam("isbn") String isbn,
+	//get
+	@RequestMapping("/shop/insert/search")
+	public String insertBookStep1() {
+		return "InsertSearch";
+	}
+	
+	/*@RequestMapping(value="/shop/insertBook/step2", method=RequestMethod.GET)
+	public String insertBookStep1ForHand() {
+		return "bookInsertHand";
+	}*/ //수동으로 입력 차후 추가
+	
+	//post
+	@RequestMapping("/shop/insert/search")
+	public String insertBookStep2(
+			@RequestParam("name") String name,
 			ModelMap model) {
 		String clientId = "";
 		String clientSecret = "";
 		String text = null;
 		try {
-			text = URLEncoder.encode(isbn, "UTF-8");
+			text = URLEncoder.encode(name, "UTF-8");
 		} catch (UnsupportedEncodingException e) {
 			throw new RuntimeException("검색어 인코딩 실패",e);
 		}
 
-		String apiURL = "https://openapi.naver.com/v1/search/book.xml?d_isbn="+ text; // xml 결과
+		String apiURL = "https://openapi.naver.com/v1/search/book.xml?query="+ text; // xml 결과
 
 		Map<String, String> requestHeaders = new HashMap<>();
 		requestHeaders.put("X-Naver-Client-Id", clientId);
 		requestHeaders.put("X-Naver-Client-Secret", clientSecret);
 		String responseBody = InsertSearchService.get(apiURL,requestHeaders);
-		
-		Book book = InsertSearchService.parse(responseBody).get(0);
-		model.put("book", book);
-		return "Insert";		
-	}
-	
-//	@RequestMappg("/shop/insert/sale")
-//	public String insertBook() {
-//		
-//	}
-//	
-//	@RequestMappg("/shop/insert/share")
-//	public String insertBook() {
-//		
-//	}
-//	
-//	@RequestMappg("/shop/insert/auction")
-//	public String insertBook() {
-//		
-//	}
-	
-	
-	
+		PagedListHolder<Book> bookList = new PagedListHolder<Book>(InsertSearchService.parse(responseBody));
+		bookList.setPageSize(4);
+		model.put("searchList", bookList);
+		return "InsertSearch";		
+  }
+
 }
