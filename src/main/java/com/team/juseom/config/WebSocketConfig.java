@@ -1,4 +1,4 @@
-package com.example.jpetstore.config;
+package com.team.juseom.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -17,7 +17,7 @@ public class WebSocketConfig implements WebSocketConfigurer{
 	public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
 		registry.addHandler(echoHandler, "/echo.do").setAllowedOrigins("*").withSockJS()
 		.setInterceptors(new HttpSessionHandshakeInterceptor())
-		.setClientLibraryUrl("http://localhost:8081/resources/sockjs.min.js");
+		.setClientLibraryUrl("http://localhost:8080/resources/sockjs.min.js");
 	}
 	
 	
