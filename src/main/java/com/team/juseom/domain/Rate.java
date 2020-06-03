@@ -1,6 +1,6 @@
 package com.team.juseom.domain;
 
-public class Rating {
+public class Rate {
 	String rateId;
 	String raterId;
 	String ratedId;
