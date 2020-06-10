@@ -5,7 +5,6 @@ public class User {
 	String userId;
 	String password;
 	String name;
-	String email;
 	String phone;
 	String commName;
 	String profilePicUrl;
@@ -31,12 +30,6 @@ public class User {
 	}
 	public void setName(String name) {
 		this.name = name;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
 	}
 	public String getPhone() {
 		return phone;

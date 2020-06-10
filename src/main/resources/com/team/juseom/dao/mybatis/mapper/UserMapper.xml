@@ -4,30 +4,19 @@
 <mapper namespace="com.team.juseom.dao.mybatis.mapper.UserMapper">
   <cache />
 
-  <!-- <select id="getUserById" resultType="User">
-    SELECT SIGNON.USERNAME,
-          ACCOUNT.EMAIL,
-          ACCOUNT.FIRSTNAME,
-          ACCOUNT.LASTNAME,
-          ACCOUNT.STATUS,
-          ACCOUNT.ADDR1 AS address1,
-          ACCOUNT.ADDR2 AS address2,
-          ACCOUNT.CITY,
-          ACCOUNT.STATE,
-          ACCOUNT.ZIP,
-          ACCOUNT.COUNTRY,
-          ACCOUNT.PHONE,
-          PROFILE.LANGPREF AS languagePreference,
-          PROFILE.FAVCATEGORY AS favouriteCategoryId,
-          PROFILE.MYLISTOPT AS listOption,
-          PROFILE.BANNEROPT AS bannerOption,
-          BANNERDATA.BANNERNAME
-    FROM ACCOUNT, PROFILE, SIGNON, BANNERDATA
-    WHERE ACCOUNT.USERID = #{username}
-      AND SIGNON.USERNAME = ACCOUNT.USERID
-      AND PROFILE.USERID = ACCOUNT.USERID
-      AND PROFILE.FAVCATEGORY = BANNERDATA.FAVCATEGORY
-  </select> -->
+  <select id="getUserById" resultType="User">
+    SELECT USERID,
+          PASSWORD,
+          NAME,
+          PHONE,
+          COMMNAME,
+          PROFILEPICURL,
+          ADDRESS1,
+          ADDRESS2,
+          ADDRESS3
+    FROM USER
+    WHERE USERID = #{userId}
+  </select>
 
   <!-- <select id="getAccountByUsernameAndPassword" resultType="Account">
     SELECT SIGNON.USERNAME,
@@ -61,23 +50,22 @@
 
   <update id="updateUser" parameterType="User">
     UPDATE ACCOUNT SET
-      EMAIL = #{email},
+      PASSWORD = #{password},
       NAME = #{name},
       PHONE = #{phone},
-      ADDR1 = #{address1},
       COMMNAME = #{commName},
+      PROFILEPICURL = #{profilePicUrl},
+      ADDR1 = #{address1},
       ADDR2 = #{address2,jdbcType=VARCHAR},
-      ADDR3 = #{address3,jdbcType=VARCHAR},
-      CITY = #{city},
-      STATE = #{state},
-    WHERE USERID = #{id}
+      ADDR3 = #{address3,jdbcType=VARCHAR}
+    WHERE USERID = #{userId}
   </update>
 
   <insert id="insertAccount" parameterType="Account">
     INSERT INTO ACCOUNT
-      (USERID, PASSWORD, NAME, EMAIL, PHONE, COMMNAME, PROFILEPICURL, ADDRESS1, ADDRESS2, ADDRESS3)
+      (USERID, PASSWORD, NAME, PHONE, COMMNAME, PROFILEPICURL, ADDRESS1, ADDRESS2, ADDRESS3)
     VALUES
-      (#{id}, #{password}, #{name}, #{email}, #{phone}, #{commName}, #{profilePicUrl}, #{address1}, #{address2, jdbcType=VARCHAR}, #{address3, jdbcType=VARCHAR})
+      (#{userId}, #{password}, #{name}, #{phone}, #{commName}, #{profilePicUrl}, #{address1}, #{address2, jdbcType=VARCHAR}, #{address3, jdbcType=VARCHAR})
   </insert>
 
   <!--  

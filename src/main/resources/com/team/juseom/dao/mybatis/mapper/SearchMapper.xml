@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.team.juseom.dao.mybatis.mapper.SearchMapper">
+  <cache />
+
+  <select id="getSearchBook" resultType="Book">
+    SELECT
+      B.BOOKID,
+      B.USERID,
+      B.IMAGEURL,
+      B.NAME,
+      B.AUTHOR,
+      B.PUBLISHER,
+      B.DATE,
+      B.PRICE,
+      B.CONDITION,
+      B.DETAIL,
+      B.PROGRESS,
+      B.TRADETYPE
+    FROM BOOK B, USER U
+    WHERE B.USERID = U.USERID
+      AND U.ADDRESS1 = #{address1}
+      AND U.ADDRESS2 = #{address2}
+      AND U.ADDRESS3 = #{address3}
+      AND B.NAME = #{keyword}
+      AND B.AUTHOR = #{author}
+      AND B.PUBLISHER = #{publisher}
+      AND B.TRADETYPE = #{tradeType}
+      <![CDATA[AND B.PRICE >= #{minPrice}]]>
+      <![CDATA[AND B.PRICE <= #{maxPrice}]]>
+  </select>
+</mapper>
