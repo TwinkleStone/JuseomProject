@@ -7,7 +7,7 @@ public class otmChat {
 	String buyerId;
 	String chat;
 	String chatNum;
-	Date chatDate;
+	String chatTime;
 	
 	public String getChattingRoomId() {
 		return chattingRoomId;
@@ -44,6 +44,12 @@ public class otmChat {
 	}
 	public void setChatNum(String chatNum) {
 		this.chatNum = chatNum;
+	}
+	public String getChatTime() {
+		return chatTime;
+	}
+	public void setChatTime(String chatTime) {
+		this.chatTime = chatTime;
 	}
 	
 }
