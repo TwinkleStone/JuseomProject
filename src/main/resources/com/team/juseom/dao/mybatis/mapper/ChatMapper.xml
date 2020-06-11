@@ -3,5 +3,69 @@
 
 <mapper namespace="com.team.juseom.dao.mybatis.mapper.ChatMapper">
   <cache />
-
+  <select id="insertOtoChat" resultType="otoChat">
+    INSERT INTO OTOCHAT
+      (CHATTINGROOMID, SELLERID, BUYERID, CHAT, CHATNUM, CHATTIME)
+    VALUES
+      (#{chattingRoomId}, #{sellerId}, #{buyerId}, #{chat}, #{chatNum}, #{chatTime})
+  </select>
+  
+  <select id="insertOtmChat" resultType="otmChat">
+    INSERT INTO OTOCHAT
+      (CHATTINGROOMID, BOOKID, SELLERID, BUYERID, CHAT, CHATNUM, CHATTIME)
+    VALUES
+      (#{chattingRoomId}, #{bookId}, #{sellerId}, #{buyerId}, #{chat}, #{chatNum}, #{chatTime})
+  </select>
+  
+  <select id="deleteOtoChat" resultType="otoChat">
+    DELETE FROM OTOCHAT
+    WHERE CHATTINGROOMID = #{chattingRoomId}
+  </select>
+  
+  <select id="deleteOtmChat" resultType="otmChat">
+    DELETE FROM OTMCHAT
+    WHERE CHATTINGROOMID = #{chattingRoomId}
+  </select>
+  
+  <select id="selectOtoChatByChattingRoomId" resultType="otoChat">
+    SELECT CHATTINGROOMID,
+          SELLERID,
+          BUYERID,
+          CHAT,
+          CHATNUM,
+          CHATTIME
+    FROM OTOCHAT
+    WHERE CHATTINGROOMID = #{chattingRoomId}
+  </select>
+  
+  <select id="selectOtmChatByChattingRoomId" resultType="otmChat">
+    SELECT CHATTINGROOMID,
+    	  BOOKID,
+          SELLERID,
+          BUYERID,
+          CHAT,
+          CHATNUM,
+          CHATTIME
+    FROM OTMCHAT
+    WHERE CHATTINGROOMID = #{chattingRoomId}
+  </select>
+  
+  <select id="selectOtoChatByUserId" resultType="otoChat">
+    SELECT DISTINCT CHATTINGROOMID,
+          SELLERID,
+          BUYERID,
+          CHAT,
+          CHATNUM,
+          CHATTIME
+    FROM OTOCHAT
+    WHERE SELLERID = #{userId}
+       OR BUYERID = #{userId}
+  </select>
+  
+  <select id="selectOtmChatByUserId" resultType="otmhat">
+    SELECT DISTINCT CHATTINGROOMID,
+    FROM OTMCHAT
+    WHERE SELLERID = #{userId}
+       OR BUYERID = #{userId}
+  </select>
 </mapper>
