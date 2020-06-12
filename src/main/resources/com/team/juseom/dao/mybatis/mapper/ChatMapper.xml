@@ -38,7 +38,7 @@
     WHERE CHATTINGROOMID = #{chattingRoomId}
   </select>
   
-  <select id="selectOtmChatByChattingRoomId" resultType="otmChat">
+  <!--  <select id="selectOtmChatByChattingRoomId" resultType="otmChat">
     SELECT CHATTINGROOMID,
     	  BOOKID,
           SELLERID,
@@ -48,7 +48,7 @@
           CHATTIME
     FROM OTMCHAT
     WHERE CHATTINGROOMID = #{chattingRoomId}
-  </select>
+  </select>-->
   
   <select id="selectOtoChatByUserId" resultType="otoChat">
     SELECT DISTINCT CHATTINGROOMID,
@@ -62,7 +62,7 @@
        OR BUYERID = #{userId}
   </select>
   
-  <select id="selectOtmChatByUserId" resultType="otmhat">
+  <select id="selectOtmChatByUserId" resultType="otmChat">
     SELECT DISTINCT CHATTINGROOMID,
     FROM OTMCHAT
     WHERE SELLERID = #{userId}

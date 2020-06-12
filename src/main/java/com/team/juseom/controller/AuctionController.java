@@ -18,18 +18,18 @@ import com.team.juseom.service.JuseomFacade;
 @Controller
 public class AuctionController {
 	
-	private JuseomFacade bookStore;
-	
-	@Autowired
-	public void setPetStore(JuseomFacade bookStore) {
-		this.bookStore = bookStore;
-	}
-	
-	@RequestMapping("/shop/auction.do")
-	public ModelAndView handleRequest(HttpServletRequest request,
-			@RequestParam("endtime")
-			@DateTimeFormat(pattern="yyyy-MM-dd HH:mm") Date endTime) throws Exception {
-		bookStore.eventScheduler(endTime);		
-		return new ModelAndView("Scheuled", "endTime", endTime);
-	}
+//	private JuseomFacade juseom;
+//	
+//	@Autowired
+//	public void setJuseom(JuseomFacade juseom) {
+//		this.juseom = juseom;
+//	}
+//	
+//	@RequestMapping("/shop/auction.do")
+//	public ModelAndView handleRequest(HttpServletRequest request,
+//			@RequestParam("endtime")
+//			@DateTimeFormat(pattern="yyyy-MM-dd HH:mm") Date endTime) throws Exception {
+//		juseom.eventScheduler(endTime);		
+//		return new ModelAndView("Scheuled", "endTime", endTime);
+//	}
 }

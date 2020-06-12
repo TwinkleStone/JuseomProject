@@ -16,11 +16,6 @@
 	    FROM AUCTION
 	   	WHERE BOOKID = #{bookId}
 	</select>
-
-	<insert id="insertAuction">
-		 INSERT INTO AUCTION(AUCTIONID, BOOKID, STARTPRICE, PRESENTPRICE, SALESNUMBER, BIDNUMBER, ENDTIME)
-	     VALUES (#{bookId}, #{startPrice}, #{presentPrice}, #{salesNumber}, #{bidNumber}, #{endTime})
-	</insert>
 	
 	<insert id="insertBook" parameterType="Book">
 	  	<selectKey keyProperty="bookId" resultType="int" order="BEFORE">

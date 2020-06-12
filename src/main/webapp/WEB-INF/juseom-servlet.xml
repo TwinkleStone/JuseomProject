@@ -32,12 +32,13 @@
 		<property name="suffix" value=".jsp"/>
 	</bean>
 	
-	<bean id="echoHandler" class="com.example.jpetstore.config.EchoHandler"/>
+	<!--  <bean id="echoHandler" class="com.example.jpetstore.config.EchoHandler"/> 
 	
 	<websocket:handlers>
 		<websocket:mapping handler="echoHandler" path="/echo.do"/>
 		<websocket:sockjs/>
 	</websocket:handlers>
+	-->
 	
 	 <mvc:view-controller path="/shop/index.do" view-name="index"/>
 	
