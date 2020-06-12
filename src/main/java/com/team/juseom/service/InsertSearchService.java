@@ -10,6 +10,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -25,10 +26,16 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
-import com.team.juseom.domain.Book;
+import com.team.juseom.controller.BookRegiRequest;
 
 public class InsertSearchService {
-		public static String get(String apiUrl, Map<String, String> requestHeaders){
+		public static String get(String apiUrl){
+			String clientId = "";
+			String clientSecret = "";
+			
+			Map<String, String> requestHeaders = new HashMap<>();
+			requestHeaders.put("X-Naver-Client-Id", clientId);
+			requestHeaders.put("X-Naver-Client-Secret", clientSecret);
 	      HttpURLConnection con = connect(apiUrl);
 	      try {
 	          con.setRequestMethod("GET");
@@ -79,13 +86,13 @@ public class InsertSearchService {
 	      return null;
 	  }
 	  
-	  public static List<Book> parse(String responseBody){
+	  public static List<BookRegiRequest> parse(String responseBody){
 		  // xml 파싱하기
 	      DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 	      factory.setNamespaceAware(true);
 	      Document doc = null;
 	      InputSource is = new InputSource(new StringReader(responseBody.toString()));
-	      List<Book> bookList = new ArrayList<Book>();
+	      List<BookRegiRequest> bookList = new ArrayList<BookRegiRequest>();
 	      try {
 		      DocumentBuilder builder = factory.newDocumentBuilder();
 		      doc = builder.parse(is);
@@ -96,23 +103,32 @@ public class InsertSearchService {
 		      NodeList nodeList = (NodeList) expr.evaluate(doc, XPathConstants.NODESET);
 		      for (int i = 0; i < nodeList.getLength(); i++) {
 		          NodeList child = nodeList.item(i).getChildNodes();
-		          Book book = new Book();
+		          BookRegiRequest book = new BookRegiRequest();
 		          for (int j = 0; j < child.getLength(); j++) {
 		              Node node = (Node) child.item(j);
 		              String nodeResult = node.getTextContent().replaceAll("<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>", "");
 		              switch(node.getNodeName()) {
 		              	case "title": 
 		              		book.setName(nodeResult);
+		              		break;
 		              	case "author":
 		              		book.setAuthor(nodeResult);
+		              		break;
 		              	case "publisher":
 		              		book.setPublisher(nodeResult);
+		              		break;
 		              	case "pubdate":
 		              		book.setDate(nodeResult);
+		              		break;
 		              	case "price":
 		              		book.setPrice(Integer.parseInt(nodeResult));
+		              		break;
 		              	case "image":
-		              		book.setImageUrl(nodeResult);  		
+		              		book.setImageUrl(nodeResult);  
+		              		break;
+		              	case "isbn":
+		              		book.setIsbn(nodeResult);
+		              		break;
 		              }
 		          }
 		          bookList.add(book);

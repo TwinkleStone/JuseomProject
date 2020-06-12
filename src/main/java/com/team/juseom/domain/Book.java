@@ -1,7 +1,10 @@
 package com.team.juseom.domain;
 
-public class Book {
-	String bookId;
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class Book implements Serializable{
+	int bookId;
 	String userId;
 	String imageUrl;
 	String name;
@@ -14,10 +17,10 @@ public class Book {
 	String progress;
 	String tradeType;
 	
-	public String getBookId() {
+	public int getBookId() {
 		return bookId;
 	}
-	public void setBookId(String bookId) {
+	public void setBookId(int bookId) {
 		this.bookId = bookId;
 	}
 	public String getUserId() {

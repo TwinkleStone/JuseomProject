@@ -1,14 +1,17 @@
 package com.team.juseom.domain;
 
-public class Sale {
-	String saleId;
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class Sale implements Serializable{
+	int saleId;
 	Book book;
-	int suggestPrice;
+	String suggestPrice;
 	
-	public String getSaleId() {
+	public int getSaleId() {
 		return saleId;
 	}
-	public void setSaleId(String saleId) {
+	public void setSaleId(int saleId) {
 		this.saleId = saleId;
 	}
 	public Book getBook() {
@@ -17,10 +20,10 @@ public class Sale {
 	public void setBook(Book book) {
 		this.book = book;
 	}
-	public int getSuggestPrice() {
+	public String getSuggestPrice() {
 		return suggestPrice;
 	}
-	public void setSuggestPrice(int suggestPrice) {
+	public void setSuggestPrice(String suggestPrice) {
 		this.suggestPrice = suggestPrice;
 	}
 }

@@ -1,17 +1,17 @@
 package com.team.juseom.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.team.juseom.domain.Sale;
 import com.team.juseom.service.JuseomFacade;
 
 @Controller
-@SessionAttributes("saleList")
 public class ViewSaleController {
 	private JuseomFacade juseom;
 	
@@ -20,11 +20,12 @@ public class ViewSaleController {
 		this.juseom = juseom;
 	}
 	
-	@RequestMapping("/shop/viewSale.do")
-	public String handleRequest(ModelMap model) throws Exception {
-		PagedListHolder<Sale> saleList = new PagedListHolder<Sale>(this.juseom.getBookListBySale());
-		saleList.setPageSize(4);
+	@RequestMapping({"/index.do", "/index"})
+	public String sales(ModelMap model) {
+//		PagedListHolder<Sale> saleList = new PagedListHolder<Sale>(this.juseom.getBookListBySale());
+//		saleList.setPageSize(4);
+		List<Sale> saleList = new ArrayList<Sale>(this.juseom.getBookListBySale());
 		model.put("saleList", saleList);
-		return "Sale";
-	} 
+		return "index";	//index view로 이동
+	}
 }
