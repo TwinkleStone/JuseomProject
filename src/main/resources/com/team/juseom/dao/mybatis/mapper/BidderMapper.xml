@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.team.juseom.dao.mybatis.mapper.BidderMapper">
+	<cache />
+	
+	<select id="getBidderListByauctionId" resultType="Bidder">
+		SELECT BIDDERID, 
+			USERID,
+			AUCTIONID, 
+			BIDNUMBER,
+			BIDPRICE
+		FROM RATE
+		WHERE RATEDID = #{userId}
+	</select>
+	
+	<!-- bidderId값을 sequence를 이용해서 넣고 싶음. -->
+	<insert id="insertBidder" parameterType="bidder">
+		<selectKey keyProperty="bidderId" resultType="int" order="BEFORE">
+			SELECT BIDDER_SEQ.nextval AS bidderId FROM DUAL
+		</selectKey>
+			INSERT INTO BIDDER(bidderId, USERID, AUCTIONID, BIDNUMBER, BIDPRICE)
+			VALUES (#{bidderId}, #{userId}, #{auctionId}, #{bidNumber}, #{bidPrice})
+	</insert>
+</mapper>

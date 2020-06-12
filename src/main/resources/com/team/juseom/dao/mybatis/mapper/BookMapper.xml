@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.team.juseom.dao.mybatis.mapper.BookMapper">
+	<cache />
+	
+	 <select id="getAuction" resultType="Auction">
+     	SELECT
+        	AUCTIONID,
+        	BOOKID,
+        	STARTPRICE,
+	        PRESENTPRICE,
+	        SALESNUMBER,
+	        BIDNUMBER,
+	        ENDTIME
+	    FROM AUCTION
+	   	WHERE BOOKID = #{bookId}
+	</select>
+
+	<insert id="insertAuction">
+		 INSERT INTO AUCTION(AUCTIONID, BOOKID, STARTPRICE, PRESENTPRICE, SALESNUMBER, BIDNUMBER, ENDTIME)
+	     VALUES (#{bookId}, #{startPrice}, #{presentPrice}, #{salesNumber}, #{bidNumber}, #{endTime})
+	</insert>
+	
+</mapper>

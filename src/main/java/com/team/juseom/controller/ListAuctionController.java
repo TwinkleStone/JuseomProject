@@ -17,6 +17,5 @@ public class ListAuctionController {
 	public void setJuseom(JuseomFacade juseom) {
 		this.juseom = juseom;
 	}
-	
-	//auction id를 받아서 경매한 사람들의 username과 입찰가를 보여줌.
+
 }

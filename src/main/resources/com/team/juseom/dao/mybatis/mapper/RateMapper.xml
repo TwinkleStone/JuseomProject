@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.team.juseom.dao.mybatis.mapper.RateMapper">
+	<cache />
+	
+	<select id="getRateListByUser" resultType="Rate">
+     	SELECT
+        	RATEID,
+        	RATERID,
+        	RATEDID,
+        	RATE,
+        	DESCRIPTION
+     	FROM RATE
+     	WHERE RATEDID = #{userId}
+  	</select>
+  	
+  	<!-- rateId값을 sequence를 이용해서 넣고싶음. -->
+  	<insert id="insertRate" parameterType="Rate">
+    	<selectKey keyProperty="rateId" resultType="int" order="BEFORE">
+        	SELECT RATE_SEQ.nextval AS rateId FROM DUAL
+     	</selectKey>
+       		INSERT INTO RATE(rateId, RATERID, RATEDID, RATE, DESCRIPTION)
+        	VALUES (#{rateId}, #{raterId}, #{ratedId}, #{rate}, #{description})
+  	</insert>
+  	
+  	 <select id="getRate" resultType="Rate">
+     	SELECT
+        	RATEID,
+        	RATERID,
+        	RATEDID,
+        	RATE,
+        	DESCRIPTION
+     	FROM RATE
+     	WHERE RATEID = #{rateId}
+  </select>
+	
+</mapper>

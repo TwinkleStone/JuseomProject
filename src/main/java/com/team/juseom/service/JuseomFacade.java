@@ -1,5 +1,6 @@
 package com.team.juseom.service;
 
+import java.util.Date;
 import java.util.List;
 
 import com.team.juseom.domain.Auction;
@@ -24,4 +25,7 @@ public interface JuseomFacade {
 	
 	List<Book> searchBookList(Book book);
 	List<Book> getBookListByTradeType(String tradeType);
+	
+	
+	void eventScheduler(Date endTime);
 }

@@ -1,5 +1,7 @@
 package com.team.juseom.domain;
 
+import java.util.Date;
+
 public class Auction {
 	String auctionId;
 	Book book;
@@ -7,7 +9,8 @@ public class Auction {
 	int presentPrice;
 	int salesNumber;
 	int bidNumber;
-	String endTime;
+	Date endTime;
+	
 	public String getAuctionId() {
 		return auctionId;
 	}
@@ -44,10 +47,10 @@ public class Auction {
 	public void setBidNumber(int bidNumber) {
 		this.bidNumber = bidNumber;
 	}
-	public String getEndTime() {
+	public Date getEndTime() {
 		return endTime;
 	}
-	public void setEndTime(String endTime) {
+	public void setEndTime(Date endTime) {
 		this.endTime = endTime;
 	}
 
