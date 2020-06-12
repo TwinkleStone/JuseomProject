@@ -34,7 +34,7 @@ public class EventSchedulerService {
 		
 		auctionDao.insertNewAuction(auction);
 		
-		scheduler.schedule(updateTableRunner, auction.getEndTime());  
+		//scheduler.schedule(updateTableRunner, auction.getEndTime());  
 		
 		System.out.println("updateTableRunner has been scheduled to execute at " + auction.getEndTime());
 	}

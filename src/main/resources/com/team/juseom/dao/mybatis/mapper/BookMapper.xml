@@ -22,4 +22,55 @@
 	     VALUES (#{bookId}, #{startPrice}, #{presentPrice}, #{salesNumber}, #{bidNumber}, #{endTime})
 	</insert>
 	
+	<insert id="insertBook" parameterType="Book">
+	  	<selectKey keyProperty="bookId" resultType="int" order="BEFORE">
+	  		SELECT book_seq.nextval AS bookId FROM DUAL
+	  	</selectKey>
+	    INSERT INTO BOOK
+	      (BOOKID, USERID, IMAGEURL, NAME, AUTHOR, PUBLISHER, PUBLICATIONDATE, PRICE, CONDITION, DETAIL)
+	    VALUES
+	      (#{bookId}, #{userId}, #{imageUrl}, #{name}, #{author}, #{publisher}, #{date}, #{price}, #{condition}, #{detail})
+	</insert>
+	
+	<insert id="insertSale" parameterType="Sale">
+		<selectKey keyProperty="saleId" resultType="int" order="BEFORE">
+  			SELECT sale_seq.nextval AS saleId FROM DUAL
+  		</selectKey>
+		INSERT INTO SALE
+			(SALEID, SUGGESTPRICE, BOOKID)
+		VALUES
+			(#{saleId}, #{suggestPrice}, #{book.bookId})
+	</insert>
+	
+	<insert id="insertAuction" parameterType="Auction">
+		<selectKey keyProperty="auctionId" resultType="int" order="BEFORE">
+  			SELECT auction_seq.nextval AS auctionId FROM DUAL
+  		</selectKey>
+		INSERT INTO AUCTION
+			(AUCTIONID, STARTPRICE, SALESNUMBER, ENDTIME, BOOKID)
+		VALUES
+			(#{auctionId}, #{startPrice}, #{salesNumber}, #{endTime}, #{book.bookId})
+	</insert>
+	
+	<insert id="insertShare" parameterType="Share">
+		<selectKey keyProperty="shareId" resultType="int" order="BEFORE">
+  			SELECT share_seq.nextval AS shareId FROM DUAL
+  		</selectKey>
+		INSERT INTO SHARING
+			(SHAREID, SHARENUMBER, ENDTIME, RAFFLETIME, BOOKID)
+		VALUES
+			(#{shareId}, #{shareNumber}, #{endTime}, #{raffleTime}, #{book.bookId})
+	</insert>
+	
+	<select id="getBookListBySale" resultType="Sale">
+		SELECT s.saleId AS saleId,
+			s.suggestPrice AS suggestPrice,
+			b.name AS "book.name",
+			b.price AS "book.price",
+			b.author AS "book.author",
+			b.condition AS "book.condition",
+			b.imageUrl AS "book.imageUrl"
+		FROM Sale s, Book b
+		WHERE s.bookId = b.bookId
+	</select>
 </mapper>

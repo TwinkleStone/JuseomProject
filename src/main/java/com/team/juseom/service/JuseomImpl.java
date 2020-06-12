@@ -1,5 +1,6 @@
 package com.team.juseom.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -118,6 +119,12 @@ public class JuseomImpl implements JuseomFacade {
 	public void insertShare(Share share) {
 		bookDao.insertBook(share.getBook());
 		bookDao.insertShare(share);
+	}
+
+	@Override
+	public void eventScheduler(Date endTime) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

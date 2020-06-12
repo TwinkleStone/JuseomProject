@@ -10,6 +10,10 @@ import com.team.juseom.domain.Share;
 import com.team.juseom.domain.User;
 
 public interface JuseomFacade {
+	void insertBook(Book book);
+	void insertSale(Sale sale);
+	void insertShare(Share share);
+	void insertAuction(Auction auction);
 	List<Sale> getBookListBySale();
 	List<Auction> getBookListByAuction();
 	List<Share> getBookListByShare();
