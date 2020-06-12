@@ -229,7 +229,7 @@
 
 							    <li class="nav-item">
 							      <c:choose>
-								  <c:when test="${empty s_choice and empty a_choice and sh_chocie}">
+								  <c:when test="${empty s_choice and empty a_choice and empty sh_chocie}">
 							      	<a class="nav-link active" id="pills-description-tab" data-toggle="pill" href="#pills-description" role="tab" aria-controls="pills-description" aria-expanded="true">중고거래</a>
 							      </c:when>
 							      <c:when test="${!empty s_choice}">

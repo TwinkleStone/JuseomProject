@@ -115,12 +115,23 @@
 	<!-- 검색결과 -->
 	<section class="ftco-section goto-here">
 		<div class="container">
+			<c:choose>
+			<c:when test="${searchList.size() eq 0}">
     		<div class="row justify-content-center">
           		<div class="col-md-12 heading-section text-center ftco-animate mb-5">
 	          		<span class="subheading">What we offer</span>
 	            	<h2 class="mb-2">Exclusive Offer For You</h2>
           		</div>
         	</div>
+        	<h5 class="row justify-content-center">검색 결과가 없습니다.</h5>
+        	</c:when>
+        	<c:when test="${searchList.size() gt 0}">
+        		<div class="col-md-12 heading-section text-center ftco-animate mb-5">
+	          		<span class="subheading">What we offer</span>
+	            	<h2 class="mb-2">Exclusive Offer For You</h2>
+          		</div>
+        	</c:when>
+        	</c:choose>
 	        <div class="row">
 			<c:forEach var="book" items="${searchList}" varStatus="status">
 	        	<div class="col-md-4">
