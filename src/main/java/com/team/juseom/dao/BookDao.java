@@ -14,10 +14,10 @@ public interface BookDao {
 	void insertSale(Sale sale);
 	void insertShare(Share share);
 //	Book getBook(String bookId);
-//	Sale getSale(String bookId);
+	Sale getSale(String bookId);
 //	Share getShare(String bookId);
 //	Auction getAuction(String bookId);
 	List<Sale> getBookListBySale();
 	List<Auction> getBookListByAuction();
-//	List<Share> getBookListByShare();
+	List<Share> getBookListByShare();
 }

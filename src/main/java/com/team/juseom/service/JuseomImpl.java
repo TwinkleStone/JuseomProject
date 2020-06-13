@@ -32,14 +32,12 @@ public class JuseomImpl implements JuseomFacade {
 
 	@Override
 	public List<Share> getBookListByShare() {
-		// TODO Auto-generated method stub
-		return null;
+		return bookDao.getBookListByShare();
 	}
 
 	@Override
 	public Sale getSale(String bookId) {
-		// TODO Auto-generated method stub
-		return null;
+		return bookDao.getSale(bookId);
 	}
 
 	@Override

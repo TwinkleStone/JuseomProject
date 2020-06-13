@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -96,18 +97,21 @@ public class InsertBookContorller {
 			@ModelAttribute("sale") Sale formData, 
 			BindingResult result, 
 			SessionStatus sessionStatus,
-			Model model) {
+			ModelMap model) {
 		new SaleFormValidator().validate(formData, result);	
 		if (result.hasErrors()) {
-			model.addAttribute("book", formData.getBook());
-			model.addAttribute("s_choice", "write");
+			model.put("book", formData.getBook());
+			model.put("s_choice", "write");
 			return "InsertBook";
 		}
 		//userId 구현 전까지 임시 코드
 		formData.getBook().setUserId("1");
 		juseomFacade.insertSale(formData);
+		if(model.getAttribute("conditionCodes") != null) {
+			model.remove("conditionCodes");
+		}
 		sessionStatus.setComplete();
-		return "index";	
+		return "redirect:/index";	
 	}
 	
 	@PostMapping("/insert/auction.do")
@@ -128,7 +132,7 @@ public class InsertBookContorller {
 		formData.setPresentPrice(Integer.parseInt(formData.getStartPrice()));
 		juseomFacade.insertAuction(formData);
 		sessionStatus.setComplete();
-		return "index";	
+		return "redirect:/index";	
 	}
 
 	@PostMapping("/insert/share.do")
@@ -145,9 +149,10 @@ public class InsertBookContorller {
 		}
 		//userId 구현 전까지 임시 코드
 		formData.getBook().setUserId("1");
+		formData.setPeopleNumber(0);
 		juseomFacade.insertShare(formData);
 		sessionStatus.setComplete();
-		return "index";	
+		return "redirect:/index";	
 	}	
 	
 }

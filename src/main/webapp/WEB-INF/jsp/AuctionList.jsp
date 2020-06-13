@@ -37,7 +37,7 @@
 	        <ul class="navbar-nav ml-auto">
 	          <li class="nav-item"><a href="<c:url value="/index.do" />" class="nav-link">중고</a></li>
 	          <li class="nav-item active"><a href="<c:url value="/auction.do" />" class="nav-link">경매</a></li>
-	          <li class="nav-item"><a href="services.html" class="nav-link">나눔</a></li>
+	          <li class="nav-item"><a href="<c:url value="/share.do" />" class="nav-link">나눔</a></li>
 	          <li class="nav-item"><a class="nav-link" href="<c:url value="/insert/search.do" />">등록</a></li>
 	          <!--  <li class="nav-item"><a href="properties.html" class="nav-link">Listing</a></li>
 	          <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>

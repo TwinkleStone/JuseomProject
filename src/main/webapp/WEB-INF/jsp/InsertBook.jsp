@@ -107,7 +107,7 @@
 	        <ul class="navbar-nav ml-auto">
 	          <li class="nav-item"><a href="<c:url value="/index.do" />" class="nav-link">중고</a></li>
 	          <li class="nav-item"><a href="<c:url value="/auction.do" />" class="nav-link">경매</a></li>
-	          <li class="nav-item"><a href="services.html" class="nav-link">나눔</a></li>
+	          <li class="nav-item"><a href="<c:url value="/share.do" />" class="nav-link">나눔</a></li>
 	          <li class="nav-item active"><a class="nav-link" href="<c:url value="/insert/search.do" />">등록</a></li>
 	          <!--  <li class="nav-item"><a href="properties.html" class="nav-link">Listing</a></li>
 	          <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
@@ -118,7 +118,7 @@
 	  </nav>
     <!-- END nav -->
     
-    <div class="hero-wrap" style="background-image: url('../resources/images/bg_test8.jpg');" data-stellar-background-ratio="0.5">
+    <div class="hero-wrap" style="background-image: url('${pageContext.request.contextPath}/resources/images/bg_test8.jpg');" data-stellar-background-ratio="0.5">
       <div class="container">
         <div class="row no-gutters slider-text justify-content-center align-items-center">
           <div class="col-lg-8 col-md-6 ftco-animate d-flex align-items-end">

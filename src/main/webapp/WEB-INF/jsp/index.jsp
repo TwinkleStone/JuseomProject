@@ -37,7 +37,7 @@
 	        <ul class="navbar-nav ml-auto">
 	          <li class="nav-item active"><a href="<c:url value="/index.do" />" class="nav-link">중고</a></li>
 	          <li class="nav-item"><a href="<c:url value="/auction.do" />" class="nav-link">경매</a></li>
-	          <li class="nav-item"><a href="services.html" class="nav-link">나눔</a></li>
+	          <li class="nav-item"><a href="<c:url value="/share.do" />" class="nav-link">나눔</a></li>
 	          <li class="nav-item"><a class="nav-link" href="<c:url value="/insert/search.do" />">등록</a></li>
 	          <!--  <li class="nav-item"><a href="properties.html" class="nav-link">Listing</a></li>
 	          <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
@@ -67,7 +67,7 @@
         		<div class="col-md-4">
         			<div class="property-wrap ftco-animate">
         				<div class="img d-flex align-items-center justify-content-center" style="background-image: url(${s.book.imageUrl});">
-        					<a href="properties-single.html" class="icon d-flex align-items-center justify-content-center btn-custom">
+        					<a href="<c:url value="/view/sale.do?id=${s.saleId}" />" class="icon d-flex align-items-center justify-content-center btn-custom">
         						<span class="ion-ios-link"></span>
         					</a>
         					<div class="list-agent d-flex align-items-center">

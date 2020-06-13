@@ -1,16 +1,18 @@
 package com.team.juseom.domain;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Share {
+@SuppressWarnings("serial")
+public class Share implements Serializable{
 	int shareId;
 	Book book;
 	String shareNumber;
 	String endTime;
 	String raffleTime;
-	String peopleNumber;
+	int peopleNumber;
 	
 	public int getShareId() {
 		return shareId;
@@ -42,10 +44,10 @@ public class Share {
 	public void setRaffleTime(String raffleTime) {
 		this.raffleTime = raffleTime;
 	}
-	public String getPeopleNumber() {
+	public int getPeopleNumber() {
 		return peopleNumber;
 	}
-	public void setPeopleNumber(String peopleNumber) {
+	public void setPeopleNumber(int peopleNumber) {
 		this.peopleNumber = peopleNumber;
 	}
 	
