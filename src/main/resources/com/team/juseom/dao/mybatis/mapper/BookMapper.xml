@@ -42,9 +42,9 @@
   			SELECT auction_seq.nextval AS auctionId FROM DUAL
   		</selectKey>
 		INSERT INTO AUCTION
-			(AUCTIONID, STARTPRICE, SALESNUMBER, ENDTIME, BOOKID)
+			(AUCTIONID, STARTPRICE, SALESNUMBER, ENDTIME, PRESENTPRICE, BIDNUMBER, BOOKID)
 		VALUES
-			(#{auctionId}, #{startPrice}, #{salesNumber}, #{endTime}, #{book.bookId})
+			(#{auctionId}, #{startPrice}, #{salesNumber}, #{endTime}, #{presentPrice}, #{bidNumber}, #{book.bookId})
 	</insert>
 	
 	<insert id="insertShare" parameterType="Share">
@@ -67,5 +67,18 @@
 			b.imageUrl AS "book.imageUrl"
 		FROM Sale s, Book b
 		WHERE s.bookId = b.bookId
+	</select>
+	
+	<select id="getBookListByAuction" resultType="Auction">
+		SELECT a.auctionId AS auctionId,
+			a.presentPrice AS presentPrice,
+			a.bidNumber AS bidNumber,
+			a.endTime AS endTime,
+			b.name AS "book.name",
+			b.author AS "book.author",
+			b.condition AS "book.condition",
+			b.imageUrl AS "book.imageUrl"
+		FROM Auction a, Book b
+		WHERE a.bookId = b.bookId
 	</select>
 </mapper>

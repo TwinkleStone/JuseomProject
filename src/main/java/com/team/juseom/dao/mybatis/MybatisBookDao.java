@@ -20,10 +20,10 @@ public class MybatisBookDao implements BookDao{
 	public List<Sale> getBookListBySale(){
 		return bookMapper.getBookListBySale();
 	}
-//	
-//	public List<Auction> getBookListByAuction(){
-//		return bookMapper.getBookListByAuction();
-//	}
+	
+	public List<Auction> getBookListByAuction(){
+		return bookMapper.getBookListByAuction();
+	}
 //	
 //	public List<Share> getBookListByShare(){
 //		return bookMapper.getBookListByShare();

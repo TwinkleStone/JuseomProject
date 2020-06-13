@@ -40,8 +40,6 @@
 	</websocket:handlers>
 	-->
 	
-	 <mvc:view-controller path="/shop/index.do" view-name="index"/>
-	
 	<!--
 	<mvc:view-controller path="/shop/signonForm.do" view-name="SignonForm"/> 
 	

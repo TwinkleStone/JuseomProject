@@ -18,6 +18,6 @@ public interface BookDao {
 //	Share getShare(String bookId);
 //	Auction getAuction(String bookId);
 	List<Sale> getBookListBySale();
-//	List<Auction> getBookListByAuction();
+	List<Auction> getBookListByAuction();
 //	List<Share> getBookListByShare();
 }

@@ -10,7 +10,7 @@ import com.team.juseom.domain.Share;
 public interface BookMapper {
 
 	List<Sale> getBookListBySale();
-//	List<Auction> getBookListByAuction();
+	List<Auction> getBookListByAuction();
 //	List<Share> getBookListByShare();
 //	Book getBook(String bookId);
 //	Sale getSale(String bookId);

@@ -1,6 +1,6 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -23,24 +23,9 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/flaticon.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/icomoon.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css">
-	
-	<!--  
-    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
-    <link rel="stylesheet" href="css/animate.css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
-    <link rel="stylesheet" href="css/aos.css">
-    <link rel="stylesheet" href="css/ionicons.min.css">
-    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="css/jquery.timepicker.css">   
-    <link rel="stylesheet" href="css/flaticon.css">
-    <link rel="stylesheet" href="css/icomoon.css">
-    <link rel="stylesheet" href="css/style.css">
-    -->
   </head>
   <body>
-    	
+    
 	  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
 	      <a class="navbar-brand" href="<c:url value="/index.do" />">주섬주섬</a>
@@ -51,9 +36,9 @@
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
 	          <li class="nav-item"><a href="<c:url value="/index.do" />" class="nav-link">중고</a></li>
-	          <li class="nav-item"><a href="<c:url value="/auction.do" />" class="nav-link">경매</a></li>
+	          <li class="nav-item active"><a href="<c:url value="/auction.do" />" class="nav-link">경매</a></li>
 	          <li class="nav-item"><a href="services.html" class="nav-link">나눔</a></li>
-	          <li class="nav-item active"><a class="nav-link" href="<c:url value="/insert/search.do" />">등록</a></li>
+	          <li class="nav-item"><a class="nav-link" href="<c:url value="/insert/search.do" />">등록</a></li>
 	          <!--  <li class="nav-item"><a href="properties.html" class="nav-link">Listing</a></li>
 	          <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
 	          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li> -->
@@ -63,84 +48,29 @@
 	  </nav>
     <!-- END nav -->
     
-    <div class="hero-wrap" style="background-image: url('../resources/images/bg_test8.jpg');" data-stellar-background-ratio="0.5">
+    <section class="hero-wrap hero-wrap-2 ftco-degree-bg js-fullheight" style="background-image: url('${pageContext.request.contextPath}/resources/images/bg_test10.png');" data-stellar-background-ratio="0.5">
+      <!-- <div class="overlay"></div> -->
+      <!-- <div class="overlay-2"></div> -->
       <div class="container">
-        <div class="row no-gutters slider-text justify-content-center align-items-center">
-          <div class="col-lg-8 col-md-6 ftco-animate d-flex align-items-end">
-          	<div class="text text-center w-100">
-	            <h1 class="mb-4">Find Properties <br>That Make You Money</h1>
-            </div>
+        <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-center">
+          <div class="col-md-9 ftco-animate pb-5 mb-5 text-center">
+            <!--  <h1 class="mb-3 bread">중고거래</h1> -->
           </div>
         </div>
       </div>
-      <div class="mouse">
-				<a href="#" class="mouse-icon">
-					<div class="mouse-wheel"><span class="ion-ios-arrow-round-down"></span></div>
-				</a>
-			</div>
-    </div>
-
-	<!-- 검색창 -->
-    <section class="ftco-section ftco-no-pb">
-    	<div class="container">
-	    	<div class="row">
-					<div class="col-md-12">
-						<div class="search-wrap-1 ftco-animate">
-							<form action='<c:url value="/insert/search.do"/>' method="POST" class="search-property-1">
-		        		<div class="row">
-		        			<div class="col-lg align-items-end">
-		        				<div class="form-group">
-		        					<label for="#" style="margin-left:220px">판매하실 책을 검색하세요.</label>
-		          				<div class="form-field">
-		          					<div class="icon"><span class="ion-ios-search"></span></div>
-				                <input type="text" name="name" class="form-control" placeholder="책 이름" style="margin-left:200px" value="${search}">
-				              </div>
-			              </div>
-		        			</div>
-		        			<div class="col-lg align-self-end">
-		        				<div class="form-group">
-		        					<div class="form-field">
-				                <input type="submit" value="Search Property" class="form-control btn btn-primary" style="width:30%; margin-left:200px">
-				              </div>
-			              </div>
-		        			</div>
-		        		</div>
-		        	</form>
-		        </div>
-					</div>
-	    	</div>
-	    </div>
     </section>
-	
-	<!-- 검색결과 -->
+
 	<section class="ftco-section goto-here">
-		<div class="container">
-			<c:choose>
-			<c:when test="${searchList.pageList.size() eq 0}">
-    		<div class="row justify-content-center">
-          		<div class="col-md-12 heading-section text-center ftco-animate mb-5">
-	          		<span class="subheading">What we offer</span>
-	            	<h2 class="mb-2">Exclusive Offer For You</h2>
-          		</div>
-        	</div>
-        	<h5 class="row justify-content-center">검색 결과가 없습니다.</h5>
-        	</c:when>
-        	<c:when test="${searchList.pageList.size() gt 0}">
-        		<div class="col-md-12 heading-section text-center ftco-animate mb-5">
-	          		<span class="subheading">What we offer</span>
-	            	<h2 class="mb-2">Exclusive Offer For You</h2>
-          		</div>
-        	</c:when>
-        	</c:choose>
-	        <div class="row">
-			<c:forEach var="book" items="${searchList.pageList}" varStatus="status">
-	        	<div class="col-md-4">
-	        		<div class="property-wrap ftco-animate">
-	        			<div class="img d-flex align-items-center justify-content-center" style="background-image: url(${book.imageUrl});">
-	        				<a class="icon d-flex align-items-center justify-content-center btn-custom" href="<c:url value="/insert/book.do?isbn=${book.isbn}" />">
-	        					<span class="ion-ios-link"></span>
-	        				</a>
-	        				<div class="list-agent d-flex align-items-center">
+    	<div class="container">
+        	<div class="row">
+        		<c:forEach var="s" items="${auctionList.pageList}" varStatus="status">
+        		<div class="col-md-4">
+        			<div class="property-wrap ftco-animate">
+        				<div class="img d-flex align-items-center justify-content-center" style="background-image: url(${s.book.imageUrl});">
+        					<a href="properties-single.html" class="icon d-flex align-items-center justify-content-center btn-custom">
+        						<span class="ion-ios-link"></span>
+        					</a>
+        					<div class="list-agent d-flex align-items-center">
 	        					<!-- <a href="#" class="agent-info d-flex align-items-center">
 	        						<div class="img-2 rounded-circle" style="background-image: url(images/person_1.jpg);"></div>
 	        						<h3 class="mb-0 ml-2">Ben Ford</h3> 
@@ -155,52 +85,61 @@
 	        						</a>
 	        					</div>
 	        					 -->
-	        				</div>
-	        			</div>
-	        			<div class="text">
-	        				<h3 class="mb-0"><a href="<c:url value="/insert/book.do?isbn=${book.isbn}" />">${book.name}</a></h3>
-	        				<table style="font-size: 14px">
-	        					<tr>
-	        						<td>저자</td>
-	        						<td style="padding-left: 20px">${book.author}</td>
-	        					</tr>
-	        					<tr>
-	        						<td>출판사</td>
-	        						<td style="padding-left: 20px">${book.publisher}</td>
-	        					</tr>
-	        					<tr>
-	        						<td>출판일</td>
-	        						<td style="padding-left: 20px">
-	        							<fmt:parseDate value="${book.date}" pattern="yyyyMMdd" var="parseDate"/>
-	        							<fmt:formatDate value="${parseDate}" pattern="yyyy년MM월dd일" />
-	        						</td>
-	        					</tr>
-	        					<tr>
-	        						<td>정가</td>
-	        						<td style="padding-left: 20px"><fmt:formatNumber value="${book.price}" pattern="#,###"/>원</td>
-	        					</tr>
-	        				</table>
-	        			</div>
+        					</div>
+        				</div>
+		        		<div class="text">
+		        			<h3 class="mb-0"><a href="properties-single.html">${s.book.name}</a></h3>
+		        			<span class="location d-inline-block mb-3">${s.book.author} 저</span>
+		        			<p class="price mb-3"><span class="orig-price" style="font-size: 20px">현재가&nbsp;<fmt:formatNumber value="${s.presentPrice}" pattern="#,###"/>원</span>&nbsp;&nbsp;<span style="font-size: 15px">${s.bidNumber}명 입찰 중</span></p>
+		        			<ul class="property_list">
+		        				<li>경매마감 </li>
+		        				<li>${s.endTime}</li>
+		        				<!-- <li><span class="flaticon-floor-plan"></span>1,878 sqft</li>  -->
+		        			</ul>
+		        			<ul class="property_list">
+		        				<li>상태 : </li>
+		        				<li>${s.book.condition}</li>
+		        				<!-- <li><span class="flaticon-floor-plan"></span>1,878 sqft</li>  -->
+		        			</ul>
+		        		</div>
         			</div>
         		</div>
-	    	</c:forEach>
-	    	</div>
-	    	<c:if test="${searchList.pageCount gt 1}">
-	    	<div class="row mt-5">
+        		</c:forEach>
+        	</div>
+     
+        	<!--  
+	        <div class="row mt-5">
 	          <div class="col text-center">
 	            <div class="block-27">
 	              <ul>
-	              	<c:if test="${!searchList.firstPage}">
+	                <li><a href="#">&lt;</a></li>
+	                <li class="active"><span>1</span></li>
+	                <li><a href="#">2</a></li>
+	                <li><a href="#">3</a></li>
+	                <li><a href="#">4</a></li>
+	                <li><a href="#">5</a></li>
+	                <li><a href="#">&gt;</a></li>
+	              </ul>
+	            </div>
+	          </div>
+        	</div>
+        		          -->
+        	<c:if test="${auctionList.pageCount gt 1}">
+        	<div class="row mt-5">
+	          <div class="col text-center">
+	            <div class="block-27">
+	              <ul>
+	              	<c:if test="${!auctionList.firstPage}">
 	              		<li>
-	          				<a href='<c:url value="search2.do">
+	          				<a href='<c:url value="/index2.do">
 	            				<c:param name="page" value="previous"/></c:url>'>
 	            				&lt;
 	     					</a>
      					</li>
         			</c:if> 
-			        <c:if test="${!searchList.lastPage}">
+			        <c:if test="${!auctionList.lastPage}">
 			          <li>
-				          <a href='<c:url value="search2.do">
+				          <a href='<c:url value="/index2.do">
 				            <c:param name="page" value="next"/></c:url>'>
 				            &gt;
 				          </a>
@@ -213,6 +152,7 @@
         	</c:if>
     	</div>
     </section>
+		
 
     <footer class="ftco-footer ftco-section">
       <div class="container">
@@ -286,9 +226,11 @@
     
   
 
- 	<!-- loader -->
- 	<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
+
+  
   <script src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
   <script src="${pageContext.request.contextPath}/resources/js/jquery-migrate-3.0.1.min.js"></script>
   <script src="${pageContext.request.contextPath}/resources/js/popper.min.js"></script>
@@ -306,27 +248,5 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="${pageContext.request.contextPath}/resources/js/google-map.js"></script>
   <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
-
-<!--
-  <script src="js/jquery.min.js"></script>
-  <script src="js/jquery-migrate-3.0.1.min.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/jquery.easing.1.3.js"></script>
-  
-  <script src="js/jquery.waypoints.min.js"></script>
-  <script src="js/jquery.stellar.min.js"></script>
-  <script src="js/owl.carousel.min.js"></script>
-  <script src="js/jquery.magnific-popup.min.js"></script>
-  <script src="js/aos.js"></script>
-  
-  <script src="js/jquery.animateNumber.min.js"></script>
-  <script src="js/bootstrap-datepicker.js"></script>
-  <script src="js/jquery.timepicker.min.js"></script>
-  <script src="js/scrollax.min.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-  <script src="js/google-map.js"></script>
-  <script src="js/main.js"></script>
-    -->
   </body>
 </html>

@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
@@ -35,7 +36,7 @@
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
 	          <li class="nav-item active"><a href="<c:url value="/index.do" />" class="nav-link">중고</a></li>
-	          <li class="nav-item"><a href="about.html" class="nav-link">경매</a></li>
+	          <li class="nav-item"><a href="<c:url value="/auction.do" />" class="nav-link">경매</a></li>
 	          <li class="nav-item"><a href="services.html" class="nav-link">나눔</a></li>
 	          <li class="nav-item"><a class="nav-link" href="<c:url value="/insert/search.do" />">등록</a></li>
 	          <!--  <li class="nav-item"><a href="properties.html" class="nav-link">Listing</a></li>
@@ -62,7 +63,7 @@
 	<section class="ftco-section goto-here">
     	<div class="container">
         	<div class="row">
-        		<c:forEach var="s" items="${saleList}" varStatus="status">
+        		<c:forEach var="s" items="${saleList.pageList}" varStatus="status">
         		<div class="col-md-4">
         			<div class="property-wrap ftco-animate">
         				<div class="img d-flex align-items-center justify-content-center" style="background-image: url(${s.book.imageUrl});">
@@ -87,7 +88,7 @@
         					</div>
         				</div>
 		        		<div class="text">
-		        			<p class="price mb-3"><span class="old-price">${s.book.price}</span><span class="orig-price">${s.suggestPrice}원</span></p>
+		        			<p class="price mb-3"><span class="old-price"><fmt:formatNumber value="${s.book.price}" pattern="#,###"/></span><span class="orig-price"><fmt:formatNumber value="${s.suggestPrice}" pattern="#,###"/>원</span></p>
 		        			<h3 class="mb-0"><a href="properties-single.html">${s.book.name}</a></h3>
 		        			<span class="location d-inline-block mb-3">${s.book.author} 저</span>
 		        			<ul class="property_list">
@@ -100,6 +101,8 @@
         		</div>
         		</c:forEach>
         	</div>
+     
+        	<!--  
 	        <div class="row mt-5">
 	          <div class="col text-center">
 	            <div class="block-27">
@@ -115,6 +118,33 @@
 	            </div>
 	          </div>
         	</div>
+        		          -->
+        	<c:if test="${saleList.pageCount gt 1}">
+        	<div class="row mt-5">
+	          <div class="col text-center">
+	            <div class="block-27">
+	              <ul>
+	              	<c:if test="${!saleList.firstPage}">
+	              		<li>
+	          				<a href='<c:url value="/index2.do">
+	            				<c:param name="page" value="previous"/></c:url>'>
+	            				&lt;
+	     					</a>
+     					</li>
+        			</c:if> 
+			        <c:if test="${!saleList.lastPage}">
+			          <li>
+				          <a href='<c:url value="/index2.do">
+				            <c:param name="page" value="next"/></c:url>'>
+				            &gt;
+				          </a>
+			          </li>
+			        </c:if>
+	              </ul>
+	            </div>
+	          </div>
+        	</div>
+        	</c:if>
     	</div>
     </section>
 		

@@ -27,8 +27,7 @@ public class JuseomImpl implements JuseomFacade {
 
 	@Override
 	public List<Auction> getBookListByAuction() {
-		// TODO Auto-generated method stub
-		return null;
+		return bookDao.getBookListByAuction();
 	}
 
 	@Override

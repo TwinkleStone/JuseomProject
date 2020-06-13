@@ -1,10 +1,12 @@
 package com.team.juseom.domain;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Auction {
+@SuppressWarnings("serial")
+public class Auction implements Serializable{
 	int auctionId;
 	Book book;
 	String startPrice;

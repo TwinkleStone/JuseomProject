@@ -124,6 +124,8 @@ public class InsertBookContorller {
 		}
 		//userId 구현 전까지 임시 코드
 		formData.getBook().setUserId("1");
+		formData.setBidNumber(0);
+		formData.setPresentPrice(Integer.parseInt(formData.getStartPrice()));
 		juseomFacade.insertAuction(formData);
 		sessionStatus.setComplete();
 		return "index";	
