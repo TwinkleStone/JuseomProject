@@ -8,8 +8,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.team.juseom.dao.BookDao;
+import com.team.juseom.dao.RateDao;
 import com.team.juseom.domain.Auction;
 import com.team.juseom.domain.Book;
+import com.team.juseom.domain.Rate;
 import com.team.juseom.domain.Sale;
 import com.team.juseom.domain.Share;
 import com.team.juseom.domain.User;
@@ -19,6 +21,9 @@ import com.team.juseom.domain.User;
 public class JuseomImpl implements JuseomFacade {
 	@Autowired
 	private BookDao bookDao;
+	
+	@Autowired
+	private RateDao rateDao;
 	
 	@Override
 	public List<Sale> getBookListBySale() {
@@ -122,6 +127,11 @@ public class JuseomImpl implements JuseomFacade {
 	public void eventScheduler(Date endTime) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void insertRate(Rate rate) {
+		rateDao.insertRate(rate);
 	}
 
 }

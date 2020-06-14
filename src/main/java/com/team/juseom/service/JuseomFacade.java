@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.team.juseom.domain.Auction;
 import com.team.juseom.domain.Book;
+import com.team.juseom.domain.Rate;
 import com.team.juseom.domain.Sale;
 import com.team.juseom.domain.Share;
 import com.team.juseom.domain.User;
@@ -32,4 +33,5 @@ public interface JuseomFacade {
 	
 	
 	void eventScheduler(Date endTime);
+	void insertRate(Rate rate);
 }
