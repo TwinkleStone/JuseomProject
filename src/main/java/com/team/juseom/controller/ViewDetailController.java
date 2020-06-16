@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.team.juseom.domain.Auction;
 import com.team.juseom.domain.Sale;
+import com.team.juseom.domain.Share;
 import com.team.juseom.service.JuseomFacade;
 
 @Controller
@@ -33,5 +34,13 @@ public class ViewDetailController {
 		Auction a = juseom.getOneAuction(auctionId);
 		model.addAttribute("auction", a);
 		return "AuctionDetail"; //상세정보 view로 이동
+	}
+	
+	@RequestMapping("/view/share.do")
+	public String viewShare(@RequestParam("id") String shareId,
+			Model model) {
+		Share s = juseom.getShare(shareId);
+		model.addAttribute("share", s);
+		return "ShareDetail"; //상세정보 view로 이동
 	}
 }

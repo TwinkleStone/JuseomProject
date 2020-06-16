@@ -133,4 +133,24 @@
 		FROM Auction a, Book b
 		WHERE a.bookId = b.bookId AND a.auctionId = ${value}
 	</select>
+	
+	<select id="getShare" resultType="Share">
+		SELECT s.shareId AS shareId,
+			s.shareNumber AS shareNumber,
+			s.endTime AS endTime,
+			s.raffleTime AS raffleTime,
+			s.peopleNumber AS peopleNumber,
+			b.bookId AS "book.bookId",
+			b.userId AS "book.userId",
+			b.name AS "book.name",
+			b.author AS "book.author",
+			b.condition AS "book.condition",
+			b.imageUrl AS "book.imageUrl",
+			b.publisher AS "book.publisher",
+			b.publicationDate AS "book.date",
+			b.price AS "book.price",
+			b.detail AS "book.detail"
+		FROM Sharing s, Book b
+		WHERE s.bookId = b.bookId AND s.shareId = ${value}
+	</select>
 </mapper>

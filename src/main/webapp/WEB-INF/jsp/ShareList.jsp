@@ -66,7 +66,7 @@
         		<div class="col-md-4">
         			<div class="property-wrap ftco-animate">
         				<div class="img d-flex align-items-center justify-content-center" style="background-image: url(${s.book.imageUrl});">
-        					<a href="properties-single.html" class="icon d-flex align-items-center justify-content-center btn-custom">
+        					<a href="<c:url value="/view/share.do?id=${s.shareId}" />" class="icon d-flex align-items-center justify-content-center btn-custom">
         						<span class="ion-ios-link"></span>
         					</a>
         					<div class="list-agent d-flex align-items-center">
@@ -87,7 +87,7 @@
         					</div>
         				</div>
 		        		<div class="text">
-		        			<h3 class="mb-0"><a href="properties-single.html">${s.book.name}</a></h3>
+		        			<h3 class="mb-0"><a href="<c:url value="/view/share.do?id=${s.shareId}" />">${s.book.name}</a></h3>
 		        			<span class="location d-inline-block mb-3">${s.book.author} 저</span>
 		        			<p class="price mb-3"><span style="font-size: 18px">나눔인원&nbsp;${s.shareNumber}명</span>&nbsp;&nbsp;<span style="font-size: 15px; color: gray">(${s.peopleNumber}명 참여 중)</span></p>
 		        			<p class="price mb-3"><span class="orig-price" style="font-size: 20px">추첨시간&nbsp;${s.raffleTime}</span></p>

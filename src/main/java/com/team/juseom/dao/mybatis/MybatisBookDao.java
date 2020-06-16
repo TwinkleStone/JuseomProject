@@ -36,12 +36,10 @@ public class MybatisBookDao implements BookDao{
 	public Sale getSale(String saleId){
 		return bookMapper.getSale(saleId);
 	}
-//	
-//	public Share getShare(String bookId){
-//		Share share = bookMapper.getShare(bookId);
-//		share.setBook(getBook(bookId));
-//		return share;
-//	}
+	
+	public Share getShare(String shareId){
+		return bookMapper.getShare(shareId);
+	}
 	
 	public void insertBook(Book book){
 		bookMapper.insertBook(book);

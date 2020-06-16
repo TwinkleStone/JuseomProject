@@ -14,7 +14,7 @@ public interface BookMapper {
 	List<Share> getBookListByShare();
 //	Book getBook(String bookId);
 	Sale getSale(String saleId);
-//	Share getShare(String bookId);
+	Share getShare(String shareId);
 	Auction getOneAuction(String auctionId);
 	void insertBook(Book book);
 	void insertAuction(Auction auction);

@@ -74,9 +74,8 @@ public class JuseomImpl implements JuseomFacade {
 	}
 	
 	@Override
-	public Share getShare(String bookId) {
-		// TODO Auto-generated method stub
-		return null;
+	public Share getShare(String shareId) {
+		return bookDao.getShare(shareId);
 	}
 
 	@Override

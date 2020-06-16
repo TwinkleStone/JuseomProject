@@ -36,8 +36,8 @@
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
 	          <li class="nav-item"><a href="<c:url value="/index.do" />" class="nav-link">중고</a></li>
-	          <li class="nav-item active"><a href="<c:url value="/auction.do" />" class="nav-link">경매</a></li>
-	          <li class="nav-item"><a href="<c:url value="/share.do" />" class="nav-link">나눔</a></li>
+	          <li class="nav-item"><a href="<c:url value="/auction.do" />" class="nav-link">경매</a></li>
+	          <li class="nav-item active"><a href="<c:url value="/share.do" />" class="nav-link">나눔</a></li>
 	          <li class="nav-item"><a class="nav-link" href="<c:url value="/insert/search.do" />">등록</a></li>
 	          <!--  <li class="nav-item"><a href="properties.html" class="nav-link">Listing</a></li>
 	          <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
@@ -68,15 +68,14 @@
           		</div>
           		<table style="background: #f8f9fa">
 	        		<tr>
-	        			<td style="padding-left: 20px; text-align: center"> <img src="${auction.book.imageUrl}" alt="Image placeholder" class="img-fluid mb-4"></td>
+	        			<td style="padding-left: 20px; text-align: center"> <img src="${share.book.imageUrl}" alt="Image placeholder" class="img-fluid mb-4"></td>
 	        			<td style="padding: 30px; width: 500px">
 	        				<div class="desc">
-				                <h4>${auction.book.name}</h4>
-				                <p>${auction.book.author}(지은이) | ${auction.book.publisher} | <fmt:parseDate value="${auction.book.date}" pattern="yyyyMMdd" var="parseDate"/><fmt:formatDate value="${parseDate}" pattern="yyyy년MM월dd일" /></p>
-				              	<p>상태 : <span style="text-weight: bold; color: #d4ca68">${auction.book.condition}</span></p>
-				              	<p>현재가 : <span style="font-size: 20px; color: #d4ca68"><fmt:formatNumber value="${auction.presentPrice}" pattern="#,###"/>원</span>&nbsp;&nbsp;<span style="font-size: 13px">| 시작가: <fmt:formatNumber value="${auction.startPrice}" pattern="#,###"/>원</span></p>
-	              				<p>입찰 수 : ${auction.bidNumber}&nbsp;&nbsp;<span style="font-size: 13px">(총 판매수량 : ${auction.salesNumber})</span></p>
-	              				<p>종료시간 : ${auction.endTime}</p>
+				                <h4>${share.book.name}</h4>
+				                <p>${share.book.author}(지은이) | ${share.book.publisher} | <fmt:parseDate value="${share.book.date}" pattern="yyyyMMdd" var="parseDate"/><fmt:formatDate value="${parseDate}" pattern="yyyy년MM월dd일" /></p>
+				              	<p>상태 : <span style="text-weight: bold; color: #d4ca68">${share.book.condition}</span></p>
+				              	<p>추첨시간 : <span style="font-size: 20px; color: #d4ca68">${share.raffleTime}</span>&nbsp;&nbsp;<br><span style="font-size: 13px"> (종료시간 : ${share.endTime})</span></p>
+	              				<p>나눔 수량 : ${share.shareNumber}&nbsp;&nbsp;<span style="font-size: 13px">(신청수 : ${share.peopleNumber})</span></p>
 	              			</div>
 	              		</td>
 	        		</tr>
@@ -85,11 +84,11 @@
 	        				<div class="form-group">
                     			<label for="message">상세설명</label>
                     				<c:choose>
-										<c:when test="${empty auction.book.detail}">
+										<c:when test="${empty share.book.detail}">
 											<textarea name="" id="message" cols="30" rows="10" class="form-control" style="font-size:15px" disabled>내용 없습니다.</textarea>
 										</c:when>
 										<c:otherwise>
-											<textarea name="" id="message" cols="30" rows="10" class="form-control" style="font-size:15px" disabled>${auction.book.detail}</textarea>
+											<textarea name="" id="message" cols="30" rows="10" class="form-control" style="font-size:15px" disabled>${share.book.detail}</textarea>
 										</c:otherwise>
 								</c:choose>
                   			</div>
@@ -102,7 +101,7 @@
 	        		<tr style="text-align: center">
 	        			<td style="padding: 30px">
 	        				<div class="form-group">
-                    			<input type="button" value="입찰하기" class="btn py-3 px-4 btn-primary">
+                    			<input type="button" value="신청하기" class="btn py-3 px-4 btn-primary">
                   			</div>
 	 					</td>
 	        		</tr>
