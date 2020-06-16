@@ -22,12 +22,12 @@ public class MemberController {
 		this.memberService = memberService;
 	}
 	
-	@RequestMapping("/index")
-	public String getSchedule(Model model) {
-		List<User> members = memberService.getMembers();
-		model.addAttribute("members", members);
-		return "member/schedule";
-	}
+//	@RequestMapping("/index")
+//	public String getSchedule(Model model) {
+//		List<User> members = memberService.getMembers();
+//		model.addAttribute("members", members);
+//		return "member/schedule";
+//	}
 	
 	@RequestMapping("/members/get")
 	public String getMember(@RequestParam("id") String memberId, Model model) {

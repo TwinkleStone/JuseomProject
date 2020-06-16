@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.team.juseom.domain.Auction;
 import com.team.juseom.domain.Sale;
 import com.team.juseom.service.JuseomFacade;
 
@@ -19,10 +20,18 @@ public class ViewDetailController {
 	}
 	
 	@RequestMapping("/view/sale.do")
-	public String view(@RequestParam("id") String saleId,
+	public String viewSale(@RequestParam("id") String saleId,
 			Model model) {
 		Sale s = juseom.getSale(saleId);
 		model.addAttribute("sale", s);
 		return "SaleDetail"; //상세정보 view로 이동
+	}
+	
+	@RequestMapping("/view/auction.do")
+	public String viewAuction(@RequestParam("id") String auctionId,
+			Model model) {
+		Auction a = juseom.getOneAuction(auctionId);
+		model.addAttribute("auction", a);
+		return "AuctionDetail"; //상세정보 view로 이동
 	}
 }

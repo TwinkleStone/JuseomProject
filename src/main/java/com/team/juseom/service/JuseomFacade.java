@@ -18,9 +18,9 @@ public interface JuseomFacade {
 	List<Sale> getBookListBySale();
 	List<Auction> getBookListByAuction();
 	List<Share> getBookListByShare();
-	Sale getSale(String bookId);
+	Sale getSale(String saleId);
 	Share getShare(String bookId);
-	Auction getAuction(String bookId);
+	Auction getOneAuction(String auctionId);
 	
 	User getUser(String userId);
 	User getUser(String userId, String password);

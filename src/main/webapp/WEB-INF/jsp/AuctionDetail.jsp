@@ -48,112 +48,85 @@
 	  </nav>
     <!-- END nav -->
     
-    <section class="hero-wrap hero-wrap-2 ftco-degree-bg js-fullheight" style="background-image: url('${pageContext.request.contextPath}/resources/images/bg_test10.png');" data-stellar-background-ratio="0.5">
-      <!-- <div class="overlay"></div> -->
-      <!-- <div class="overlay-2"></div> -->
+    <div class="hero-wrap" style="background-image: url('${pageContext.request.contextPath}/resources/images/bg_5.jpg');" data-stellar-background-ratio="0.5">
       <div class="container">
-        <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-center">
-          <div class="col-md-9 ftco-animate pb-5 mb-5 text-center">
-            <!--  <h1 class="mb-3 bread">중고거래</h1> -->
-          </div>
+        <div class="row no-gutters slider-text justify-content-center align-items-center">
+          
         </div>
       </div>
-    </section>
+    </div>
 
-	<section class="ftco-section goto-here">
-    	<div class="container">
-        	<div class="row">
-        		<c:forEach var="s" items="${auctionList.pageList}" varStatus="status">
-        		<div class="col-md-4">
-        			<div class="property-wrap ftco-animate">
-        				<div class="img d-flex align-items-center justify-content-center" style="background-image: url(${s.book.imageUrl});">
-        					<a href="<c:url value="/view/auction.do?id=${s.auctionId}" />" class="icon d-flex align-items-center justify-content-center btn-custom">
-        						<span class="ion-ios-link"></span>
-        					</a>
-        					<div class="list-agent d-flex align-items-center">
-	        					<!-- <a href="#" class="agent-info d-flex align-items-center">
-	        						<div class="img-2 rounded-circle" style="background-image: url(images/person_1.jpg);"></div>
-	        						<h3 class="mb-0 ml-2">Ben Ford</h3> 
-	        					</a> -->
-	        					<!-- 
-	        					<div class="tooltip-wrap d-flex">
-	        						<a href="#" class="icon-2 d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="top" title="Bookmark">
-	        							<span class="ion-ios-heart"><i class="sr-only">Bookmark</i></span>
-	        						</a>
-	        						<a href="#" class="icon-2 d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="top" title="Compare">
-	        							<span class="ion-ios-eye"><i class="sr-only">Compare</i></span>
-	        						</a>
-	        					</div>
-	        					 -->
-        					</div>
-        				</div>
-		        		<div class="text">
-		        			<h3 class="mb-0"><a href="<c:url value="/view/auction.do?id=${s.auctionId}" />">${s.book.name}</a></h3>
-		        			<span class="location d-inline-block mb-3">${s.book.author} 저</span>
-		        			<p class="price mb-3"><span class="orig-price" style="font-size: 20px">현재가&nbsp;<fmt:formatNumber value="${s.presentPrice}" pattern="#,###"/>원</span>&nbsp;&nbsp;<span style="font-size: 15px">${s.bidNumber}명 입찰 중</span></p>
-		        			<ul class="property_list">
-		        				<li>경매마감 </li>
-		        				<li>${s.endTime}</li>
-		        				<!-- <li><span class="flaticon-floor-plan"></span>1,878 sqft</li>  -->
-		        			</ul>
-		        			<ul class="property_list">
-		        				<li>상태 : </li>
-		        				<li>${s.book.condition}</li>
-		        				<!-- <li><span class="flaticon-floor-plan"></span>1,878 sqft</li>  -->
-		        			</ul>
-		        		</div>
-        			</div>
-        		</div>
-        		</c:forEach>
+	<section class="ftco-section ftco-degree-bg">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 ftco-animate" style="align: center">
+            
+            <div class="row justify-content-center">
+          		<div class="col-md-12 heading-section text-center ftco-animate mb-5">
+	          		<span class="subheading">OUR BOOK</span>
+	            	<h2 class="mb-2">Choose This Book</h2>
+          		</div>
+          		<table style="background: #f8f9fa">
+	        		<tr>
+	        			<td style="padding-left: 20px; text-align: center"> <img src="${auction.book.imageUrl}" alt="Image placeholder" class="img-fluid mb-4"></td>
+	        			<td style="padding: 30px; width: 500px">
+	        				<div class="desc">
+				                <h4>${auction.book.name}</h4>
+				                <p>${auction.book.author}(지은이) | ${auction.book.publisher} | <fmt:parseDate value="${auction.book.date}" pattern="yyyyMMdd" var="parseDate"/><fmt:formatDate value="${parseDate}" pattern="yyyy년MM월dd일" /></p>
+				              	<p>상태 : <span style="text-weight: bold; color: #d4ca68">${auction.book.condition}</span></p>
+				              	<p>현재가 : <span style="font-size: 20px; color: #d4ca68"><fmt:formatNumber value="${auction.presentPrice}" pattern="#,###"/>원</span>&nbsp;&nbsp;<span style="font-size: 13px">| 시작가: <fmt:formatNumber value="${auction.startPrice}" pattern="#,###"/>원</span></p>
+	              				<p>입찰 수 : ${auction.bidNumber}&nbsp;&nbsp;<span style="font-size: 13px">(총 판매수량 : ${auction.salesNumber})</span></p>
+	              				<p>종료시간 : ${auction.endTime}</p>
+	              			</div>
+	              		</td>
+	        		</tr>
+	        		<tr>
+	        			<td colspan="2" style="padding: 30px">
+	        				<div class="form-group">
+                    			<label for="message">상세설명</label>
+                    				<c:choose>
+										<c:when test="${empty auction.book.detail}">
+											<textarea name="" id="message" cols="30" rows="10" class="form-control" style="font-size:15px" disabled>내용 없습니다.</textarea>
+										</c:when>
+										<c:otherwise>
+											<textarea name="" id="message" cols="30" rows="10" class="form-control" style="font-size:15px" disabled>${sale.book.detail}</textarea>
+										</c:otherwise>
+								</c:choose>
+                  			</div>
+	        			</td>
+	        		</tr>
+        		</table>
         	</div>
-     
-        	<!--  
-	        <div class="row mt-5">
-	          <div class="col text-center">
-	            <div class="block-27">
-	              <ul>
-	                <li><a href="#">&lt;</a></li>
-	                <li class="active"><span>1</span></li>
-	                <li><a href="#">2</a></li>
-	                <li><a href="#">3</a></li>
-	                <li><a href="#">4</a></li>
-	                <li><a href="#">5</a></li>
-	                <li><a href="#">&gt;</a></li>
-	              </ul>
-	            </div>
-	          </div>
+        	<div class="row justify-content-center">
+				<table>
+	        		<tr style="text-align: center">
+	        			<td style="padding: 30px">
+	        				<div class="form-group">
+                    			<input type="button" value="입찰하기" class="btn py-3 px-4 btn-primary">
+                  			</div>
+	 					</td>
+	        		</tr>
+        		</table>
         	</div>
-        		          -->
-        	<c:if test="${auctionList.pageCount gt 1}">
-        	<div class="row mt-5">
-	          <div class="col text-center">
-	            <div class="block-27">
-	              <ul>
-	              	<c:if test="${!auctionList.firstPage}">
-	              		<li>
-	          				<a href='<c:url value="/index2.do">
-	            				<c:param name="page" value="previous"/></c:url>'>
-	            				&lt;
-	     					</a>
-     					</li>
-        			</c:if> 
-			        <c:if test="${!auctionList.lastPage}">
-			          <li>
-				          <a href='<c:url value="/index2.do">
-				            <c:param name="page" value="next"/></c:url>'>
-				            &gt;
-				          </a>
-			          </li>
-			        </c:if>
-	              </ul>
-	            </div>
-	          </div>
-        	</div>
-        	</c:if>
-    	</div>
-    </section>
-		
-
+            <div class="pt-5 mt-5">
+              <ul class="comment-list">
+                <li class="comment">
+                  <div class="comment-body">
+                  	<h2 class="mb-5" style="text-weight: bold">판매자 정보</h2>
+                    <h3>판매자 이름</h3>
+                    <div class="meta">October 17, 2019 at 2:21pm</div>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
+                    <p><a href="#" class="reply">Reply</a></p>
+                  </div>
+                </li>
+              </ul>
+              <!-- END comment-list -->
+            </div>
+          </div> <!-- .col-md-8 -->
+        </div>
+      </div>
+    </section> <!-- .section -->
+    
     <footer class="ftco-footer ftco-section">
       <div class="container">
         <div class="row mb-5">

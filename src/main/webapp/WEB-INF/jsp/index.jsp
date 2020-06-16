@@ -89,7 +89,7 @@
         				</div>
 		        		<div class="text">
 		        			<p class="price mb-3"><span class="old-price"><fmt:formatNumber value="${s.book.price}" pattern="#,###"/></span><span class="orig-price"><fmt:formatNumber value="${s.suggestPrice}" pattern="#,###"/>원</span></p>
-		        			<h3 class="mb-0"><a href="properties-single.html">${s.book.name}</a></h3>
+		        			<h3 class="mb-0"><a href="<c:url value="/view/sale.do?id=${s.saleId}" />">${s.book.name}</a></h3>
 		        			<span class="location d-inline-block mb-3">${s.book.author} 저</span>
 		        			<ul class="property_list">
 		        				<li>상태 : </li>

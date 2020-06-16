@@ -44,15 +44,37 @@ public class JuseomImpl implements JuseomFacade {
 	public Sale getSale(String bookId) {
 		return bookDao.getSale(bookId);
 	}
-
+	
 	@Override
-	public Share getShare(String bookId) {
-		// TODO Auto-generated method stub
-		return null;
+	public void insertBook(Book book) {
+		bookDao.insertBook(book);
 	}
 
 	@Override
-	public Auction getAuction(String bookId) {
+	public void insertSale(Sale sale) {
+		bookDao.insertBook(sale.getBook());
+		bookDao.insertSale(sale);
+	}
+
+	@Override
+	public void insertAuction(Auction auction) {
+		bookDao.insertBook(auction.getBook());
+		bookDao.insertAuction(auction);
+	}
+
+	@Override
+	public void insertShare(Share share) {
+		bookDao.insertBook(share.getBook());
+		bookDao.insertShare(share);
+	}
+	
+	@Override
+	public Auction getOneAuction(String auctionId) {
+		return bookDao.getOneAuction(auctionId);
+	}
+	
+	@Override
+	public Share getShare(String bookId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -97,30 +119,6 @@ public class JuseomImpl implements JuseomFacade {
 	public List<Book> getBookListByTradeType(String tradeType) {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	@Override
-	public void insertBook(Book book) {
-		// TODO Auto-generated method stub
-		bookDao.insertBook(book);
-	}
-
-	@Override
-	public void insertSale(Sale sale) {
-		bookDao.insertBook(sale.getBook());
-		bookDao.insertSale(sale);
-	}
-
-	@Override
-	public void insertAuction(Auction auction) {
-		bookDao.insertBook(auction.getBook());
-		bookDao.insertAuction(auction);
-	}
-
-	@Override
-	public void insertShare(Share share) {
-		bookDao.insertBook(share.getBook());
-		bookDao.insertShare(share);
 	}
 
 	@Override

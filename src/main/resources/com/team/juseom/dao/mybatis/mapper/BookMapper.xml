@@ -112,4 +112,25 @@
 		FROM Sale s, Book b
 		WHERE s.bookId = b.bookId AND s.saleId = ${value}
 	</select>
+	
+	<select id="getOneAuction" resultType="Auction">
+		SELECT a.auctionId AS auctionId,
+			a.startPrice AS startPrice,
+			a.presentPrice AS presentPrice,
+			a.salesNumber AS salesNumber,
+			a.bidNumber AS bidNumber,
+			a.endTime AS endTime,
+			b.bookId AS "book.bookId",
+			b.userId AS "book.userId",
+			b.name AS "book.name",
+			b.author AS "book.author",
+			b.condition AS "book.condition",
+			b.imageUrl AS "book.imageUrl",
+			b.publisher AS "book.publisher",
+			b.publicationDate AS "book.date",
+			b.price AS "book.price",
+			b.detail AS "book.detail"
+		FROM Auction a, Book b
+		WHERE a.bookId = b.bookId AND a.auctionId = ${value}
+	</select>
 </mapper>

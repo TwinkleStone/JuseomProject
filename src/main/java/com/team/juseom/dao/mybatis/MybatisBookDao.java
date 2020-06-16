@@ -42,12 +42,6 @@ public class MybatisBookDao implements BookDao{
 //		share.setBook(getBook(bookId));
 //		return share;
 //	}
-//	
-//	public Auction getAuction(String bookId){
-//		Auction auction = bookMapper.getAuction(bookId);
-//		auction.setBook(getBook(bookId));
-//		return auction;
-//	}
 	
 	public void insertBook(Book book){
 		bookMapper.insertBook(book);
@@ -69,5 +63,10 @@ public class MybatisBookDao implements BookDao{
 	@Override
 	public void insertShare(Share share) {
 		bookMapper.insertShare(share);
+	}
+
+	@Override
+	public Auction getOneAuction(String auctionId) {
+		return bookMapper.getOneAuction(auctionId);
 	}
 }
