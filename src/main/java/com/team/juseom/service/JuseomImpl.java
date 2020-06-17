@@ -4,10 +4,12 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.team.juseom.dao.BookDao;
+import com.team.juseom.dao.EventDao;
 import com.team.juseom.dao.RateDao;
 import com.team.juseom.domain.Auction;
 import com.team.juseom.domain.Book;
@@ -23,7 +25,13 @@ public class JuseomImpl implements JuseomFacade {
 	private BookDao bookDao;
 	
 	@Autowired
+	private EventDao eventDao;
+	
+	@Autowired
 	private RateDao rateDao;
+	
+	@Autowired
+	private ThreadPoolTaskScheduler scheduler;
 	
 	@Override
 	public List<Sale> getBookListBySale() {
@@ -57,9 +65,21 @@ public class JuseomImpl implements JuseomFacade {
 	}
 
 	@Override
-	public void insertAuction(Auction auction) {
+	public void insertAuction(Auction auction, Date closingTime) {
 		bookDao.insertBook(auction.getBook());
 		bookDao.insertAuction(auction);
+		
+		Runnable updateTableRunner = new Runnable() {
+
+			@Override
+			public void run() {
+				Date curTime = new Date();
+				eventDao.closeAuctionEvent(curTime);
+				System.out.println("updateTableRunner is executed at " + curTime);
+			}
+		};
+		scheduler.schedule(updateTableRunner, closingTime);
+		System.out.println("updateTableRunner has been scheduled to execute at " + closingTime);
 	}
 
 	@Override
@@ -121,14 +141,9 @@ public class JuseomImpl implements JuseomFacade {
 	}
 
 	@Override
-	public void eventScheduler(Date endTime) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void insertRate(Rate rate) {
 		rateDao.insertRate(rate);
 	}
+
 
 }

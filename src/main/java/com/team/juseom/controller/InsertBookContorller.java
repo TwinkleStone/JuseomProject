@@ -4,11 +4,13 @@ package com.team.juseom.controller;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -116,7 +118,8 @@ public class InsertBookContorller {
 	
 	@PostMapping("/insert/auction.do")
 	public String insertAuction(
-			@ModelAttribute("auction") Auction formData, 
+			@ModelAttribute("auction") Auction formData,
+			@RequestParam("endTime") @DateTimeFormat(pattern="MM/dd/yyyy HH:mm") Date endTime,
 			BindingResult result, 
 			SessionStatus sessionStatus,
 			Model model) {
@@ -126,11 +129,12 @@ public class InsertBookContorller {
 			model.addAttribute("a_choice", "write");
 			return "InsertBook";
 		}
+		
 		//userId 구현 전까지 임시 코드
 		formData.getBook().setUserId("1");
 		formData.setBidNumber(0);
 		formData.setPresentPrice(Integer.parseInt(formData.getStartPrice()));
-		juseomFacade.insertAuction(formData);
+		juseomFacade.insertAuction(formData, endTime);
 		sessionStatus.setComplete();
 		return "redirect:/index";	
 	}

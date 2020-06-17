@@ -14,7 +14,7 @@ public interface JuseomFacade {
 	void insertBook(Book book);
 	void insertSale(Sale sale);
 	void insertShare(Share share);
-	void insertAuction(Auction auction);
+	void insertAuction(Auction auction, Date closingTime);
 	List<Sale> getBookListBySale();
 	List<Auction> getBookListByAuction();
 	List<Share> getBookListByShare();
@@ -31,7 +31,5 @@ public interface JuseomFacade {
 	List<Book> searchBookList(Book book);
 	List<Book> getBookListByTradeType(String tradeType);
 	
-	
-	void eventScheduler(Date endTime);
 	void insertRate(Rate rate);
 }
