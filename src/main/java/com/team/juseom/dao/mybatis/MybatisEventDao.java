@@ -19,4 +19,8 @@ public class MybatisEventDao implements EventDao {
 		eventMapper.closeAuctionEvent(curTime);
 	}
 
+	@Override
+	public void closeShareEvent(Date curTime) {
+		eventMapper.closeShareEvent(curTime);
+	}
 }

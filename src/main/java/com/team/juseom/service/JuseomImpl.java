@@ -84,8 +84,22 @@ public class JuseomImpl implements JuseomFacade {
 
 	@Override
 	public void insertShare(Share share) {
+		Runnable updateTableRunner = new Runnable() {	
+			// anonymous class 정의
+			@Override
+			public void run() {   // 스케쥴러에 의해 미래의 특정 시점에 실행될 작업을 정의				
+				Date curTime = new Date();
+				// 실행 시점의 시각을 전달하여 그 시각 이전의 closing time 값을 갖는 event의 상태를 변경 
+				eventDao.closeShareEvent(curTime);	// EVENTS 테이블의 레코드 갱신	
+				System.out.println("updateTableRunner is executed at " + curTime);
+			}
+		};
+		
 		bookDao.insertBook(share.getBook());
 		bookDao.insertShare(share);
+
+		// 스케줄 생성: closingTime에 updateTableRunner.run() 메소드 실행
+		scheduler.schedule(updateTableRunner, share.getEndTime());  
 	}
 	
 	@Override

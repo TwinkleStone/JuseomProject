@@ -58,8 +58,8 @@ public class InsertBookContorller {
 	}
 	
 	@ModelAttribute("share")
-	public Share formData3() {
-		Share s = new Share();
+	public ShareRegi formData3() {
+		ShareRegi s = new ShareRegi();
 		Book b = new Book();
 		b.setCondition("중");
 		s.setBook(b);
@@ -141,7 +141,7 @@ public class InsertBookContorller {
 
 	@PostMapping("/insert/share.do")
 	public String insertShare(
-			@ModelAttribute("share") Share formData, 
+			@ModelAttribute("share") ShareRegi formData, 
 			BindingResult result, 
 			SessionStatus sessionStatus,
 			Model model) {
@@ -153,8 +153,16 @@ public class InsertBookContorller {
 		}
 		//userId 구현 전까지 임시 코드
 		formData.getBook().setUserId("1");
-		formData.setPeopleNumber(0);
-		juseomFacade.insertShare(formData);
+		
+		Share s = new Share();
+		s.setBook(formData.getBook());
+		s.setShareNumber(formData.getShareNumber());
+		s.setRaffleTime(formData.getRaffleTime());
+		s.setPeopleNumber(0);
+		s.setStatus("OPEN");
+		s.setEndTime(formData.dateFormChange());
+		
+		juseomFacade.insertShare(s);
 		sessionStatus.setComplete();
 		return "redirect:/index";	
 	}	

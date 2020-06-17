@@ -52,9 +52,9 @@
   			SELECT share_seq.nextval AS shareId FROM DUAL
   		</selectKey>
 		INSERT INTO SHARING
-			(SHAREID, SHARENUMBER, ENDTIME, RAFFLETIME, PEOPLENUMBER, BOOKID)
+			(SHAREID, SHARENUMBER, ENDTIME, RAFFLETIME, PEOPLENUMBER, STATUS, BOOKID)
 		VALUES
-			(#{shareId}, #{shareNumber}, #{endTime}, #{raffleTime}, #{peopleNumber}, #{book.bookId})
+			(#{shareId}, #{shareNumber}, #{endTime}, #{raffleTime}, #{peopleNumber}, #{status}, #{book.bookId})
 	</insert>
 	
 	<select id="getBookListBySale" resultType="Sale">

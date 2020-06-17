@@ -4,6 +4,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
+import com.team.juseom.controller.ShareRegi;
 import com.team.juseom.domain.Share;
 
 public class ShareFormValidator implements Validator{
@@ -16,7 +17,7 @@ public class ShareFormValidator implements Validator{
 	@Override
 	public void validate(Object obj, Errors errors) {
 		//Share 타입으로 변환
-		Share share = (Share) obj;
+		ShareRegi share = (ShareRegi) obj;
 		
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "raffleTime", "required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "shareNumber", "required");
