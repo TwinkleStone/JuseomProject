@@ -136,6 +136,7 @@ public class InsertBookContorller {
 		a.setPresentPrice(Integer.parseInt(formData.getStartPrice()));
 		a.setSalesNumber(formData.getSalesNumber());
 		a.setBidNumber(0);
+		a.setStatus("OPEN");
 		a.setEndTime(formData.dateFormChange());
 		formData.setBidNumber(0);
 		

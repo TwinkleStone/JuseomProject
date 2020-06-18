@@ -12,6 +12,8 @@ public class Auction implements Serializable{
 	String salesNumber;
 	int bidNumber;
 	Date endTime;
+	String status;
+	
 	public int getAuctionId() {
 		return auctionId;
 	}
@@ -53,5 +55,11 @@ public class Auction implements Serializable{
 	}
 	public void setEndTime(Date endTime) {
 		this.endTime = endTime;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 }

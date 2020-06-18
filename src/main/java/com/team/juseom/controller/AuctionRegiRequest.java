@@ -14,6 +14,8 @@ public class AuctionRegiRequest{
 	String salesNumber;
 	int bidNumber;
 	String endTime;
+	String status;
+	
 	public int getAuctionId() {
 		return auctionId;
 	}
@@ -55,6 +57,12 @@ public class AuctionRegiRequest{
 	}
 	public void setEndTime(String endTime) {
 		this.endTime = endTime;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	
 	public Date dateFormChange() {
