@@ -5,13 +5,12 @@ import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 import com.team.juseom.controller.ShareRegi;
-import com.team.juseom.domain.Share;
 
 public class ShareFormValidator implements Validator{
 
 	@Override
 	public boolean supports(Class<?> clazz) {
-		return Share.class.isAssignableFrom(clazz);
+		return ShareRegi.class.isAssignableFrom(clazz);
 	}
 
 	@Override

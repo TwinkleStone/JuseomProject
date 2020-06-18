@@ -4,19 +4,19 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import com.team.juseom.domain.Auction;
+import com.team.juseom.controller.AuctionRegiRequest;
 
 public class AuctionFormValidator implements Validator{
 
 	@Override
 	public boolean supports(Class<?> clazz) {
-		return Auction.class.isAssignableFrom(clazz);
+		return AuctionRegiRequest.class.isAssignableFrom(clazz);
 	}
 
 	@Override
 	public void validate(Object obj, Errors errors) {
 		//Auction 타입으로 변환
-		Auction auction = (Auction) obj;
+		AuctionRegiRequest auction = (AuctionRegiRequest) obj;
 		
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "startPrice", "required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "salesNumber", "required");

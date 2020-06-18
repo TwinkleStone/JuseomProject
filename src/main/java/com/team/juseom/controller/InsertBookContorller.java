@@ -4,13 +4,11 @@ package com.team.juseom.controller;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -49,8 +47,8 @@ public class InsertBookContorller {
 	}
 	
 	@ModelAttribute("auction")
-	public Auction formData2() {
-		Auction a = new Auction();
+	public AuctionRegiRequest formData2() {
+		AuctionRegiRequest a = new AuctionRegiRequest();
 		Book b = new Book();
 		b.setCondition("중");
 		a.setBook(b);
@@ -118,8 +116,7 @@ public class InsertBookContorller {
 	
 	@PostMapping("/insert/auction.do")
 	public String insertAuction(
-			@ModelAttribute("auction") Auction formData,
-			@RequestParam("endTime") @DateTimeFormat(pattern="MM/dd/yyyy HH:mm") Date endTime,
+			@ModelAttribute("auction") AuctionRegiRequest formData,
 			BindingResult result, 
 			SessionStatus sessionStatus,
 			Model model) {
@@ -132,9 +129,17 @@ public class InsertBookContorller {
 		
 		//userId 구현 전까지 임시 코드
 		formData.getBook().setUserId("1");
+		
+		Auction a = new Auction();
+		a.setBook(formData.getBook());
+		a.setStartPrice(formData.getStartPrice());
+		a.setPresentPrice(Integer.parseInt(formData.getStartPrice()));
+		a.setSalesNumber(formData.getSalesNumber());
+		a.setBidNumber(0);
+		a.setEndTime(formData.dateFormChange());
 		formData.setBidNumber(0);
-		formData.setPresentPrice(Integer.parseInt(formData.getStartPrice()));
-		juseomFacade.insertAuction(formData, endTime);
+		
+		juseomFacade.insertAuction(a);
 		sessionStatus.setComplete();
 		return "redirect:/index";	
 	}

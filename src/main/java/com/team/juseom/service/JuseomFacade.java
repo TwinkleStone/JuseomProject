@@ -1,6 +1,5 @@
 package com.team.juseom.service;
 
-import java.util.Date;
 import java.util.List;
 
 import com.team.juseom.domain.Auction;
@@ -14,7 +13,7 @@ public interface JuseomFacade {
 	void insertBook(Book book);
 	void insertSale(Sale sale);
 	void insertShare(Share share);
-	void insertAuction(Auction auction, Date closingTime);
+	void insertAuction(Auction auction);
 	List<Sale> getBookListBySale();
 	List<Auction> getBookListByAuction();
 	List<Share> getBookListByShare();

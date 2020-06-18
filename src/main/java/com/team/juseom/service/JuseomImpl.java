@@ -65,7 +65,7 @@ public class JuseomImpl implements JuseomFacade {
 	}
 
 	@Override
-	public void insertAuction(Auction auction, Date closingTime) {
+	public void insertAuction(Auction auction) {
 		bookDao.insertBook(auction.getBook());
 		bookDao.insertAuction(auction);
 		
@@ -78,8 +78,8 @@ public class JuseomImpl implements JuseomFacade {
 				System.out.println("updateTableRunner is executed at " + curTime);
 			}
 		};
-		scheduler.schedule(updateTableRunner, closingTime);
-		System.out.println("updateTableRunner has been scheduled to execute at " + closingTime);
+		scheduler.schedule(updateTableRunner, auction.getEndTime());
+		System.out.println("updateTableRunner has been scheduled to execute at " + auction.getEndTime());
 	}
 
 	@Override

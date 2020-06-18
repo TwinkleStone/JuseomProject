@@ -42,9 +42,9 @@
   			SELECT auction_seq.nextval AS auctionId FROM DUAL
   		</selectKey>
 		INSERT INTO AUCTION
-			(AUCTIONID, STARTPRICE, SALESNUMBER, ENDTIME, PRESENTPRICE, BIDNUMBER, BOOKID, STATUS)
+			(AUCTIONID, STARTPRICE, SALESNUMBER, ENDTIME, PRESENTPRICE, BIDNUMBER, BOOKID)
 		VALUES
-			(#{auctionId}, #{startPrice}, #{salesNumber}, #{endTime}, #{presentPrice}, #{bidNumber}, #{book.bookId}, 'OPEN')
+			(#{auctionId}, #{startPrice}, #{salesNumber}, #{endTime}, #{presentPrice}, #{bidNumber}, #{book.bookId})
 	</insert>
 	
 	<insert id="insertShare" parameterType="Share">
