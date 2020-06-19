@@ -102,7 +102,11 @@
 	        		<tr style="text-align: center">
 	        			<td style="padding: 30px">
 	        				<div class="form-group">
-                    			<input type="button" value="입찰하기" class="btn py-3 px-4 btn-primary">
+                    			<c:url value="/bidding.do" var="biddingForm">
+                    				<c:param name="auctionId" value="${auction.auctionId}"/>
+                    			</c:url>
+                    			<a href="${biddingForm}" class="btn py-3 px-4 btn-primary"><c:out value="입찰하기"/></a>
+                    			
                   			</div>
 	 					</td>
 	        		</tr>

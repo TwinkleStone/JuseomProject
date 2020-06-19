@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.team.juseom.dao.BookDao;
 import com.team.juseom.dao.mybatis.mapper.BookMapper;
 import com.team.juseom.domain.Auction;
+import com.team.juseom.domain.Bidder;
 import com.team.juseom.domain.Book;
 import com.team.juseom.domain.Sale;
 import com.team.juseom.domain.Share;
@@ -67,4 +68,21 @@ public class MybatisBookDao implements BookDao{
 	public Auction getOneAuction(String auctionId) {
 		return bookMapper.getOneAuction(auctionId);
 	}
+
+	@Override
+	public void updateBidNumber(Bidder bidder) {
+		int auctionId = bidder.getAuctionId();
+		bookMapper.updateBidNumber(auctionId);
+		
+	}
+
+	@Override
+	public void updatePresentPrice(Bidder bidder) {
+		int auctionId = bidder.getAuctionId();
+		int bidPrice = bidder.getBidPrice();
+		bookMapper.updatePresentPrice(auctionId, bidPrice);
+		
+	}
+
+
 }

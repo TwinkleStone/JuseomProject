@@ -153,4 +153,21 @@
 		FROM Sharing s, Book b
 		WHERE s.bookId = b.bookId AND s.shareId = ${value}
 	</select>
+	
+	<update id="updateBidNumber">
+		UPDATE AUCTION
+		SET BIDNUMBER = (
+			SELECT COUNT (*) FROM BIDDER
+			)
+		WHERE AUCTIONID = ${auctionId}
+	</update>
+	
+	<update id="updatePresentPrice" parameterType="String">
+		<![CDATA[
+			UPDATE AUCTION
+			SET PRESENTPRICE = #{param2}
+			WHERE auctionId = ${param1}
+				AND PRESENTPRICE <= #{param2}
+		]]>
+	</update>
 </mapper>

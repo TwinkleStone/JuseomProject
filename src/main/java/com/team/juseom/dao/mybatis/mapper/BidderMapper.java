@@ -11,5 +11,5 @@ public interface BidderMapper {
 
 	List<Bidder> getBidderListByautionId(String auctionId);	
 	void insertBidder(Bidder bidder);
-	
+	int getBidderCount(String auctionId);
 }

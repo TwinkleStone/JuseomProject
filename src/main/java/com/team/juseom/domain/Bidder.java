@@ -1,15 +1,15 @@
 package com.team.juseom.domain;
 
 public class Bidder {
-	String bidderId;
+	int bidderId;
 	String userId;
-	String autionId;
+	int auctionId;
 	int bidNumber;
 	int bidPrice;
-	public String getBidderId() {
+	public int getBidderId() {
 		return bidderId;
 	}
-	public void setBidderId(String bidderId) {
+	public void setBidderId(int bidderId) {
 		this.bidderId = bidderId;
 	}
 	public String getUserId() {
@@ -18,11 +18,11 @@ public class Bidder {
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-	public String getAutionId() {
-		return autionId;
+	public int getAuctionId() {
+		return auctionId;
 	}
-	public void setAutionId(String autionId) {
-		this.autionId = autionId;
+	public void setAuctionId(int auctionId) {
+		this.auctionId = auctionId;
 	}
 	public int getBidNumber() {
 		return bidNumber;

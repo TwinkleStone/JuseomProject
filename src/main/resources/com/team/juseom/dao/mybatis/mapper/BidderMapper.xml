@@ -11,10 +11,9 @@
 			BIDNUMBER,
 			BIDPRICE
 		FROM RATE
-		WHERE RATEDID = #{userId}
+		WHERE AUCTIONID = #{auctionId}
 	</select>
 	
-	<!-- bidderId값을 sequence를 이용해서 넣고 싶음. -->
 	<insert id="insertBidder" parameterType="bidder">
 		<selectKey keyProperty="bidderId" resultType="int" order="BEFORE">
 			SELECT BIDDER_SEQ.nextval AS bidderId FROM DUAL
@@ -22,4 +21,8 @@
 			INSERT INTO BIDDER(bidderId, USERID, AUCTIONID, BIDNUMBER, BIDPRICE)
 			VALUES (#{bidderId}, #{userId}, #{auctionId}, #{bidNumber}, #{bidPrice})
 	</insert>
+	
+	<select id="getBidderCount" resultType="int">
+		SELECT COUNT(*) FROM BIDDER;
+	</select>
 </mapper>

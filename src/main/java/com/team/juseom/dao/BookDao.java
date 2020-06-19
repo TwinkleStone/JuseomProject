@@ -3,6 +3,7 @@ package com.team.juseom.dao;
 import java.util.List;
 
 import com.team.juseom.domain.Auction;
+import com.team.juseom.domain.Bidder;
 import com.team.juseom.domain.Book;
 import com.team.juseom.domain.Sale;
 import com.team.juseom.domain.Share;
@@ -20,4 +21,8 @@ public interface BookDao {
 	List<Sale> getBookListBySale();
 	List<Auction> getBookListByAuction();
 	List<Share> getBookListByShare();
+	
+	void updatePresentPrice(Bidder bidder);
+	void updateBidNumber(Bidder bidder);
+	
 }

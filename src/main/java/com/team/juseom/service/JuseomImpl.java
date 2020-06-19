@@ -8,10 +8,12 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.team.juseom.dao.BidderDao;
 import com.team.juseom.dao.BookDao;
 import com.team.juseom.dao.EventDao;
 import com.team.juseom.dao.RateDao;
 import com.team.juseom.domain.Auction;
+import com.team.juseom.domain.Bidder;
 import com.team.juseom.domain.Book;
 import com.team.juseom.domain.Rate;
 import com.team.juseom.domain.Sale;
@@ -29,6 +31,9 @@ public class JuseomImpl implements JuseomFacade {
 	
 	@Autowired
 	private RateDao rateDao;
+	
+	@Autowired
+	private BidderDao bidderDao;
 	
 	@Autowired
 	private ThreadPoolTaskScheduler scheduler;
@@ -159,5 +164,21 @@ public class JuseomImpl implements JuseomFacade {
 		rateDao.insertRate(rate);
 	}
 
+	@Override
+	public void insertBidder(Bidder bidder) {
+		bidderDao.insertBidder(bidder);
+		bookDao.updateBidNumber(bidder);
+		bookDao.updatePresentPrice(bidder);
+	}
+
+	@Override
+	public int getBidderCount(String auctionId) {
+		return bidderDao.getBidderCount(auctionId);
+	}
+
+	@Override
+	public List<Bidder> getBidderListByauctionId(String auctionId) {
+		return bidderDao.getBidderListByautionId(auctionId);
+	}
 
 }
