@@ -39,6 +39,7 @@
 	          <li class="nav-item"><a href="<c:url value="/auction.do" />" class="nav-link">경매</a></li>
 	          <li class="nav-item"><a href="<c:url value="/share.do" />" class="nav-link">나눔</a></li>
 	          <li class="nav-item"><a class="nav-link" href="<c:url value="/insert/search.do" />">등록</a></li>
+	          <li class="nav-item"><a class="nav-link" href="<c:url value="/user/loginForm.do" />">로그인/회원가입</a></li>
 	          <!--  <li class="nav-item"><a href="properties.html" class="nav-link">Listing</a></li>
 	          <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
 	          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li> -->
@@ -89,7 +90,7 @@
         				</div>
 		        		<div class="text">
 		        			<p class="price mb-3"><span class="old-price"><fmt:formatNumber value="${s.book.price}" pattern="#,###"/></span><span class="orig-price"><fmt:formatNumber value="${s.suggestPrice}" pattern="#,###"/>원</span></p>
-		        			<h3 class="mb-0"><a href="<c:url value="/view/sale.do?id=${s.saleId}" />">${s.book.name}</a></h3>
+		        			<h3 class="mb-0"><a href="properties-single.html">${s.book.name}</a></h3>
 		        			<span class="location d-inline-block mb-3">${s.book.author} 저</span>
 		        			<ul class="property_list">
 		        				<li>상태 : </li>

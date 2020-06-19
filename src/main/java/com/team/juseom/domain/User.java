@@ -1,6 +1,11 @@
 package com.team.juseom.domain;
 
-public class User {
+import java.io.Serializable;
+
+import org.springframework.web.multipart.MultipartFile;
+
+@SuppressWarnings("serial")
+public class User implements Serializable {
 	
 	String userId;
 	String password;
@@ -8,10 +13,12 @@ public class User {
 	String phone;
 	String commName;
 	String profilePicUrl;
-	Address address;
+	String address1;
+	String address2;
+	String address3;
 	
 	public User(String userId, String password, String name, String phone, String commName, String profilePicUrl,
-			Address address) {
+			String address1, String address2, String address3) {
 		super();
 		this.userId = userId;
 		this.password = password;
@@ -19,7 +26,9 @@ public class User {
 		this.phone = phone;
 		this.commName = commName;
 		this.profilePicUrl = profilePicUrl;
-		this.address = address;
+		this.address1 = address1;
+		this.address2 = address2;
+		this.address3 = address3;
 	}
 	
 	public User() {
@@ -63,11 +72,29 @@ public class User {
 	public void setProfilePicUrl(String profilePicUrl) {
 		this.profilePicUrl = profilePicUrl;
 	}
-	public Address getAddress() {
-		return address;
-	}
-	public void setAddress(Address address) {
-		this.address = address;
+
+	public String getAddress1() {
+		return address1;
 	}
 
+	public void setAddress1(String address1) {
+		this.address1 = address1;
+	}
+
+	public String getAddress2() {
+		return address2;
+	}
+
+	public void setAddress2(String address2) {
+		this.address2 = address2;
+	}
+
+	public String getAddress3() {
+		return address3;
+	}
+
+	public void setAddress3(String address3) {
+		this.address3 = address3;
+	}
+	
 }

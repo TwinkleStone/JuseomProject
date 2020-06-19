@@ -49,64 +49,22 @@
   </select> -->
 
   <update id="updateUser" parameterType="User">
-    UPDATE ACCOUNT SET
+    UPDATE USER SET
       PASSWORD = #{password},
       NAME = #{name},
       PHONE = #{phone},
       COMMNAME = #{commName},
       PROFILEPICURL = #{profilePicUrl},
-      ADDR1 = #{address1},
-      ADDR2 = #{address2,jdbcType=VARCHAR},
-      ADDR3 = #{address3,jdbcType=VARCHAR}
+      ADDRESS1 = #{address1},
+      ADDRESS2 = #{address2},
+      ADDRESS3 = #{address3}
     WHERE USERID = #{userId}
   </update>
-
-  <!--  <insert id="insertAccount" parameterType="Account">
-    INSERT INTO ACCOUNT
+  
+  <insert id="insertUser" parameterType="User">
+  	INSERT INTO USER
       (USERID, PASSWORD, NAME, PHONE, COMMNAME, PROFILEPICURL, ADDRESS1, ADDRESS2, ADDRESS3)
     VALUES
-      (#{userId}, #{password}, #{name}, #{phone}, #{commName}, #{profilePicUrl}, #{address1}, #{address2, jdbcType=VARCHAR}, #{address3, jdbcType=VARCHAR})
-  </insert> -->
-
-  <!--  
-  TODO MyBatis 3 does not map booleans to integers
-  <update id="updateProfile" parameterType="Account">
-    UPDATE PROFILE SET
-      LANGPREF = #{languagePreference},
-      FAVCATEGORY = #{favouriteCategoryId},
-      MYLISTOPT = #{listOption},
-      BANNEROPT = #{bannerOption}
-    WHERE USERID = #{username}
-  </update>
-  -->
-
-  <!-- <update id="updateProfile" parameterType="User">
-    UPDATE PROFILE SET
-      LANGPREF = #{languagePreference},
-      FAVCATEGORY = #{favouriteCategoryId}
-    WHERE USERID = #{username}
-  </update> -->
-
-  <!--  
-  TODO MyBatis 3 does not map booleans to integers
-  <insert id="insertProfile" parameterType="Account">
-    INSERT INTO PROFILE (LANGPREF, FAVCATEGORY, MYLISTOPT, BANNEROPT, USERID)
-    VALUES (#{languagePreference}, #{favouriteCategoryId}, #{listOption}, #{bannerOption}, #{username})
+      (#{userId}, #{password}, #{name}, #{phone}, #{commName}, #{profilePicUrl}, #{address1}, #{address2}, #{address3})
   </insert>
-  -->
-
-  <!-- <insert id="insertProfile" parameterType="Account">
-    INSERT INTO PROFILE (LANGPREF, FAVCATEGORY, USERID)
-    VALUES (#{languagePreference}, #{favouriteCategoryId}, #{username})
-  </insert> -->
-
-  <!-- <update id="updateSignon" parameterType="Account">
-    UPDATE SIGNON SET PASSWORD = #{password}
-    WHERE USERNAME = #{username}
-  </update> -->
-
-  <!-- <insert id="insertSignon" parameterType="Account">
-    INSERT INTO SIGNON (PASSWORD,USERNAME)
-    VALUES (#{password}, #{username})
-  </insert> -->
 </mapper>

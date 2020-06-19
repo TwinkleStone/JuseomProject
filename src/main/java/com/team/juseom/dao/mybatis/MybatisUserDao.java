@@ -30,17 +30,10 @@ public class MybatisUserDao implements UserDao {
 
 	public void insertUser(User user) throws DataAccessException {
 		userMapper.insertUser(user);
-		userMapper.insertProfile(user);
-		userMapper.insertSignon(user);
 	}
 
 	public void updateUser(User user) throws DataAccessException {
 		userMapper.updateUser(user);
-		userMapper.updateProfile(user);
-		if (user.getPassword() != null && user.getPassword().length() > 0) 
-		{
-			userMapper.updateSignon(user);
-		}
 	}
  
 	public List<String> getUserIdList() throws DataAccessException {

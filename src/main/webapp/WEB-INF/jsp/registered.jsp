@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>참가 신청 접수</title>
+<title>회원 가입 접수</title>
 <style>
 table, th, td {
     border: 1px solid black;
@@ -13,20 +13,17 @@ table, th, td {
 </style>
 </head>
 <body>
-${newMember.name}님의 공연 신청을 접수했습니다.<br/><br/>
+${userForm.user.userId}님의 회원 가입을 완료했습니다.<br/><br/>
 
 접수 내용:
 <ul>
-	<li>ID: ${newMember.id}</li>
-	<li>이름: ${newMember.name}</li> 
-	<li>전화번호: ${newMember.phone}</li> 
-	<li>주소: ${newMember.address.street} ${newMember.address.city} (우편번호: ${newMember.address.zipcode})
-	<li>공연 종류: ${newMember.type}</li> 
-	<li>곡명: ${newMember.title}</li> 
-	<li>공연 시간: ${newMember.length}</li> 
-	<li>첫 공연 여부: ${newMember.newPerformer}</li> 	
+	<li>프로필 사진: <img src="<c:url value='/upload/${userForm.user.profilePicUrl}' />" /></li> 
+	<li>ID: ${userForm.user.userId}</li>
+	<li>이름: ${userForm.user.name}</li> 
+	<li>전화번호: ${userForm.user.phone}</li> 
+	<li>주소: ${userForm.user.address1}시/도 ${userForm.user.address2}시/군/구 ${userForm.user.address3}동/읍/면
+	<li>닉네임: ${userForm.user.commName}</li> 
 </ul>
-접수 일시: ${newMember.regTime}<br/>
 <p><a href="<c:url value='/index' />">Go to schedule</a></p>
 </body>
 </html>
