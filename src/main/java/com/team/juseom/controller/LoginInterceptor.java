@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndViewDefiningException;
 import org.springframework.web.util.WebUtils;
 
 public class LoginInterceptor implements HandlerInterceptor {
-	private final String LOGIN_FORM = "member/loginForm";
+	private final String LOGIN_FORM = "loginForm";
 	
 	@Override
 	public boolean preHandle(HttpServletRequest request,

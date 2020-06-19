@@ -6,46 +6,45 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>공연 참가 신청</title>
+<title>회원 가입</title>
 </head>
 <body>
-<h2>공연 참가 신청 - Step1</h2>
+<h2>회원 가입 - Step1</h2>
 
-<form:form modelAttribute="regReq" method="post" action="step2">
-<label for="id">ID(이메일 주소)</label>: 
-<form:input path="id" />
-<form:errors path="id"/> <br/>
-
-<label for="name">이름</label>: 
-<form:input path="name" />
-<form:errors path="name"/> <br/>
-
-<label for="password">암호</label>: 
-<form:password path="password" />
-<form:errors path="password"/> <br/>
-
-<label for="confirmPassword">암호 확인</label>: 
-<form:password path="confirmPassword" />
-<form:errors path="confirmPassword"/>
-<form:errors path="samePasswordConfirmPassword"/>   <!-- @AssertTrue 에 의한 오류 발생 시 출력  --> 
-<br/>  
-
-<label for="phone">전화번호</label>:
-<form:input path="phone" />
-<form:errors path="phone"/> <br/>
-
-<label>주소</label>:
-street
-<form:input path="address.street" />
-<form:errors path="address.street"/>&nbsp;
-city
-<form:input path="address.city" size="10"/>
-<form:errors path="address.city"/>&nbsp; 
-zipcode
-<form:input path="address.zipcode" size="7" />
-<form:errors path="address.zipcode"/> <br/>
-<br/>
-<input type="submit" value="다음 단계로" />
+<form:form modelAttribute="userForm" method="post" action="/juseom/user/register/step2.do">
+	<label for="userId">ID(이메일 주소)</label>: 
+	<form:input path="user.userId" />
+	<form:errors path="user.userId"/> <br/>
+	
+	<label for="password">암호</label>: 
+	<form:password path="user.password" />
+	<form:errors path="user.password"/> <br/>
+	
+	<label for="confirmPassword">암호 확인</label>: 
+	<form:password path="confirmPassword" />
+	<form:errors path="confirmPassword"/>
+	<br/>  
+	
+	<label for="name">이름</label>: 
+	<form:input path="user.name" />
+	<form:errors path="user.name"/> <br/>
+	
+	<label for="phone">전화번호</label>:
+	<form:input path="user.phone" />
+	<form:errors path="user.phone"/> <br/>
+	
+	<label>주소</label>:
+	<form:input path="user.address1" />
+	<form:errors path="user.address1"/>
+	시/도&nbsp;
+	<form:input path="user.address2" size="10"/>
+	<form:errors path="user.address2"/> 
+	시/군/구&nbsp;
+	<form:input path="user.address3" size="7" />
+	<form:errors path="user.address3"/>
+	동/읍/면&nbsp;<br/>
+	<br/>
+	<input type="submit" value="다음 단계로" />
 
 </form:form>
 

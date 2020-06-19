@@ -17,15 +17,7 @@ public interface UserMapper {
 	List<String> getUserIdList();
   
 	void insertUser(User user);
-  
-	void insertProfile(User user);
-  
-	void insertSignon(User user);
 
 	void updateUser(User user);
-
-	void updateProfile(User user);
-
-	void updateSignon(User user);
 
 }

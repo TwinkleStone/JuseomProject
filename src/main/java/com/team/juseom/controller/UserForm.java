@@ -2,38 +2,41 @@ package com.team.juseom.controller;
 
 import java.io.Serializable;
 
-import com.team.juseom.domain.User;
+import org.springframework.web.multipart.MultipartFile;
 
-public class UserForm {
+import com.team.juseom.domain.User;
+@SuppressWarnings("serial")
+public class UserForm implements Serializable {
 	private User user;
+	private MultipartFile report;
 	
-	private boolean newUser;
-	
-	private String repeatedPassword;
+	private String confirmPassword;
 	
 	public UserForm(User user) {
 		this.user = user;
-		this.newUser = false;
 	}
 	
 	public UserForm() {
 		this.user = new User();
-		this.newUser = true;
 	}
 	
 	public User getUser() {
 		return user;
 	}
-	
-	public boolean isNewUser() {
-		return newUser;
-	}
-	
-	public void setRepeatedPassword(String repeatedPassword) {
-		this.repeatedPassword = repeatedPassword;
+
+	public String getConfirmPassword() {
+		return confirmPassword;
 	}
 
-	public String getRepeatedPassword() {
-		return repeatedPassword;
+	public void setConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
 	}
+
+	public MultipartFile getReport() {
+		return report;
+	}
+
+	public void setReport(MultipartFile report) {
+		this.report = report;
+	}	
 }
