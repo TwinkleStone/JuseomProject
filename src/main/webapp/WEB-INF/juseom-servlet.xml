@@ -19,8 +19,12 @@
 		http://www.springframework.org/schema/websocket/spring-websocket-4.3.xsd">
 
 	<context:component-scan base-package="com.team.juseom.controller" />
+	<context:component-scan base-package="com.team.juseom.service">
+		<context:exclude-filter type="regex" expression=".*(JuseomImpl|UserFormValidator)"/>
+	</context:component-scan>
 
 	<mvc:annotation-driven/>		<!-- create RequestMappingHandlerMapping -->
+	<mvc:default-servlet-handler />
 	
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<mvc:resources mapping="/resources/**" location="/resources/" />
@@ -41,6 +45,19 @@
 		</property>
 		<property name="defaultEncoding" value="UTF-8" />
 	</bean>
+	
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	</bean>
+	
+	<mvc:view-controller path="/user/loginForm.do" view-name="loginForm"/> 
+	
+	<mvc:interceptors>
+		<mvc:interceptor>
+    	    <mvc:mapping path="/user/*"/>
+        	<bean class="com.team.juseom.controller.LoginInterceptor" />
+    	</mvc:interceptor>
+	</mvc:interceptors>
 	<!--  <bean id="echoHandler" class="com.example.jpetstore.config.EchoHandler"/> 
 	
 	<websocket:handlers>

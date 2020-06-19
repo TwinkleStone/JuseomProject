@@ -25,19 +25,11 @@ import org.springframework.web.util.WebUtils;
 
 import com.team.juseom.domain.User;
 import com.team.juseom.service.AuthenticationException;
-import com.team.juseom.service.MemberService;
 
 @Controller
 @SessionAttributes("loginUser")
 public class LoginController {
 	private final String LOGIN_FORM = "loginForm";
-	
-	@Autowired
-	private MemberService memberService;
-
-	public void setMemberService(MemberService memberService) {
-		this.memberService = memberService;
-	}
 	
 	// 로그인 폼으로 이동
 	@RequestMapping("/user/loginForm.do")
@@ -65,25 +57,5 @@ public class LoginController {
 		return LOGIN_FORM;
 	}
 */
-	@PostMapping
-	public String submit(@Valid @ModelAttribute("user") LoginCommand loginCommand, 
-			BindingResult result, Model model, HttpServletRequest request) {
-		if (result.hasErrors()) 
-			return LOGIN_FORM;
-		try {
-			memberService.authenticate(loginCommand);
-			WebUtils.setSessionAttribute(request, "loginUserId", loginCommand.getUserId());
-			String forwardAction = loginCommand.getForwardAction();
-			if (forwardAction != null) 
-				return "redirect:" + forwardAction;
-			else 
-				return "redirect:/index";
-		
-		} catch (AuthenticationException e) {
-			result.reject("invalidIdOrPassword", 
-					new Object[] { loginCommand.getUserId() }, null);
-			return LOGIN_FORM;
-		}
-	}
 
 }
