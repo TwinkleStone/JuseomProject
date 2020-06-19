@@ -45,19 +45,6 @@
 		</property>
 		<property name="defaultEncoding" value="UTF-8" />
 	</bean>
-	
-	<bean id="multipartResolver"
-		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-	</bean>
-	
-	<mvc:view-controller path="/user/loginForm.do" view-name="loginForm"/> 
-	
-	<mvc:interceptors>
-		<mvc:interceptor>
-    	    <mvc:mapping path="/user/*"/>
-        	<bean class="com.team.juseom.controller.LoginInterceptor" />
-    	</mvc:interceptor>
-	</mvc:interceptors>
 	<!--  <bean id="echoHandler" class="com.example.jpetstore.config.EchoHandler"/> 
 	
 	<websocket:handlers>
@@ -65,6 +52,19 @@
 		<websocket:sockjs/>
 	</websocket:handlers>
 	-->
+	
+ 	<mvc:view-controller path="/user/loginForm.do" view-name="loginForm"/> 
+	
+	<mvc:interceptors>
+		<mvc:interceptor>
+    	    <mvc:mapping path="/user/*"/>
+        	<bean class="com.team.juseom.controller.LoginInterceptor" />
+    	</mvc:interceptor>
+	</mvc:interceptors>
+	
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	</bean>
 	
 	<!--
 	<mvc:view-controller path="/shop/signonForm.do" view-name="SignonForm"/> 
