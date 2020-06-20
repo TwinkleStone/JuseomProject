@@ -14,7 +14,6 @@ public class Auction implements Serializable{
 	int bidNumber;
 	Date endTime;
 	String status;
-	List<Bidder> bidders;
 	
 	public int getAuctionId() {
 		return auctionId;
@@ -63,11 +62,5 @@ public class Auction implements Serializable{
 	}
 	public void setStatus(String status) {
 		this.status = status;
-	}
-	public List<Bidder> getBidders() {
-		return bidders;
-	}
-	public void setBidders(List<Bidder> bidders) {
-		this.bidders = bidders;
 	}
 }

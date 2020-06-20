@@ -178,7 +178,7 @@ public class JuseomImpl implements JuseomFacade {
 
 	@Override
 	public List<Bidder> getBidderListByauctionId(String auctionId) {
-		return bidderDao.getBidderListByautionId(auctionId);
+		return bidderDao.getBidderListByauctionId(auctionId);
 	}
 
 }

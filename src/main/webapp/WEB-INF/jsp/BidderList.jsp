@@ -57,18 +57,22 @@
     
     <section class="ftco-section goto-here">
     	<div class="container">
-        	<div class="row">
-        	<table style="width: 70%">
-        		<tr><th>순번</th><th>ID</th>입찰수<th>입찰가</th></tr>
-        		<c:forEach var="b" items="${bidderList}" varStatus="status">
-        			<tr>
-        				<td>${status.count}</td>
-        				<td>${b.userId}</td>
-        				<td>${b.bidNumber}</td>
-        				<td>${b.bidPrice}</td>
-        			</tr>
-        		</c:forEach>
-        	</table>
+        	<div class="row justify-content-center">
+	        	<div class="col-md-12 heading-section text-center ftco-animate mb-5">
+	        	<h2 class="mb-2">현재 경매 현황</h2>
+	        	<br/>
+	        	<table class="table table-hover">
+	        		<tr><th>순번</th><th>ID</th><th>입찰수</th><th>입찰가</th></tr>
+	        		<c:forEach var="b" items="${bidderList}" varStatus="status">
+	        			<tr>
+	        				<td>${status.count}</td>
+	        				<td>${b.userId}</td>
+	        				<td>${b.bidNumber}</td>
+	        				<td>${b.bidPrice}</td>
+	        			</tr>
+	        		</c:forEach>
+	        	</table>
+	        	</div>
         	</div>
         </div>
     </section>

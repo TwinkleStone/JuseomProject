@@ -9,7 +9,7 @@ import com.team.juseom.domain.Bidder;
 
 public interface BidderMapper {
 
-	List<Bidder> getBidderListByautionId(String auctionId);	
+	List<Bidder> getBidderListByauctionId(String auctionId);	
 	void insertBidder(Bidder bidder);
 	int getBidderCount(String auctionId);
 }

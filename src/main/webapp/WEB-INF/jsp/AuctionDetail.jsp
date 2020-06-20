@@ -107,6 +107,11 @@
                     			</c:url>
                     			<a href="${biddingForm}" class="btn py-3 px-4 btn-primary"><c:out value="입찰하기"/></a>
                     			
+                    			<c:url value="/bidderList.do" var="bidderList">
+                    				<c:param name="auctionId" value="${auction.auctionId}"/>
+                    			</c:url>
+                    			<a href="${bidderList}" class="btn py-3 px-4 btn-primary"><c:out value="입찰 현황 보기"/></a>
+                    			
                   			</div>
 	 					</td>
 	        		</tr>

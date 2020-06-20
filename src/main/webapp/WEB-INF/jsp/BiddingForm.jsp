@@ -62,7 +62,7 @@
 		<form:form modelAttribute="bidder" action="bidding.do" method="post" class="bg-light p-5 contact-form">
 			<div class="form-group" style="width: 500px">
 				<label for="bidNumber">입찰할 책의 갯수 *</label>
-				<form:input path="bidNumber" class="form-control"/> <!-- 왜 input창에 값이 안써지는겨;;??!! -->
+				<form:input path="bidNumber" class="form-control"/> <!-- 왜 여기만 input창에 값이 안써질까.. -->
 				<form:errors path="bidNumber"/> <br/>
 			</div>
 			<div class="form-group" style="width: 500px">

@@ -15,7 +15,6 @@
      	WHERE RATEDID = #{userId}
   	</select>
   	
-  	<!-- rateId값을 sequence를 이용해서 넣고싶음. -->
   	<insert id="insertRate" parameterType="Rate">
     	<selectKey keyProperty="rateId" resultType="int" order="BEFORE">
         	SELECT RATE_SEQ.nextval AS rateId FROM DUAL

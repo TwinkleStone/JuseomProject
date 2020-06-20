@@ -43,6 +43,7 @@ public class BiddingController {
 		juseomFacade.insertBidder(formData);
 		
 		return "redirect:/index";
+		//return "BidderList";
 	}
 	
 	

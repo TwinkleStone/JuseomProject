@@ -1,6 +1,9 @@
 package com.team.juseom.domain;
 
-public class Bidder {
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class Bidder implements Serializable {
 	int bidderId;
 	String userId;
 	int auctionId;

@@ -5,13 +5,13 @@
 	<cache />
 	
 	<select id="getBidderListByauctionId" resultType="Bidder">
-		SELECT BIDDERID, 
+		SELECT 
 			USERID,
-			AUCTIONID, 
 			BIDNUMBER,
 			BIDPRICE
-		FROM RATE
+		FROM BIDDER
 		WHERE AUCTIONID = #{auctionId}
+		ORDER BY BIDPRICE DESC
 	</select>
 	
 	<insert id="insertBidder" parameterType="bidder">
