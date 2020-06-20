@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.team.juseom.dao.mybatis.mapper.ApplierMapper">
+	<cache />
+	
+	<insert id="insertApplier" parameterType="Applier">
+		<selectKey keyProperty="applierId" resultType="int" order="BEFORE">
+			SELECT APPLIER_SEQ.nextval AS applierId FROM DUAL
+		</selectKey>
+			INSERT INTO APPLIER(APPLIERID, USERID, SHAREID, STATUS)
+			VALUES (#{applierId}, #{userId}, #{shareId}, #{status})
+	</insert>
+	
+	<update id="updatePeopleNumber">
+		UPDATE SHARING
+		SET PEOPLENUMBER = (
+			SELECT COUNT (*) FROM APPLIER
+		)
+		WHERE SHAREID = ${shareId}
+	</update>
+</mapper>

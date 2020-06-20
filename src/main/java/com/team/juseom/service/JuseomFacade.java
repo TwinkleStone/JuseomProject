@@ -2,6 +2,7 @@ package com.team.juseom.service;
 
 import java.util.List;
 
+import com.team.juseom.domain.Applier;
 import com.team.juseom.domain.Auction;
 import com.team.juseom.domain.Bidder;
 import com.team.juseom.domain.Book;
@@ -36,4 +37,5 @@ public interface JuseomFacade {
 	void insertBidder(Bidder bidder);
 	int getBidderCount(String auctionId);
 	List<Bidder> getBidderListByauctionId(String auctionId);
+	void insertApplier(Applier applier);
 }
