@@ -13,6 +13,7 @@ import com.team.juseom.dao.BidderDao;
 import com.team.juseom.dao.BookDao;
 import com.team.juseom.dao.EventDao;
 import com.team.juseom.dao.RateDao;
+import com.team.juseom.dao.UserDao;
 import com.team.juseom.domain.Applier;
 import com.team.juseom.domain.Auction;
 import com.team.juseom.domain.Bidder;
@@ -39,6 +40,9 @@ public class JuseomImpl implements JuseomFacade {
 	
 	@Autowired
 	private ApplierDao applierDao;
+	
+	@Autowired
+	private UserDao userDao;
 	
 	@Autowired
 	private ThreadPoolTaskScheduler scheduler;
@@ -123,33 +127,31 @@ public class JuseomImpl implements JuseomFacade {
 	}
 
 	@Override
-	public User getUser(String userId) {
-		// TODO Auto-generated method stub
+	public User getUserById(String userId) {
+		if (userDao.getUserById(userId) != null) {
+			return userDao.getUserById(userId);
+		}
 		return null;
 	}
 
 	@Override
-	public User getUser(String userId, String password) {
-		// TODO Auto-generated method stub
-		return null;
+	public User getUserIdPassword(String userId, String password) {
+		return userDao.getUserIdPassword(userId, password);
 	}
 
 	@Override
 	public void insertUser(User user) {
-		// TODO Auto-generated method stub
-		
+		userDao.insertUser(user);
 	}
 
 	@Override
 	public void updateUser(User user) {
-		// TODO Auto-generated method stub
-		
+		userDao.updateUser(user);
 	}
 
 	@Override
 	public List<String> getUserIdList() {
-		// TODO Auto-generated method stub
-		return null;
+		return userDao.getUserIdList();
 	}
 
 	@Override

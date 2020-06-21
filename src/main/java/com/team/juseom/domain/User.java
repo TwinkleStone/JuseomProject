@@ -2,19 +2,32 @@ package com.team.juseom.domain;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
 import org.springframework.web.multipart.MultipartFile;
 
 @SuppressWarnings("serial")
 public class User implements Serializable {
 	
+	@NotEmpty(message="NotEmpty") @Email
 	String userId;
+	@NotEmpty(message="NotEmpty") @Size(min=6, max=20, message="Size.password")
 	String password;
+	@NotEmpty(message="NotEmpty") @Size(max=20)
 	String name;
+	@NotEmpty(message="NotEmpty") @Pattern(regexp = "01[01679]-\\d{3,4}-\\d{4}", message="Pattern.phone")
 	String phone;
+	@NotEmpty(message="NotEmpty") @Size(max=20)
 	String commName;
 	String profilePicUrl;
+	@NotEmpty(message="NotEmpty")
 	String address1;
+	@NotEmpty(message="NotEmpty")
 	String address2;
+	@NotEmpty(message="NotEmpty")
 	String address3;
 	
 	public User(String userId, String password, String name, String phone, String commName, String profilePicUrl,

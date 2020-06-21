@@ -2,14 +2,16 @@ package com.team.juseom.dao;
 
 import java.util.List;
 
+import org.springframework.dao.DataAccessException;
+
 import com.team.juseom.domain.User;
 
 public interface UserDao {
 	
-	  public User getUser(String userId) ;
-	  public User getUser(String userId, String password) ;
-	  public void insertUser(User user) ;
-	  public void updateUser(User user) ;
-	  public List<String> getUserIdList();
+	  public User getUserById(String userId) throws DataAccessException;
+	  public User getUserIdPassword(String userId, String password) throws DataAccessException;
+	  public void insertUser(User user) throws DataAccessException;
+	  public void updateUser(User user) throws DataAccessException;
+	  public List<String> getUserIdList() throws DataAccessException;
 
 }

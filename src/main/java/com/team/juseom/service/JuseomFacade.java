@@ -23,8 +23,8 @@ public interface JuseomFacade {
 	Share getShare(String shareId);
 	Auction getOneAuction(String auctionId);
 	
-	User getUser(String userId);
-	User getUser(String userId, String password);
+	User getUserById(String userId);
+	User getUserIdPassword(String userId, String password);
 	void insertUser(User user);
 	void updateUser(User user);
 	List<String> getUserIdList();

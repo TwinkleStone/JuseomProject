@@ -10,9 +10,9 @@ import com.team.juseom.domain.User;
  */
 public interface UserMapper {
 
-	User getUserByUserId(String username);
+	User getUserById(String userId);
 
-	User getUserByUserIdAndPassword(String username, String password);
+	User getUserByIdPassword(String userId, String password);
 
 	List<String> getUserIdList();
   

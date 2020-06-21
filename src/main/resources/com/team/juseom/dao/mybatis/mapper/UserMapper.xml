@@ -14,8 +14,8 @@
           ADDRESS1,
           ADDRESS2,
           ADDRESS3
-    FROM USER
-    WHERE USERID = #{userId}
+    FROM "User"
+    WHERE USERID = #{userId, jdbcType=VARCHAR}
   </select>
 
   <!-- <select id="getAccountByUsernameAndPassword" resultType="Account">
@@ -49,12 +49,12 @@
   </select> -->
 
   <update id="updateUser" parameterType="User">
-    UPDATE USER SET
+    UPDATE "User" SET
       PASSWORD = #{password},
       NAME = #{name},
       PHONE = #{phone},
       COMMNAME = #{commName},
-      PROFILEPICURL = #{profilePicUrl},
+      PROFILEPICURL = #{profilePicUrl, jdbcType=VARCHAR},
       ADDRESS1 = #{address1},
       ADDRESS2 = #{address2},
       ADDRESS3 = #{address3}
@@ -62,7 +62,7 @@
   </update>
   
   <insert id="insertUser" parameterType="User">
-  	INSERT INTO USER
+  	INSERT INTO "User"
       (USERID, PASSWORD, NAME, PHONE, COMMNAME, PROFILEPICURL, ADDRESS1, ADDRESS2, ADDRESS3)
     VALUES
       (#{userId}, #{password}, #{name}, #{phone}, #{commName}, #{profilePicUrl}, #{address1}, #{address2}, #{address3})

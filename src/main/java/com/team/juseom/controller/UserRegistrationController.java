@@ -33,7 +33,6 @@ import org.springframework.web.util.WebUtils;
 import com.team.juseom.domain.User;
 import com.team.juseom.service.ExistUserIdException;
 import com.team.juseom.service.JuseomFacade;
-import com.team.juseom.service.UserFormValidator;
 
 @Controller
 @SessionAttributes("userForm")
@@ -59,12 +58,6 @@ public class UserRegistrationController implements ApplicationContextAware {
 		this.juseom = juseom;
 	}
 	
-	@Autowired
-	private UserFormValidator validator;
-	public void setValidator(UserFormValidator validator) {
-		this.validator = validator;
-	}
-	
 	@ModelAttribute("userForm")
 	public UserForm formBackingObject(HttpServletRequest request) 
 			throws Exception {
@@ -79,22 +72,15 @@ public class UserRegistrationController implements ApplicationContextAware {
 	
 	@RequestMapping(value="/user/register/step2.do", method=RequestMethod.POST)
 	public String step2(HttpServletRequest request, HttpSession session,
-			@ModelAttribute("userForm") UserForm userForm,
+			@Valid @ModelAttribute("userForm") UserForm userForm,
 			BindingResult result) throws Exception {
-		validator.validate(userForm, result);
-		if (result.hasFieldErrors("user.userId") || result.hasFieldErrors("user.password") ||
-				result.hasFieldErrors("user.name") || result.hasFieldErrors("user.phone") ||
-				result.hasFieldErrors("user.address1") || result.hasFieldErrors("user.address2") ||
-				result.hasFieldErrors("user.address3")) {
+		if (juseom.getUserById(userForm.getUser().getUserId()) != null) {
+			result.rejectValue("user.userId", "UsedEmail",
+					"이미 사용중인 아이디입니다.");
 			return STEP1_FORM_VIEW;
 		}
-		if (juseom.getUser(userForm.getUser().getUserId()) != null) {
-			result.rejectValue("user.userId", "USER_ID_ALREADY_EXISTS",
-					"User ID already exists: choose a different ID.");
-			return STEP1_FORM_VIEW;
-		}
-		System.out.println(juseom.getUser(userForm.getUser().getProfilePicUrl()));
-		UserSession userSession = new UserSession(juseom.getUser(userForm.getUser().getUserId()));
+		System.out.println(juseom.getUserById(userForm.getUser().getProfilePicUrl()));
+		UserSession userSession = new UserSession(juseom.getUserById(userForm.getUser().getUserId()));
 		session.setAttribute("userSession", userSession);
 		return STEP2_FORM_VIEW;
 	}
@@ -135,9 +121,8 @@ public class UserRegistrationController implements ApplicationContextAware {
 	}
 	
 	@RequestMapping(value="/user/register/confirm.do", method=RequestMethod.POST)
-	public String done(HttpSession session, @ModelAttribute("userForm") UserForm userForm,
+	public String done(HttpSession session, @Valid @ModelAttribute("userForm") UserForm userForm,
 			BindingResult result) throws Exception {
-		validator.validate(userForm, result);
 		if (result.hasFieldErrors("user.commName")) {
 			return STEP2_FORM_VIEW;
 		}
@@ -145,9 +130,12 @@ public class UserRegistrationController implements ApplicationContextAware {
 	}
 	
 	@RequestMapping(value="/user/register/registered.do", method=RequestMethod.POST)
-	public String register(HttpSession session, @ModelAttribute("userForm") UserForm userForm,
+	public String register(HttpSession session, @Valid @ModelAttribute("userForm") UserForm userForm,
 			BindingResult result, SessionStatus status) throws Exception {
 		try {
+			if (userForm.getReport() == null) {
+				userForm.getUser().setProfilePicUrl("Person.jpg");
+			}
 			juseom.insertUser(userForm.getUser());
 		} catch (DataIntegrityViolationException ex) {
 			result.rejectValue("user.userId", "USER_ID_ALREADY_EXISTS",

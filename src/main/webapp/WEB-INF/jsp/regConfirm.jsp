@@ -21,7 +21,13 @@ table, th, td {
 <form:form modelAttribute="userForm" method="post" action="/juseom/user/register/registered.do">
 
 다음 정보로 신청하시겠습니까?<br/><br/>
-프로필 사진: <img src="<c:url value='/upload/${userForm.user.profilePicUrl}' />" /> <br/>
+프로필 사진: 
+<c:if test="${not empty userForm.report and not empty filename}">
+	<img src="<c:url value='/upload/${userForm.user.profilePicUrl}' />" /> <br/>
+</c:if>
+<c:if test="${empty userForm.report and empty filename}">
+	<img src="<c:url value='/upload/Person.jpg' />" /> <br/>
+</c:if>
 ID: ${userForm.user.userId} <br/>
 이름: ${userForm.user.name} <br/>
 전화번호: ${userForm.user.phone} <br/>

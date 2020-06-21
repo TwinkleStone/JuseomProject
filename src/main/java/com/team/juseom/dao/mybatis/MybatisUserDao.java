@@ -18,15 +18,6 @@ public class MybatisUserDao implements UserDao {
 
 	@Autowired
 	private UserMapper userMapper;
-	
-	public User getUser(String userId) throws DataAccessException {
-		return userMapper.getUserByUserId(userId);
-	}
-
-	public User getUser(String userId, String password) 
-			throws DataAccessException {
-		return userMapper.getUserByUserIdAndPassword(userId, password);
-	}
 
 	public void insertUser(User user) throws DataAccessException {
 		userMapper.insertUser(user);
@@ -38,5 +29,16 @@ public class MybatisUserDao implements UserDao {
  
 	public List<String> getUserIdList() throws DataAccessException {
 		return userMapper.getUserIdList();
+	}
+
+	public User getUserById(String userId) throws DataAccessException {
+		if (userMapper.getUserById(userId) != null) {
+			return userMapper.getUserById(userId);
+		}
+		return null;
+	}
+
+	public User getUserIdPassword(String userId, String password) throws DataAccessException {
+		return userMapper.getUserByIdPassword(userId, password);
 	}
 }
