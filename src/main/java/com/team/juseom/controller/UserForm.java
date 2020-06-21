@@ -2,11 +2,14 @@ package com.team.juseom.controller;
 
 import java.io.Serializable;
 
+import javax.validation.Valid;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import com.team.juseom.domain.User;
 @SuppressWarnings("serial")
 public class UserForm implements Serializable {
+	@Valid
 	private User user;
 	private MultipartFile report;
 	
