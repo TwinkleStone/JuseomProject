@@ -29,6 +29,9 @@
 	  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
 	      <a class="navbar-brand" href="<c:url value="/index.do" />">주섬주섬</a>
+	      <c:if test="${!empty userSession.user}">
+			 <a class="navbar-brand1" href="<c:url value="/user/logout.do" />">로그아웃</a>
+          </c:if>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="oi oi-menu"></span> Menu
 	      </button>

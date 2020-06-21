@@ -24,6 +24,6 @@ ${userForm.user.userId}님의 회원 가입을 완료했습니다.<br/><br/>
 	<li>주소: ${userForm.user.address1}시/도 ${userForm.user.address2}시/군/구 ${userForm.user.address3}동/읍/면
 	<li>닉네임: ${userForm.user.commName}</li> 
 </ul>
-<p><a href="<c:url value='/index' />">Go to schedule</a></p>
+<p><a href="<c:url value='/loginForm' />">Go to schedule</a></p>
 </body>
 </html>

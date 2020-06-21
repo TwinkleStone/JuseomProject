@@ -18,7 +18,7 @@ public class User implements Serializable {
 	String password;
 	@NotEmpty(message="NotEmpty") @Size(max=20)
 	String name;
-	@NotEmpty(message="NotEmpty") @Pattern(regexp = "01[01679]-\\d{3,4}-\\d{4}", message="Pattern.phone")
+	@NotEmpty(message="NotEmpty") @Pattern(regexp = "01[01679]\\d{3,4}\\d{4}", message="Pattern.phone")
 	String phone;
 	@NotEmpty(message="NotEmpty") @Size(max=20)
 	String commName;
