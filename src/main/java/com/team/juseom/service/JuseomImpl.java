@@ -136,7 +136,10 @@ public class JuseomImpl implements JuseomFacade {
 
 	@Override
 	public User getUserIdPassword(String userId, String password) {
-		return userDao.getUserIdPassword(userId, password);
+		if (userDao.getUserIdPassword(userId, password) != null) {
+			return userDao.getUserIdPassword(userId, password);
+		}
+		return null;
 	}
 
 	@Override

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,28 +21,51 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.WebUtils;
 
 import com.team.juseom.domain.User;
 import com.team.juseom.service.AuthenticationException;
+import com.team.juseom.service.JuseomFacade;
 
 @Controller
-@SessionAttributes("loginUser")
+@SessionAttributes("userSession")
 public class LoginController {
 	private final String LOGIN_FORM = "loginForm";
+	
+	@Autowired
+	private JuseomFacade juseom;
+	public void setJuseom(JuseomFacade juseom) {
+		this.juseom = juseom;
+	}
 	
 	// 로그인 폼으로 이동
 	@RequestMapping("/user/loginForm.do")
 	public String loginForm() {
-		//model.addAttribute("loginUser", new User());
 		return LOGIN_FORM;
 	}
 	
 	// 로그인 메소드
-		@RequestMapping(value="/user/login.do", method=RequestMethod.POST)
-		public String login(Model model, @ModelAttribute("user") @Valid User user, HttpServletRequest request,
-						HttpServletResponse response, HttpSession session, BindingResult bindingResult) throws SQLException, IOException {
-			return LOGIN_FORM;
+		@RequestMapping(value="/user/login.do")
+		public ModelAndView handleRequest(HttpServletRequest request,
+				@RequestParam("userId") String userId,
+				@RequestParam("password") String password,
+				@RequestParam(value="forwardAction", required=false) String forwardAction,
+				Model model) throws Exception {
+			System.out.println(userId + ", " + password);
+			User user = juseom.getUserIdPassword(userId, password);
+			if (user == null) {
+				return new ModelAndView("Error", "message", 
+						"Invalid ID or password.  Login failed.");
+			}
+			else {
+				UserSession userSession = new UserSession(user);
+				model.addAttribute("userSession", userSession);
+				if (forwardAction != null) 
+					return new ModelAndView("redirect:" + forwardAction);
+				else 
+					return new ModelAndView("index");
+			}
 		}
 	
 	

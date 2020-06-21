@@ -39,6 +39,9 @@ public class MybatisUserDao implements UserDao {
 	}
 
 	public User getUserIdPassword(String userId, String password) throws DataAccessException {
-		return userMapper.getUserByIdPassword(userId, password);
+		if (userMapper.getUserByIdPassword(userId, password) != null) {
+			return userMapper.getUserByIdPassword(userId, password);
+		}
+		return null;
 	}
 }

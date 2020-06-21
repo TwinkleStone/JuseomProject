@@ -17,6 +17,21 @@
     FROM "User"
     WHERE USERID = #{userId, jdbcType=VARCHAR}
   </select>
+  
+  <select id="getUserByIdPassword" resultType="User">
+    SELECT USERID,
+          PASSWORD,
+          NAME,
+          PHONE,
+          COMMNAME,
+          PROFILEPICURL,
+          ADDRESS1,
+          ADDRESS2,
+          ADDRESS3
+    FROM "User"
+    WHERE USERID = #{param1}
+    	AND PASSWORD = #{param2}
+  </select>
 
   <!-- <select id="getAccountByUsernameAndPassword" resultType="Account">
     SELECT SIGNON.USERNAME,
