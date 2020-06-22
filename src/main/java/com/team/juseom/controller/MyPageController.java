@@ -28,12 +28,11 @@ import org.springframework.web.util.WebUtils;
 import com.team.juseom.service.JuseomFacade;
 
 @Controller
-@RequestMapping({"/user/mypage.do", "/user/mypage/edit.do"})
 public class MyPageController implements ApplicationContextAware {
 	@Value("myPage")
 	private String formViewName;
 	
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value="/user/mypage.do", method = RequestMethod.GET)
 	public String showForm() {
 		return formViewName;
 	}

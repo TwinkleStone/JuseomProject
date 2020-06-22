@@ -170,4 +170,20 @@
 				AND PRESENTPRICE <= #{param2}
 		]]>
 	</update>
+	
+	<!-- 검색을 위한 mapper -->
+	<select id="searchBookDetail" parameterType="String" resultType="Book">
+		SELECT *
+		FROM Book
+		WHERE (name LIKE '%${keyword}%' or author like '%${keyword}%' or publisher like '%${keyword}%' or detail like '%${keyword}%')
+			and (price between ${lowPrice} and ${highPrice})
+			and (tradeType like '%${tradeType}%')
+	</select>
+	
+	<!-- 마이페이지 글 검색 -->
+	<select id="searchBookByUserId" parameterType="String" resultType="Book">
+		SELECT *
+		FROM Book
+		WHERE userId = #{userId}
+	</select>
 </mapper>

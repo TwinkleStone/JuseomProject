@@ -164,9 +164,12 @@ public class JuseomImpl implements JuseomFacade {
 	}
 
 	@Override
-	public List<Book> getBookListByTradeType(String tradeType) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Book> searchBookDetail(String keyword, String lowPrice, String highPrice, String tradeType) {
+		return bookDao.searchBookDetail(keyword, lowPrice, highPrice, tradeType);
+	}
+	
+	public List<Book> searchBookByUserId(String userId) {
+		return bookDao.searchBookByUserId(userId);
 	}
 
 	@Override

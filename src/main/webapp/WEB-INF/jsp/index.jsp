@@ -42,6 +42,7 @@
 	          <li class="nav-item"><a href="<c:url value="/auction.do" />" class="nav-link">경매</a></li>
 	          <li class="nav-item"><a href="<c:url value="/share.do" />" class="nav-link">나눔</a></li>
 	          <li class="nav-item"><a class="nav-link" href="<c:url value="/insert/search.do" />">등록</a></li>
+	          <li class="nav-item"><a class="nav-link" href="<c:url value="/search.do" />">검색</a></li>
 	          <c:if test="${!empty userSession.user}">
 			       <li class="nav-item"><a class="nav-link" href="<c:url value="/user/mypage.do" />">마이페이지</a></li>
               </c:if>

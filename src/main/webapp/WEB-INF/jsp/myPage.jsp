@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
@@ -22,8 +23,14 @@
 					</h3>
 					<table class="n13">
 						<tr>
-							<td><img
-								src="<c:url value='/upload/${userSession.user.profilePicUrl}' />" /></td>
+							<td>
+							<c:if test="${not empty filename}">
+							<img src="<c:url value='/upload/${filename}' />" />
+							</c:if>
+							<c:if test="${empty filename}">
+							<img src="<c:url value='/upload/${userSession.user.profilePicUrl}' />" />
+							</c:if>
+							</td>
 						</tr>
 						<tr>
 							<td>User ID:</td>
@@ -81,7 +88,7 @@
 		<b><a href='<c:url value="/user/chatList.do"/>'>채팅 리스트</a></b>
 	</h3>
 	<h3>
-		<b><a href='<c:url value="/user/sailList.do"/>'>판매 리스트</a></b>
+		<b><a href='<c:url value="/user/saleList.do"/>'>판매 리스트</a></b>
 	</h3>
 
 </div>

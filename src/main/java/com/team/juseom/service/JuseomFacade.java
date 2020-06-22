@@ -29,8 +29,10 @@ public interface JuseomFacade {
 	void updateUser(User user);
 	List<String> getUserIdList();
 	
+	List<Book> searchBookDetail(String keyword, String lowPrice, String highPrice, String tradeType);
+	List<Book> searchBookByUserId(String userId);
+	
 	List<Book> searchBookList(Book book);
-	List<Book> getBookListByTradeType(String tradeType);
 	
 	void insertRate(Rate rate);
 	

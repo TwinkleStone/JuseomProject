@@ -3,6 +3,8 @@ package com.team.juseom.dao.mybatis.mapper;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.team.juseom.domain.Auction;
 import com.team.juseom.domain.Bidder;
 import com.team.juseom.domain.Book;
@@ -26,5 +28,6 @@ public interface BookMapper {
 	void updateBidNumber(int auctionId);
 	void updatePresentPrice(int auctionId, int bidPrice);
 
-	
+	List<Book> searchBookDetail(@Param("keyword")String keyword, @Param("lowPrice")String lowPrice, @Param("highPrice")String highPrice, @Param("tradeType")String tradeType);
+	List<Book> searchBookByUserId(String userId);
 }

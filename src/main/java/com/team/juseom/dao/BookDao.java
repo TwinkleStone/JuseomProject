@@ -25,4 +25,6 @@ public interface BookDao {
 	void updatePresentPrice(Bidder bidder);
 	void updateBidNumber(Bidder bidder);
 	
+	List<Book> searchBookDetail(String keyword, String lowPrice, String highPrice, String tradeType);
+	List<Book> searchBookByUserId(String userId);
 }
