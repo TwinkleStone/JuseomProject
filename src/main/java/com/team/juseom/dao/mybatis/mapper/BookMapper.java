@@ -30,4 +30,5 @@ public interface BookMapper {
 
 	List<Book> searchBookDetail(@Param("keyword")String keyword, @Param("lowPrice")String lowPrice, @Param("highPrice")String highPrice, @Param("tradeType")String tradeType);
 	List<Book> searchBookByUserId(String userId);
+	Book getOtoChatListBookInfo(@Param("bookId")String bookId, @Param("userId")String userId);
 }

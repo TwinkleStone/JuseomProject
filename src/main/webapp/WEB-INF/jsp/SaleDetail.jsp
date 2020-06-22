@@ -105,7 +105,11 @@
 	 					</td>
 	 					<td width="50%" style="padding: 30px">
 	        				<div class="form-group">
-                    			<input type="button" value="채팅 이동" class="btn py-3 px-4 btn-primary">
+	        					<c:url value="/chatRoom.do" var="chatUrl">
+                    				<c:param name="bookId" value="${sale.book.bookId}"/>
+                    				<c:param name="sellerId" value="${sale.book.userId}"/>
+                    			</c:url>
+                    			<a href="${chatUrl}" class="btn py-3 px-4 btn-primary"><c:out value="채팅이동"/></a>
                   			</div>
 	 					</td>
 	        		</tr>

@@ -8,10 +8,10 @@ import com.team.juseom.domain.otoChat;
 public interface ChatDao {
 
 	  public void insertotmChat(otmChat otmChat) ;
-	  public void updateotmChat(otmChat otmChat) ;
 	  
 	  public void insertotoChat(otoChat otoChat) ;
-	  public void updateotoChat(otoChat otoChat) ;
 	  
-	  public List<String> getotmChatList();
+	  public List<otmChat> getOtmChatList(String bookId);
+
+	public List<otoChat> getOtoChatList(String userId);
 }

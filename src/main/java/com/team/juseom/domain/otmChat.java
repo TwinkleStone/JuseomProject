@@ -1,7 +1,11 @@
 package com.team.juseom.domain;
 
-public class otmChat {
-	String chattingRoomId;
+import java.io.Serializable;
+import java.util.List;
+
+@SuppressWarnings("serial")
+public class otmChat implements Serializable{
+	
 	String sellerId;
 	String bookId;
 	String buyerId;
@@ -9,12 +13,15 @@ public class otmChat {
 	String chatNum;
 	String chatTime;
 	
-	public String getChattingRoomId() {
-		return chattingRoomId;
+	public otmChat() {
+		
 	}
-	public void setChattingRoomId(String chattingRoomId) {
-		this.chattingRoomId = chattingRoomId;
+	
+	public otmChat(String bookId, String sellerId) {
+		this.bookId = bookId;
+		this.sellerId = sellerId;
 	}
+	
 	public String getSellerId() {
 		return sellerId;
 	}

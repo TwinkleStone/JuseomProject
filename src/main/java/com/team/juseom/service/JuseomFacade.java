@@ -10,6 +10,8 @@ import com.team.juseom.domain.Rate;
 import com.team.juseom.domain.Sale;
 import com.team.juseom.domain.Share;
 import com.team.juseom.domain.User;
+import com.team.juseom.domain.otmChat;
+import com.team.juseom.domain.otoChat;
 
 public interface JuseomFacade {
 	void insertBook(Book book);
@@ -33,6 +35,13 @@ public interface JuseomFacade {
 	List<Book> searchBookByUserId(String userId);
 	
 	List<Book> searchBookList(Book book);
+	
+	List<otmChat> getOtmChatList(String bookId);
+	void insertOtmChat(otmChat chat);
+	
+	List<otoChat> getOtoChatList(String userId);
+	void insertOtoChat(otoChat chat);
+	Book getOtoChatListBookInfo(String bookId, String userId);
 	
 	void insertRate(Rate rate);
 	

@@ -10,5 +10,11 @@ import com.team.juseom.domain.otmChat;
  *
  */
 public interface ChatMapper {
+	public void insertOtmChat(otmChat otmChat);
 
+	public void insertOtoChat(otoChat otoChat);
+
+	public List<otmChat> getOtmChatList(String bookId);
+
+	public List<otoChat> getOtoChatList(String userId);
 }

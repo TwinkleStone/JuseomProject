@@ -1,13 +1,18 @@
 package com.team.juseom.domain;
 
-public class otoChat {
+import java.io.Serializable;
+
+public class otoChat implements Serializable{
 	
 	String chattingRoomId;
 	String sellerId;
+	String bookId;
 	String buyerId;
 	String chat;
 	String chatNum;
 	String chatTime;
+	String buyerStatus;
+	String sellerStatus;
 	
 	public String getChattingRoomId() {
 		return chattingRoomId;
@@ -20,6 +25,12 @@ public class otoChat {
 	}
 	public void setSellerId(String sellerId) {
 		this.sellerId = sellerId;
+	}
+	public String getBookId() {
+		return bookId;
+	}
+	public void setBookId(String bookId) {
+		this.bookId = bookId;
 	}
 	public String getBuyerId() {
 		return buyerId;
@@ -44,6 +55,18 @@ public class otoChat {
 	}
 	public void setChatTime(String chatTime) {
 		this.chatTime = chatTime;
+	}
+	public String getBuyerStatus() {
+		return buyerStatus;
+	}
+	public void setBuyerStatus(String buyerStatus) {
+		this.buyerStatus = buyerStatus;
+	}
+	public String getSellerStatus() {
+		return sellerStatus;
+	}
+	public void setSellerStatus(String sellerStatus) {
+		this.sellerStatus = sellerStatus;
 	}
 
 }

@@ -85,7 +85,7 @@
 	</form:form>
 	<p></p>
 	<h3>
-		<b><a href='<c:url value="/user/chatList.do"/>'>채팅 리스트</a></b>
+		<b><a href='<c:url value="/user/chatList.do"/>'>거래 진행중 리스트</a></b>
 	</h3>
 	<h3>
 		<b><a href='<c:url value="/user/saleList.do"/>'>판매 리스트</a></b>

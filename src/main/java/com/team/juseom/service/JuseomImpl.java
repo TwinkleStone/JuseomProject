@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.team.juseom.dao.ApplierDao;
 import com.team.juseom.dao.BidderDao;
 import com.team.juseom.dao.BookDao;
+import com.team.juseom.dao.ChatDao;
 import com.team.juseom.dao.EventDao;
 import com.team.juseom.dao.RateDao;
 import com.team.juseom.dao.UserDao;
@@ -22,6 +23,8 @@ import com.team.juseom.domain.Rate;
 import com.team.juseom.domain.Sale;
 import com.team.juseom.domain.Share;
 import com.team.juseom.domain.User;
+import com.team.juseom.domain.otmChat;
+import com.team.juseom.domain.otoChat;
 
 @Service
 @Transactional
@@ -43,6 +46,9 @@ public class JuseomImpl implements JuseomFacade {
 	
 	@Autowired
 	private UserDao userDao;
+	
+	@Autowired
+	private ChatDao chatDao;
 	
 	@Autowired
 	private ThreadPoolTaskScheduler scheduler;
@@ -171,6 +177,32 @@ public class JuseomImpl implements JuseomFacade {
 	public List<Book> searchBookByUserId(String userId) {
 		return bookDao.searchBookByUserId(userId);
 	}
+	
+	public List<otmChat> getOtmChatList(String bookId) {
+		return chatDao.getOtmChatList(bookId);
+	}
+	
+	public void insertOtmChat(otmChat chat) {
+		chatDao.insertotmChat(chat);
+	}
+	
+	@Override
+	public List<otoChat> getOtoChatList(String userId) {
+		// TODO Auto-generated method stub
+		return chatDao.getOtoChatList(userId);
+	}
+
+	@Override
+	public void insertOtoChat(otoChat chat) {
+		chatDao.insertotoChat(chat);
+		
+	}
+
+	@Override
+	public Book getOtoChatListBookInfo(String bookId, String userId) {
+		// TODO Auto-generated method stub
+		return bookDao.getOtoChatListBookInfo(bookId, userId);
+	}
 
 	@Override
 	public void insertRate(Rate rate) {
@@ -199,5 +231,7 @@ public class JuseomImpl implements JuseomFacade {
 		applierDao.insertApplier(applier);
 		applierDao.updatePeopleNumber(applier);
 	}
+
+	
 
 }

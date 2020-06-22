@@ -3,39 +3,47 @@
 
 <mapper namespace="com.team.juseom.dao.mybatis.mapper.ChatMapper">
   <cache />
-  <select id="insertOtoChat" resultType="otoChat">
+  <!-- <select id="insertOtoChat" resultType="otoChat">
     INSERT INTO OTOCHAT
       (CHATTINGROOMID, SELLERID, BUYERID, CHAT, CHATNUM, CHATTIME)
     VALUES
       (#{chattingRoomId}, #{sellerId}, #{buyerId}, #{chat}, #{chatNum}, #{chatTime})
-  </select>
+  </select> -->
   
   <select id="insertOtmChat" resultType="otmChat">
+    INSERT INTO OTMCHAT
+      (BOOKID, SELLERID, BUYERID, CHAT, CHATNUM, CHATTIME)
+    VALUES
+      (#{bookId}, #{sellerId}, #{buyerId, jdbcType=VARCHAR}, #{chat, jdbcType=VARCHAR}, #{chatNum, jdbcType=VARCHAR}, #{chatTime, jdbcType=VARCHAR})
+  </select>
+  
+  <select id="insertOtOChat" resultType="otOChat">
     INSERT INTO OTOCHAT
       (CHATTINGROOMID, BOOKID, SELLERID, BUYERID, CHAT, CHATNUM, CHATTIME)
     VALUES
-      (#{chattingRoomId}, #{bookId}, #{sellerId}, #{buyerId}, #{chat}, #{chatNum}, #{chatTime})
+      (#{chattingRoomId}, #{bookId}, #{sellerId}, #{buyerId, jdbcType=VARCHAR}, #{chat, jdbcType=VARCHAR}, #{chatNum, jdbcType=VARCHAR}, #{chatTime, jdbcType=VARCHAR})
   </select>
   
-  <select id="deleteOtoChat" resultType="otoChat">
+  <!-- <select id="deleteOtoChat" resultType="otoChat">
     DELETE FROM OTOCHAT
     WHERE CHATTINGROOMID = #{chattingRoomId}
-  </select>
+  </select> -->
   
   <select id="deleteOtmChat" resultType="otmChat">
     DELETE FROM OTMCHAT
-    WHERE CHATTINGROOMID = #{chattingRoomId}
+    WHERE BOOKID = #{bookId}
   </select>
   
-  <select id="selectOtoChatByChattingRoomId" resultType="otoChat">
-    SELECT CHATTINGROOMID,
-          SELLERID,
-          BUYERID,
-          CHAT,
-          CHATNUM,
-          CHATTIME
+  <select id="getOtmChatList" resultType="otmChat">
+    SELECT *
+    FROM OTMCHAT
+    WHERE BOOKID = #{bookId}
+  </select>
+  
+  <select id="getOtoChatList" resultType="otoChat">
+    SELECT *
     FROM OTOCHAT
-    WHERE CHATTINGROOMID = #{chattingRoomId}
+    WHERE (SELLERID = #{userId}) OR (BUYERID = #{userId})
   </select>
   
   <!--  <select id="selectOtmChatByChattingRoomId" resultType="otmChat">
@@ -50,7 +58,7 @@
     WHERE CHATTINGROOMID = #{chattingRoomId}
   </select>-->
   
-  <select id="selectOtoChatByUserId" resultType="otoChat">
+  <!-- <select id="selectOtoChatByUserId" resultType="otoChat">
     SELECT DISTINCT CHATTINGROOMID,
           SELLERID,
           BUYERID,
@@ -60,12 +68,12 @@
     FROM OTOCHAT
     WHERE SELLERID = #{userId}
        OR BUYERID = #{userId}
-  </select>
+  </select> -->
   
-  <select id="selectOtmChatByUserId" resultType="otmChat">
-    SELECT DISTINCT CHATTINGROOMID,
+<!--   <select id="selectOtmChatByUserId" resultType="otmChat">
+    SELECT DISTINCT BOOKID,
     FROM OTMCHAT
     WHERE SELLERID = #{userId}
        OR BUYERID = #{userId}
-  </select>
+  </select> -->
 </mapper>

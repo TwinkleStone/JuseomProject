@@ -3,165 +3,181 @@
 
 <mapper namespace="com.team.juseom.dao.mybatis.mapper.BookMapper">
 	<cache />
-	
-	 <select id="getAuction" resultType="Auction">
-     	SELECT
-        	AUCTIONID,
-        	BOOKID,
-        	STARTPRICE,
-	        PRESENTPRICE,
-	        SALESNUMBER,
-	        BIDNUMBER,
-	        ENDTIME
-	    FROM AUCTION
-	   	WHERE BOOKID = #{bookId}
+
+	<select id="getAuction" resultType="Auction">
+		SELECT
+		AUCTIONID,
+		BOOKID,
+		STARTPRICE,
+		PRESENTPRICE,
+		SALESNUMBER,
+		BIDNUMBER,
+		ENDTIME
+		FROM AUCTION
+		WHERE BOOKID = #{bookId}
 	</select>
-	
+
 	<insert id="insertBook" parameterType="Book">
-	  	<selectKey keyProperty="bookId" resultType="int" order="BEFORE">
-	  		SELECT book_seq.nextval AS bookId FROM DUAL
-	  	</selectKey>
-	    INSERT INTO BOOK
-	      (BOOKID, USERID, IMAGEURL, NAME, AUTHOR, PUBLISHER, PUBLICATIONDATE, PRICE, CONDITION, DETAIL)
-	    VALUES
-	      (#{bookId}, #{userId}, #{imageUrl}, #{name}, #{author}, #{publisher}, #{date}, #{price}, #{condition}, #{detail})
+		<selectKey keyProperty="bookId" resultType="int"
+			order="BEFORE">
+			SELECT book_seq.nextval AS bookId FROM DUAL
+		</selectKey>
+		INSERT INTO BOOK
+		(BOOKID, USERID, IMAGEURL, NAME, AUTHOR, PUBLISHER, PUBLICATIONDATE, PRICE,
+		CONDITION, DETAIL)
+		VALUES
+		(#{bookId}, #{userId}, #{imageUrl}, #{name}, #{author}, #{publisher}, #{date},
+		#{price}, #{condition}, #{detail})
 	</insert>
-	
+
 	<insert id="insertSale" parameterType="Sale">
-		<selectKey keyProperty="saleId" resultType="int" order="BEFORE">
-  			SELECT sale_seq.nextval AS saleId FROM DUAL
-  		</selectKey>
+		<selectKey keyProperty="saleId" resultType="int"
+			order="BEFORE">
+			SELECT sale_seq.nextval AS saleId FROM DUAL
+		</selectKey>
 		INSERT INTO SALE
-			(SALEID, SUGGESTPRICE, STATUS, BOOKID)
+		(SALEID, SUGGESTPRICE, BOOKID)
 		VALUES
-			(#{saleId}, #{suggestPrice}, #{status}, #{book.bookId})
+		(#{saleId}, #{suggestPrice}, #{book.bookId})
 	</insert>
-	
+
 	<insert id="insertAuction" parameterType="Auction">
-		<selectKey keyProperty="auctionId" resultType="int" order="BEFORE">
-  			SELECT auction_seq.nextval AS auctionId FROM DUAL
-  		</selectKey>
+		<selectKey keyProperty="auctionId" resultType="int"
+			order="BEFORE">
+			SELECT auction_seq.nextval AS auctionId FROM DUAL
+		</selectKey>
 		INSERT INTO AUCTION
-			(AUCTIONID, STARTPRICE, SALESNUMBER, ENDTIME, PRESENTPRICE, BIDNUMBER, STATUS, BOOKID)
+		(AUCTIONID, STARTPRICE, SALESNUMBER, ENDTIME, PRESENTPRICE, BIDNUMBER, STATUS,
+		BOOKID)
 		VALUES
-			(#{auctionId}, #{startPrice}, #{salesNumber}, #{endTime}, #{presentPrice}, #{bidNumber}, #{status}, #{book.bookId})
+		(#{auctionId}, #{startPrice}, #{salesNumber}, #{endTime}, #{presentPrice},
+		#{bidNumber}, #{status}, #{book.bookId})
 	</insert>
-	
+
 	<insert id="insertShare" parameterType="Share">
-		<selectKey keyProperty="shareId" resultType="int" order="BEFORE">
-  			SELECT share_seq.nextval AS shareId FROM DUAL
-  		</selectKey>
+		<selectKey keyProperty="shareId" resultType="int"
+			order="BEFORE">
+			SELECT share_seq.nextval AS shareId FROM DUAL
+		</selectKey>
 		INSERT INTO SHARING
-			(SHAREID, SHARENUMBER, ENDTIME, RAFFLETIME, PEOPLENUMBER, STATUS, BOOKID)
+		(SHAREID, SHARENUMBER, ENDTIME, RAFFLETIME, PEOPLENUMBER, STATUS, BOOKID)
 		VALUES
-			(#{shareId}, #{shareNumber}, #{endTime}, #{raffleTime}, #{peopleNumber}, #{status}, #{book.bookId})
+		(#{shareId}, #{shareNumber}, #{endTime}, #{raffleTime}, #{peopleNumber},
+		#{status}, #{book.bookId})
 	</insert>
-	
+
 	<select id="getBookListBySale" resultType="Sale">
-		SELECT s.saleId AS saleId,
-			s.suggestPrice AS suggestPrice,
-			b.name AS "book.name",
-			b.price AS "book.price",
-			b.author AS "book.author",
-			b.condition AS "book.condition",
-			b.imageUrl AS "book.imageUrl"
+		SELECT s.saleId AS
+		saleId,
+		s.suggestPrice AS suggestPrice,
+		b.name AS "book.name",
+		b.price AS "book.price",
+		b.author AS "book.author",
+		b.condition AS "book.condition",
+		b.imageUrl AS "book.imageUrl"
 		FROM Sale s, Book b
 		WHERE s.bookId = b.bookId
 	</select>
-	
+
 	<select id="getBookListByAuction" resultType="Auction">
-		SELECT a.auctionId AS auctionId,
-			a.presentPrice AS presentPrice,
-			a.bidNumber AS bidNumber,
-			a.endTime AS endTime,
-			b.name AS "book.name",
-			b.author AS "book.author",
-			b.condition AS "book.condition",
-			b.imageUrl AS "book.imageUrl"
+		SELECT a.auctionId
+		AS auctionId,
+		a.presentPrice AS presentPrice,
+		a.bidNumber AS bidNumber,
+		a.endTime AS endTime,
+		b.name AS "book.name",
+		b.author AS "book.author",
+		b.condition AS "book.condition",
+		b.imageUrl AS "book.imageUrl"
 		FROM Auction a, Book b
 		WHERE a.bookId = b.bookId
 	</select>
-	
+
 	<select id="getBookListByShare" resultType="Share">
-		SELECT s.shareId AS shareId,
-			s.shareNumber AS shareNumber,
-			s.peopleNumber AS peopleNumber,
-			s.endTime AS endTime,
-			s.raffleTime AS raffleTime,
-			b.name AS "book.name",
-			b.author AS "book.author",
-			b.condition AS "book.condition",
-			b.imageUrl AS "book.imageUrl"
+		SELECT s.shareId AS
+		shareId,
+		s.shareNumber AS shareNumber,
+		s.peopleNumber AS peopleNumber,
+		s.endTime AS endTime,
+		s.raffleTime AS raffleTime,
+		b.name AS "book.name",
+		b.author AS "book.author",
+		b.condition AS "book.condition",
+		b.imageUrl AS "book.imageUrl"
 		FROM Sharing s, Book b
 		WHERE s.bookId = b.bookId
 	</select>
-	
+
 	<select id="getSale" resultType="Sale">
 		SELECT s.saleId AS saleId,
-			s.suggestPrice AS suggestPrice,
-			b.bookId AS "book.bookId",
-			b.userId AS "book.userId",
-			b.name AS "book.name",
-			b.author AS "book.author",
-			b.condition AS "book.condition",
-			b.imageUrl AS "book.imageUrl",
-			b.publisher AS "book.publisher",
-			b.publicationDate AS "book.date",
-			b.price AS "book.price",
-			b.detail AS "book.detail"
+		s.suggestPrice AS suggestPrice,
+		b.bookId AS "book.bookId",
+		b.userId AS "book.userId",
+		b.name AS "book.name",
+		b.author AS "book.author",
+		b.condition AS "book.condition",
+		b.imageUrl AS "book.imageUrl",
+		b.publisher AS "book.publisher",
+		b.publicationDate AS "book.date",
+		b.price AS "book.price",
+		b.detail AS "book.detail"
 		FROM Sale s, Book b
-		WHERE s.bookId = b.bookId AND s.saleId = ${value}
+		WHERE s.bookId = b.bookId AND
+		s.saleId = ${value}
 	</select>
-	
+
 	<select id="getOneAuction" resultType="Auction">
-		SELECT a.auctionId AS auctionId,
-			a.startPrice AS startPrice,
-			a.presentPrice AS presentPrice,
-			a.salesNumber AS salesNumber,
-			a.bidNumber AS bidNumber,
-			a.endTime AS endTime,
-			b.bookId AS "book.bookId",
-			b.userId AS "book.userId",
-			b.name AS "book.name",
-			b.author AS "book.author",
-			b.condition AS "book.condition",
-			b.imageUrl AS "book.imageUrl",
-			b.publisher AS "book.publisher",
-			b.publicationDate AS "book.date",
-			b.price AS "book.price",
-			b.detail AS "book.detail"
+		SELECT a.auctionId AS
+		auctionId,
+		a.startPrice AS startPrice,
+		a.presentPrice AS presentPrice,
+		a.salesNumber AS salesNumber,
+		a.bidNumber AS bidNumber,
+		a.endTime AS endTime,
+		b.bookId AS "book.bookId",
+		b.userId AS "book.userId",
+		b.name AS "book.name",
+		b.author AS "book.author",
+		b.condition AS "book.condition",
+		b.imageUrl AS "book.imageUrl",
+		b.publisher AS "book.publisher",
+		b.publicationDate AS "book.date",
+		b.price AS "book.price",
+		b.detail AS "book.detail"
 		FROM Auction a, Book b
-		WHERE a.bookId = b.bookId AND a.auctionId = ${value}
+		WHERE a.bookId = b.bookId AND
+		a.auctionId = ${value}
 	</select>
-	
+
 	<select id="getShare" resultType="Share">
 		SELECT s.shareId AS shareId,
-			s.shareNumber AS shareNumber,
-			s.endTime AS endTime,
-			s.raffleTime AS raffleTime,
-			s.peopleNumber AS peopleNumber,
-			b.bookId AS "book.bookId",
-			b.userId AS "book.userId",
-			b.name AS "book.name",
-			b.author AS "book.author",
-			b.condition AS "book.condition",
-			b.imageUrl AS "book.imageUrl",
-			b.publisher AS "book.publisher",
-			b.publicationDate AS "book.date",
-			b.price AS "book.price",
-			b.detail AS "book.detail"
+		s.shareNumber AS shareNumber,
+		s.endTime AS endTime,
+		s.raffleTime AS raffleTime,
+		s.peopleNumber AS peopleNumber,
+		b.bookId AS "book.bookId",
+		b.userId AS "book.userId",
+		b.name AS "book.name",
+		b.author AS "book.author",
+		b.condition AS "book.condition",
+		b.imageUrl AS "book.imageUrl",
+		b.publisher AS "book.publisher",
+		b.publicationDate AS "book.date",
+		b.price AS "book.price",
+		b.detail AS "book.detail"
 		FROM Sharing s, Book b
-		WHERE s.bookId = b.bookId AND s.shareId = ${value}
+		WHERE s.bookId = b.bookId AND
+		s.shareId = ${value}
 	</select>
-	
+
 	<update id="updateBidNumber">
 		UPDATE AUCTION
 		SET BIDNUMBER = (
-			SELECT COUNT (*) FROM BIDDER
-			)
+		SELECT COUNT (*) FROM BIDDER
+		)
 		WHERE AUCTIONID = ${auctionId}
 	</update>
-	
+
 	<update id="updatePresentPrice" parameterType="String">
 		<![CDATA[
 			UPDATE AUCTION
@@ -170,9 +186,10 @@
 				AND PRESENTPRICE <= #{param2}
 		]]>
 	</update>
-	
+
 	<!-- 검색을 위한 mapper -->
-	<select id="searchBookDetail" parameterType="String" resultType="Book">
+	<select id="searchBookDetail" parameterType="String"
+		resultType="Book">
 		select distinct b.BOOKID ,
 		b.USERID ,
 		b.IMAGEURL ,
@@ -193,11 +210,30 @@
 		s.BOOKID) AND s.status = 'OPEN')
 		OR ((b.BOOKID = sa.BOOKID) AND sa.status = 'OPEN'))
 	</select>
-	
+
 	<!-- 마이페이지 글 검색 -->
-	<select id="searchBookByUserId" parameterType="String" resultType="Book">
+	<select id="searchBookByUserId" parameterType="String"
+		resultType="Book">
 		SELECT *
 		FROM Book
 		WHERE userId = #{userId}
+	</select>
+	
+	<!-- 마이페이지 채팅리스트 조회 -->
+	<select id="getOtoChatListBookInfo" resultType="Book">
+		SELECT distinct b.BOOKID ,
+		b.USERID ,
+		b.IMAGEURL ,
+		b.NAME ,
+		b.AUTHOR ,
+		b.PUBLISHER ,
+		b.PUBLICATIONDATE ,
+		b.PRICE ,
+		b.CONDITION ,
+		b.DETAIL ,
+		b.TRADETYPE
+		FROM BOOK b, OTOCHAT o
+		WHERE (b.BOOKID = #{bookId} AND o.BOOKID = #{bookId})
+			AND (o.SELLERID = #{userId} OR o.buyerId = #{userId})
 	</select>
 </mapper>

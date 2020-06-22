@@ -94,5 +94,12 @@ public class MybatisBookDao implements BookDao{
 		return bookMapper.searchBookByUserId(userId);
 	}
 
+	// 참여중인 채팅리스트 출력을 위한 메소드
+	@Override
+	public Book getOtoChatListBookInfo(String bookId, String userId) {
+		// TODO Auto-generated method stub
+		return bookMapper.getOtoChatListBookInfo(bookId, userId);
+	}
+
 
 }
