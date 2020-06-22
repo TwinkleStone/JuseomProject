@@ -173,11 +173,25 @@
 	
 	<!-- 검색을 위한 mapper -->
 	<select id="searchBookDetail" parameterType="String" resultType="Book">
-		SELECT *
-		FROM Book
-		WHERE (name LIKE '%${keyword}%' or author like '%${keyword}%' or publisher like '%${keyword}%' or detail like '%${keyword}%')
-			and (price between ${lowPrice} and ${highPrice})
-			and (tradeType like '%${tradeType}%')
+		select distinct b.BOOKID ,
+		b.USERID ,
+		b.IMAGEURL ,
+		b.NAME ,
+		b.AUTHOR ,
+		b.PUBLISHER ,
+		b.PUBLICATIONDATE ,
+		b.PRICE ,
+		b.CONDITION ,
+		b.DETAIL ,
+		b.TRADETYPE
+		from book b, auction a, sharing s, sale sa
+		where (b.name LIKE '%${keyword}%' or b.author like '%${keyword}%' or
+		b.publisher like '%${keyword}%' or b.detail like '%${keyword}%')
+		and (price between ${lowPrice} and ${highPrice})
+		and (tradeType like '%${tradeType}%')
+		and (((b.BOOKID = a.BOOKID) AND a.status = 'OPEN') OR ((b.BOOKID =
+		s.BOOKID) AND s.status = 'OPEN')
+		OR ((b.BOOKID = sa.BOOKID) AND sa.status = 'OPEN'))
 	</select>
 	
 	<!-- 마이페이지 글 검색 -->
