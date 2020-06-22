@@ -32,9 +32,9 @@
   			SELECT sale_seq.nextval AS saleId FROM DUAL
   		</selectKey>
 		INSERT INTO SALE
-			(SALEID, SUGGESTPRICE, BOOKID)
+			(SALEID, SUGGESTPRICE, STATUS, BOOKID)
 		VALUES
-			(#{saleId}, #{suggestPrice}, #{book.bookId})
+			(#{saleId}, #{suggestPrice}, #{status}, #{book.bookId})
 	</insert>
 	
 	<insert id="insertAuction" parameterType="Auction">

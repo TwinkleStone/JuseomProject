@@ -106,6 +106,7 @@ public class InsertBookContorller {
 		}
 		//userId 구현 전까지 임시 코드
 		formData.getBook().setUserId("1");
+		formData.setStatus("OPEN");
 		juseomFacade.insertSale(formData);
 		if(model.getAttribute("conditionCodes") != null) {
 			model.remove("conditionCodes");

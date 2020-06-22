@@ -7,6 +7,7 @@ public class Sale implements Serializable{
 	int saleId;
 	Book book;
 	String suggestPrice;
+	String status;
 	
 	public int getSaleId() {
 		return saleId;
@@ -25,5 +26,11 @@ public class Sale implements Serializable{
 	}
 	public void setSuggestPrice(String suggestPrice) {
 		this.suggestPrice = suggestPrice;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 }
