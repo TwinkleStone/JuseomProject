@@ -15,8 +15,8 @@
 	<update id="updatePeopleNumber">
 		UPDATE SHARING
 		SET PEOPLENUMBER = (
-			SELECT COUNT (*) FROM APPLIER
+			SELECT COUNT (*) FROM APPLIER WHERE SHAREID = #{shareId}
 		)
-		WHERE SHAREID = ${shareId}
+		WHERE SHAREID = #{shareId}
 	</update>
 </mapper>

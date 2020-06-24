@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.team.juseom.dao.BookDao;
 import com.team.juseom.dao.mybatis.mapper.BookMapper;
+import com.team.juseom.domain.Applier;
 import com.team.juseom.domain.Auction;
 import com.team.juseom.domain.Bidder;
 import com.team.juseom.domain.Book;
@@ -99,6 +100,13 @@ public class MybatisBookDao implements BookDao{
 	public Book getOtoChatListBookInfo(String bookId, String userId) {
 		// TODO Auto-generated method stub
 		return bookMapper.getOtoChatListBookInfo(bookId, userId);
+	}
+
+	@Override
+	public void updatePeopleNumber(Applier applier) {
+		int applierId = applier.getApplierId();
+		bookMapper.updatePeopleNumber(applierId);
+		
 	}
 
 

@@ -229,7 +229,7 @@ public class JuseomImpl implements JuseomFacade {
 	@Override
 	public void insertApplier(Applier applier) {
 		applierDao.insertApplier(applier);
-		applierDao.updatePeopleNumber(applier);
+		bookDao.updatePeopleNumber(applier);
 	}
 
 	

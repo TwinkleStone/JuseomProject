@@ -2,6 +2,7 @@ package com.team.juseom.dao;
 
 import java.util.List;
 
+import com.team.juseom.domain.Applier;
 import com.team.juseom.domain.Auction;
 import com.team.juseom.domain.Bidder;
 import com.team.juseom.domain.Book;
@@ -24,6 +25,8 @@ public interface BookDao {
 	
 	void updatePresentPrice(Bidder bidder);
 	void updateBidNumber(Bidder bidder);
+	
+	void updatePeopleNumber(Applier applier);
 	
 	List<Book> searchBookDetail(String keyword, String lowPrice, String highPrice, String tradeType);
 	List<Book> searchBookByUserId(String userId);

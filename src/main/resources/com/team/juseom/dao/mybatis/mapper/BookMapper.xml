@@ -173,7 +173,7 @@
 	<update id="updateBidNumber">
 		UPDATE AUCTION
 		SET BIDNUMBER = (
-		SELECT COUNT (*) FROM BIDDER
+			SELECT COUNT (*) FROM BIDDER WHERE AUCTIONID = #{auctionId}
 		)
 		WHERE AUCTIONID = ${auctionId}
 	</update>

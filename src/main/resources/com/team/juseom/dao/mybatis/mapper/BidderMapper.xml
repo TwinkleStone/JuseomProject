@@ -23,6 +23,9 @@
 	</insert>
 	
 	<select id="getBidderCount" resultType="int">
-		SELECT COUNT(*) FROM BIDDER;
+		SELECT 
+			COUNT(*) 
+		FROM BIDDER
+		WHERE AUCTIONID = #{auctionId}
 	</select>
 </mapper>
