@@ -23,7 +23,13 @@ public class MybatisApplierDao implements ApplierDao {
 	public void updatePeopleNumber(Applier applier) {
 		int shareId = applier.getSharedId();
 		applierMapper.updatePeopleNumber(shareId);
-		
+	}
+
+	@Override
+	public int searchApplier(Applier applier) {
+		int shareId = applier.getSharedId();
+		String userId = applier.getUserId();
+		return applierMapper.searchApplier(shareId, userId);
 	}
 
 }

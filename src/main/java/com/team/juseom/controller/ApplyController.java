@@ -1,5 +1,10 @@
 package com.team.juseom.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,12 +34,23 @@ public class ApplyController {
 	@RequestMapping("/apply.do")
 	public String insertApply(
 			@ModelAttribute("applier") Applier applier,
-			Model model) {
+			HttpServletResponse response,
+			Model model) throws IOException {
 		
 		applier.setUserId("test");
 		applier.setStatus("lOSE");
 		
-		juseomFacade.insertApplier(applier);
+		int searchResult = juseomFacade.searchApplier(applier);
+		
+		if (searchResult > 0) {
+			/*
+			 * response.setContentType("text/html); charset=UTF-8"); PrintWriter out =
+			 * response.getWriter(); out.println("<script>alert('권한이 없습니다.');</script>");
+			 * out.flush();
+			 */
+		} else {
+			juseomFacade.insertApplier(applier);
+		}
 		
 		return "redirect:/index";
 	}

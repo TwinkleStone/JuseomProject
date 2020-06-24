@@ -1,6 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
@@ -101,13 +102,10 @@
 				<table>
 	        		<tr style="text-align: center">
 	        			<td style="padding: 30px">
-<%-- 	        					<form:form modelAttribute="applier" action="apply.do" method="post">
+<%--  	        					<form:form modelAttribute="applier" action="apply.do" method="post">
 	        						<div class="form-group">
-	        						<form:hidden path="sharedId" value="${share.sharedId}" />
-	        						
-	        						<div class="form-group">
-	        							<input type="submit" value="신청하기" class="btn py-3 px-4 btn-primary" />
-	        						</div>
+	        						<form:hidden path="shareId" value="${share.shareId}" />
+	        						<input type="submit" id="submit" value="신청하기" class="btn py-3 px-4 btn-primary" />
 	        						</div>
 	        					</form:form> --%>
 	        					

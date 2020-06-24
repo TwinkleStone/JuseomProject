@@ -230,8 +230,12 @@ public class JuseomImpl implements JuseomFacade {
 	public void insertApplier(Applier applier) {
 		applierDao.insertApplier(applier);
 		bookDao.updatePeopleNumber(applier);
+
 	}
 
-	
+	@Override
+	public int searchApplier(Applier applier) {
+		return applierDao.searchApplier(applier);
+	}
 
 }

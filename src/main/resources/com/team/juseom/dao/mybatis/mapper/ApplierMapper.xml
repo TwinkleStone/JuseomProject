@@ -19,4 +19,11 @@
 		)
 		WHERE SHAREID = #{shareId}
 	</update>
+	
+	<select id="searchApplier" resultType="int">		
+		SELECT count(*)
+		FROM APPLIER
+		WHERE userId = #{param2} AND shareId=#{param1}
+	</select>
+	
 </mapper>

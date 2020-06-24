@@ -48,5 +48,7 @@ public interface JuseomFacade {
 	void insertBidder(Bidder bidder);
 	int getBidderCount(String auctionId);
 	List<Bidder> getBidderListByauctionId(String auctionId);
+	
 	void insertApplier(Applier applier);
+	int searchApplier(Applier applier);
 }

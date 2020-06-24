@@ -6,4 +6,5 @@ public interface ApplierMapper {
 
 	public void insertApplier(Applier applier);
 	public void updatePeopleNumber(int shareId);
+	public int searchApplier(int applierId, String userId);
 }

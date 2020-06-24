@@ -6,4 +6,5 @@ public interface ApplierDao {
 
 	void insertApplier(Applier applier);
 	void updatePeopleNumber(Applier applier);
+	int searchApplier(Applier applier);
 }
