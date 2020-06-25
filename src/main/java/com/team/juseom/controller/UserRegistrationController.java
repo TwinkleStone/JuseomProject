@@ -59,11 +59,9 @@ public class UserRegistrationController implements ApplicationContextAware {
 	}
 	
 	@ModelAttribute("userForm")
-	public UserForm formBackingObject(HttpServletRequest request, SessionStatus status, HttpSession session) 
+	public UserForm formBackingObject(HttpServletRequest request) 
 			throws Exception {
-		session.removeAttribute("userSession");
-		session.invalidate();
-		status.setComplete();
+		// create a new account
 		return new UserForm();
 	}
 	
@@ -76,20 +74,9 @@ public class UserRegistrationController implements ApplicationContextAware {
 	public String step2(HttpServletRequest request, HttpSession session,
 			@Valid @ModelAttribute("userForm") UserForm userForm,
 			BindingResult result) throws Exception {
-		if (result.hasFieldErrors("user.userId") || result.hasFieldErrors("user.password") || 
-				result.hasFieldErrors("confirmPassword") || result.hasFieldErrors("user.name") || 
-				result.hasFieldErrors("user.phone") || result.hasFieldErrors("user.address1") || 
-				result.hasFieldErrors("user.address2") || result.hasFieldErrors("user.address3")) {
-			return STEP1_FORM_VIEW;
-		}
 		if (juseom.getUserById(userForm.getUser().getUserId()) != null) {
 			result.rejectValue("user.userId", "UsedEmail",
 					"이미 사용중인 아이디입니다.");
-			return STEP1_FORM_VIEW;
-		}
-		if (!userForm.getConfirmPassword().equals(userForm.getUser().getPassword())) {
-			result.rejectValue("confirmPassword", "NotMatchPassword",
-					"비밀번호가 일치하지 않습니다.");
 			return STEP1_FORM_VIEW;
 		}
 		System.out.println(juseom.getUserById(userForm.getUser().getProfilePicUrl()));
