@@ -237,12 +237,16 @@
 			AND (o.SELLERID = #{userId} OR o.buyerId = #{userId})
 	</select>
 	
-	<update id="closeAuctionEvent" parameterType="Date">
-		<![CDATA[
-			UPDATE AUCTION
-			SET STATUS = 'CLOSE'
-			WHERE ENDTIME <= #{curTime}
-		]]>
+	<update id="updatePeopleNumber">
+		UPDATE SHARING
+		SET PEOPLENUMBER = (SELECT COUNT(*) FROM APPLIER WHERE SHAREID = #{SHAREID})
+		WHERE shareId = #{shareId}
+	</update>
+	
+	<update id="updateAuctionWinner">
+		UPDATE AUCTION
+		SET BIDWINNER = #{param1}
+		WHERE AUCTIONID = #{param2}
 	</update>
 	
 </mapper>

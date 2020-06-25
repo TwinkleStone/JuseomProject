@@ -38,7 +38,6 @@ public class ApplyController {
 			Model model) throws IOException {
 		
 		applier.setUserId("test");
-		applier.setStatus("lOSE");
 		
 		int searchResult = juseomFacade.searchApplier(applier);
 		

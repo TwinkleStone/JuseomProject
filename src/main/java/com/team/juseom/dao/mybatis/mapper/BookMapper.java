@@ -35,5 +35,5 @@ public interface BookMapper {
 	void updatePeopleNumber(int applierId);
 	void closeAuctionEvent(Date curTime);
 	void closeShareEvent(Date curTime);
-	void updateWinner(String winner, int auctionId);
+	void updateAuctionWinner(String bidWinner, int auctionId);
 }

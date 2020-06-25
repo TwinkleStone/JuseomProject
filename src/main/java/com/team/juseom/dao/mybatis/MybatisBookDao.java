@@ -105,14 +105,13 @@ public class MybatisBookDao implements BookDao{
 
 	@Override
 	public void updatePeopleNumber(Applier applier) {
-		int applierId = applier.getApplierId();
-		bookMapper.updatePeopleNumber(applierId);
-		
+		int shareId = applier.getSharedId();
+		bookMapper.updatePeopleNumber(shareId);
 	}
 
 	@Override
-	public void updateWinner(String winner, int auctionId) {
-		bookMapper.updateWinner(winner, auctionId);
+	public void updateAuctionWinner(String bidWinner, int auctionId) {
+		bookMapper.updateAuctionWinner(bidWinner, auctionId);
 	}
 
 

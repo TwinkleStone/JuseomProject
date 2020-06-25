@@ -7,7 +7,6 @@ public class Applier implements Serializable {
 	int applierId;
 	String userId;
 	int shareId;
-	String status;
 	
 	public int getApplierId() {
 		return applierId;
@@ -26,11 +25,5 @@ public class Applier implements Serializable {
 	}
 	public void setShareId(int shareId) {
 		this.shareId = shareId;
-	}
-	public String getStatus() {
-		return status;
-	}
-	public void setStatus(String status) {
-		this.status = status;
 	}
 }

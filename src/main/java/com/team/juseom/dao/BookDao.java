@@ -32,6 +32,6 @@ public interface BookDao {
 	List<Book> searchBookDetail(String keyword, String lowPrice, String highPrice, String tradeType);
 	List<Book> searchBookByUserId(String userId);
 	Book getOtoChatListBookInfo(String bookId, String userId);
-	void updateWinner(String winner, int auctionId);
+	void updateAuctionWinner(String bidWinner, int auctionId);
 
 }

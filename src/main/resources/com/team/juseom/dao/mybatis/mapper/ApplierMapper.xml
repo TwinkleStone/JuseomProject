@@ -8,8 +8,8 @@
 		<selectKey keyProperty="applierId" resultType="int" order="BEFORE">
 			SELECT APPLIER_SEQ.nextval AS applierId FROM DUAL
 		</selectKey>
-			INSERT INTO APPLIER(APPLIERID, USERID, SHAREID, STATUS)
-			VALUES (#{applierId}, #{userId}, #{shareId}, #{status})
+			INSERT INTO APPLIER(APPLIERID, USERID, SHAREID)
+			VALUES (#{applierId}, #{userId}, #{shareId})
 	</insert>
 	
 	<update id="updatePeopleNumber">
@@ -24,6 +24,14 @@
 		SELECT count(*)
 		FROM APPLIER
 		WHERE userId = #{param2} AND shareId=#{param1}
+	</select>
+	
+	<select id="getWinner" resultType="Applier">
+		<![CDATA[
+			SELECT *
+			FROM (SELECT * FROM APPLIER WHERE shareId = #{param1} ORDER BY DBMS_RANDOM.VALUE)
+			WHERE ROWNUM <= #{param2}
+		]]>
 	</select>
 	
 </mapper>
