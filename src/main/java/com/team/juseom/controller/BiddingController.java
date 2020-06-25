@@ -38,7 +38,7 @@ public class BiddingController {
 			BindingResult result,
 			Model model) {
 		
-		formData.setUserId("test"); //가데이터
+		formData.setUserId("qwerty"); //가데이터
 		
 		juseomFacade.insertBidder(formData);
 		

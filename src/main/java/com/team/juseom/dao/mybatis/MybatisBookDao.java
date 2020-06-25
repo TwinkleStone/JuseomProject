@@ -110,5 +110,10 @@ public class MybatisBookDao implements BookDao{
 		
 	}
 
+	@Override
+	public void updateWinner(String winner, int auctionId) {
+		bookMapper.updateWinner(winner, auctionId);
+	}
+
 
 }

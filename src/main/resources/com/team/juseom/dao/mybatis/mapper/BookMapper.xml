@@ -245,12 +245,4 @@
 		]]>
 	</update>
 	
-	<update id="closeShareEvent" parameterType="Date">
-		<![CDATA[
-			UPDATE SHARING
-			SET STATUS = 'CLOSE'
-			WHERE ENDTIME <= #{curTime}
-		]]>
-	</update>
-	
 </mapper>

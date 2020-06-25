@@ -92,9 +92,12 @@ public class JuseomImpl implements JuseomFacade {
 			public void run() {
 				Date curTime = new Date();
 				
-				System.out.println("curTime is " +curTime);
 				eventDao.closeAuctionEvent(curTime);
 				System.out.println("updateTableRunner is executed at " + curTime);
+				
+				int auctionId = auction.getAuctionId();
+				String winner = bidderDao.getBid(auctionId);
+				bookDao.updateWinner(winner, auctionId);					
 			}
 		};
 		

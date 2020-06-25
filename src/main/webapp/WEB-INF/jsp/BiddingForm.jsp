@@ -59,10 +59,10 @@
 	<div class="container">
 	 <div class="row justify-content-center">
 	   <div class="co-md-4" style="padding: 30px">
-		<form:form modelAttribute="bidder">
-			<div class="form-group">
-				<label for="bidNumber">입찰할 책의 갯수 *</label>
-				<form:input path="bidNumber" class="form-control" />
+		<form:form modelAttribute="bidder" class="bg-light p-5 contact-form" style="margin-left: 100px; margin-right: 100px">
+			<div class="form-group" style="width: 400px;">
+				<label for="bidNumber">책의 갯수 *</label>
+				<form:input path="bidNumber" class="form-control" id="bidNumber"/>
 				<form:errors path="bidNumber" /> <br/>
 	
 				<label for="bidPrice">입찰가 *</label>
@@ -70,7 +70,7 @@
 				<form:errors path="bidPrice"/> <br/>
 			</div>
 			<form:hidden path="auctionId" value="${param.auctionId}" />
-			<div class="form-group" style="text-align:center">
+			<div class="form-group" style="text-align: center;">
 				<input type="submit" value="입찰하기" class="btn btn-primary py-3 px-4">
 			</div>
 		</form:form>
