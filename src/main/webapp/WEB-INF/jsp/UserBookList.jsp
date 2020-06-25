@@ -178,10 +178,8 @@
 									<td style="padding-left: 20px">${book.publisher}</td>
 								</tr>
 								<tr>
-									<td>출판일</td>
-									<td style="padding-left: 20px"><fmt:parseDate
-											value="${book.date}" pattern="yyyyMMdd" var="parseDate" /> <fmt:formatDate
-											value="${parseDate}" pattern="yyyy년MM월dd일" /></td>
+									<td>책 상태</td>
+									<td style="padding-left: 20px">${book.condition}</td>
 								</tr>
 								<tr>
 									<td>정가</td>

@@ -14,14 +14,14 @@
     INSERT INTO OTMCHAT
       (BOOKID, SELLERID, SENDERID, CHAT, CHATNUM, CHATTIME)
     VALUES
-      (#{bookId}, #{sellerId, jdbcType=VARCHAR}, #{buyerId, jdbcType=VARCHAR}, #{chat, jdbcType=VARCHAR}, #{chatNum, jdbcType=VARCHAR}, #{chatTime, jdbcType=VARCHAR})
+      (#{bookId}, #{sellerId, jdbcType=VARCHAR}, #{senderId, jdbcType=VARCHAR}, #{chat, jdbcType=VARCHAR}, #{chatNum, jdbcType=VARCHAR}, #{chatTime, jdbcType=VARCHAR})
   </select>
   
   <select id="insertOtOChat" resultType="otOChat">
     INSERT INTO OTOCHAT
       (CHATTINGROOMID, BOOKID, SELLERID, BUYERID, CHAT, CHATNUM, CHATTIME)
     VALUES
-      (#{chattingRoomId}, #{bookId}, #{sellerId}, #{buyerId, jdbcType=VARCHAR}, #{chat, jdbcType=VARCHAR}, #{chatNum, jdbcType=VARCHAR}, #{chatTime, jdbcType=VARCHAR})
+      (#{chattingRoomId}, #{bookId}, #{sellerId}, #{senderId, jdbcType=VARCHAR}, #{chat, jdbcType=VARCHAR}, #{chatNum, jdbcType=VARCHAR}, #{chatTime, jdbcType=VARCHAR})
   </select>
   
   <!-- <select id="deleteOtoChat" resultType="otoChat">

@@ -105,19 +105,22 @@
 			<div class="col-md-12 heading-section text-center ftco-animate mb-5">
 				<h2 class="mb-2">MYPAGE</h2>
 				<br />
-				<form:form modelAttribute="userForm"
-					action="/juseom/user/mypage/profileUpload.do" method="post"
-					enctype="multipart/form-data">
-					<table class="table table-hover" style="text-align: center">
+				<table class="table table-hover" style="text-align: center">
 						<tr>
 							<td><c:if test="${not empty filename}">
 									<img width="200px" height="200px"
 										src="<c:url value='/upload/${filename}' />" />
 								</c:if> <c:if test="${empty filename}">
 									<img width="200px" height="200px"
-										src="<c:url value='/upload/${userSession.user.profilePicUrl}' />" />
+										src="<c:url value='/upload/${userForm.user.profilePicUrl}' />" />
 								</c:if></td>
 						</tr>
+						</table>
+						
+				<form:form modelAttribute="userForm"
+					action="/juseom/user/mypage/profileUpload.do" method="post"
+					enctype="multipart/form-data">
+					<table>
 						<tr>
 							<td colspan="1">이미지 파일: <input type="file" name="report" />
 								<input type="submit" value="Upload" /></td>
@@ -125,7 +128,7 @@
 					</table>
 				</form:form>
 				<form:form modelAttribute="userForm" method="post"
-					action="/juseom/user/mypage/edit.do">
+					action="/juseom/user/mypage/edit.do" enctype="multipart/form-data">
 					<table class="table table-hover" style="text-align: center">
 						<tr>
 							<td>User ID:</td>
