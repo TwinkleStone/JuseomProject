@@ -120,9 +120,9 @@
 				<form:form modelAttribute="userForm"
 					action="/juseom/user/mypage/profileUpload.do" method="post"
 					enctype="multipart/form-data">
-					<table>
+					<table class="table table-hover" style="text-align: center">
 						<tr>
-							<td colspan="1">이미지 파일: <input type="file" name="report" />
+							<td colspan="2">이미지 파일: <input type="file" name="report" />
 								<input type="submit" value="Upload" /></td>
 						</tr>
 					</table>
@@ -196,6 +196,9 @@
 				</h3>
 
 			</div>
+			</div>
+			</div>
+			</section>
 			<footer class="ftco-footer ftco-section">
 			<div class="container">
 				<div class="row mb-5">
