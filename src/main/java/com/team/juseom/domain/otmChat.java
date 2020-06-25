@@ -8,7 +8,7 @@ public class otmChat implements Serializable{
 	
 	String sellerId;
 	String bookId;
-	String buyerId;
+	String senderId;
 	String chat;
 	String chatNum;
 	String chatTime;
@@ -34,11 +34,11 @@ public class otmChat implements Serializable{
 	public void setBookId(String bookId) {
 		this.bookId = bookId;
 	}
-	public String getBuyerId() {
-		return buyerId;
+	public String getSenderId() {
+		return senderId;
 	}
-	public void setBuyerId(String buyerId) {
-		this.buyerId = buyerId;
+	public void setSenderId(String buyerId) {
+		this.senderId = buyerId;
 	}
 	public String getChat() {
 		return chat;

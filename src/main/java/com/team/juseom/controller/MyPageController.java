@@ -71,9 +71,7 @@ public class MyPageController implements ApplicationContextAware {
 		
         String filename = report.getOriginalFilename();
 		
-		userForm.setReport(report);
-		userForm.getUser().setProfilePicUrl(filename);
-		
+		session.setAttribute("filename", filename);
         model.addAttribute("filename", filename);
 		return formViewName;
 	}
@@ -91,14 +89,17 @@ public class MyPageController implements ApplicationContextAware {
 	@RequestMapping(value="/user/mypage/edit.do", method=RequestMethod.POST)
 	public String step2(HttpServletRequest request, HttpSession session,
 			@Valid @ModelAttribute("userForm") UserForm userForm,
-			BindingResult result) throws Exception {
+			BindingResult result, Model model) throws Exception {
 		try {
+			userForm.getUser().setProfilePicUrl(session.getAttribute("filename").toString());
 			juseom.updateUser(userForm.getUser());
 		} catch (DataIntegrityViolationException ex) {
 			return formViewName; 
 		}
+		System.out.println(userForm.getUser().getProfilePicUrl());
 		UserSession userSession = new UserSession(juseom.getUserById(userForm.getUser().getUserId()));
 		session.setAttribute("userSession", userSession);
+		session.removeAttribute("filename");
 		return formViewName;
 	}
 }

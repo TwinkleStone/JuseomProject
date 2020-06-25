@@ -3,11 +3,48 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%
+	request.setCharacterEncoding("UTF-8"); 
+	String cp = request.getContextPath(); 
+%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <title>채팅</title>
+<script type="text/javascript" src="<%=cp%>/data/js/ajaxUtil.js"></script>
+
+<script type="text/javascript">
+/* var articleNo = 1000;
+
+//댓글 목록 호출
+getReplies();
+
+//댓글 목록 출력 함수
+function getReplies() {
+
+ $.getJSON(&quot;/replies/all/&quot; + articleNo, function (data) {
+
+     console.log(data);
+
+     var str = &quot;&quot;;
+
+     $(data).each(function () {
+         str += &quot;&lt;li data-replyNo='&quot; + this.replyNo + &quot;' class='replyLi'&gt;&quot;
+             +   &quot;&lt;p class='replyText'&gt;&quot; + this.replyText + &quot;&lt;/p&gt;&quot;
+             +   &quot;&lt;p class='replyWriter'&gt;&quot; + this.replyWriter + &quot;&lt;/p&gt;&quot;
+             +   &quot;&lt;button type='button' class='btn btn-xs btn-success' data-toggle='modal' data-target='#modifyModal'&gt;댓글 수정&lt;/button&gt;&quot;
+             + &quot;&lt;/li&gt;&quot;
+             + &quot;&lt;hr/&gt;&quot;;
+
+     });
+
+     $(&quot;#replies&quot;).html(str);
+
+ });
+
+} */
+</script>
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -114,19 +151,29 @@
 						<th>보낸 사람</th>
 						<th>채팅 내용</th>
 					</tr>
-					<c:forEach var="chat" items="${chatList}" varStatus="status">
+					<c:forEach var="chat" items="${chatList}">
 						<tr>
-							<td>${status.count}</td>
+							<td>${chat.senderId}</td>
 							<td>${chat.chat}</td>
 						</tr>
 					</c:forEach>
 				</table>
-				<form:form modelAttribute="chatting" action="/juseom/chat.do"
+				<%-- <form action='<c:url value="/chat.do"/>' method="POST">
+				<table>
+					<tr>
+						<td><label for="chat">채팅 내용</label>: <input type="text" name="chat" size="20" /></td>
+						<td><input type="submit" value="Upload" />
+						</td>
+					</tr>
+				</table>
+				</form> --%>
+ 				<form:form modelAttribute="chatting" action="/juseom/chat.do"
 					method="post">
 					<table>
 						<tr>
 							<td><label for="chat">채팅 내용</label>: <form:input path="chat" /></td>
-							<td><input type="submit" value="Upload" /></td>
+							<td><input type="submit" value="Upload" />
+							</td>
 						</tr>
 					</table>
 				</form:form>
