@@ -79,7 +79,7 @@ public class UserRegistrationController implements ApplicationContextAware {
 					"이미 사용중인 아이디입니다.");
 			return STEP1_FORM_VIEW;
 		}
-		System.out.println(juseom.getUserById(userForm.getUser().getProfilePicUrl()));
+	
 		UserSession userSession = new UserSession(juseom.getUserById(userForm.getUser().getUserId()));
 		session.setAttribute("userSession", userSession);
 		return STEP2_FORM_VIEW;
@@ -106,7 +106,6 @@ public class UserRegistrationController implements ApplicationContextAware {
 	
 	private void uploadFile(MultipartFile report) {
 		File file = new File(this.uploadDir + report.getOriginalFilename());
-		System.out.println(file.getPath());
 		try {
 			report.transferTo(file);
 		} catch (IllegalStateException | IOException e) {

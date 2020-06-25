@@ -58,7 +58,6 @@ public class SearchDetailController {
 			@RequestParam("tradeType") String tradeType,
 			Model model) throws Exception {
 		String text = null;
-		System.out.println(keyword + ", " + lowPrice + ", " + highPrice + ", " + tradeType);
 		try {
 			text = URLEncoder.encode(keyword, "UTF-8");
 		} catch (UnsupportedEncodingException e) {
@@ -73,7 +72,6 @@ public class SearchDetailController {
 		if (tradeType == null) {
 			tradeType = "";
 		}
-		System.out.println(keyword + ", " + lowPrice + ", " + highPrice + ", " + tradeType);
 		List<Book> list = juseom.searchBookDetail(keyword, lowPrice, highPrice, tradeType);
 		PagedListHolder<Book> rsltList = new PagedListHolder<Book>(list);
 		model.addAttribute("keyword", keyword);

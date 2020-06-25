@@ -211,6 +211,11 @@ public class JuseomImpl implements JuseomFacade {
 		// TODO Auto-generated method stub
 		return bookDao.getOtoChatListBookInfo(bookId, userId);
 	}
+	
+	@Override
+	public List<otoChat> selectOtmChatByChattingRoomId(String chattingRoomId) {
+		return chatDao.selectOtmChatByChattingRoomId(chattingRoomId);
+	}
 
 	@Override
 	public void insertRate(Rate rate) {
@@ -245,5 +250,7 @@ public class JuseomImpl implements JuseomFacade {
 	public int searchApplier(Applier applier) {
 		return applierDao.searchApplier(applier);
 	}
+
+	
 
 }

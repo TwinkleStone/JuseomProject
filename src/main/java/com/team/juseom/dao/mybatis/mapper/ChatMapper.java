@@ -17,4 +17,6 @@ public interface ChatMapper {
 	public List<otmChat> getOtmChatList(String bookId);
 
 	public List<otoChat> getOtoChatList(String userId);
+	
+	List<otoChat> selectOtmChatByChattingRoomId(String chattingRoomId);
 }

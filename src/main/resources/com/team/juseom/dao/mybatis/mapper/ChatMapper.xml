@@ -17,11 +17,11 @@
       (#{bookId}, #{sellerId, jdbcType=VARCHAR}, #{senderId, jdbcType=VARCHAR}, #{chat, jdbcType=VARCHAR}, #{chatNum, jdbcType=VARCHAR}, #{chatTime, jdbcType=VARCHAR})
   </select>
   
-  <select id="insertOtOChat" resultType="otOChat">
+  <select id="insertOtoChat" resultType="otoChat">
     INSERT INTO OTOCHAT
-      (CHATTINGROOMID, BOOKID, SELLERID, BUYERID, CHAT, CHATNUM, CHATTIME)
+      (CHATTINGROOMID, BOOKID, SELLERID, SENDERID, CHAT, CHATNUM, CHATTIME)
     VALUES
-      (#{chattingRoomId}, #{bookId}, #{sellerId}, #{senderId, jdbcType=VARCHAR}, #{chat, jdbcType=VARCHAR}, #{chatNum, jdbcType=VARCHAR}, #{chatTime, jdbcType=VARCHAR})
+      (#{chattingRoomId}, #{bookId, jdbcType=VARCHAR}, #{sellerId}, #{senderId}, #{chat, jdbcType=VARCHAR}, #{chatNum, jdbcType=VARCHAR}, #{chatTime, jdbcType=VARCHAR})
   </select>
   
   <!-- <select id="deleteOtoChat" resultType="otoChat">
@@ -44,20 +44,15 @@
   <select id="getOtoChatList" resultType="otoChat">
     SELECT *
     FROM OTOCHAT
-    WHERE (SELLERID = #{userId}) OR (BUYERID = #{userId})
+    WHERE (SELLERID = #{userId}) OR (SENDERID = #{userId})
   </select>
   
-  <!--  <select id="selectOtmChatByChattingRoomId" resultType="otmChat">
-    SELECT CHATTINGROOMID,
-    	  BOOKID,
-          SELLERID,
-          BUYERID,
-          CHAT,
-          CHATNUM,
-          CHATTIME
-    FROM OTMCHAT
+  <select id="selectOtmChatByChattingRoomId" resultType="otmChat">
+    SELECT *
+    FROM OTOCHAT
     WHERE CHATTINGROOMID = #{chattingRoomId}
-  </select>-->
+    ORDER BY CHATTIME
+  </select>
   
   <!-- <select id="selectOtoChatByUserId" resultType="otoChat">
     SELECT DISTINCT CHATTINGROOMID,

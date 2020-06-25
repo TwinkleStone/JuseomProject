@@ -7,13 +7,23 @@ public class otoChat implements Serializable{
 	String chattingRoomId;
 	String sellerId;
 	String bookId;
-	String buyerId;
+	String senderId;
 	String chat;
 	String chatNum;
 	String chatTime;
 	String buyerStatus;
 	String sellerStatus;
 	
+	public otoChat() {
+		
+	}
+	
+	public otoChat(String chattingRoomId, String bookId, String sellerId, String userId) {
+		this.chattingRoomId = chattingRoomId;
+		this.sellerId = sellerId;
+		this.senderId = userId;
+		this.bookId = bookId;
+	}
 	public String getChattingRoomId() {
 		return chattingRoomId;
 	}
@@ -32,11 +42,12 @@ public class otoChat implements Serializable{
 	public void setBookId(String bookId) {
 		this.bookId = bookId;
 	}
-	public String getBuyerId() {
-		return buyerId;
+	
+	public String getSenderId() {
+		return senderId;
 	}
-	public void setBuyerId(String buyerId) {
-		this.buyerId = buyerId;
+	public void setSenderId(String senderId) {
+		this.senderId = senderId;
 	}
 	public String getChat() {
 		return chat;

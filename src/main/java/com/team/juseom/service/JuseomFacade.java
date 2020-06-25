@@ -42,6 +42,7 @@ public interface JuseomFacade {
 	List<otoChat> getOtoChatList(String userId);
 	void insertOtoChat(otoChat chat);
 	Book getOtoChatListBookInfo(String bookId, String userId);
+	List<otoChat> selectOtmChatByChattingRoomId(String chattingRoomId);
 	
 	void insertRate(Rate rate);
 	

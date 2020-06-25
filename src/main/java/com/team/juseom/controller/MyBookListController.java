@@ -38,7 +38,6 @@ private static final String FORM_VIEW = "UserBookList";
 		UserSession userSession = 
 				(UserSession) WebUtils.getSessionAttribute(request, "userSession");
 		String userId = userSession.getUser().getUserId();
-		System.out.println(userId);
 		List<Book> list = juseom.searchBookByUserId(userId);
 		PagedListHolder<Book> rsltList = new PagedListHolder<Book>(list);
 		model.addAttribute("searchList", rsltList);
