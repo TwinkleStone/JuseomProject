@@ -236,4 +236,21 @@
 		WHERE (b.BOOKID = #{bookId} AND o.BOOKID = #{bookId})
 			AND (o.SELLERID = #{userId} OR o.buyerId = #{userId})
 	</select>
+	
+	<update id="closeAuctionEvent" parameterType="Date">
+		<![CDATA[
+			UPDATE AUCTION
+			SET STATUS = 'CLOSE'
+			WHERE ENDTIME <= #{curTime}
+		]]>
+	</update>
+	
+	<update id="closeShareEvent" parameterType="Date">
+		<![CDATA[
+			UPDATE SHARING
+			SET STATUS = 'CLOSE'
+			WHERE ENDTIME <= #{curTime}
+		]]>
+	</update>
+	
 </mapper>

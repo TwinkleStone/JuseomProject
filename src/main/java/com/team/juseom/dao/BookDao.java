@@ -1,5 +1,6 @@
 package com.team.juseom.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import com.team.juseom.domain.Applier;
@@ -31,4 +32,5 @@ public interface BookDao {
 	List<Book> searchBookDetail(String keyword, String lowPrice, String highPrice, String tradeType);
 	List<Book> searchBookByUserId(String userId);
 	Book getOtoChatListBookInfo(String bookId, String userId);
+
 }

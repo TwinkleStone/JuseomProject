@@ -41,9 +41,9 @@
 	
 	<!-- ========================= Other Remote Exporter Definitions ======================== -->
 	<!-- JAX-WS Web Service exporter for the JPetStore OrderService -->
-	<bean class="org.springframework.remoting.jaxws.SimpleJaxWsServiceExporter"
+	<!-- <bean class="org.springframework.remoting.jaxws.SimpleJaxWsServiceExporter"
 		p:baseAddress="http://localhost:8081/services/" />
-
+	-->
 	  
 	<!-- RMI exporter for the JPetStore OrderService -->
 	<!--

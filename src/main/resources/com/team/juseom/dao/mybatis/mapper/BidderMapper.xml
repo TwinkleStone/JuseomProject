@@ -18,8 +18,17 @@
 		<selectKey keyProperty="bidderId" resultType="int" order="BEFORE">
 			SELECT BIDDER_SEQ.nextval AS bidderId FROM DUAL
 		</selectKey>
-			INSERT INTO BIDDER(bidderId, USERID, AUCTIONID, BIDNUMBER, BIDPRICE)
-			VALUES (#{bidderId}, #{userId}, #{auctionId}, #{bidNumber}, #{bidPrice})
+			<!-- INSERT INTO BIDDER(bidderId, USERID, AUCTIONID, BIDNUMBER, BIDPRICE)
+			VALUES (#{bidderId}, #{userId}, #{auctionId}, #{bidNumber}, #{bidPrice}) -->
+			MERGE INTO BIDDER
+			USING DUAL
+			ON (userId = #{userId} AND auctionId = #{auctionId})
+			WHEN MATCHED THEN
+				UPDATE SET BIDPRICE = #{bidPrice}
+			WHEN NOT MATCHED THEN
+				INSERT (BIDDERID, USERID, AUCTIONID, BIDNUMBER, BIDPRICE)
+				VALUES (#{bidPrice}, #{userId}, #{auctionId}, #{bidNumber}, #{bidPrice})
+			
 	</insert>
 	
 	<select id="getBidderCount" resultType="int">
@@ -28,4 +37,6 @@
 		FROM BIDDER
 		WHERE AUCTIONID = #{auctionId}
 	</select>
+	
+	
 </mapper>

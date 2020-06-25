@@ -1,5 +1,6 @@
 package com.team.juseom.dao.mybatis.mapper;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -32,4 +33,6 @@ public interface BookMapper {
 	List<Book> searchBookByUserId(String userId);
 	Book getOtoChatListBookInfo(@Param("bookId")String bookId, @Param("userId")String userId);
 	void updatePeopleNumber(int applierId);
+	void closeAuctionEvent(Date curTime);
+	void closeShareEvent(Date curTime);
 }

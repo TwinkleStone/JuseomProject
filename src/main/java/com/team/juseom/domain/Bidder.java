@@ -9,6 +9,7 @@ public class Bidder implements Serializable {
 	int auctionId;
 	int bidNumber;
 	int bidPrice;
+	
 	public int getBidderId() {
 		return bidderId;
 	}

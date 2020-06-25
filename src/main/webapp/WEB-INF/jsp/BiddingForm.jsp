@@ -59,15 +59,14 @@
 	<div class="container">
 	 <div class="row justify-content-center">
 	   <div class="co-md-4" style="padding: 30px">
-		<form:form modelAttribute="bidder" action="bidding.do" method="post" class="bg-light p-5 contact-form">
-			<div class="form-group" style="width: 500px">
+		<form:form modelAttribute="bidder">
+			<div class="form-group">
 				<label for="bidNumber">입찰할 책의 갯수 *</label>
-				<form:input path="bidNumber" class="form-control" id="bidNumber"/> <!-- 왜 여기만 input창에 값이 안써질까.. -->
-				<form:errors path="bidNumber"/> <br/>
-			</div>
-			<div class="form-group" style="width: 500px">
+				<form:input path="bidNumber" class="form-control" />
+				<form:errors path="bidNumber" /> <br/>
+	
 				<label for="bidPrice">입찰가 *</label>
-				<form:input path="bidPrice" class="form-control" id="bidPrice" />
+				<form:input path="bidPrice" class="form-control" />
 				<form:errors path="bidPrice"/> <br/>
 			</div>
 			<form:hidden path="auctionId" value="${param.auctionId}" />
@@ -75,9 +74,9 @@
 				<input type="submit" value="입찰하기" class="btn btn-primary py-3 px-4">
 			</div>
 		</form:form>
+		</div>
 	  </div>
 	 </div>
-	</div>
 	
 	<footer class="ftco-footer ftco-section">
       <div class="container">
