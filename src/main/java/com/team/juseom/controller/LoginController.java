@@ -53,9 +53,13 @@ public class LoginController {
 				@RequestParam(value="forwardAction", required=false) String forwardAction,
 				Model model) throws Exception {
 			System.out.println(userId + ", " + password);
+			if (userId == null || userId.equals("") || password == null || password.equals("")) {
+				return new ModelAndView(LOGIN_FORM, "message", 
+						"Invalid ID or password.  Login failed.");
+			}
 			User user = juseom.getUserIdPassword(userId, password);
 			if (user == null) {
-				return new ModelAndView("Error", "message", 
+				return new ModelAndView(LOGIN_FORM, "message", 
 						"Invalid ID or password.  Login failed.");
 			}
 			else {
