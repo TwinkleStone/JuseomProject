@@ -156,7 +156,7 @@
 	              <ul>
 	              	<c:if test="${!shareList.firstPage}">
 	              		<li>
-	          				<a href='<c:url value="/index2.do">
+	          				<a href='<c:url value="/share2.do">
 	            				<c:param name="page" value="previous"/></c:url>'>
 	            				&lt;
 	     					</a>
@@ -164,7 +164,7 @@
         			</c:if> 
 			        <c:if test="${!shareList.lastPage}">
 			          <li>
-				          <a href='<c:url value="/index2.do">
+				          <a href='<c:url value="/share2.do">
 				            <c:param name="page" value="next"/></c:url>'>
 				            &gt;
 				          </a>

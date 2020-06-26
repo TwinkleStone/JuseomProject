@@ -155,7 +155,7 @@
 	              <ul>
 	              	<c:if test="${!auctionList.firstPage}">
 	              		<li>
-	          				<a href='<c:url value="/index2.do">
+	          				<a href='<c:url value="/auction2.do">
 	            				<c:param name="page" value="previous"/></c:url>'>
 	            				&lt;
 	     					</a>
@@ -163,7 +163,7 @@
         			</c:if> 
 			        <c:if test="${!auctionList.lastPage}">
 			          <li>
-				          <a href='<c:url value="/index2.do">
+				          <a href='<c:url value="/auction2.do">
 				            <c:param name="page" value="next"/></c:url>'>
 				            &gt;
 				          </a>
