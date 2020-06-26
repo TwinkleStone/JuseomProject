@@ -119,8 +119,9 @@ public class JuseomImpl implements JuseomFacade {
 				eventDao.closeShareEvent(curTime);
 				System.out.println("updateTableRunner is executed at " + curTime);
 				
-				List<Applier> winner = applierDao.getWinner(share);
-				System.out.println(winner);
+				List<String> winner = applierDao.getWinner(share);
+				System.out.println("winner is " + winner);
+				bookDao.updateShareWinner(share, winner);
 			}
 		};
 		

@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.team.juseom.domain.Applier;
 import com.team.juseom.domain.Auction;
 import com.team.juseom.domain.Bidder;
 import com.team.juseom.domain.Book;
@@ -36,4 +37,5 @@ public interface BookMapper {
 	void closeAuctionEvent(Date curTime);
 	void closeShareEvent(Date curTime);
 	void updateAuctionWinner(String bidWinner, int auctionId);
+	void updateShareWinner(List<String> winner, int shareId);
 }

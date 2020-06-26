@@ -9,5 +9,5 @@ public interface ApplierMapper {
 	public void insertApplier(Applier applier);
 	public void updatePeopleNumber(int shareId);
 	public int searchApplier(int applierId, String userId);
-	public List<Applier> getWinner(int shareId, String shareNumber);
+	public List<String> getWinner(int shareId, String shareNumber);
 }

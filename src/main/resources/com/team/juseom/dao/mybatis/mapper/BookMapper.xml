@@ -249,4 +249,10 @@
 		WHERE AUCTIONID = #{param2}
 	</update>
 	
+	<update id="updateShareWinner">
+		UPDATE SHARING
+		SET WINNER = #{param1}
+		WHERE SHAREID = #{param2}
+	</update>
+	
 </mapper>

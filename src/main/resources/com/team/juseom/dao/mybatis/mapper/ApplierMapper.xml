@@ -26,9 +26,9 @@
 		WHERE userId = #{param2} AND shareId=#{param1}
 	</select>
 	
-	<select id="getWinner" resultType="Applier">
+	<select id="getWinner" resultType="String">
 		<![CDATA[
-			SELECT *
+			SELECT userId
 			FROM (SELECT * FROM APPLIER WHERE shareId = #{param1} ORDER BY DBMS_RANDOM.VALUE)
 			WHERE ROWNUM <= #{param2}
 		]]>
