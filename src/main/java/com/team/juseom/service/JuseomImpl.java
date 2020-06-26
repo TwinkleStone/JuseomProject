@@ -1,5 +1,7 @@
 package com.team.juseom.service;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -52,6 +54,9 @@ public class JuseomImpl implements JuseomFacade {
 	
 	@Autowired
 	private ThreadPoolTaskScheduler scheduler;
+	
+	@Autowired
+	private ThreadPoolTaskScheduler scheduler2;
 	
 	@Override
 	public List<Sale> getBookListBySale() {
@@ -115,13 +120,34 @@ public class JuseomImpl implements JuseomFacade {
 			@Override
 			public void run() {		
 				Date curTime = new Date();
-
 				eventDao.closeShareEvent(curTime);
 				System.out.println("updateTableRunner is executed at " + curTime);
+			}
+		};
+		
+		Runnable updateTableRunner2 = new Runnable() {	
+
+			@Override
+			public void run() {	
+				applierDao.insertWinner(share);
 				
-				List<String> winner = applierDao.getWinner(share);
-				System.out.println("winner is " + winner);
-				bookDao.updateShareWinner(share, winner);
+				//채팅방만들기
+				List<String> userIds = applierDao.getUserIds(share.getShareId()); //당첨자 아이디 리퀘스트 파라미터로 받음
+				String sellerId = share.getBook().getUserId(); //상품 판매자 아이디 리퀘스트 파라미터로 받음
+				String bookId = Integer.toString(share.getBook().getBookId()); //상품 id 리퀘스트파라미터로 받음 (book 테이블의 bookId)
+				List<otoChat> chats = new ArrayList<otoChat>();
+				for(int i = 0; i < userIds.size(); i++) {
+					String chattingRoomId = bookId + "_" + userIds.get(i);
+					chats.add(new otoChat(chattingRoomId, bookId, sellerId, userIds.get(i))); 
+					//채팅창 정렬을 위해 시간 추가
+					Date from = new Date();
+					SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+					String to = transFormat.format(from);
+	
+					chats.get(i).setChatTime(to);
+					chats.get(i).setChat("축하합니다! " + share.getBook().getName() + " 책 나눔에 당첨되셨습니다.");
+					chatDao.insertotoChat(chats.get(i));
+				}
 			}
 		};
 		
@@ -129,6 +155,7 @@ public class JuseomImpl implements JuseomFacade {
 		bookDao.insertShare(share);
 
 		scheduler.schedule(updateTableRunner, share.getEndTime());  
+		scheduler2.schedule(updateTableRunner2, share.getRaffleTime());  
 	}
 	
 	@Override

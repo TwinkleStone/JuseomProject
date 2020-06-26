@@ -23,4 +23,6 @@ public class MybatisEventDao implements EventDao {
 	public void closeShareEvent(Date curTime) {
 		eventMapper.closeShareEvent(curTime);
 	}
+
+	
 }

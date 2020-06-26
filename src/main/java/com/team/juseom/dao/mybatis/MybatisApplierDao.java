@@ -36,10 +36,15 @@ public class MybatisApplierDao implements ApplierDao {
 	}
 
 	@Override
-	public List<String> getWinner(Share share) {
+	public void insertWinner(Share share) {
 		int shareId = share.getShareId();
 		String shareNumber = share.getShareNumber();
-		return applierMapper.getWinner(shareId, shareNumber);
+		applierMapper.insertWinner(shareId, shareNumber);
+	}
+
+	@Override
+	public List<String> getUserIds(int shareId) {
+		return applierMapper.getWinnerUserIds(shareId);
 	}
 
 }

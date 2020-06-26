@@ -1,10 +1,13 @@
 package com.team.juseom.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.util.WebUtils;
 
 import com.team.juseom.domain.Auction;
 import com.team.juseom.domain.Sale;
@@ -38,9 +41,15 @@ public class ViewDetailController {
 	
 	@RequestMapping("/view/share.do")
 	public String viewShare(@RequestParam("id") String shareId,
-			Model model) {
+			Model model,
+			HttpServletRequest request) {
 		Share s = juseom.getShare(shareId);
 		model.addAttribute("share", s);
+		UserSession userSession = (UserSession) WebUtils.getSessionAttribute(request, "userSession");
+		String userId = null;
+		if(userSession != null)
+			userId = userSession.getUser().getUserId();
+		model.addAttribute("userId", userId);
 		return "ShareDetail"; //상세정보 view로 이동
 	}
 }
