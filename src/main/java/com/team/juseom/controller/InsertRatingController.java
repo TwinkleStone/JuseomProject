@@ -23,8 +23,10 @@ public class InsertRatingController {
 	@ModelAttribute("rate")
 	public Rate createRateForm(
 			@RequestParam("ratedId") String ratedId,
-			@RequestParam("raterId") String raterId) {
+			@RequestParam("raterId") String raterId,
+			@RequestParam("bookId") int bookId) {
 		Rate rate = new Rate();
+		rate.setBookId(bookId);
 		rate.setRatedId(ratedId);//별점이 매겨지는 사람
 		rate.setRaterId(raterId);//별점을 매기는 사람
 		return rate;
@@ -38,12 +40,11 @@ public class InsertRatingController {
 	@PostMapping("/rating.do")
 	public String insertRate(
 			@ModelAttribute("rate") Rate formData,
-			BindingResult result
-			) {
+			BindingResult result) {
 		
 		juseomFacade.insertRate(formData);
 
-		return "TestRating";
+		return "RatingConfirm";
 	}
 	
 }

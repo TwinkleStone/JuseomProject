@@ -111,7 +111,7 @@
 				<br />
 				<form:form modelAttribute="userForm" method="post"
 					action="/juseom/user/register/registered.do">
-					<table class="table table-hover" style="text-align: center">
+					<table class="table" style="text-align: center">
 						<tr>
 							<td>${userForm.user.userId}님의 회원 가입을 완료했습니다.<br/><br/><br />
 							<br />

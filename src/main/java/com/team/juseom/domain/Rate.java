@@ -1,11 +1,16 @@
 package com.team.juseom.domain;
 
-public class Rate {
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class Rate implements Serializable {
 	int rateId;
 	String raterId;
 	String ratedId;
 	int rate;
 	String description;
+	int bookId;
+	
 	public int getRateId() {
 		return rateId;
 	}
@@ -36,6 +41,11 @@ public class Rate {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
+	public int getBookId() {
+		return bookId;
+	}
+	public void setBookId(int bookId) {
+		this.bookId = bookId;
+	}
 
 }

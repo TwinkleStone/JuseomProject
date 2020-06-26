@@ -106,7 +106,7 @@
 				<h2 class="mb-2">Register - STEP2</h2>
 				<br />
 
-				<table class="table table-hover" style="text-align: center">
+				<table class="table" style="text-align: center">
 					<tr>
 						<td><c:if
 								test="${not empty filename and not empty userForm.report}">
@@ -121,7 +121,7 @@
 				<form:form modelAttribute="userForm"
 					action="/juseom/user/register/profileUpload.do" method="post"
 					enctype="multipart/form-data">
-					<table class="table table-hover" style="text-align: center">
+					<table class="table" style="text-align: center">
 						<tr>
 							<td>이미지 파일: <input type="file" name="report" /> <input type="submit" value="Upload" />
 							</td>
@@ -131,7 +131,7 @@
 				<form:form modelAttribute="userForm" method="post"
 					action="/juseom/user/register/confirm.do"
 					enctype="multipart/form-data">
-					<table class="table table-hover" style="text-align: center">
+					<table class="table" style="text-align: center">
 						<tr>
 							<td rowspan="2"><label for="commName">닉네임</label>:</td>
 							<td><form:input path="user.commName" /></td>

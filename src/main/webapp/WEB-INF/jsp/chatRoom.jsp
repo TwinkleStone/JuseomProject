@@ -146,7 +146,7 @@ function getReplies() {
 			<div class="col-md-12 heading-section text-center ftco-animate mb-5">
 				<h2 class="mb-2">채팅창</h2>
 				<br />
-				<table class="table table-hover">
+				<table class="table">
 					<tr>
 						<th>보낸 사람</th>
 						<th>채팅 내용</th>

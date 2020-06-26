@@ -113,7 +113,7 @@
 			<div class="col-md-12 heading-section text-center ftco-animate mb-5">
 				<h2 class="mb-2">채팅창</h2>
 				<br />
-				<table class="table table-hover">
+				<table class="table">
 					<tr>
 						<th>보낸 사람</th>
 						<th>채팅 내용</th>
@@ -156,6 +156,7 @@
 					<c:url value="/rating.do" var="RateForm">
 						<c:param name="ratedId" value="${sellerId}"/>
 						<c:param name="raterId" value="${userSession.user.userId}"/>
+						<c:param name="bookId" value="${bookId}"/>
                 	</c:url>
                 	<a href="${RateForm}" class="btn py-3 px-4 btn-primary"><c:out value="거래 완료"/></a>
 				</c:if>

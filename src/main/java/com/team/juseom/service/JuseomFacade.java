@@ -53,4 +53,6 @@ public interface JuseomFacade {
 	
 	void insertApplier(Applier applier);
 	int searchApplier(Applier applier);
+	
+	List<Rate> getRateListByUser(String userId);
 }

@@ -1,6 +1,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%
+	String ratedId = request.getParameter("ratedId");
+%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -23,58 +26,6 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/flaticon.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/icomoon.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css">
-	
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-	
-	<style>
-		.rate {
-		  float: left;
-		  border: none;
-		}
-		.rate:not(:checked) > input {
-		  position: absolute;
-		  top: -9999px;
-		  clip: rect(0, 0, 0, 0);
-		}
-		.rate:not(:checked) > label {
-		  float: right;
-		  width: 1em;
-		  padding: 0 .1em;
-		  overflow: hidden;
-		  white-space: nowrap;
-		  cursor: pointer;
-		  font-size: 200%;
-		  line-height: 1.2;
-		  color: #ddd;
-		}
-		.rate:not(:checked) > label:before {
-		  content: '★ ';
-		}
-		.rate > input:checked ~ label {
-		  color: #f70;
-		}
-		.rate:not(:checked) > label:hover,
-		.rate:not(:checked) > label:hover ~ label {
-		  color: gold;
-		}
-		.rate > input:checked + label:hover,
-		.rate > input:checked + label:hover ~ label,
-		.rate > input:checked ~ label:hover,
-		.rate > input:checked ~ label:hover ~ label,
-		.rate > label:hover ~ input:checked ~ label {
-		  color: #ea0;
-		}
-		.rate > label:active {
-		  position: relative;
-		}
-	</style>
-	 
-	<script>
-	$('.rating input').change(function() {
-		$('#choice').text(this.value + ' stars');
-		});
-
-    </script>
 	
   </head>
   <body>
@@ -120,53 +71,29 @@
 
 	<section class="ftco-section ftco-degree-bg">
       <div class="container">
-        <div class="row">
+        <div class="row justify-content-center">
           <div class="col-md-12 ftco-animate" style="align: center">
-            
             <div class="row justify-content-center">
           		<div class="col-md-12 heading-section text-center ftco-animate mb-5">
-	            	<h2 class="mb-2">${rate.ratedId}님에게 별점 남기기</h2>
+	            	<h2 class="mb-2"><%= ratedId %>님의 별점 목록</h2>
           		</div>
-          		<table style="background: #f8f9fa">
-	        		<tr>
-	        			<td style="padding: 30px">
-	        				<div class="form-group">
-                    			<form:form modelAttribute="rate">
-									<div class="form-group" style="text-align: center">
-										<fieldset class="rate">
-											<input type="radio" id="star5" name="rate" value="5" />
-											<label for="star5">5 stars</label>
-											<input type="radio" id="star4" name="rate" value="4" />
-											<label for="star4">4 stars</label>
-											<input type="radio" id="star3" name="rate" value="3" />
-											<label for="star3">3 stars</label>
-											<input type="radio" id="star2" name="rate" value="2" />
-											<label for="star2">2 stars</label>
-											<input type="radio" id="star1" name="rate" value="1" />
-											<label for="star1">1 star</label>
-										</fieldset>
-										<br/>
-										<br/>
-										<br/>
-									</div>
-									<div class="form-group">
-										<form:label path="description">한줄 리뷰</form:label> <br/>
-										<form:textarea path="description" cols="40" rows="2"/>
-										<form:errors path="description" /> <br/>
-									</div>
-									<div class="form-group" style="text-align: center">
-										<input type="submit" class="btn py-3 px-4 btn-primary" value="SEND"/>
-									</div>
-								</form:form>
-                  			</div>
-	        			</td>
-	        		</tr>
+          		<table class="table" style="text-align:center">
+	        		<tr><th>순번</th><th>별점을 남긴 사용자</th><th>별점</th><th>리뷰 내용</th></tr>
+	        		<c:forEach var="r" items="${ratingList}" varStatus="status">
+	        			<tr>
+	        				<td>${status.count}</td>
+	        				<td>${r.raterId}</td>
+	        				<td>${r.rate}</td>
+	        				<td>${r.description}</td>
+	        			</tr>
+	        		</c:forEach>
+	        		
         		</table>
         	</div>
-          </div> <!-- .col-md-8 -->
+          </div>
         </div>
       </div>
-    </section> <!-- .section -->
+    </section>
     
     <footer class="ftco-footer ftco-section">
       <div class="container">

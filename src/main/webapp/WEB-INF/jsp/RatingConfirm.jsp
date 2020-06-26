@@ -1,12 +1,12 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-   "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
-  <head>
-    <title>주섬주섬</title>
-    <meta charset="utf-8">
+<head>
+
+	<title>별점 평가 완료 후 확인하는 창</title>
+	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
@@ -24,61 +24,10 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/icomoon.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css">
 	
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-	
-	<style>
-		.rate {
-		  float: left;
-		  border: none;
-		}
-		.rate:not(:checked) > input {
-		  position: absolute;
-		  top: -9999px;
-		  clip: rect(0, 0, 0, 0);
-		}
-		.rate:not(:checked) > label {
-		  float: right;
-		  width: 1em;
-		  padding: 0 .1em;
-		  overflow: hidden;
-		  white-space: nowrap;
-		  cursor: pointer;
-		  font-size: 200%;
-		  line-height: 1.2;
-		  color: #ddd;
-		}
-		.rate:not(:checked) > label:before {
-		  content: '★ ';
-		}
-		.rate > input:checked ~ label {
-		  color: #f70;
-		}
-		.rate:not(:checked) > label:hover,
-		.rate:not(:checked) > label:hover ~ label {
-		  color: gold;
-		}
-		.rate > input:checked + label:hover,
-		.rate > input:checked + label:hover ~ label,
-		.rate > input:checked ~ label:hover,
-		.rate > input:checked ~ label:hover ~ label,
-		.rate > label:hover ~ input:checked ~ label {
-		  color: #ea0;
-		}
-		.rate > label:active {
-		  position: relative;
-		}
-	</style>
-	 
-	<script>
-	$('.rating input').change(function() {
-		$('#choice').text(this.value + ' stars');
-		});
-
-    </script>
-	
   </head>
-  <body>
-	  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
 	      <a class="navbar-brand" href="<c:url value="/index.do" />">주섬주섬</a>
 	      <c:if test="${!empty userSession.user}">
@@ -122,53 +71,44 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12 ftco-animate" style="align: center">
-            
             <div class="row justify-content-center">
           		<div class="col-md-12 heading-section text-center ftco-animate mb-5">
-	            	<h2 class="mb-2">${rate.ratedId}님에게 별점 남기기</h2>
+	          		<span class="subheading">별점</span>
+	          		<h3 class="mb-2">${rate.raterId}님이 ${rate.ratedId}님에게 별점 남기기를 성공하였습니다.</h3>
           		</div>
           		<table style="background: #f8f9fa">
 	        		<tr>
-	        			<td style="padding: 30px">
-	        				<div class="form-group">
-                    			<form:form modelAttribute="rate">
-									<div class="form-group" style="text-align: center">
-										<fieldset class="rate">
-											<input type="radio" id="star5" name="rate" value="5" />
-											<label for="star5">5 stars</label>
-											<input type="radio" id="star4" name="rate" value="4" />
-											<label for="star4">4 stars</label>
-											<input type="radio" id="star3" name="rate" value="3" />
-											<label for="star3">3 stars</label>
-											<input type="radio" id="star2" name="rate" value="2" />
-											<label for="star2">2 stars</label>
-											<input type="radio" id="star1" name="rate" value="1" />
-											<label for="star1">1 star</label>
-										</fieldset>
-										<br/>
-										<br/>
-										<br/>
-									</div>
-									<div class="form-group">
-										<form:label path="description">한줄 리뷰</form:label> <br/>
-										<form:textarea path="description" cols="40" rows="2"/>
-										<form:errors path="description" /> <br/>
-									</div>
-									<div class="form-group" style="text-align: center">
-										<input type="submit" class="btn py-3 px-4 btn-primary" value="SEND"/>
-									</div>
-								</form:form>
-                  			</div>
-	        			</td>
+	        			<td style="padding: 30px; width: 500px">
+	        				<div class="desc">
+	        					<p>별점 : ${rate.rate}</p>
+	        					<p>한줄리뷰: ${rate.description}</p>
+	              			</div>
+	              		</td>
 	        		</tr>
         		</table>
         	</div>
-          </div> <!-- .col-md-8 -->
-        </div>
-      </div>
-    </section> <!-- .section -->
-    
-    <footer class="ftco-footer ftco-section">
+        	</div>
+          </div>
+         </div>
+         <div class="row justify-content-center">
+         	<table>
+	        	<tr style="text-align: center">
+	        		<td style="padding: 30px">
+		         		<div class="form-group">
+		         			<c:url value="/rateList.do" var="rateList">
+		                    	<c:param name="ratedId" value="${rate.ratedId}"/>
+		                	</c:url>
+		                	<a href="${rateList}" class="btn py-3 px-4 btn-primary"><c:out value="별점 리스트 확인하기"/></a>
+		                	<br/><br/><p><a href="<c:url value='/index' />">Go to index</a></p>
+		         		</div>
+		         	</td>
+		         </tr>
+		         </table>
+         </div>
+        </section>
+	
+	
+	<footer class="ftco-footer ftco-section">
       <div class="container">
         <div class="row mb-5">
           <div class="col-md">

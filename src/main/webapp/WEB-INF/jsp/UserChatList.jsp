@@ -128,7 +128,7 @@
 			<div class="col-md-12 heading-section text-center ftco-animate mb-5">
 				<h2 class="mb-2">거래 진행중인 채팅</h2>
 				<br />
-				<table class="table table-hover">
+				<table class="table">
 					<tr>
 						<th>순번</th>
 						<th>책 이름</th>

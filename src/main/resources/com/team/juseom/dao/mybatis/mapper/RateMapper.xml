@@ -6,27 +6,25 @@
 	
 	<select id="getRateListByUser" resultType="Rate">
      	SELECT
-        	RATEID,
         	RATERID,
-        	RATEDID,
         	RATE,
         	DESCRIPTION
      	FROM RATE
-     	WHERE RATEDID = #{userId}
+     	WHERE RATEDID = #{value}
   	</select>
   	
   	<insert id="insertRate" parameterType="Rate">
     	<selectKey keyProperty="rateId" resultType="int" order="BEFORE">
         	SELECT RATE_SEQ.nextval AS rateId FROM DUAL
      	</selectKey>
-       		MERGE INTO RATE
-       		USING DUAL
-       		ON (raterId = #{raterId})
-       		WHEN MATCHED THEN
-       			UPDATE SET RATE = #{rate} AND DESCRIPTION = #{description}
-       		WHEN NOT MATCHED THEN
-       			INSERT INTO RATE(rateId, RATERID, RATEDID, RATE, DESCRIPTION)
-        		VALUES (#{rateId}, #{raterId}, #{ratedId}, #{rate}, #{description})
+     		MERGE INTO RATE
+     		USING DUAL
+     		ON (raterId = #{raterId} AND ratedId = #{ratedId} AND bookId = #{bookId})
+     		WHEN MATCHED THEN
+     			UPDATE SET rate = #{rate}, description = #{description} WHERE bookId = #{bookId}
+     		WHEN NOT MATCHED THEN
+       			INSERT (rateId, RATERID, RATEDID, RATE, DESCRIPTION, BOOKID)
+        		VALUES (#{rateId}, #{raterId}, #{ratedId}, #{rate}, #{description}, #{bookId})
   	</insert>
   	
   	 <select id="getRate" resultType="Rate">
@@ -35,7 +33,8 @@
         	RATERID,
         	RATEDID,
         	RATE,
-        	DESCRIPTION
+        	DESCRIPTION,
+        	BOOKID
      	FROM RATE
      	WHERE RATEID = #{rateId}
   </select>

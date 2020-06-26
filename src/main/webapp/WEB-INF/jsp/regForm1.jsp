@@ -107,7 +107,7 @@
 				<br />
 
 				<form:form modelAttribute="userForm" method="post" action="/juseom/user/register/step2.do">
-					<table class="table table-hover" style="text-align: center">
+					<table class="table" style="text-align: center">
 						<tr>
 							<td rowspan="2"><label for="userId">ID(이메일 주소)</label>:</td>
 							<td><form:input path="user.userId" /></td>

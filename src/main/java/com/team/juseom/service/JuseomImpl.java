@@ -257,6 +257,11 @@ public class JuseomImpl implements JuseomFacade {
 		return chatDao.getOtoChatListBookId(userId);
 	}
 
+	@Override
+	public List<Rate> getRateListByUser(String userId) {
+		return rateDao.getRateListByUser(userId);
+	}
+
 	
 
 }
