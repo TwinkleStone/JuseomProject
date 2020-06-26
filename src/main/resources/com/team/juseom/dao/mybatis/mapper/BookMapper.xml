@@ -77,6 +77,7 @@
 		b.imageUrl AS "book.imageUrl"
 		FROM Sale s, Book b
 		WHERE s.bookId = b.bookId
+		ORDER BY s.bookId DESC
 	</select>
 
 	<select id="getBookListByAuction" resultType="Auction">
@@ -91,6 +92,7 @@
 		b.imageUrl AS "book.imageUrl"
 		FROM Auction a, Book b
 		WHERE a.bookId = b.bookId
+		ORDER BY a.bookId DESC
 	</select>
 
 	<select id="getBookListByShare" resultType="Share">
@@ -106,6 +108,7 @@
 		b.imageUrl AS "book.imageUrl"
 		FROM Sharing s, Book b
 		WHERE s.bookId = b.bookId
+		ORDER BY s.bookId DESC
 	</select>
 
 	<select id="getSale" resultType="Sale">

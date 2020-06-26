@@ -294,6 +294,7 @@
 				             		<div class="form-group">
 				                    	<label for="message">세부사항</label>
 				                    	<form:textarea path="book.detail" cols="30" rows="10" class="form-control" id="message"/>
+				                    	<form:errors path="book.detail"/><br/>
 				                  	</div>
 				                  	<form:hidden path="book.imageUrl" value="${bookRegi.imageUrl}"/>
 				                  	<form:hidden path="book.name" value="${bookRegi.name}"/>
@@ -361,6 +362,7 @@
 				             		<div class="form-group">
 				                    	<label for="message">세부사항</label>
 				                    	<form:textarea path="book.detail" cols="30" rows="10" class="form-control" id="message"/>
+				                    	<form:errors path="book.detail"/><br/>
 				                  	</div>
 				                  	<form:hidden path="book.imageUrl" value="${bookRegi.imageUrl}"/>
 				                  	<form:hidden path="book.name" value="${bookRegi.name}"/>
@@ -441,6 +443,7 @@
 				             		<div class="form-group">
 				                    	<label for="message">세부사항</label>
 				                    	<form:textarea path="book.detail" cols="30" rows="10" class="form-control" id="message"/>
+				                    	<form:errors path="book.detail"/><br/>
 				                  	</div>
 				                  	<form:hidden path="book.imageUrl" value="${bookRegi.imageUrl}"/>
 				                  	<form:hidden path="book.name" value="${bookRegi.name}"/>

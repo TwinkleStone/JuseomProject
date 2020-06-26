@@ -38,6 +38,10 @@ public class ShareFormValidator implements Validator{
 		}else if(share.isRaffleTimeBeforeEndTime()) {
 			errors.rejectValue("raffleTime", "badRaffleTime");
 		}
+		
+		if(share.getBook().getDetail().length() > 100) {
+			errors.rejectValue("book.detail", "notLength");
+		}
 	}
 
 }
