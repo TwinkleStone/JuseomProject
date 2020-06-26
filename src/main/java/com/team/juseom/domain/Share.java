@@ -9,7 +9,7 @@ public class Share implements Serializable{
 	Book book;
 	String shareNumber;
 	Date endTime;
-	String raffleTime;
+	Date raffleTime;
 	int peopleNumber;
 	String status;
 	
@@ -37,10 +37,10 @@ public class Share implements Serializable{
 	public void setEndTime(Date endTime) {
 		this.endTime = endTime;
 	}
-	public String getRaffleTime() {
+	public Date getRaffleTime() {
 		return raffleTime;
 	}
-	public void setRaffleTime(String raffleTime) {
+	public void setRaffleTime(Date raffleTime) {
 		this.raffleTime = raffleTime;
 	}
 	public int getPeopleNumber() {

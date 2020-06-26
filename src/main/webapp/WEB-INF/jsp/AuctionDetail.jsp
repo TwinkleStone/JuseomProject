@@ -76,7 +76,7 @@
 				              	<p>상태 : <span style="text-weight: bold; color: #d4ca68">${auction.book.condition}</span></p>
 				              	<p>현재가 : <span style="font-size: 20px; color: #d4ca68"><fmt:formatNumber value="${auction.presentPrice}" pattern="#,###"/>원</span>&nbsp;&nbsp;<span style="font-size: 13px">| 시작가: <fmt:formatNumber value="${auction.startPrice}" pattern="#,###"/>원</span></p>
 	              				<p>입찰 수 : ${auction.bidNumber}&nbsp;&nbsp;<span style="font-size: 13px">(총 판매수량 : ${auction.salesNumber})</span></p>
-	              				<p>종료시간 : ${auction.endTime}</p>
+	              				<p>종료시간 : <fmt:formatDate value="${auction.endTime}" pattern="yyyy-MM-dd HH:mm" /></p>
 	              			</div>
 	              		</td>
 	        		</tr>

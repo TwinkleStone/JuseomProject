@@ -76,7 +76,7 @@
 				                <h4>${share.book.name}</h4>
 				                <p>${share.book.author}(지은이) | ${share.book.publisher} | <fmt:parseDate value="${share.book.date}" pattern="yyyyMMdd" var="parseDate"/><fmt:formatDate value="${parseDate}" pattern="yyyy년MM월dd일" /></p>
 				              	<p>상태 : <span style="text-weight: bold; color: #d4ca68">${share.book.condition}</span></p>
-				              	<p>추첨시간 : <span style="font-size: 20px; color: #d4ca68">${share.raffleTime}</span>&nbsp;&nbsp;<br><span style="font-size: 13px"> (종료시간 : ${share.endTime})</span></p>
+				              	<p>추첨시간 : <span style="font-size: 20px; color: #d4ca68"><fmt:formatDate value="${share.raffleTime}" pattern="yyyy년 MM월 dd일 HH시mm분" /></span>&nbsp;&nbsp;<br><span style="font-size: 13px"> (종료시간 : <fmt:formatDate value="${share.endTime}" pattern="yyyy-MM-dd HH:mm" />)</span></p>
 	              				<p>나눔 수량 : ${share.shareNumber}&nbsp;&nbsp;<span style="font-size: 13px">(신청수 : ${share.peopleNumber})</span></p>
 	              			</div>
 	              		</td>

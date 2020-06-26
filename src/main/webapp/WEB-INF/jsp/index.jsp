@@ -25,7 +25,6 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css">
   </head>
   <body>
-    
 	  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
 	      <a class="navbar-brand" href="<c:url value="/index.do" />">주섬주섬</a>

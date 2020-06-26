@@ -144,7 +144,7 @@ public class InsertBookContorller {
 		
 		juseomFacade.insertAuction(a);
 		sessionStatus.setComplete();
-		return "redirect:/index";	
+		return "redirect:/auction.do";	
 	}
 
 	@PostMapping("/insert/share.do")
@@ -165,14 +165,14 @@ public class InsertBookContorller {
 		Share s = new Share();
 		s.setBook(formData.getBook());
 		s.setShareNumber(formData.getShareNumber());
-		s.setRaffleTime(formData.getRaffleTime());
+		s.setRaffleTime(formData.dateFormChange(formData.getRaffleTime()));
 		s.setPeopleNumber(0);
 		s.setStatus("OPEN");
-		s.setEndTime(formData.dateFormChange());
+		s.setEndTime(formData.dateFormChange(formData.getEndTime()));
 		
 		juseomFacade.insertShare(s);
 		sessionStatus.setComplete();
-		return "redirect:/index";	
+		return "redirect:/share.do";	
 	}	
 	
 }

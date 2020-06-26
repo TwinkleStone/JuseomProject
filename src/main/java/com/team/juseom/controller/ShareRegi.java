@@ -58,20 +58,20 @@ public class ShareRegi {
 		this.status = status;
 	}
 	
-	public Date dateFormChange() {
-		if(endTime == null)
+	public Date dateFormChange(String date) {
+		if(date == null)
 			return null;
 		
-		endTime = maTranslation(endTime, 1);
-		endTime = maChange(endTime);
+		date = maTranslation(date, 1);
+		date = maChange(date);
 		
 		SimpleDateFormat fm = new SimpleDateFormat("MM/dd/yyyy KK:mm a");
 		try {
 			Date to;
-			to = fm.parse(endTime);
+			to = fm.parse(date);
 			
-			endTime = fm.format(to);
-			endTime = maTranslation(endTime, 2);
+			date = fm.format(to);
+			date = maTranslation(date, 2);
 			
 			return to;
 		} catch (ParseException e) {
@@ -104,7 +104,7 @@ public class ShareRegi {
 	}
 	
 	public boolean isRaffleTimeBeforeEndTime() {
-		if(endTime == null || raffleTime == null)
+		if(endTime == null || raffleTime == null || endTime.equals("") || raffleTime.equals(""))
 			return false;
 		
 		endTime = maTranslation(endTime, 1);
@@ -116,7 +116,9 @@ public class ShareRegi {
 		try {
 			Date e = fm.parse(endTime);
 			Date r = fm.parse(raffleTime);
-			
+			if(r.getHours() == 0) {
+				r.setDate(r.getDate() - 1);
+			}
 			endTime = fm.format(e);
 			endTime = maTranslation(endTime, 2);
 			raffleTime = fm.format(r);
