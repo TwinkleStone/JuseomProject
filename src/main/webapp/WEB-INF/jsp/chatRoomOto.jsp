@@ -142,7 +142,14 @@
 						</tr>
 						<tr>
 							<td colspan = "2">
-								<c:if test="${userSession.user.userId eq sale.book.userId}">
+								<c:if test="${userSession.user.userId eq sellerId}">
+									<!-- 판매자용 거래 완료버튼 -->
+									<!-- 평가하기 관련 request param 추가 -->
+										<input type="button" value="거래 완료" class="btn py-3 px-4 btn-primary">
+								</c:if>
+								<c:if test="${userSession.user.userId ne sellerId}">
+									<!-- 구매자용 거래 완료버튼 -->
+									<!-- 평가하기 관련 request param 추가 -->
 										<input type="button" value="거래 완료" class="btn py-3 px-4 btn-primary">
 								</c:if>
 							</td>

@@ -253,7 +253,7 @@ public class JuseomImpl implements JuseomFacade {
 	}
 
 	@Override
-	public List<String> getOtoChatListBookId(String userId) {
+	public List<otoChat> getOtoChatListBookId(String userId) {
 		return chatDao.getOtoChatListBookId(userId);
 	}
 

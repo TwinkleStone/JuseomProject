@@ -132,15 +132,29 @@
 					<tr>
 						<th>순번</th>
 						<th>책 이름</th>
+						<th>상대방</th>
 					</tr>
 					<c:forEach var="list" items="${chatList.pageList}"
 						varStatus="status">
 						<tr>
 							<td>${status.count}</td>
-							<td><c:url value="/chatRoom.do" var="chatUrl">
-									<c:param name="bookId" value="${list.bookId}" />
-									<c:param name="sellerId" value="${list.userId}" />
-								</c:url> <a href="${chatUrl}"><c:out value='${list.name}' /></a></td>
+							<c:if test="${userSession.user.userId ne list.book.userId}">
+							<td><c:url value="/user/chatRoom.do" var="chatUrl">
+									<c:param name="bookId" value="${list.book.bookId}" />
+									<c:param name="sellerId" value="${list.sellerId}" />
+								</c:url> <a href="${chatUrl}"><c:out value='${list.book.name}' /></a>
+							</td>
+							<td>${list.sellerId}</td>
+							</c:if>
+							<c:if test="${userSession.user.userId eq list.sellerId}">
+							<td><c:url value="/user/chatRoomSeller.do" var="chatUrl">
+									<c:param name="bookId" value="${list.book.bookId}" />
+									<c:param name="buyerId" value="${list.buyerId}" />
+								</c:url> <a href="${chatUrl}"><c:out value='${list.book.name}' /></a>
+							</td>
+							<td>${list.buyerId}</td>
+							</c:if>
+							<td>${buyer}</td>
 						</tr>
 					</c:forEach>
 				</table>

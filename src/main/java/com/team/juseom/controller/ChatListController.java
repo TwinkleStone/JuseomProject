@@ -35,14 +35,20 @@ private static final String FORM_VIEW = "UserChatList";
 				(UserSession) WebUtils.getSessionAttribute(request, "userSession");
 		String userId = userSession.getUser().getUserId();
 		//List<otoChat> list = juseom.getOtoChatList(userId);
-		List<String> bookIdList = juseom.getOtoChatListBookId(userId);
-		System.out.println(bookIdList.size());
-		List<Book> bookList = new ArrayList<Book>();
-		for (String id : bookIdList) {
-			bookList.add(juseom.getOtoChatListBookInfo(id, userId));
-			System.out.println(id+ ", " + userId);
+		List<otoChat> bookIdList = juseom.getOtoChatListBookId(userId);
+		//System.out.println(bookIdList.size());
+		List<OtoChatList> list = new ArrayList<OtoChatList>();
+		for (otoChat o : bookIdList) {
+			OtoChatList ch = new OtoChatList();
+			String chattRoomId = o.getChattingRoomId();
+			String[] roomId = chattRoomId.split("_");
+			ch.setBook(juseom.getOtoChatListBookInfo(roomId[0], userId));
+			System.out.println(ch.getBook().getName() + ", " + ch.getBook().getBookId());
+			ch.setBuyerId(roomId[1]);
+			ch.setSellerId(ch.getBook().getUserId());
+			list.add(ch);
 		}
-		PagedListHolder<Book> rsltList = new PagedListHolder<Book>(bookList);
+		PagedListHolder<OtoChatList> rsltList = new PagedListHolder<OtoChatList>(list);
 		model.addAttribute("chatList", rsltList);
 		return FORM_VIEW;
 	}

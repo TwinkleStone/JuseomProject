@@ -46,7 +46,7 @@ public class MybatisChatDao implements ChatDao {
 	}
 
 	@Override
-	public List<String> getOtoChatListBookId(String userId) {
+	public List<otoChat> getOtoChatListBookId(String userId) {
 		return chatMapper.getOtoChatListBookId(userId);
 	}
 

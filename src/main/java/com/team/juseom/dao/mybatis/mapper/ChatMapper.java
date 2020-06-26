@@ -20,5 +20,5 @@ public interface ChatMapper {
 	
 	List<otoChat> selectOtoChatByChattingRoomId(String chattingRoomId);
 
-	public List<String> getOtoChatListBookId(String userId);
+	public List<otoChat> getOtoChatListBookId(String userId);
 }

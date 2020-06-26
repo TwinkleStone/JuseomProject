@@ -50,6 +50,7 @@ public class OtoChatController {
 				(UserSession) WebUtils.getSessionAttribute(request, "userSession");
 		String userId = userSession.getUser().getUserId();
 		String chattingRoomId = bookId + "_" + userId;
+		System.out.println(chattingRoomId);
 	
 		//건들면 안됨
 		list = juseom.selectOtoChatByChattingRoomId(chattingRoomId);
@@ -70,6 +71,38 @@ public class OtoChatController {
 		session.setAttribute("bookId", bookId);
 		return CHAT_VIEW;
 	}
+	
+	@RequestMapping(value = "/user/chatRoomSeller.do", method = RequestMethod.GET)
+	public String chatRoomSeller(@RequestParam(value = "bookId", required = false) String bookId,
+			@RequestParam(value = "buyerId", required = false) String buyerId, HttpSession session, Model model,
+			HttpServletRequest request) {
+		
+		UserSession userSession = 
+				(UserSession) WebUtils.getSessionAttribute(request, "userSession");
+		String userId = userSession.getUser().getUserId();
+		String chattingRoomId = bookId + "_" + buyerId;
+		System.out.println(chattingRoomId);
+	
+		//건들면 안됨
+		list = juseom.selectOtoChatByChattingRoomId(chattingRoomId);
+		
+		if (list.size() == 0) {
+			otoChat chat = new otoChat(chattingRoomId, bookId, userId, buyerId);
+			Date from = new Date();
+			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String to = transFormat.format(from);
+
+			chat.setChatTime(to);
+			juseom.insertOtoChat(chat);
+		}
+		
+
+		model.addAttribute("chatList", list);
+		session.setAttribute("sellerId", userId);
+		session.setAttribute("bookId", bookId);
+		session.setAttribute("buyerId", buyerId);
+		return CHAT_VIEW;
+	}
 
 	@RequestMapping(value = "/user/chat.do", method = RequestMethod.POST)
 	public ModelAndView chattingSubmit(
@@ -80,7 +113,8 @@ public class OtoChatController {
 		String bookId = session.getAttribute("bookId").toString();
 		String sellerId = session.getAttribute("sellerId").toString();
 		String userId = userSession.getUser().getUserId();
-		String chattingRoomId = bookId + "_" + userId;
+		String buyerId = session.getAttribute("buyerId").toString();
+		String chattingRoomId = bookId + "_" + buyerId;
 		
 		//list = juseom.getotoChatList(bookId);
 		
