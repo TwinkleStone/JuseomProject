@@ -93,7 +93,7 @@
 		        			<p class="price mb-3"><span class="orig-price" style="font-size: 20px">현재가&nbsp;<fmt:formatNumber value="${s.presentPrice}" pattern="#,###"/>원</span>&nbsp;&nbsp;<span style="font-size: 15px">${s.bidNumber}명 입찰 중</span></p>
 		        			<ul class="property_list">
 		        				<li>경매마감 </li>
-		        				<li>${s.endTime}</li>
+		        				<li><fmt:formatDate value="${s.endTime}" pattern="yyyy-MM-dd HH:mm" /></li>
 		        				<!-- <li><span class="flaticon-floor-plan"></span>1,878 sqft</li>  -->
 		        			</ul>
 		        			<ul class="property_list">

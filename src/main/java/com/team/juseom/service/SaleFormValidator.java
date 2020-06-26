@@ -24,6 +24,10 @@ public class SaleFormValidator implements Validator{
 		if(!price.matches("-?\\d+(\\.\\d+)?")) {
 			errors.rejectValue("suggestPrice", "notPrice");
 		}
+		
+		if(sale.getBook().getDetail().length() > 100) {
+			errors.rejectValue("book.detail", "notLength");
+		}
 	}
 
 }

@@ -77,6 +77,7 @@
 		b.imageUrl AS "book.imageUrl"
 		FROM Sale s, Book b
 		WHERE s.bookId = b.bookId
+		ORDER BY s.bookId DESC
 	</select>
 
 	<select id="getBookListByAuction" resultType="Auction">
@@ -91,6 +92,7 @@
 		b.imageUrl AS "book.imageUrl"
 		FROM Auction a, Book b
 		WHERE a.bookId = b.bookId
+		ORDER BY a.bookId DESC
 	</select>
 
 	<select id="getBookListByShare" resultType="Share">
@@ -106,6 +108,7 @@
 		b.imageUrl AS "book.imageUrl"
 		FROM Sharing s, Book b
 		WHERE s.bookId = b.bookId
+		ORDER BY s.bookId DESC
 	</select>
 
 	<select id="getSale" resultType="Sale">
@@ -234,19 +237,15 @@
 		b.TRADETYPE
 		FROM BOOK b, OTOCHAT o
 		WHERE (b.BOOKID = #{bookId} AND o.BOOKID = #{bookId})
-			AND (o.SELLERID = #{userId} OR o.buyerId = #{userId})
+			AND (o.SELLERID = #{userId} OR SENDERID = #{userId})
 	</select>
 	
-	<update id="updatePeopleNumber">
-		UPDATE SHARING
-		SET PEOPLENUMBER = (SELECT COUNT(*) FROM APPLIER WHERE SHAREID = #{SHAREID})
-		WHERE shareId = #{shareId}
-	</update>
-	
-	<update id="updateAuctionWinner">
-		UPDATE AUCTION
-		SET BIDWINNER = #{param1}
-		WHERE AUCTIONID = #{param2}
+	<update id="closeAuctionEvent" parameterType="Date">
+		<![CDATA[
+			UPDATE AUCTION
+			SET STATUS = 'CLOSE'
+			WHERE ENDTIME <= #{curTime}
+		]]>
 	</update>
 	
 	<update id="updateShareWinner">

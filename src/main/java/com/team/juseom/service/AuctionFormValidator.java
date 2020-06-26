@@ -37,6 +37,9 @@ public class AuctionFormValidator implements Validator{
 		}else if(auction.isEndTimeBeforeNow()) {
 			errors.rejectValue("endTime", "badEndTime");
 		}
+		if(auction.getBook().getDetail().length() > 100) {
+			errors.rejectValue("book.detail", "notLength");
+		}
 	}
 
 }

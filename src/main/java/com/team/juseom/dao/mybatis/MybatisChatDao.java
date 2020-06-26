@@ -24,7 +24,7 @@ public class MybatisChatDao implements ChatDao {
 
 	@Override
 	public void insertotoChat(otoChat otoChat) {
-		// TODO Auto-generated method stub
+		chatMapper.insertOtoChat(otoChat);
 		
 	}
 
@@ -39,6 +39,15 @@ public class MybatisChatDao implements ChatDao {
 	@Override
 	public List<otoChat> getOtoChatList(String userId) {
 		return chatMapper.getOtoChatList(userId);
+	}
+	
+	public List<otoChat> selectOtoChatByChattingRoomId(String chattingRoomId) {
+		return chatMapper.selectOtoChatByChattingRoomId(chattingRoomId);
+	}
+
+	@Override
+	public List<String> getOtoChatListBookId(String userId) {
+		return chatMapper.getOtoChatListBookId(userId);
 	}
 
 }

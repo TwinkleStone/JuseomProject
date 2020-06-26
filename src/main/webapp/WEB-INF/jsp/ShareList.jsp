@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
@@ -90,10 +91,10 @@
 		        			<h3 class="mb-0"><a href="<c:url value="/view/share.do?id=${s.shareId}" />">${s.book.name}</a></h3>
 		        			<span class="location d-inline-block mb-3">${s.book.author} 저</span>
 		        			<p class="price mb-3"><span style="font-size: 18px">나눔인원&nbsp;${s.shareNumber}명</span>&nbsp;&nbsp;<span style="font-size: 15px; color: gray">(${s.peopleNumber}명 참여 중)</span></p>
-		        			<p class="price mb-3"><span class="orig-price" style="font-size: 20px">추첨시간&nbsp;${s.raffleTime}</span></p>
+		        			<p class="price mb-3"><span class="orig-price" style="font-size: 18px">추첨시간&nbsp;<fmt:formatDate value="${s.raffleTime}" pattern="yyyy년 MM월 dd일 HH시mm분" /></span></p>
 		        			<ul class="property_list">
 		        				<li>종료시간 </li>
-		        				<li>${s.endTime}</li>
+		        				<li><fmt:formatDate value="${s.endTime}" pattern="yyyy-MM-dd HH:mm" /></li>
 		        				<!-- <li><span class="flaticon-floor-plan"></span>1,878 sqft</li>  -->
 		        			</ul>
 		        			<ul class="property_list">

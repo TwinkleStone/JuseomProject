@@ -12,39 +12,6 @@
 <html>
 <head>
 <title>채팅</title>
-<script type="text/javascript" src="<%=cp%>/data/js/ajaxUtil.js"></script>
-
-<script type="text/javascript">
-/* var articleNo = 1000;
-
-//댓글 목록 호출
-getReplies();
-
-//댓글 목록 출력 함수
-function getReplies() {
-
- $.getJSON(&quot;/replies/all/&quot; + articleNo, function (data) {
-
-     console.log(data);
-
-     var str = &quot;&quot;;
-
-     $(data).each(function () {
-         str += &quot;&lt;li data-replyNo='&quot; + this.replyNo + &quot;' class='replyLi'&gt;&quot;
-             +   &quot;&lt;p class='replyText'&gt;&quot; + this.replyText + &quot;&lt;/p&gt;&quot;
-             +   &quot;&lt;p class='replyWriter'&gt;&quot; + this.replyWriter + &quot;&lt;/p&gt;&quot;
-             +   &quot;&lt;button type='button' class='btn btn-xs btn-success' data-toggle='modal' data-target='#modifyModal'&gt;댓글 수정&lt;/button&gt;&quot;
-             + &quot;&lt;/li&gt;&quot;
-             + &quot;&lt;hr/&gt;&quot;;
-
-     });
-
-     $(&quot;#replies&quot;).html(str);
-
- });
-
-} */
-</script>
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -167,11 +134,18 @@ function getReplies() {
 					</tr>
 				</table>
 				</form> --%>
- 				<form:form modelAttribute="chatting" action="/juseom/chat.do"
+ 				<form:form modelAttribute="chatting" action="/juseom/user/chat.do"
 					method="post">
 					<table class="table table-hover" style="text-align: center">
 						<tr>
 							<td colspan = "2"><label for="chat">채팅 내용</label>: <form:input path="chat" /><input type="submit" value="Upload" /></td>
+						</tr>
+						<tr>
+							<td colspan = "2">
+								<c:if test="${userSession.user.userId eq sale.book.userId}">
+										<input type="button" value="거래 완료" class="btn py-3 px-4 btn-primary">
+								</c:if>
+							</td>
 						</tr>
 					</table>
 				</form:form>

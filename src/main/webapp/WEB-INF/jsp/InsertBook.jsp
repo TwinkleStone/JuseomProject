@@ -226,10 +226,9 @@
 						<div class="bd-example bd-example-tabs">
 							<div class="d-flex">
 							  <ul class="nav nav-pills mb-2" id="pills-tab" role="tablist">
-
 							    <li class="nav-item">
 							      <c:choose>
-								  <c:when test="${empty s_choice and empty a_choice and empty sh_chocie}">
+								  <c:when test="${empty s_choice and empty a_choice and empty sh_choice}">
 							      	<a class="nav-link active" id="pills-description-tab" data-toggle="pill" href="#pills-description" role="tab" aria-controls="pills-description" aria-expanded="true">중고거래</a>
 							      </c:when>
 							      <c:when test="${!empty s_choice}">
@@ -295,6 +294,7 @@
 				             		<div class="form-group">
 				                    	<label for="message">세부사항</label>
 				                    	<form:textarea path="book.detail" cols="30" rows="10" class="form-control" id="message"/>
+				                    	<form:errors path="book.detail"/><br/>
 				                  	</div>
 				                  	<form:hidden path="book.imageUrl" value="${bookRegi.imageUrl}"/>
 				                  	<form:hidden path="book.name" value="${bookRegi.name}"/>
@@ -362,6 +362,7 @@
 				             		<div class="form-group">
 				                    	<label for="message">세부사항</label>
 				                    	<form:textarea path="book.detail" cols="30" rows="10" class="form-control" id="message"/>
+				                    	<form:errors path="book.detail"/><br/>
 				                  	</div>
 				                  	<form:hidden path="book.imageUrl" value="${bookRegi.imageUrl}"/>
 				                  	<form:hidden path="book.name" value="${bookRegi.name}"/>
@@ -442,6 +443,7 @@
 				             		<div class="form-group">
 				                    	<label for="message">세부사항</label>
 				                    	<form:textarea path="book.detail" cols="30" rows="10" class="form-control" id="message"/>
+				                    	<form:errors path="book.detail"/><br/>
 				                  	</div>
 				                  	<form:hidden path="book.imageUrl" value="${bookRegi.imageUrl}"/>
 				                  	<form:hidden path="book.name" value="${bookRegi.name}"/>
