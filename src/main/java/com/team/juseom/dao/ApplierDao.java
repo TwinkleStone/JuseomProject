@@ -10,5 +10,6 @@ public interface ApplierDao {
 	void insertApplier(Applier applier);
 	void updatePeopleNumber(Applier applier);
 	int searchApplier(Applier applier);
-	List<String> getWinner(Share share);
+	void insertWinner(Share share);
+	List<String> getUserIds(int shareId);
 }

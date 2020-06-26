@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.util.WebUtils;
 
 import com.team.juseom.domain.Auction;
 import com.team.juseom.domain.Book;
@@ -98,15 +100,19 @@ public class InsertBookContorller {
 			@ModelAttribute("sale") Sale formData, 
 			BindingResult result, 
 			SessionStatus sessionStatus,
-			ModelMap model) {
+			ModelMap model,
+			HttpServletRequest request) {
 		new SaleFormValidator().validate(formData, result);	
 		if (result.hasErrors()) {
 			model.put("book", formData.getBook());
 			model.put("s_choice", "write");
 			return "InsertBook";
 		}
-		//userId 구현 전까지 임시 코드
-		formData.getBook().setUserId("1");
+		
+		UserSession userSession = (UserSession) WebUtils.getSessionAttribute(request, "userSession");
+		String userId = userSession.getUser().getUserId();
+		formData.getBook().setUserId(userId);
+		
 		formData.setStatus("OPEN");
 		juseomFacade.insertSale(formData);
 		if(model.getAttribute("conditionCodes") != null) {
@@ -121,7 +127,8 @@ public class InsertBookContorller {
 			@ModelAttribute("auction") AuctionRegiRequest formData,
 			BindingResult result, 
 			SessionStatus sessionStatus,
-			Model model) {
+			Model model,
+			HttpServletRequest request) {
 		new AuctionFormValidator().validate(formData, result);	
 		if (result.hasErrors()) {
 			model.addAttribute("book", formData.getBook());
@@ -129,8 +136,9 @@ public class InsertBookContorller {
 			return "InsertBook";
 		}
 		
-		//userId 구현 전까지 임시 코드
-		formData.getBook().setUserId("1");
+		UserSession userSession = (UserSession) WebUtils.getSessionAttribute(request, "userSession");
+		String userId = userSession.getUser().getUserId();
+		formData.getBook().setUserId(userId);
 		
 		Auction a = new Auction();
 		a.setBook(formData.getBook());
@@ -152,15 +160,18 @@ public class InsertBookContorller {
 			@ModelAttribute("share") ShareRegi formData, 
 			BindingResult result, 
 			SessionStatus sessionStatus,
-			Model model) {
+			Model model,
+			HttpServletRequest request) {
 		new ShareFormValidator().validate(formData, result);	
 		if (result.hasErrors()) {
 			model.addAttribute("book", formData.getBook());
 			model.addAttribute("sh_choice", "write");
 			return "InsertBook";
 		}
-		//userId 구현 전까지 임시 코드
-		formData.getBook().setUserId("1");
+		
+		UserSession userSession = (UserSession) WebUtils.getSessionAttribute(request, "userSession");
+		String userId = userSession.getUser().getUserId();
+		formData.getBook().setUserId(userId);
 		
 		Share s = new Share();
 		s.setBook(formData.getBook());

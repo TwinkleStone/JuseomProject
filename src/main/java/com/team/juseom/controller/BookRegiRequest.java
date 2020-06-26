@@ -1,6 +1,9 @@
 package com.team.juseom.controller;
 
-public class BookRegiRequest {
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class BookRegiRequest implements Serializable{
 	String isbn;
 	String imageUrl;
 	String name;

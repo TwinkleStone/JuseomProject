@@ -26,12 +26,19 @@
 		WHERE userId = #{param2} AND shareId=#{param1}
 	</select>
 	
-	<select id="getWinner" resultType="String">
+	<insert id="insertWinner">
 		<![CDATA[
-			SELECT userId
-			FROM (SELECT * FROM APPLIER WHERE shareId = #{param1} ORDER BY DBMS_RANDOM.VALUE)
-			WHERE ROWNUM <= #{param2}
+			INSERT INTO WINNER (userId, shareId)
+				SELECT userId, shareId
+				FROM (SELECT * FROM APPLIER WHERE shareId = #{param1} ORDER BY DBMS_RANDOM.VALUE)
+				WHERE ROWNUM <= #{param2}
 		]]>
+	</insert>
+	
+	<select id="getWinnerUserIds" resultType="String">		
+		SELECT userId
+		FROM WINNER
+		WHERE shareId=#{param1}
 	</select>
 	
 </mapper>

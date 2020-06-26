@@ -3,6 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -25,9 +26,31 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/flaticon.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/icomoon.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css">
+	
+	<script>
+	function postJson() {
+		var applier = {applierId:-1, userId:null, shareId:${share.shareId}}
+		var jsonStr = JSON.stringify(applier);	
+		var reqUrl = "../apply.do";
+		
+		$.ajax({
+			type: "post",
+			url: reqUrl,
+			contentType: "application/json",
+			data: jsonStr,
+			processData: false,
+			success: function(responseJson){	// object parsed from JSON text	
+				alert("신청했습니다.");
+				$("#peopleNumber").text("(신청수 : " + responseJson.peopleNumber + ")");
+			},
+			error: function(){
+				alert("신청은 한번만 할 수 있습니다.");
+			}
+		});
+	}
+  </script>
   </head>
   <body>
-    
 	  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
 	      <a class="navbar-brand" href="<c:url value="/index.do" />">주섬주섬</a>
@@ -77,7 +100,7 @@
 				                <p>${share.book.author}(지은이) | ${share.book.publisher} | <fmt:parseDate value="${share.book.date}" pattern="yyyyMMdd" var="parseDate"/><fmt:formatDate value="${parseDate}" pattern="yyyy년MM월dd일" /></p>
 				              	<p>상태 : <span style="text-weight: bold; color: #d4ca68">${share.book.condition}</span></p>
 				              	<p>추첨시간 : <span style="font-size: 20px; color: #d4ca68"><fmt:formatDate value="${share.raffleTime}" pattern="yyyy년 MM월 dd일 HH시mm분" /></span>&nbsp;&nbsp;<br><span style="font-size: 13px"> (종료시간 : <fmt:formatDate value="${share.endTime}" pattern="yyyy-MM-dd HH:mm" />)</span></p>
-	              				<p>나눔 수량 : ${share.shareNumber}&nbsp;&nbsp;<span style="font-size: 13px">(신청수 : ${share.peopleNumber})</span></p>
+	              				<p>나눔 수량 : ${share.shareNumber}&nbsp;&nbsp;<span style="font-size: 13px" id="peopleNumber">(신청수 : ${share.peopleNumber})</span></p>
 	              			</div>
 	              		</td>
 	        		</tr>
@@ -100,7 +123,7 @@
         	</div>
         	<div class="row justify-content-center">
 				<table>
-	        		<tr style="text-align: center">
+	        		<tr style="text-align: center">	
 	        			<td style="padding: 30px">
 <%--  	        					<form:form modelAttribute="applier" action="apply.do" method="post">
 	        						<div class="form-group">
@@ -108,11 +131,9 @@
 	        						<input type="submit" id="submit" value="신청하기" class="btn py-3 px-4 btn-primary" />
 	        						</div>
 	        					</form:form> --%>
-	        					
-                    			<c:url value="/apply.do" var="submitApply">
-                    				<c:param name="shareId" value="${share.shareId}"/>
-                    			</c:url>
-                    			<a href="${submitApply}" class="btn py-3 px-4 btn-primary"><c:out value="신청하기"/></a>
+	        					<c:if test="${share.book.userId ne userId}">
+	        						<input type="button" class="btn py-3 px-4 btn-primary" value="신청하기" onclick="postJson()"/>
+	        					</c:if>
 	 					</td>
 	        		</tr>
         		</table>
@@ -213,7 +234,8 @@
 
 
   
-  <script src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
+  <!--  <script src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
   <script src="${pageContext.request.contextPath}/resources/js/jquery-migrate-3.0.1.min.js"></script>
   <script src="${pageContext.request.contextPath}/resources/js/popper.min.js"></script>
   <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
@@ -227,8 +249,10 @@
   <script src="${pageContext.request.contextPath}/resources/js/bootstrap-datepicker.js"></script>
   <script src="${pageContext.request.contextPath}/resources/js/jquery.timepicker.min.js"></script>
   <script src="${pageContext.request.contextPath}/resources/js/scrollax.min.js"></script>
+  <!-- 
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="${pageContext.request.contextPath}/resources/js/google-map.js"></script>
+   -->
   <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
   </body>
 </html>

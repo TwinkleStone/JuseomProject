@@ -1,21 +1,23 @@
 package com.team.juseom.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.util.WebUtils;
 
 import com.team.juseom.domain.Applier;
-import com.team.juseom.domain.Bidder;
+import com.team.juseom.domain.Share;
 import com.team.juseom.service.JuseomFacade;
+
 
 @Controller
 public class ApplyController {
@@ -23,35 +25,31 @@ public class ApplyController {
 	@Autowired
 	JuseomFacade juseomFacade;
 	
-	@ModelAttribute("applier")
-	public Applier viewBiddingForm(
-			@RequestParam("shareId") int shareId) {
-		Applier applier = new Applier();
-		applier.setShareId(shareId);
-		return applier;
-	}
-	
-	@RequestMapping("/apply.do")
-	public String insertApply(
-			@ModelAttribute("applier") Applier applier,
+	@RequestMapping(value = "/apply.do", method = RequestMethod.POST, produces = "application/json")         
+	@ResponseBody  
+	public Share insertApply(@RequestBody Applier applier, 
 			HttpServletResponse response,
+			HttpServletRequest request,
 			Model model) throws IOException {
 		
-		applier.setUserId("test");
+		UserSession userSession = (UserSession) WebUtils.getSessionAttribute(request, "userSession");
+		String userId = userSession.getUser().getUserId();
+		applier.setUserId(userId);
 		
 		int searchResult = juseomFacade.searchApplier(applier);
 		
 		if (searchResult > 0) {
-			/*
-			 * response.setContentType("text/html); charset=UTF-8"); PrintWriter out =
-			 * response.getWriter(); out.println("<script>alert('권한이 없습니다.');</script>");
-			 * out.flush();
-			 */
+			System.out.println("나눔 신청 중복입니다!!");
+			response.sendError(HttpServletResponse.SC_NOT_FOUND);
+			return null;
 		} else {
+			System.out.println("올바르게 나눔 신청이 완료되었습니다.");
 			juseomFacade.insertApplier(applier);
 		}
 		
-		return "redirect:/index";
+		Share share = juseomFacade.getShare(Integer.toString(applier.getSharedId()));
+		
+		return share;   // convert order to JSON text in response body
 	}
 	
 	
