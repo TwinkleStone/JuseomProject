@@ -8,7 +8,6 @@
     <title>주섬주섬</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
 
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/open-iconic-bootstrap.min.css">
@@ -75,7 +74,14 @@
         		<c:forEach var="s" items="${saleList.pageList}" varStatus="status">
         		<div class="col-md-4">
         			<div class="property-wrap ftco-animate">
-        				<div class="img d-flex align-items-center justify-content-center" style="background-image: url(${s.book.imageUrl});">
+        				<c:choose>
+        					<c:when test="${s.book.status eq 'CLOSE'}">
+        						<div class="img d-flex align-items-center justify-content-center" style="background-image: url(${s.book.imageUrl});-webkit-filter: grayscale(100%);">
+        					</c:when>
+        					<c:otherwise>
+        						<div class="img d-flex align-items-center justify-content-center" style="background-image: url(${s.book.imageUrl});">
+        					</c:otherwise>
+  						</c:choose>
         					<a href="<c:url value="/view/sale.do?id=${s.saleId}" />" class="icon d-flex align-items-center justify-content-center btn-custom">
         						<span class="ion-ios-link"></span>
         					</a>
@@ -97,7 +103,22 @@
         					</div>
         				</div>
 		        		<div class="text">
-		        			<p class="price mb-3"><span class="old-price"><fmt:formatNumber value="${s.book.price}" pattern="#,###"/></span><span class="orig-price"><fmt:formatNumber value="${s.suggestPrice}" pattern="#,###"/>원</span></p>
+		        			<p class="price mb-3">
+		        				<span class="old-price"><fmt:formatNumber value="${s.book.price}" pattern="#,###"/></span>
+		        				<c:choose>
+        							<c:when test="${s.book.status eq 'CLOSE'}">
+        								<span class="orig-price" style="color: #666666"><fmt:formatNumber value="${s.suggestPrice}" pattern="#,###"/>원</span>
+        							</c:when>
+        							<c:otherwise>
+        								<span class="orig-price"><fmt:formatNumber value="${s.suggestPrice}" pattern="#,###"/>원</span>
+        							</c:otherwise>
+  								</c:choose>
+  								<c:choose>
+        							<c:when test="${s.book.status eq 'CLOSE'}">
+        								<span style="background: black; color: white; padding: 2px; margin-right: 10px; float: right; font-size: 13px">판매완료</span>
+        							</c:when>
+  								</c:choose>
+		        			</p>
 		        			<h3 class="mb-0"><a href="properties-single.html">${s.book.name}</a></h3>
 		        			<span class="location d-inline-block mb-3">${s.book.author} 저</span>
 		        			<ul class="property_list">

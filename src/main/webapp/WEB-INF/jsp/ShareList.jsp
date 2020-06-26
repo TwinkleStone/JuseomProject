@@ -66,7 +66,14 @@
         		<c:forEach var="s" items="${shareList.pageList}" varStatus="status">
         		<div class="col-md-4">
         			<div class="property-wrap ftco-animate">
-        				<div class="img d-flex align-items-center justify-content-center" style="background-image: url(${s.book.imageUrl});">
+        				<c:choose>
+        					<c:when test="${s.status eq 'CLOSE'}">
+        						<div class="img d-flex align-items-center justify-content-center" style="background-image: url(${s.book.imageUrl});-webkit-filter: grayscale(100%);">
+        					</c:when>
+        					<c:otherwise>
+        						<div class="img d-flex align-items-center justify-content-center" style="background-image: url(${s.book.imageUrl});">
+        					</c:otherwise>
+  						</c:choose>
         					<a href="<c:url value="/view/share.do?id=${s.shareId}" />" class="icon d-flex align-items-center justify-content-center btn-custom">
         						<span class="ion-ios-link"></span>
         					</a>
@@ -90,8 +97,25 @@
 		        		<div class="text">
 		        			<h3 class="mb-0"><a href="<c:url value="/view/share.do?id=${s.shareId}" />">${s.book.name}</a></h3>
 		        			<span class="location d-inline-block mb-3">${s.book.author} 저</span>
-		        			<p class="price mb-3"><span style="font-size: 18px">나눔인원&nbsp;${s.shareNumber}명</span>&nbsp;&nbsp;<span style="font-size: 15px; color: gray">(${s.peopleNumber}명 참여 중)</span></p>
-		        			<p class="price mb-3"><span class="orig-price" style="font-size: 18px">추첨시간&nbsp;<fmt:formatDate value="${s.raffleTime}" pattern="yyyy년 MM월 dd일 HH시mm분" /></span></p>
+		        			<p class="price mb-3">
+		        				<span style="font-size: 17px">나눔인원&nbsp;${s.shareNumber}명</span>&nbsp;&nbsp;
+		        				<span style="font-size: 15px; color: gray">(${s.peopleNumber}명 참여 중)</span>
+		        				<c:choose>
+        							<c:when test="${s.status eq 'CLOSE'}">
+        								<span style="background: black; color: white; padding: 2px; margin-right: 10px; float: right; font-size: 13px">나눔 완료</span>
+        							</c:when>
+  								</c:choose>	
+		        			</p>
+		        			<p class="price mb-3">
+		        				<c:choose>
+        							<c:when test="${s.status eq 'CLOSE'}">
+        								<span class="orig-price" style="font-size: 16px; color: #666666">추첨시간&nbsp;<fmt:formatDate value="${s.raffleTime}" pattern="yyyy년 MM월 dd일 HH시mm분" /></span>
+        							</c:when>
+        							<c:otherwise>
+        								<span class="orig-price" style="font-size: 16px">추첨시간&nbsp;<fmt:formatDate value="${s.raffleTime}" pattern="yyyy년 MM월 dd일 HH시mm분" /></span>
+        							</c:otherwise>
+  								</c:choose>
+		        			</p>
 		        			<ul class="property_list">
 		        				<li>종료시간 </li>
 		        				<li><fmt:formatDate value="${s.endTime}" pattern="yyyy-MM-dd HH:mm" /></li>

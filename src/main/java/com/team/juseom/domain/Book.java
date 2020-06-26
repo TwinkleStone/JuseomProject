@@ -16,6 +16,7 @@ public class Book implements Serializable{
 	String detail;
 	String progress;
 	String tradeType;
+	String status;
 	
 	public int getBookId() {
 		return bookId;
@@ -88,5 +89,11 @@ public class Book implements Serializable{
 	}
 	public void setTradeType(String tradeType) {
 		this.tradeType = tradeType;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 }

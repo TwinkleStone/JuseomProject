@@ -66,7 +66,14 @@
         		<c:forEach var="s" items="${auctionList.pageList}" varStatus="status">
         		<div class="col-md-4">
         			<div class="property-wrap ftco-animate">
-        				<div class="img d-flex align-items-center justify-content-center" style="background-image: url(${s.book.imageUrl});">
+        				<c:choose>
+        					<c:when test="${s.status eq 'CLOSE'}">
+        						<div class="img d-flex align-items-center justify-content-center" style="background-image: url(${s.book.imageUrl});-webkit-filter: grayscale(100%);">
+        					</c:when>
+        					<c:otherwise>
+        						<div class="img d-flex align-items-center justify-content-center" style="background-image: url(${s.book.imageUrl});">
+        					</c:otherwise>
+  						</c:choose>
         					<a href="<c:url value="/view/auction.do?id=${s.auctionId}" />" class="icon d-flex align-items-center justify-content-center btn-custom">
         						<span class="ion-ios-link"></span>
         					</a>
@@ -89,8 +96,25 @@
         				</div>
 		        		<div class="text">
 		        			<h3 class="mb-0"><a href="<c:url value="/view/auction.do?id=${s.auctionId}" />">${s.book.name}</a></h3>
-		        			<span class="location d-inline-block mb-3">${s.book.author} 저</span>
-		        			<p class="price mb-3"><span class="orig-price" style="font-size: 20px">현재가&nbsp;<fmt:formatNumber value="${s.presentPrice}" pattern="#,###"/>원</span>&nbsp;&nbsp;<span style="font-size: 15px">${s.bidNumber}명 입찰 중</span></p>
+		        			<p>
+		        				<span class="location d-inline-block mb-3">${s.book.author} 저 </span>
+		        				<c:choose>
+        						<c:when test="${s.status eq 'CLOSE'}">
+        							<span style="background: black; color: white; padding: 2px; margin-right: 10px; float: right; font-size: 13px">경매 완료</span>
+        						</c:when>
+  							</c:choose>	
+		        			</p>
+		        			<p class="price mb-3">
+		        				<c:choose>
+        							<c:when test="${s.status eq 'CLOSE'}">
+        								<span class="orig-price" style="font-size: 20px; color: #666666">현재가&nbsp;<fmt:formatNumber value="${s.presentPrice}" pattern="#,###"/>원</span>&nbsp;&nbsp;
+        							</c:when>
+        							<c:otherwise>
+        								<span class="orig-price" style="font-size: 20px">현재가&nbsp;<fmt:formatNumber value="${s.presentPrice}" pattern="#,###"/>원</span>&nbsp;&nbsp;
+        							</c:otherwise>
+  								</c:choose>
+		        				<span style="font-size: 15px">${s.bidNumber}명 입찰 중</span>
+		        			</p>
 		        			<ul class="property_list">
 		        				<li>경매마감 </li>
 		        				<li><fmt:formatDate value="${s.endTime}" pattern="yyyy-MM-dd HH:mm" /></li>

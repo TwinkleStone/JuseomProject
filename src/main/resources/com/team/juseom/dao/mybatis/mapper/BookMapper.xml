@@ -67,9 +67,9 @@
 	</insert>
 
 	<select id="getBookListBySale" resultType="Sale">
-		SELECT s.saleId AS
-		saleId,
+		SELECT s.saleId AS saleId,
 		s.suggestPrice AS suggestPrice,
+		b.status AS "book.status",
 		b.name AS "book.name",
 		b.price AS "book.price",
 		b.author AS "book.author",
@@ -81,11 +81,11 @@
 	</select>
 
 	<select id="getBookListByAuction" resultType="Auction">
-		SELECT a.auctionId
-		AS auctionId,
+		SELECT a.auctionId AS auctionId,
 		a.presentPrice AS presentPrice,
 		a.bidNumber AS bidNumber,
 		a.endTime AS endTime,
+		a.status AS status,
 		b.name AS "book.name",
 		b.author AS "book.author",
 		b.condition AS "book.condition",
@@ -102,6 +102,7 @@
 		s.peopleNumber AS peopleNumber,
 		s.endTime AS endTime,
 		s.raffleTime AS raffleTime,
+		s.status AS status,
 		b.name AS "book.name",
 		b.author AS "book.author",
 		b.condition AS "book.condition",
@@ -123,20 +124,21 @@
 		b.publisher AS "book.publisher",
 		b.publicationDate AS "book.date",
 		b.price AS "book.price",
-		b.detail AS "book.detail"
+		b.detail AS "book.detail",
+		b.status AS "book.status"
 		FROM Sale s, Book b
 		WHERE s.bookId = b.bookId AND
 		s.saleId = ${value}
 	</select>
 
 	<select id="getOneAuction" resultType="Auction">
-		SELECT a.auctionId AS
-		auctionId,
+		SELECT a.auctionId AS auctionId,
 		a.startPrice AS startPrice,
 		a.presentPrice AS presentPrice,
 		a.salesNumber AS salesNumber,
 		a.bidNumber AS bidNumber,
 		a.endTime AS endTime,
+		a.status AS status,
 		b.bookId AS "book.bookId",
 		b.userId AS "book.userId",
 		b.name AS "book.name",
@@ -158,6 +160,7 @@
 		s.endTime AS endTime,
 		s.raffleTime AS raffleTime,
 		s.peopleNumber AS peopleNumber,
+		s.status AS status,
 		b.bookId AS "book.bookId",
 		b.userId AS "book.userId",
 		b.name AS "book.name",
