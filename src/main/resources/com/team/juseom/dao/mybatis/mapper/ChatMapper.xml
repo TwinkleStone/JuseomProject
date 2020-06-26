@@ -47,7 +47,7 @@
     WHERE (SELLERID = #{userId}) OR (SENDERID = #{userId})
   </select>
   
-  <select id="selectOtmChatByChattingRoomId" resultType="otmChat">
+  <select id="selectOtoChatByChattingRoomId" resultType="otoChat">
     SELECT *
     FROM OTOCHAT
     WHERE CHATTINGROOMID = #{chattingRoomId}

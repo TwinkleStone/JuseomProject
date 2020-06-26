@@ -52,7 +52,7 @@ public class OtoChatController {
 		String chattingRoomId = bookId + "_" + userId;
 	
 		//건들면 안됨
-		list = juseom.selectOtmChatByChattingRoomId(chattingRoomId);
+		list = juseom.selectOtoChatByChattingRoomId(chattingRoomId);
 		
 		if (list.size() == 0) {
 			otoChat chat = new otoChat(chattingRoomId, bookId, sellerId, userId);

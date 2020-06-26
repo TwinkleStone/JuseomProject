@@ -213,8 +213,8 @@ public class JuseomImpl implements JuseomFacade {
 	}
 	
 	@Override
-	public List<otoChat> selectOtmChatByChattingRoomId(String chattingRoomId) {
-		return chatDao.selectOtmChatByChattingRoomId(chattingRoomId);
+	public List<otoChat> selectOtoChatByChattingRoomId(String chattingRoomId) {
+		return chatDao.selectOtoChatByChattingRoomId(chattingRoomId);
 	}
 
 	@Override
@@ -249,6 +249,11 @@ public class JuseomImpl implements JuseomFacade {
 	@Override
 	public int searchApplier(Applier applier) {
 		return applierDao.searchApplier(applier);
+	}
+
+	@Override
+	public List<String> getOtoChatListBookId(String userId) {
+		return chatDao.getOtoChatListBookId(userId);
 	}
 
 	

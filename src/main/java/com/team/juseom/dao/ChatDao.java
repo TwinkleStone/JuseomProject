@@ -15,5 +15,7 @@ public interface ChatDao {
 
 	public List<otoChat> getOtoChatList(String userId);
 	
-	List<otoChat> selectOtmChatByChattingRoomId(String chattingRoomId);
+	List<otoChat> selectOtoChatByChattingRoomId(String chattingRoomId);
+
+	public List<String> getOtoChatListBookId(String userId);
 }

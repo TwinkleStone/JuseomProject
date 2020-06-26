@@ -41,8 +41,13 @@ public class MybatisChatDao implements ChatDao {
 		return chatMapper.getOtoChatList(userId);
 	}
 	
-	public List<otoChat> selectOtmChatByChattingRoomId(String chattingRoomId) {
-		return chatMapper.selectOtmChatByChattingRoomId(chattingRoomId);
+	public List<otoChat> selectOtoChatByChattingRoomId(String chattingRoomId) {
+		return chatMapper.selectOtoChatByChattingRoomId(chattingRoomId);
+	}
+
+	@Override
+	public List<String> getOtoChatListBookId(String userId) {
+		return chatMapper.getOtoChatListBookId(userId);
 	}
 
 }

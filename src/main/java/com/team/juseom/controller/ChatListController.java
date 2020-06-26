@@ -34,12 +34,13 @@ private static final String FORM_VIEW = "UserChatList";
 		UserSession userSession = 
 				(UserSession) WebUtils.getSessionAttribute(request, "userSession");
 		String userId = userSession.getUser().getUserId();
-		List<otoChat> list = juseom.getOtoChatList(userId);
-		System.out.println(list.size());
+		//List<otoChat> list = juseom.getOtoChatList(userId);
+		List<String> bookIdList = juseom.getOtoChatListBookId(userId);
+		System.out.println(bookIdList.size());
 		List<Book> bookList = new ArrayList<Book>();
-		for (otoChat o : list) {
-			bookList.add(juseom.getOtoChatListBookInfo(o.getBookId(), userId));
-			System.out.println(o.getBookId()+ ", " + userId);
+		for (String id : bookIdList) {
+			bookList.add(juseom.getOtoChatListBookInfo(id, userId));
+			System.out.println(id+ ", " + userId);
 		}
 		PagedListHolder<Book> rsltList = new PagedListHolder<Book>(bookList);
 		model.addAttribute("chatList", rsltList);
