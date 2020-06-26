@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>별점 평가 완료 후 확인하는 창 (test용)</title>
+<title>별점 평가 완료 후 확인하는 창</title>
 </head>
 <body>
 ${rate.raterId}님이 ${rate.ratedId}님에게 별점 남기기를 성공하였습니다.<br/>

@@ -1,15 +1,15 @@
 package com.team.juseom.domain;
 
 public class Rate {
-	String rateId;
+	int rateId;
 	String raterId;
 	String ratedId;
 	int rate;
 	String description;
-	public String getRateId() {
+	public int getRateId() {
 		return rateId;
 	}
-	public void setRateId(String rateId) {
+	public void setRateId(int rateId) {
 		this.rateId = rateId;
 	}
 	public String getRaterId() {

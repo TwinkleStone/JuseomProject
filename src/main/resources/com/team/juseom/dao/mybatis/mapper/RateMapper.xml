@@ -19,8 +19,14 @@
     	<selectKey keyProperty="rateId" resultType="int" order="BEFORE">
         	SELECT RATE_SEQ.nextval AS rateId FROM DUAL
      	</selectKey>
-       		INSERT INTO RATE(rateId, RATERID, RATEDID, RATE, DESCRIPTION)
-        	VALUES (#{rateId}, #{raterId}, #{ratedId}, #{rate}, #{description})
+       		MERGE INTO RATE
+       		USING DUAL
+       		ON (raterId = #{raterId})
+       		WHEN MATCHED THEN
+       			UPDATE SET RATE = #{rate} AND DESCRIPTION = #{description}
+       		WHEN NOT MATCHED THEN
+       			INSERT INTO RATE(rateId, RATERID, RATEDID, RATE, DESCRIPTION)
+        		VALUES (#{rateId}, #{raterId}, #{ratedId}, #{rate}, #{description})
   	</insert>
   	
   	 <select id="getRate" resultType="Rate">

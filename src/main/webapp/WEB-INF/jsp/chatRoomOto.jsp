@@ -140,22 +140,25 @@
 						<tr>
 							<td colspan = "2"><label for="chat">채팅 내용</label>: <form:input path="chat" /><input type="submit" value="Upload" /></td>
 						</tr>
-						<tr>
-							<td colspan = "2">
-								<c:if test="${userSession.user.userId eq sellerId}">
-									<!-- 판매자용 거래 완료버튼 -->
-									<!-- 평가하기 관련 request param 추가 -->
-										<input type="button" value="거래 완료" class="btn py-3 px-4 btn-primary">
-								</c:if>
-								<c:if test="${userSession.user.userId ne sellerId}">
-									<!-- 구매자용 거래 완료버튼 -->
-									<!-- 평가하기 관련 request param 추가 -->
-										<input type="button" value="거래 완료" class="btn py-3 px-4 btn-primary">
-								</c:if>
-							</td>
-						</tr>
 					</table>
 				</form:form>
+				<c:if test="${userSession.user.userId eq sellerId}">
+					<!-- 판매자용 거래 완료버튼 -->
+					<c:url value="/rating.do" var="RateForm">
+						<c:param name="ratedId" value="${userSession.user.userId}"/>
+						<c:param name="raterId" value="${sellerId}"/>
+                	</c:url>
+                	<a href="${RateForm}" class="btn py-3 px-4 btn-primary"><c:out value="거래 완료"/></a>
+				</c:if>
+				
+				<c:if test="${userSession.user.userId ne sellerId}">
+					<!-- 구매자용 거래 완료버튼 -->
+					<c:url value="/rating.do" var="RateForm">
+						<c:param name="ratedId" value="${sellerId}"/>
+						<c:param name="raterId" value="${userSession.user.userId}"/>
+                	</c:url>
+                	<a href="${RateForm}" class="btn py-3 px-4 btn-primary"><c:out value="거래 완료"/></a>
+				</c:if>
 			</div>
 		</div>
 	</div>

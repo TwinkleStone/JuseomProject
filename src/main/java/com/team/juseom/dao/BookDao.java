@@ -1,6 +1,5 @@
 package com.team.juseom.dao;
 
-import java.util.Date;
 import java.util.List;
 
 import com.team.juseom.domain.Applier;

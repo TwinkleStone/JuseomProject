@@ -1,14 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<!DOCTYPE html>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
-	<title>입찰 form</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	    
+  <head>
+    <title>주섬주섬</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
 
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/open-iconic-bootstrap.min.css">
@@ -23,10 +23,63 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/flaticon.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/icomoon.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css">
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-</head>
-<body>
-	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+	
+	<style>
+		.rate {
+		  float: left;
+		  border: none;
+		}
+		.rate:not(:checked) > input {
+		  position: absolute;
+		  top: -9999px;
+		  clip: rect(0, 0, 0, 0);
+		}
+		.rate:not(:checked) > label {
+		  float: right;
+		  width: 1em;
+		  padding: 0 .1em;
+		  overflow: hidden;
+		  white-space: nowrap;
+		  cursor: pointer;
+		  font-size: 200%;
+		  line-height: 1.2;
+		  color: #ddd;
+		}
+		.rate:not(:checked) > label:before {
+		  content: '★ ';
+		}
+		.rate > input:checked ~ label {
+		  color: #f70;
+		}
+		.rate:not(:checked) > label:hover,
+		.rate:not(:checked) > label:hover ~ label {
+		  color: gold;
+		}
+		.rate > input:checked + label:hover,
+		.rate > input:checked + label:hover ~ label,
+		.rate > input:checked ~ label:hover,
+		.rate > input:checked ~ label:hover ~ label,
+		.rate > label:hover ~ input:checked ~ label {
+		  color: #ea0;
+		}
+		.rate > label:active {
+		  position: relative;
+		}
+	</style>
+	 
+	<script>
+	$('.rating input').change(function() {
+		$('#choice').text(this.value + ' stars');
+		});
+
+    </script>
+	
+  </head>
+  <body>
+    
+	  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
 	      <a class="navbar-brand" href="<c:url value="/index.do" />">주섬주섬</a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,49 +89,77 @@
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
 	          <li class="nav-item"><a href="<c:url value="/index.do" />" class="nav-link">중고</a></li>
-	          <li class="nav-item"><a href="<c:url value="/auction.do" />" class="nav-link">경매</a></li>
+	          <li class="nav-item active"><a href="<c:url value="/auction.do" />" class="nav-link">경매</a></li>
 	          <li class="nav-item"><a href="<c:url value="/share.do" />" class="nav-link">나눔</a></li>
-	          <li class="nav-item active"><a class="nav-link" href="<c:url value="/insert/search.do" />">등록</a></li>
+	          <li class="nav-item"><a class="nav-link" href="<c:url value="/insert/search.do" />">등록</a></li>
 	          <!--  <li class="nav-item"><a href="properties.html" class="nav-link">Listing</a></li>
 	          <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
 	          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li> -->
 	        </ul>
 	      </div>
 	    </div>
-	</nav>
-	<!-- END nav -->
-	
-	<div class="hero-wrap" style="background-image: url('${pageContext.request.contextPath}/resources/images/bg_5.jpg');" data-stellar-background-ratio="0.5">
+	  </nav>
+    <!-- END nav -->
+    
+    <div class="hero-wrap" style="background-image: url('${pageContext.request.contextPath}/resources/images/bg_5.jpg');" data-stellar-background-ratio="0.5">
       <div class="container">
         <div class="row no-gutters slider-text justify-content-center align-items-center">
           
         </div>
       </div>
     </div>
-	
-	<div class="container">
-	 <div class="row justify-content-center">
-	   <div class="co-md-4" style="padding: 30px">
-		<form:form modelAttribute="bidder" class="bg-light p-5 contact-form" style="margin-left: 100px; margin-right: 100px">
-			<div class="form-group" style="width: 400px;">
-				<label for="bidNumber">책의 갯수 * (마우스 클릭이 안먹으므로 일단은 tap으로 입력해주세요ㅠㅠ)</label>
-				<form:input path="bidNumber" class="form-control" id="bidNumber"/>
-				<form:errors path="bidNumber" /> <br/>
-	
-				<label for="bidPrice">입찰가 *</label>
-				<form:input path="bidPrice" class="form-control" />
-				<form:errors path="bidPrice"/> <br/>
-			</div>
-			<form:hidden path="auctionId" value="${param.auctionId}" />
-			<div class="form-group" style="text-align: center;">
-				<input type="submit" value="입찰하기" class="btn btn-primary py-3 px-4">
-			</div>
-		</form:form>
-		</div>
-	  </div>
-	 </div>
-	
-	<footer class="ftco-footer ftco-section">
+
+	<section class="ftco-section ftco-degree-bg">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 ftco-animate" style="align: center">
+            
+            <div class="row justify-content-center">
+          		<div class="col-md-12 heading-section text-center ftco-animate mb-5">
+	            	<h2 class="mb-2">${rate.ratedId}님에게 별점 남기기</h2>
+          		</div>
+          		<table style="background: #f8f9fa">
+	        		<tr>
+	        			<td style="padding: 30px">
+	        				<div class="form-group">
+                    			<form:form modelAttribute="rate">
+									<div class="form-group" style="text-align: center">
+										<fieldset class="rate">
+											<input type="radio" id="star5" name="rate" value="5" />
+											<label for="star5">5 stars</label>
+											<input type="radio" id="star4" name="rate" value="4" />
+											<label for="star4">4 stars</label>
+											<input type="radio" id="star3" name="rate" value="3" />
+											<label for="star3">3 stars</label>
+											<input type="radio" id="star2" name="rate" value="2" />
+											<label for="star2">2 stars</label>
+											<input type="radio" id="star1" name="rate" value="1" />
+											<label for="star1">1 star</label>
+										</fieldset>
+										<br/>
+										<br/>
+										<br/>
+									</div>
+									<div class="form-group">
+										<form:label path="description">한줄 리뷰</form:label> <br/>
+										<form:textarea path="description" cols="40" rows="2"/>
+										<form:errors path="description" /> <br/>
+									</div>
+									<div class="form-group" style="text-align: center">
+										<input type="submit" class="btn py-3 px-4 btn-primary" value="SEND"/>
+									</div>
+								</form:form>
+                  			</div>
+	        			</td>
+	        		</tr>
+        		</table>
+        	</div>
+          </div> <!-- .col-md-8 -->
+        </div>
+      </div>
+    </section> <!-- .section -->
+    
+    <footer class="ftco-footer ftco-section">
       <div class="container">
         <div class="row mb-5">
           <div class="col-md">
@@ -150,27 +231,27 @@
     
   
 
-	<!-- loader -->
-	<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
-	
-  	<script src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
- 	<script src="${pageContext.request.contextPath}/resources/js/jquery-migrate-3.0.1.min.js"></script>
-  	<script src="${pageContext.request.contextPath}/resources/js/popper.min.js"></script>
-  	<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
-  	<script src="${pageContext.request.contextPath}/resources/js/jquery.easing.1.3.js"></script>
-  	<script src="${pageContext.request.contextPath}/resources/js/jquery.waypoints.min.js"></script>
-  	<script src="${pageContext.request.contextPath}/resources/js/jquery.stellar.min.js"></script>
-  	<script src="${pageContext.request.contextPath}/resources/js/owl.carousel.min.js"></script>
-  	<script src="${pageContext.request.contextPath}/resources/js/jquery.magnific-popup.min.js"></script>
-  	<script src="${pageContext.request.contextPath}/resources/js/aos.js"></script>
-  	<script src="${pageContext.request.contextPath}/resources/js/jquery.animateNumber.min.js"></script>
-  	<script src="${pageContext.request.contextPath}/resources/js/bootstrap-datepicker.js"></script>
-  	<script src="${pageContext.request.contextPath}/resources/js/jquery.timepicker.min.js"></script>
-  	<script src="${pageContext.request.contextPath}/resources/js/scrollax.min.js"></script>
-  	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-  	<script src="${pageContext.request.contextPath}/resources/js/google-map.js"></script>
-  	<script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
-	
-	
-</body>
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+
+  
+  <script src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/js/popper.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/js/jquery.easing.1.3.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/js/jquery.waypoints.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/js/jquery.stellar.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/js/owl.carousel.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/js/jquery.magnific-popup.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/js/aos.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/js/jquery.animateNumber.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/js/bootstrap-datepicker.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/js/jquery.timepicker.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/js/scrollax.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+  <script src="${pageContext.request.contextPath}/resources/js/google-map.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
+  </body>
 </html>
