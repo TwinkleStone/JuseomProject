@@ -248,6 +248,18 @@
 		]]>
 	</update>
 	
+	<update id="updatePeopleNumber">
+		UPDATE SHARING
+		SET PEOPLENUMBER = (SELECT COUNT(*) FROM APPLIER WHERE SHAREID = #{SHAREID})
+		WHERE shareId = #{shareId}
+	</update>
+
+	<update id="updateAuctionWinner">
+		UPDATE AUCTION
+		SET BIDWINNER = #{param1}
+		WHERE AUCTIONID = #{param2}
+	</update>
+	
 	<update id="updateShareWinner">
 		UPDATE SHARING
 		SET WINNER = #{param1}
