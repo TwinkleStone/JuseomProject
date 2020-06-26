@@ -121,20 +121,29 @@
 	        		</tr>
         		</table>
         	</div>
-        	<div class="row justify-content-center">
+        	<div class="row justify-content-center" style="margin: 20px">
 				<table>
 	        		<tr style="text-align: center">	
-	        			<td style="padding: 30px">
+	        			<c:choose>
+        					<c:when test="${share.status eq 'CLOSE'}">
+        						<td style="padding: 30px; background:#666666; color: white; border-radius: 30px">
+									이 책은 나눔이 완료되었습니다.
+								</td>
+        					</c:when>
+        					<c:otherwise>
+        						<td style="padding: 30px">
 <%--  	        					<form:form modelAttribute="applier" action="apply.do" method="post">
 	        						<div class="form-group">
 	        						<form:hidden path="shareId" value="${share.shareId}" />
 	        						<input type="submit" id="submit" value="신청하기" class="btn py-3 px-4 btn-primary" />
 	        						</div>
 	        					</form:form> --%>
-	        					<c:if test="${share.book.userId ne userId}">
-	        						<input type="button" class="btn py-3 px-4 btn-primary" value="신청하기" onclick="postJson()"/>
-	        					</c:if>
-	 					</td>
+		        					<c:if test="${share.book.userId ne userId}">
+		        						<input type="button" class="btn py-3 px-4 btn-primary" value="신청하기" onclick="postJson()"/>
+		        					</c:if>
+	 							</td>
+        					</c:otherwise>
+  						</c:choose>
 	        		</tr>
         		</table>
         	</div>

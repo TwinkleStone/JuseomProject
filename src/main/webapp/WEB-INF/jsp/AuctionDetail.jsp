@@ -37,8 +37,8 @@
 
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
-	          <li class="nav-item active"><a href="<c:url value="/index.do" />" class="nav-link">중고</a></li>
-	          <li class="nav-item"><a href="<c:url value="/auction.do" />" class="nav-link">경매</a></li>
+	          <li class="nav-item"><a href="<c:url value="/index.do" />" class="nav-link">중고</a></li>
+	          <li class="nav-item active"><a href="<c:url value="/auction.do" />" class="nav-link">경매</a></li>
 	          <li class="nav-item"><a href="<c:url value="/share.do" />" class="nav-link">나눔</a></li>
 	          <li class="nav-item"><a class="nav-link" href="<c:url value="/insert/search.do" />">등록</a></li>
 	          <li class="nav-item"><a class="nav-link" href="<c:url value="/search.do" />">검색</a></li>
@@ -106,22 +106,31 @@
 	        		</tr>
         		</table>
         	</div>
-        	<div class="row justify-content-center">
+        	<div class="row justify-content-center" style="margin: 20px">
 				<table>
 	        		<tr style="text-align: center">
-	        			<td style="padding: 30px">
-	        				<div class="form-group">
-                    			<c:url value="/bidding.do" var="biddingForm">
-                    				<c:param name="auctionId" value="${auction.auctionId}"/>
-                    			</c:url>
-                    			<a href="${biddingForm}" class="btn py-3 px-4 btn-primary"><c:out value="입찰하기"/></a>
-                    			
-                    			<c:url value="/bidderList.do" var="bidderList">
-                    				<c:param name="auctionId" value="${auction.auctionId}"/>
-                    			</c:url>
-                    			<a href="${bidderList}" class="btn py-3 px-4 btn-primary"><c:out value="입찰 현황 보기"/></a>
-                  			</div>
-	 					</td>
+	        			<c:choose>
+        					<c:when test="${auction.status eq 'CLOSE'}">
+        						<td style="padding: 30px; background:#666666; color: white; border-radius: 30px">
+									이 책은 경매가 완료되었습니다.
+								</td>
+        					</c:when>
+        					<c:otherwise>
+        						<td style="padding: 30px">
+			        				<div class="form-group">
+		                    			<c:url value="/bidding.do" var="biddingForm">
+		                    				<c:param name="auctionId" value="${auction.auctionId}"/>
+		                    			</c:url>
+		                    			<a href="${biddingForm}" class="btn py-3 px-4 btn-primary"><c:out value="입찰하기"/></a>
+		                    			
+		                    			<c:url value="/bidderList.do" var="bidderList">
+		                    				<c:param name="auctionId" value="${auction.auctionId}"/>
+		                    			</c:url>
+		                    			<a href="${bidderList}" class="btn py-3 px-4 btn-primary"><c:out value="입찰 현황 보기"/></a>
+		                  			</div>
+	 							</td>
+        					</c:otherwise>
+  						</c:choose>
 	        		</tr>
         		</table>
         	</div>

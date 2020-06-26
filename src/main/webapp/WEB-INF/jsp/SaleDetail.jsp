@@ -138,29 +138,38 @@
 						</tr>
 					</table>
 				</div>
-				<div class="row justify-content-center">
+				<div class="row justify-content-center" style="margin: 20px;">
 					<table>
-						<tr style="text-align: center">
-							<td width="50%" style="padding: 30px">
-								<div class="form-group">
-									<c:url value="/user/chatRoom.do" var="chatUrl">
-										<c:param name="bookId" value="${sale.book.bookId}" />
-										<c:param name="sellerId" value="${sale.book.userId}" />
-									</c:url>
-									<a href="${chatUrl}" class="btn py-3 px-4 btn-primary"><c:out
-											value="구매 신청" /></a>
-								</div>
-							</td>
-							<td width="50%" style="padding: 30px">
-								<div class="form-group">
-									<c:url value="/chatRoom.do" var="chatUrl">
-										<c:param name="bookId" value="${sale.book.bookId}" />
-										<c:param name="sellerId" value="${sale.book.userId}" />
-									</c:url>
-									<a href="${chatUrl}" class="btn py-3 px-4 btn-primary"><c:out
-											value="채팅이동" /></a>
-								</div>
-							</td>
+						<tr style="text-align: center;">
+							<c:choose>
+        					<c:when test="${s.book.status eq 'CLOSE'}">
+        						<td style="padding: 30px; background:#666666; color: white; border-radius: 30px">
+									이 책은 판매가 완료되었습니다.
+								</td>
+        					</c:when>
+        					<c:otherwise>
+        						<td width="200px" style="padding: 30px">
+									<div class="form-group">
+										<c:url value="/user/chatRoom.do" var="chatUrl">
+											<c:param name="bookId" value="${sale.book.bookId}" />
+											<c:param name="sellerId" value="${sale.book.userId}" />
+										</c:url>
+										<a href="${chatUrl}" class="btn py-3 px-4 btn-primary"><c:out
+												value="구매 신청" /></a>
+									</div>
+								</td>
+								<td width="50%" style="padding: 30px">
+									<div class="form-group">
+										<c:url value="/chatRoom.do" var="chatUrl">
+											<c:param name="bookId" value="${sale.book.bookId}" />
+											<c:param name="sellerId" value="${sale.book.userId}" />
+										</c:url>
+										<a href="${chatUrl}" class="btn py-3 px-4 btn-primary"><c:out
+												value="채팅이동" /></a>
+									</div>
+								</td>
+        					</c:otherwise>
+  							</c:choose>
 						</tr>
 					</table>
 				</div>
