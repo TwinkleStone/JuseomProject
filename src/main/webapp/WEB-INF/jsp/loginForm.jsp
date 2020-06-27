@@ -106,7 +106,7 @@
 				<h2 class="mb-2">Login</h2>
 				<br />
 				<form action='<c:url value="/user/login.do"/>' method="POST">
-					<table class="table table-hover" style="text-align: center">
+					<table class="table" style="text-align: center">
 						<tr>
 							<td colspan="1">Please enter your username and password.
 							</td>

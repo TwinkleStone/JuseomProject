@@ -61,7 +61,7 @@
 	   <div class="co-md-4" style="padding: 30px">
 		<form:form modelAttribute="bidder" class="bg-light p-5 contact-form" style="margin-left: 100px; margin-right: 100px">
 			<div class="form-group" style="width: 400px;">
-				<label for="bidNumber">책의 갯수 * (마우스 클릭이 안먹으므로 일단은 tap으로 입력해주세요ㅠㅠ)</label>
+				<label for="bidNumber">책의 갯수 * (마우스 클릭이 안 먹으므로 일단은 tap으로 입력해주세요ㅠㅠ)</label>
 				<form:input path="bidNumber" class="form-control" id="bidNumber"/>
 				<form:errors path="bidNumber" /> <br/>
 	

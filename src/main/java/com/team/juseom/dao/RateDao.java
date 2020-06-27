@@ -7,7 +7,6 @@ import com.team.juseom.domain.Rate;
 public interface RateDao {
 	List<Rate> getRateListByUser(String userId);
 	void insertRate(Rate rating);
-	Rate getRate(String rateId);
+	Rate getRate(int rateId);
+	int searchRate(Rate rate);
 }
-
-

@@ -10,7 +10,8 @@ public interface RateMapper {
 
 	List<Rate> getRateListByUser(String userId);
 	void insertRate(Rate rate);
-	Rate getRate(String rateId);
+	Rate getRate(int rateId);
+	int searchRate(int bookId);
 }
 
 

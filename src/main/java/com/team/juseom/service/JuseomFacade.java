@@ -55,4 +55,6 @@ public interface JuseomFacade {
 	int searchApplier(Applier applier);
 	
 	List<Rate> getRateListByUser(String userId);
+	int searchRate(Rate rate);
+	Rate getRate(int rateId);
 }

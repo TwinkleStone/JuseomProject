@@ -102,7 +102,22 @@ public class JuseomImpl implements JuseomFacade {
 				
 				int auctionId = auction.getAuctionId();
 				String bidWinner = bidderDao.getBid(auctionId);
-				bookDao.updateAuctionWinner(bidWinner, auctionId);					
+				bookDao.updateAuctionWinner(bidWinner, auctionId);
+				
+				String sellerId = auction.getBook().getUserId();
+				String bookId = Integer.toString(auction.getBook().getBookId());
+				List<otoChat> chats = new ArrayList<otoChat>();
+				
+				String chattingRoomId = bookId + "_" + bidWinner;
+				chats.add(new otoChat(chattingRoomId, bookId, sellerId, bidWinner));
+				
+				Date from = new Date();
+				SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				String to = transFormat.format(from);
+				
+				chats.get(0).setChatTime(to);
+				chats.get(0).setChat("축하합니다! " + auction.getBook().getName() + " 책 경매에서 낙찰되셨습니다.");
+				chatDao.insertotoChat(chats.get(0));
 			}
 		};
 		
@@ -289,6 +304,15 @@ public class JuseomImpl implements JuseomFacade {
 		return rateDao.getRateListByUser(userId);
 	}
 
-	
+	@Override
+	public int searchRate(Rate rate) {
+		return rateDao.searchRate(rate);
+	}
+
+	@Override
+	public Rate getRate(int rateId) {
+		return rateDao.getRate(rateId);
+	}
+
 
 }

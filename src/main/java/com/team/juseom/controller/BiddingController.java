@@ -1,6 +1,8 @@
 package com.team.juseom.controller;
 
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,8 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.util.WebUtils;
 
 import com.team.juseom.domain.Bidder;
+import com.team.juseom.service.BiddingFormValidator;
 import com.team.juseom.service.JuseomFacade;
 
 @Controller
@@ -36,14 +40,22 @@ public class BiddingController {
 	public String insertBidder(
 			@ModelAttribute("bidder") Bidder formData,
 			BindingResult result,
+			HttpServletRequest request,
 			Model model) {
+		new BiddingFormValidator().validate(formData, result);
 		
-		formData.setUserId("qwerty"); //가데이터
+		if (result.hasErrors()) {
+			return "BiddingForm";
+		}
+		
+		UserSession userSession = (UserSession) WebUtils.getSessionAttribute(request, "userSession");
+		String userId = userSession.getUser().getUserId();
+		
+		formData.setUserId(userId);
 		
 		juseomFacade.insertBidder(formData);
 		
-		return "redirect:/index";
-		//return "BidderList";
+		return "redirect:/auction.do";
 	}
 	
 	

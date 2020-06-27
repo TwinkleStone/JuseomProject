@@ -73,7 +73,6 @@
 	$('.rating input').change(function() {
 		$('#choice').text(this.value + ' stars');
 		});
-
     </script>
 	
   </head>
@@ -155,7 +154,7 @@
 										<form:errors path="description" /> <br/>
 									</div>
 									<div class="form-group" style="text-align: center">
-										<input type="submit" class="btn py-3 px-4 btn-primary" value="SEND"/>
+										<input type="submit" class="btn py-3 px-4 btn-primary" value="SEND" />
 									</div>
 								</form:form>
                   			</div>

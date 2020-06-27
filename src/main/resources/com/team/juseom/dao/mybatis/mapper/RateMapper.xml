@@ -17,14 +17,8 @@
     	<selectKey keyProperty="rateId" resultType="int" order="BEFORE">
         	SELECT RATE_SEQ.nextval AS rateId FROM DUAL
      	</selectKey>
-     		MERGE INTO RATE
-     		USING DUAL
-     		ON (raterId = #{raterId} AND ratedId = #{ratedId} AND bookId = #{bookId})
-     		WHEN MATCHED THEN
-     			UPDATE SET rate = #{rate}, description = #{description} WHERE bookId = #{bookId}
-     		WHEN NOT MATCHED THEN
-       			INSERT (rateId, RATERID, RATEDID, RATE, DESCRIPTION, BOOKID)
-        		VALUES (#{rateId}, #{raterId}, #{ratedId}, #{rate}, #{description}, #{bookId})
+     		INSERT INTO RATE(rateId, RATERID, RATEDID, RATE, DESCRIPTION, BOOKID)
+    		VALUES (#{rateId}, #{raterId}, #{ratedId}, #{rate}, #{description}, #{bookId})
   	</insert>
   	
   	 <select id="getRate" resultType="Rate">
@@ -37,6 +31,12 @@
         	BOOKID
      	FROM RATE
      	WHERE RATEID = #{rateId}
+  </select>
+  
+  <select id="searchRate" resultType="int">
+  		SELECT count(*)
+  		FROM RATE
+  		WHERE bookId = #{value}
   </select>
 	
 </mapper>

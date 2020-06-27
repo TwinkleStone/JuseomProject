@@ -22,7 +22,7 @@
 			USING DUAL
 			ON (userId = #{userId} AND auctionId = #{auctionId})
 			WHEN MATCHED THEN
-				UPDATE SET BIDPRICE = #{bidPrice}
+				UPDATE SET BIDPRICE = #{bidPrice}, BIDNUMBER = #{bidNumber} WHERE auctionId = #{auctionId}
 			WHEN NOT MATCHED THEN
 				INSERT (BIDDERID, USERID, AUCTIONID, BIDNUMBER, BIDPRICE)
 				VALUES (#{bidderId}, #{userId}, #{auctionId}, #{bidNumber}, #{bidPrice})

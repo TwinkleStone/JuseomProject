@@ -24,8 +24,14 @@ public class MybatisRateDao implements RateDao {
 	}
 
 	@Override
-	public Rate getRate(String rateId) {
+	public Rate getRate(int rateId) {
 		return rateMapper.getRate(rateId);
+	}
+
+	@Override
+	public int searchRate(Rate rate) {
+		int bookId = rate.getBookId();
+		return rateMapper.searchRate(bookId);
 	}
 
 }
