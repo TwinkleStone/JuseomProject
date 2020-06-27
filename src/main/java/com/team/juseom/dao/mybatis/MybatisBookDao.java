@@ -120,5 +120,15 @@ public class MybatisBookDao implements BookDao{
 		bookMapper.updateShareWinner(winner, shareId);
 	}
 
+	@Override
+	public void updateSale(String saleId, String price) {
+		bookMapper.updateSale(saleId, price);
+	}
+	
+	@Override
+	public void updateBook(String bookId, String detail) {
+		bookMapper.updateBook(bookId, detail);
+	}
+
 
 }

@@ -38,6 +38,8 @@
 	href="${pageContext.request.contextPath}/resources/css/icomoon.css">
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/style.css">
+	
+	
 </head>
 <body>
 
@@ -110,8 +112,8 @@
 									<p>
 										<span style="text-decoration: line-through;"><fmt:formatNumber
 												value="${sale.book.price}" pattern="#,###" /></span>&nbsp;&nbsp;<span
-											style="font-size: 20px; color: #d4ca68"><fmt:formatNumber
-												value="${sale.suggestPrice}" pattern="#,###" />원</span>
+											style="font-size: 20px; color: #d4ca68" id="pri"><fmt:formatNumber
+												value="${sale.suggestPrice}" pattern="#,###"/>원</span>
 									</p>
 									<p>
 										상태 : <span style="text-weight: bold; color: #d4ca68">${sale.book.condition}</span>
@@ -121,11 +123,11 @@
 						</tr>
 						<tr>
 							<td colspan="2" style="padding: 30px">
-								<div class="form-group">
+								<div class="form-group" id="txtareadiv">
 									<label for="message">상세설명</label>
 									<c:choose>
 										<c:when test="${empty sale.book.detail}">
-											<textarea name="" id="message" cols="30" rows="10"
+											<textarea name="detail2" id="message" cols="30" rows="10"
 												class="form-control" style="font-size: 15px" disabled>내용 없습니다.</textarea>
 										</c:when>
 										<c:otherwise>
@@ -140,45 +142,75 @@
 				</div>
 				<div class="row justify-content-center" style="margin: 20px;">
 					<table>
+						<tr>
+							<td id="updateForm" style="display: none;" colspan=2>
+						
+				            		<div class="form-group">
+				             			<label for="price">희망가격 *</label>
+				             			<input class="form-control" id="updatePrice" value="${sale.suggestPrice}"/>
+				             		</div>
+				             		<div class="form-group">
+				                    	<label for="message">세부사항</label>
+				                    	<textarea cols="30" rows="10" class="form-control" id="updateMessage">${sale.book.detail}</textarea>
+				                  	</div>
+				            </td> 
+						</tr>
+					</table>
+				</div>
+				<div class="row justify-content-center" style="margin: 20px;">
+					<table>
 						<tr style="text-align: center;">
 							<c:choose>
-        					<c:when test="${s.book.status eq 'CLOSE'}">
+        					<c:when test="${sale.book.status eq 'CLOSE'}">
         						<td style="padding: 30px; background:#666666; color: white; border-radius: 30px">
 									이 책은 판매가 완료되었습니다.
 								</td>
         					</c:when>
         					<c:otherwise>
-        						<td width="200px" style="padding: 30px">
-									<div class="form-group">
-									<c:if test="${userSession.user.userId ne sale.book.userId}">
-										<c:url value="/user/chatRoom.do" var="chatUrl">
-											<c:param name="bookId" value="${sale.book.bookId}" />
-											<c:param name="sellerId" value="${sale.book.userId}" />
-										</c:url>
-										<a href="${chatUrl}" class="btn py-3 px-4 btn-primary"><c:out
-												value="구매 신청" /></a>
-									</c:if>
-									<c:if test="${userSession.user.userId eq sale.book.userId}">
-										<a class="btn py-3 px-4 btn-primary"><c:out
-												value="신청 불가" /></a>
-									</c:if>
-									</div>
-								</td>
-								<td width="50%" style="padding: 30px">
-									<div class="form-group">
-										<c:url value="/chatRoom.do" var="chatUrl">
-											<c:param name="bookId" value="${sale.book.bookId}" />
-											<c:param name="sellerId" value="${sale.book.userId}" />
-										</c:url>
-										<a href="${chatUrl}" class="btn py-3 px-4 btn-primary"><c:out
-												value="채팅이동" /></a>
-									</div>
-								</td>
+        						<c:choose>
+        						<c:when test="${sale.book.userId ne userId}">
+        							<td width="200px" style="padding: 30px">
+										<div class="form-group">
+										<c:if test="${userSession.user.userId ne sale.book.userId}">
+											<c:url value="/user/chatRoom.do" var="chatUrl">
+												<c:param name="bookId" value="${sale.book.bookId}" />
+												<c:param name="sellerId" value="${sale.book.userId}" />
+											</c:url>
+											<a href="${chatUrl}" class="btn py-3 px-4 btn-primary"><c:out
+													value="구매 신청" /></a>
+										</c:if>
+										<c:if test="${userSession.user.userId eq sale.book.userId}">
+											<a class="btn py-3 px-4 btn-primary"><c:out
+													value="신청 불가" /></a>
+										</c:if>
+										</div>
+									</td>
+									<td width="50%" style="padding: 30px">
+										<div class="form-group">
+											<c:url value="/chatRoom.do" var="chatUrl">
+												<c:param name="bookId" value="${sale.book.bookId}" />
+												<c:param name="sellerId" value="${sale.book.userId}" />
+											</c:url>
+											<a href="${chatUrl}" class="btn py-3 px-4 btn-primary"><c:out
+													value="채팅이동" /></a>
+										</div>
+									</td>
+        						</c:when>
+        						<c:otherwise>
+        							<td style="display:none" id="btnOpen">
+        								<input type="button" class="btn py-3 px-4 btn-primary" value="수정하기" onclick="getJson()"/>
+        							</td>
+        							<td>
+        								<input id="toggleButton" type="button" class="btn py-3 px-4 btn-primary" value="수정하기" onclick="openUpdateForm()"/>
+        							</td>
+        						</c:otherwise>
+        						</c:choose>
         					</c:otherwise>
   							</c:choose>
 						</tr>
 					</table>
 				</div>
+
 				<div class="pt-5 mt-5">
 					<ul class="comment-list">
 						<li class="comment">

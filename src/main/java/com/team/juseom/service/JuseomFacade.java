@@ -18,6 +18,7 @@ public interface JuseomFacade {
 	void insertSale(Sale sale);
 	void insertShare(Share share);
 	void insertAuction(Auction auction);
+	void updateSale(String bookId, String saleId, String price, String detail);
 	List<Sale> getBookListBySale();
 	List<Auction> getBookListByAuction();
 	List<Share> getBookListByShare();

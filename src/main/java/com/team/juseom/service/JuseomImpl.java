@@ -182,6 +182,12 @@ public class JuseomImpl implements JuseomFacade {
 	public Share getShare(String shareId) {
 		return bookDao.getShare(shareId);
 	}
+	
+	@Override
+	public void updateSale(String bookId, String saleId, String price, String detail) {
+		bookDao.updateSale(saleId, price);	
+		bookDao.updateBook(bookId, detail);
+	}
 
 	@Override
 	public User getUserById(String userId) {

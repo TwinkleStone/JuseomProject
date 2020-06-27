@@ -88,7 +88,8 @@ public class InsertBookContorller {
 			throw new RuntimeException("검색어 인코딩 실패",e);
 		}
 		String apiURL = "https://openapi.naver.com/v1/search/book_adv.xml?d_isbn="+ text; // xml 결과
-
+		
+		
 		String responseBody = InsertSearchService.get(apiURL);
 		List<BookRegiRequest> bookList = InsertSearchService.parse(responseBody);
 		model.addAttribute("bookRegi", bookList.get(0));

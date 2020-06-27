@@ -192,6 +192,22 @@
 				AND PRESENTPRICE <= #{param2}
 		]]>
 	</update>
+	
+	<update id="updateSale" parameterType="String">
+		<![CDATA[
+			UPDATE SALE
+			SET SUGGESTPRICE = #{param2}
+			WHERE saleId = ${param1}
+		]]>
+	</update>
+	
+	<update id="updateBook" parameterType="String">
+		<![CDATA[
+			UPDATE BOOK
+			SET DETAIL = #{param2}
+			WHERE bookId = ${param1}
+		]]>
+	</update>
 
 	<!-- 검색을 위한 mapper -->
 	<select id="searchBookDetail" parameterType="String"

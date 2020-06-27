@@ -15,7 +15,8 @@ public interface BookDao {
 	void insertAuction(Auction auction);
 	void insertSale(Sale sale);
 	void insertShare(Share share);
-//	Book getBook(String bookId);
+	void updateSale(String saleId, String price);
+	void updateBook(String bookId, String detail);
 	Sale getSale(String saleId);
 	Share getShare(String shareId);
 	Auction getOneAuction(String auctionId);

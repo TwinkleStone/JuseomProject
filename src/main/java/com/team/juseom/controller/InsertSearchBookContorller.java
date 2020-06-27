@@ -2,6 +2,7 @@ package com.team.juseom.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.team.juseom.service.InsertSearchService;
 
@@ -32,6 +34,15 @@ public class InsertSearchBookContorller {
 		}
 		if(session.getAttribute("searchList") != null) {
 			session.removeAttribute("searchList");
+		}
+		if(session.getAttribute("sale") != null) {
+			session.removeAttribute("sale");
+		}
+		if(session.getAttribute("auction") != null) {
+			session.removeAttribute("auction");
+		}
+		if(session.getAttribute("share") != null) {
+			session.removeAttribute("share");
 		}
 		return "/InsertSearch";
 	}

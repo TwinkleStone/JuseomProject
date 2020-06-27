@@ -26,6 +26,8 @@ public interface BookMapper {
 	void insertAuction(Auction auction);
 	void insertSale(Sale sale);
 	void insertShare(Share share);
+	void updateSale(String saleId, String price);
+	void updateBook(String bookId, String detail);
 
 	void updateBidNumber(int auctionId);
 	void updatePresentPrice(int auctionId, int bidPrice);
