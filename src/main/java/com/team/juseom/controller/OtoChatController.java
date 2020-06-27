@@ -113,7 +113,13 @@ public class OtoChatController {
 		String bookId = session.getAttribute("bookId").toString();
 		String sellerId = session.getAttribute("sellerId").toString();
 		String userId = userSession.getUser().getUserId();
-		String buyerId = session.getAttribute("buyerId").toString();
+		String buyerId;
+		if (session.getAttribute("buyerId") == null) {
+			buyerId = userSession.getUser().getUserId();
+		}
+		else {
+			buyerId = session.getAttribute("buyerId").toString();
+		}
 		String chattingRoomId = bookId + "_" + buyerId;
 		
 		//list = juseom.getotoChatList(bookId);

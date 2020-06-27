@@ -150,12 +150,18 @@
         					<c:otherwise>
         						<td width="200px" style="padding: 30px">
 									<div class="form-group">
+									<c:if test="${userSession.user.userId ne sale.book.userId}">
 										<c:url value="/user/chatRoom.do" var="chatUrl">
 											<c:param name="bookId" value="${sale.book.bookId}" />
 											<c:param name="sellerId" value="${sale.book.userId}" />
 										</c:url>
 										<a href="${chatUrl}" class="btn py-3 px-4 btn-primary"><c:out
 												value="구매 신청" /></a>
+									</c:if>
+									<c:if test="${userSession.user.userId eq sale.book.userId}">
+										<a class="btn py-3 px-4 btn-primary"><c:out
+												value="신청 불가" /></a>
+									</c:if>
 									</div>
 								</td>
 								<td width="50%" style="padding: 30px">
