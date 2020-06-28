@@ -281,6 +281,8 @@
 	  if (RemainDate < 0) {      
 	    // 시간이 종료 되었으면..
 	    clearInterval(tid);   // 타이머 해제
+	    document.all.timer.innerHTML = "00:00:00";
+	    location.reload(true);
 	  }else{
 	    RemainDate = RemainDate - 1000; // 남은시간 -1초
 	  }
