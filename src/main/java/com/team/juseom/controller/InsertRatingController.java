@@ -4,6 +4,7 @@ package com.team.juseom.controller;
 import java.io.IOException;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.team.juseom.domain.OtoStatus;
 import com.team.juseom.domain.Rate;
 import com.team.juseom.service.JuseomFacade;
 import com.team.juseom.service.RatingFormValidator;
@@ -51,13 +53,41 @@ public class InsertRatingController {
 	public String insertRate(
 			@ModelAttribute("rate") Rate formData,
 			HttpServletResponse response,
-			BindingResult result) throws IOException {
+			BindingResult result, HttpSession session) throws IOException {
 		new RatingFormValidator().validate(formData, result);
 		
 		if (result.hasErrors()) {
 			return "RatingForm";
 		}
 		juseomFacade.insertRate(formData);
+		
+		//book status 변경용 코드
+		String bookId = Integer.toString(formData.getBookId());
+		UserSession userSession = (UserSession)session.getAttribute("userSession");
+		String userId = userSession.getUser().getUserId();
+		String sellerId = session.getAttribute("sellerId").toString();
+		String buyerId;
+		if (session.getAttribute("buyerId") == null) {
+			buyerId = userSession.getUser().getUserId();
+		}
+		else {
+			buyerId = session.getAttribute("buyerId").toString();
+		}
+		String chattingRoomId = bookId + "_" + buyerId;
+		OtoStatus status = juseomFacade.getStatusByChattingRoomId(chattingRoomId);
+		
+		if (sellerId.equals(userId)) {
+			status.setSellerStatus("CLOSE");
+			juseomFacade.updateSellerStatus(status);
+		}
+		else {
+			status.setBuyerStatus("CLOSE");
+			juseomFacade.updateBuyerStatus(status);
+		}
+		
+		if (status.getBuyerStatus().equals("CLOSE") && status.getSellerStatus().equals("CLOSE")) {
+			juseomFacade.updateBookStatus(bookId);
+		}
 		
 		return "RatingConfirm";
 

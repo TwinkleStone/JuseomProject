@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.team.juseom.dao.mybatis.mapper.OtoStatusMapper">
+	<!-- <select id="insertOtoChat" resultType="otoChat"> INSERT INTO OTOCHAT 
+		(CHATTINGROOMID, SELLERID, BUYERID, CHAT, CHATNUM, CHATTIME) VALUES (#{chattingRoomId}, 
+		#{sellerId}, #{buyerId}, #{chat}, #{chatNum}, #{chatTime}) </select> -->
+
+	<select id="insertStatus" resultType="OtoStatus">
+		INSERT INTO OTOSTATUS
+		(CHATTINGROOMID, BOOKID, SELLERID, BUYERID, SELLERSTATUS, BUYERSTATUS)
+    	VALUES (#{chattingRoomId, jdbcType=VARCHAR}, #{bookId, jdbcType=VARCHAR}, #{sellerId, jdbcType=VARCHAR},
+    			#{buyerId, jdbcType=VARCHAR}, 'OPEN', 'OPEN')
+	</select>
+
+	<update id="updateSellerStatus" parameterType="OtoStatus">
+		UPDATE OTOSTATUS SET SELLERSTATUS='CLOSE'
+		WHERE SELLERID=#{sellerId} AND CHATTINGROOMID=#{chattingRoomId}
+	</update>
+
+	<update id="updateBuyerStatus" parameterType="OtoStatus">
+		UPDATE OTOSTATUS SET BUYERSTATUS='CLOSE'
+		WHERE BUYERID=#{buyerId} AND CHATTINGROOMID=#{chattingRoomId}
+	</update>
+	
+	<select id="getStatusByChattingRoomId" resultType="OtoStatus">
+		SELECT *
+		FROM OTOSTATUS
+		WHERE CHATTINGROOMID=#{chattingRoomId}
+	</select>
+</mapper>

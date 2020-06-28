@@ -116,7 +116,8 @@
 			<div class="col-md-12 heading-section text-center ftco-animate mb-5">
 				<h2 class="mb-2">채팅창</h2>
 				<br />
-				<table class="table">
+				<%@ include file="comment.jsp" %>
+				<!-- <table class="table">
 					<tr>
 						<th>보낸 사람</th>
 						<th>채팅 내용</th>
@@ -144,12 +145,14 @@
 							<td colspan = "2"><label for="chat">채팅 내용</label>: <form:input path="chat" /><input type="submit" value="Upload" /></td>
 						</tr>
 					</table>
-				</form:form>
+				</form:form> -->
 				<c:if test="${userSession.user.userId eq sellerId}">
 					<!-- 판매자용 거래 완료버튼 -->
 					<c:url value="/rating.do" var="RateForm">
 						<c:param name="ratedId" value="${userSession.user.userId}"/>
 						<c:param name="raterId" value="${sellerId}"/>
+						<!-- book status 바꾸려면 필요해서 추가했습니다. -->
+						<c:param name="bookId" value="${bookId}"/>
                 	</c:url>
                 	<a href="${RateForm}" class="btn py-3 px-4 btn-primary"><c:out value="거래 완료"/></a>
 				</c:if>

@@ -63,4 +63,6 @@ public interface JuseomFacade {
 	void insertStatus(OtoStatus status);
 	void updateSellerStatus(OtoStatus status);
 	void updateBuyerStatus(OtoStatus status);
+	OtoStatus getStatusByChattingRoomId(String chattingRoomId);
+	void updateBookStatus(String bookId);
 }

@@ -289,4 +289,11 @@
 		delete from sharing
 		where shareId = #{param1}
 	</delete>
+	
+	<!-- book status 변경용 -->
+	<update id="updateBookStatus" parameterType="String">
+		UPDATE BOOK
+		SET STATUS = 'CLOSE'
+		WHERE BOOKID = #{bookId}
+	</update>
 </mapper>

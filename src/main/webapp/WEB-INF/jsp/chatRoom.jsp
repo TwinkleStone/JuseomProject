@@ -116,7 +116,8 @@
 			<div class="col-md-12 heading-section text-center ftco-animate mb-5">
 				<h2 class="mb-2">채팅창</h2>
 				<br />
-				<table class="table">
+				<%@ include file="commentOtm.jsp" %>
+				<!-- <table class="table">
 					<tr>
 						<th>보낸 사람</th>
 						<th>채팅 내용</th>
@@ -144,7 +145,7 @@
 							<td colspan = "2"><label for="chat">채팅 내용</label>: <form:input path="chat" /><input type="submit" value="Upload" /></td>
 						</tr>
 					</table>
-				</form:form>
+				</form:form> -->
 			</div>
 		</div>
 	</div>

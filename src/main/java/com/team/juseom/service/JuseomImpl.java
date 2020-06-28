@@ -339,9 +339,19 @@ public class JuseomImpl implements JuseomFacade {
 
 	@Override
 	public void updateBuyerStatus(OtoStatus status) {
-		// TODO Auto-generated method stub
 		statusDao.updateBuyerStatus(status);
 	}
 
+	@Override
+	public OtoStatus getStatusByChattingRoomId(String chattingRoomId) {
+		return statusDao.getStatusByChattingRoomId(chattingRoomId);
+		
+	}
+
+	@Override
+	public void updateBookStatus(String bookId) {
+		bookDao.updateBookStatus(bookId);
+		
+	}
 
 }

@@ -6,4 +6,5 @@ public interface OtoStatusDao {
 	void insertStatus(OtoStatus status);
 	void updateSellerStatus(OtoStatus status);
 	void updateBuyerStatus(OtoStatus status);
+	OtoStatus getStatusByChattingRoomId(String chattingRoomId);
 }

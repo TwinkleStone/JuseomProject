@@ -22,14 +22,18 @@ public class MybatisOtoStatusDao implements OtoStatusDao {
 
 	@Override
 	public void updateSellerStatus(OtoStatus status) {
-		// TODO Auto-generated method stub
 		statusMapper.updateSellerStatus(status);
 	}
 
 	@Override
 	public void updateBuyerStatus(OtoStatus status) {
-		// TODO Auto-generated method stub
 		statusMapper.updateBuyerStatus(status);
+	}
+
+	@Override
+	public OtoStatus getStatusByChattingRoomId(String chattingRoomId) {
+		return statusMapper.getStatusByChattingRoomId(chattingRoomId);
+		
 	}
 
 }

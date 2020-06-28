@@ -60,6 +60,9 @@
 		<mvc:interceptor>
     	    <mvc:mapping path="/user/*"/>
     	    <mvc:mapping path="/chat.do"/>
+    	    <!-- 필요에 따라서 인터셉터 필요없는 부분 추가 -->
+    	    <mvc:exclude-mapping path="/user/loginForm.do"/>
+    	    <mvc:exclude-mapping path="/user/login.do"/>
         	<bean class="com.team.juseom.controller.LoginInterceptor" />
     	</mvc:interceptor>
 	</mvc:interceptors>

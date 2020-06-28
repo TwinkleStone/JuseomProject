@@ -188,16 +188,6 @@
 															value="구매 신청" /></a>
 												</div>
 											</td>
-											<td width="50%" style="padding: 30px">
-												<div class="form-group">
-													<c:url value="/chatRoom.do" var="chatUrl">
-														<c:param name="bookId" value="${sale.book.bookId}" />
-														<c:param name="sellerId" value="${sale.book.userId}" />
-													</c:url>
-													<a href="${chatUrl}" class="btn py-3 px-4 btn-primary"><c:out
-															value="채팅이동" /></a>
-												</div>
-											</td>
 										</c:when>
 										<c:otherwise>
 											<td style="display: none" id="btnOpen"><input
@@ -208,6 +198,14 @@
 												onclick="openUpdateForm()" /></td>
 										</c:otherwise>
 									</c:choose>
+									<td>
+											<c:url value="/chatRoom.do" var="chatUrl">
+												<c:param name="bookId" value="${sale.book.bookId}" />
+												<c:param name="sellerId" value="${sale.book.userId}" />
+											</c:url>
+											<a href="${chatUrl}" class="btn py-3 px-4 btn-primary"><c:out
+													value="채팅이동" /></a>
+									</td>
 								</c:otherwise>
 							</c:choose>
 						</tr>
