@@ -34,5 +34,10 @@ public class MybatisRateDao implements RateDao {
 		return rateMapper.searchRate(bookId);
 	}
 
+	@Override
+	public String getAvgRate(String ratedId) {
+		return rateMapper.getAvgRate(ratedId);
+	}
+
 }
 

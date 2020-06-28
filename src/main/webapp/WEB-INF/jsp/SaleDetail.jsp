@@ -1,6 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -38,8 +39,29 @@
 	href="${pageContext.request.contextPath}/resources/css/icomoon.css">
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/style.css">
-
+<style>
+.star_rating {font-size:0; letter-spacing:-4px;}
+.star_rating span {
+    font-size:22px;
+    letter-spacing:0;
+    display:inline-block;
+    margin-left:5px;
+    color:#ccc;
+    text-decoration:none;
+}
+.star_rating span:first-child {margin-left:0;}
+.star_rating span.on {color:#777;}
+</style>
 <script>
+	function openReview(){
+		var review = document.getElementById("review");
+		if(review.style.display=='none'){
+			review.style.display = 'block';
+		}else{
+			review.style.display = 'none';
+		}
+	}
+	
 	function openUpdateForm() {
 		var updateForm = document.getElementById("updateForm");
 		var btnOpen = document.getElementById("btnOpen");
@@ -244,12 +266,14 @@
 												</div>
 											</td>
 											<td>
-												<c:url value="/chatRoom.do" var="chatUrl">
-													<c:param name="bookId" value="${sale.book.bookId}" />
-													<c:param name="sellerId" value="${sale.book.userId}" />
-												</c:url>
-												<a href="${chatUrl}" class="btn py-3 px-4 btn-primary"><c:out
-														value="채팅이동" /></a>
+												<div class="form-group">
+													<c:url value="/chatRoom.do" var="chatUrl">
+														<c:param name="bookId" value="${sale.book.bookId}" />
+														<c:param name="sellerId" value="${sale.book.userId}" />
+													</c:url>
+													<a href="${chatUrl}" class="btn py-3 px-4 btn-primary"><c:out
+															value="채팅이동" /></a>
+												</div>
 											</td>
 										</c:when>
 										<c:otherwise>
@@ -267,29 +291,92 @@
 					</table>
 				</div>
 
-				<div class="pt-5 mt-5">
-					<ul class="comment-list">
-						<li class="comment">
-							<div class="comment-body">
-								<h2 class="mb-5" style="text-weight: bold">판매자 정보</h2>
-								<h3>판매자 이름</h3>
-								<div class="meta">October 17, 2019 at 2:21pm</div>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-									Pariatur quidem laborum necessitatibus, ipsam impedit vitae
-									autem, eum officia, fugiat saepe enim sapiente iste iure! Quam
-									voluptas earum impedit necessitatibus, nihil?</p>
-								<p>
-									<a href="#" class="reply">Reply</a>
-								</p>
-							</div>
-						</li>
-					</ul>
-					<!-- END comment-list -->
-				</div>
-
-			</div>
-			<!-- .col-md-8 -->
-
+				<div class="pt-5 mt-5" style="margin-left: 20px">
+              <h3 class="mb-5">판매자 정보</h3>
+              <ul class="comment-list">
+                <li class="comment">
+                  <div class="vcard bio">
+                    <img src="${pageContext.request.contextPath}/resources/images/person_1.jpg" alt="Image placeholder">
+                  </div>
+                  <div class="comment-body">
+                    <h3>${sellerName}님의 도서입니다.</h3>
+                  	  평점 : ${avg}점
+                    <div class="star_rating">
+                    	<c:choose>
+                    		<c:when test="${avg eq '1'}">
+                    			<span class="on">★</span>
+							    <span>★</span>
+							    <span>★</span>
+							    <span>★</span>
+							    <span>★</span>
+                    		</c:when>
+                    		<c:when test="${avg eq '2'}">
+                    			<span class="on">★</span>
+							    <span class="on">★</span>
+							    <span>★</span>
+							    <span>★</span>
+							    <span>★</span>
+                    		</c:when>
+                    		<c:when test="${avg eq '3'}">
+                    			<span class="on">★</span>
+							    <span class="on">★</span>
+							    <span class="on">★</span>
+							    <span>★</span>
+							    <span>★</span>
+                    		</c:when>
+                    		<c:when test="${avg eq '4'}">
+                    			<span class="on">★</span>
+							    <span class="on">★</span>
+							    <span class="on">★</span>
+							    <span class="on">★</span>
+							    <span>★</span>
+                    		</c:when>
+                    		<c:when test="${avg eq '5'}">
+                    			<span class="on">★</span>
+							    <span class="on">★</span>
+							    <span class="on">★</span>
+							    <span class="on">★</span>
+							    <span class="on">★</span>
+                    		</c:when>
+                    		<c:otherwise>
+                    			<span>★</span>
+							    <span>★</span>
+							    <span>★</span>
+							    <span>★</span>
+							    <span>★</span>
+                    		</c:otherwise>
+                    	</c:choose>				    
+					</div>
+					
+                    <p>최근 리뷰&nbsp;&nbsp;<a href="javascript:openReview();" class="reply">Reply</a></p>
+                
+                    <table class="table" style="text-align:center;">
+                    	<tbody style="display:none" id="review">
+		        			<tr><th>순번</th><th>별점을 남긴 사용자</th><th>별점</th><th>리뷰 내용</th></tr>
+		        			<c:choose>
+		        				<c:when test="${fn:length(lately) == 0}">
+		        					<tr>
+		        						<td colspan="4">남겨진 리뷰가 없습니다.</td>
+		        					</tr>
+		        				</c:when>
+		        				<c:otherwise>
+			        				<c:forEach var="r" items="${lately}" varStatus="status">
+					        			<tr>
+					        				<td>${status.count}</td>
+					        				<td>${r.raterId}</td>
+					        				<td>${r.rate}</td>
+					        				<td>${r.description}</td>
+					        			</tr>
+					        		</c:forEach>
+		        				</c:otherwise>
+		        			</c:choose>
+	        			</tbody>
+        			</table>
+                  </div>
+                </li>
+               </ul>
+            </div>
+          </div> <!-- .col-md-8 -->
 
 		</div>
 	</div>

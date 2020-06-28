@@ -11,6 +11,7 @@
         	DESCRIPTION
      	FROM RATE
      	WHERE RATEDID = #{value}
+     	ORDER BY rateId DESC
   	</select>
   	
   	<insert id="insertRate" parameterType="Rate">
@@ -37,6 +38,12 @@
   		SELECT count(*)
   		FROM RATE
   		WHERE bookId = #{value}
+  </select>
+  
+  <select id="getAvgRate" resultType="String" parameterType="String">
+  		SELECT NVL(ROUND(AVG(RATE),0),0) 
+  		FROM RATE
+  		WHERE ratedId = #{value}
   </select>
 	
 </mapper>

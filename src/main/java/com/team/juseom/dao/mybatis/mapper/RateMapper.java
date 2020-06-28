@@ -12,6 +12,7 @@ public interface RateMapper {
 	void insertRate(Rate rate);
 	Rate getRate(int rateId);
 	int searchRate(int bookId);
+	String getAvgRate(String ratedId);
 }
 
 

@@ -391,5 +391,13 @@ public class JuseomImpl implements JuseomFacade {
 	public int getNowBidNumber(String auctionId) {
 		return bookDao.getNowBidNumber(auctionId);
 	}
+	
+	@Override
+	public String getAvgRate(String ratedId) {
+		return rateDao.getAvgRate(ratedId);
+	}
+
 
 }
+
+

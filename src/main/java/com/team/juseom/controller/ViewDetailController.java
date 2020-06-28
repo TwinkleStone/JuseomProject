@@ -1,6 +1,7 @@
 package com.team.juseom.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,8 +16,10 @@ import org.springframework.web.util.WebUtils;
 
 import com.team.juseom.domain.Auction;
 import com.team.juseom.domain.Bidder;
+import com.team.juseom.domain.Rate;
 import com.team.juseom.domain.Sale;
 import com.team.juseom.domain.Share;
+import com.team.juseom.domain.User;
 import com.team.juseom.service.JuseomFacade;
 
 @Controller
@@ -39,6 +42,14 @@ public class ViewDetailController {
 		if(userSession != null)
 			userId = userSession.getUser().getUserId();
 		model.addAttribute("userId", userId);
+		
+		User u = juseom.getUserById(s.getBook().getUserId());
+		List<Rate> rates = juseom.getRateListByUser(s.getBook().getUserId());
+		List<Rate> lately = rates.subList(0, rates.size() < 5? rates.size() : 5);
+		String avg = juseom.getAvgRate(s.getBook().getUserId());
+		model.addAttribute("sellerName", u.getCommName());
+		model.addAttribute("lately", lately);
+		model.addAttribute("avg", avg);
 		return "SaleDetail"; //상세정보 view로 이동
 	}
 	
@@ -56,6 +67,8 @@ public class ViewDetailController {
 		Bidder b = new Bidder();
 		model.addAttribute("auction", a);
 		model.addAttribute("bidder", b);
+		User u = juseom.getUserById(a.getBook().getUserId());
+		model.addAttribute("sellerName", u.getCommName());
 		return "AuctionDetail"; //상세정보 view로 이동
 	}
 	
@@ -70,6 +83,8 @@ public class ViewDetailController {
 		if(userSession != null)
 			userId = userSession.getUser().getUserId();
 		model.addAttribute("userId", userId);
+		User u = juseom.getUserById(s.getBook().getUserId());
+		model.addAttribute("sellerName", u.getCommName());
 		return "ShareDetail"; //상세정보 view로 이동
 	}
 	

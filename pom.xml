@@ -160,11 +160,11 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 		<!-- for oracle jdbc driver -->
-		<dependency> 
+		<!--  <dependency> 
 			<groupId>com.oracle</groupId> 
 			<artifactId>ojdbc6</artifactId> 
 			<version>11.1.0.7.0</version> 
-		</dependency>
+		</dependency> -->
 
 		<!-- validation-api는 생략 가능 -->
 		<dependency>
