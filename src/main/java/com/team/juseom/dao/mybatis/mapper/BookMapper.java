@@ -43,6 +43,6 @@ public interface BookMapper {
 	void updateShareWinner(List<String> winner, int shareId);
 	String getSalesNumber(int auctionId);
 	void updateBookStatus(String bookId);
-	int getHighBidPrice(String auctionId);
+	Integer getHighBidPrice(String auctionId);
 	int getNowBidNumber(String auctionId);
 }

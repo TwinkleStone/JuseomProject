@@ -303,7 +303,7 @@
       WHERE AUCTIONID = #{auctionId}
    </select>
    
-   <select id="getHighBidPrice" resultType="int">
+   <select id="getHighBidPrice" resultType="Integer">
    		SELECT BIDPRICE
    		FROM (
    			SELECT *

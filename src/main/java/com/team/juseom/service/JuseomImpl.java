@@ -370,7 +370,7 @@ public class JuseomImpl implements JuseomFacade {
 	}
 
 	@Override
-	public int getHighBidPrice(String auctionId) {
+	public Integer getHighBidPrice(String auctionId) {
 		return bookDao.getHighBidPrice(auctionId);
 	}
 

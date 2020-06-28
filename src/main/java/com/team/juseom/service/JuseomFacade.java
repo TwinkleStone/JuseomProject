@@ -66,7 +66,7 @@ public interface JuseomFacade {
 	OtoStatus getStatusByChattingRoomId(String chattingRoomId);
 	void updateBookStatus(String bookId);
 	String getSalesNubmer(int auctionId);
-	int getHighBidPrice(String auctionId);
+	Integer getHighBidPrice(String auctionId);
 	void removeBidder(String userId, String auctionId);
 	int updateBidNumber(String auctionId);
 	int getNowBidNumber(String auctionId);

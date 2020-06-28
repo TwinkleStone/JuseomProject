@@ -58,7 +58,11 @@ public class ViewDetailController {
 			Model model) {
 		Auction a = juseom.getOneAuction(auctionId);
 		
-		int highBidPrice = juseom.getHighBidPrice(auctionId);
+		Integer highBidPrice = juseom.getHighBidPrice(auctionId);
+		
+		if (highBidPrice == null)
+			highBidPrice = Integer.parseInt(a.getStartPrice());
+
 		a.setPresentPrice(highBidPrice);
 		
 		int bidNumber = juseom.getNowBidNumber(auctionId);

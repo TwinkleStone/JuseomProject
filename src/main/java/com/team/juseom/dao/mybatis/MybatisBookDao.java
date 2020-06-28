@@ -144,7 +144,7 @@ public class MybatisBookDao implements BookDao{
 	}
 
 	@Override
-	public int getHighBidPrice(String auctionId) {
+	public Integer getHighBidPrice(String auctionId) {
 		return bookMapper.getHighBidPrice(auctionId);
 	}
 
