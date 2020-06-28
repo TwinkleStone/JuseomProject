@@ -9,4 +9,5 @@ public interface RateDao {
 	void insertRate(Rate rating);
 	Rate getRate(int rateId);
 	int searchRate(Rate rate);
+	String getAvgRate(String ratedId);
 }

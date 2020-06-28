@@ -58,6 +58,7 @@ public interface JuseomFacade {
 	List<Rate> getRateListByUser(String userId);
 	int searchRate(Rate rate);
 	Rate getRate(int rateId);
+	String getAvgRate(String ratedId);
 	
 	void insertStatus(OtoStatus status);
 	void updateSellerStatus(OtoStatus status);

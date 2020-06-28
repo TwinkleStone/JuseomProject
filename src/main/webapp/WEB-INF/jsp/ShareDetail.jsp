@@ -26,8 +26,28 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/flaticon.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/icomoon.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css">
-	
+	<style>
+	.star_rating {font-size:0; letter-spacing:-4px;}
+	.star_rating span {
+	    font-size:22px;
+	    letter-spacing:0;
+	    display:inline-block;
+	    margin-left:5px;
+	    color:#ccc;
+	    text-decoration:none;
+	}
+	.star_rating span:first-child {margin-left:0;}
+	.star_rating span.on {color:#777;}
+	</style>
 	<script>
+	function openReview(){
+		var review = document.getElementById("review");
+		if(review.style.display=='none'){
+			review.style.display = 'block';
+		}else{
+			review.style.display = 'none';
+		}
+	}
 	function postJson() {
 		var applier = {applierId:-1, userId:null, shareId:${share.shareId}}
 		var jsonStr = JSON.stringify(applier);	
@@ -108,7 +128,10 @@
 				                <h4>${share.book.name}</h4>
 				                <p>${share.book.author}(지은이) | ${share.book.publisher} | <fmt:parseDate value="${share.book.date}" pattern="yyyyMMdd" var="parseDate"/><fmt:formatDate value="${parseDate}" pattern="yyyy년MM월dd일" /></p>
 				              	<p>상태 : <span style="text-weight: bold; color: #d4ca68">${share.book.condition}</span></p>
-				              	<p>추첨시간 : <span style="font-size: 20px; color: #d4ca68"><fmt:formatDate value="${share.raffleTime}" pattern="yyyy년 MM월 dd일 HH시mm분" /></span>&nbsp;&nbsp;<br><span style="font-size: 13px"> (종료시간 : <span id="end"><fmt:formatDate value="${share.endTime}" pattern="yyyy-MM-dd HH:mm" /></span>&nbsp;&nbsp;(남은시간 : <span id="timer"></span>))</span></p>
+				              	<p>추첨시간 : <span style="font-size: 20px; color: #d4ca68"><fmt:formatDate value="${share.raffleTime}" pattern="yyyy년 MM월 dd일 HH시mm분" /></span>&nbsp;&nbsp;<br><span style="font-size: 13px"> (종료시간 : <span id="end"><fmt:formatDate value="${share.endTime}" pattern="yyyy-MM-dd HH:mm" /></span>
+				              	<c:if test="${share.status ne 'CLOSE'}">
+	              					&nbsp;&nbsp;(남은시간 : <span id="timer"></span>)
+	              				</c:if>)</span></p>
 	              				<p>나눔 수량 : ${share.shareNumber}&nbsp;&nbsp;<span style="font-size: 13px" id="peopleNumber">(신청수 : ${share.peopleNumber})</span></p>
 	              			</div>
 	              		</td>
@@ -169,7 +192,78 @@
                   </div>
                   <div class="comment-body">
                     <h3>${sellerName}님의 도서입니다.</h3>
-                    <p><a href="#" class="reply">Reply</a></p>
+                  	  평점 : ${avg}점
+                    <div class="star_rating">
+                    	<c:choose>
+                    		<c:when test="${avg eq '1'}">
+                    			<span class="on">★</span>
+							    <span>★</span>
+							    <span>★</span>
+							    <span>★</span>
+							    <span>★</span>
+                    		</c:when>
+                    		<c:when test="${avg eq '2'}">
+                    			<span class="on">★</span>
+							    <span class="on">★</span>
+							    <span>★</span>
+							    <span>★</span>
+							    <span>★</span>
+                    		</c:when>
+                    		<c:when test="${avg eq '3'}">
+                    			<span class="on">★</span>
+							    <span class="on">★</span>
+							    <span class="on">★</span>
+							    <span>★</span>
+							    <span>★</span>
+                    		</c:when>
+                    		<c:when test="${avg eq '4'}">
+                    			<span class="on">★</span>
+							    <span class="on">★</span>
+							    <span class="on">★</span>
+							    <span class="on">★</span>
+							    <span>★</span>
+                    		</c:when>
+                    		<c:when test="${avg eq '5'}">
+                    			<span class="on">★</span>
+							    <span class="on">★</span>
+							    <span class="on">★</span>
+							    <span class="on">★</span>
+							    <span class="on">★</span>
+                    		</c:when>
+                    		<c:otherwise>
+                    			<span>★</span>
+							    <span>★</span>
+							    <span>★</span>
+							    <span>★</span>
+							    <span>★</span>
+                    		</c:otherwise>
+                    	</c:choose>				    
+					</div>
+					
+                    <p>최근 리뷰&nbsp;&nbsp;<a href="javascript:openReview();" class="reply">Reply</a></p>
+                
+                    <table class="table" style="text-align:center;">
+                    	<tbody style="display:none" id="review">
+		        			<tr><th>순번</th><th>별점을 남긴 사용자</th><th>별점</th><th>리뷰 내용</th></tr>
+		        			<c:choose>
+		        				<c:when test="${fn:length(lately) == 0}">
+		        					<tr>
+		        						<td colspan="4">남겨진 리뷰가 없습니다.</td>
+		        					</tr>
+		        				</c:when>
+		        				<c:otherwise>
+			        				<c:forEach var="r" items="${lately}" varStatus="status">
+					        			<tr>
+					        				<td>${status.count}</td>
+					        				<td>${r.raterId}</td>
+					        				<td>${r.rate}</td>
+					        				<td>${r.description}</td>
+					        			</tr>
+					        		</c:forEach>
+		        				</c:otherwise>
+		        			</c:choose>
+	        			</tbody>
+        			</table>
                   </div>
                 </li>
                </ul>
