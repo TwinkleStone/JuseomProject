@@ -28,7 +28,8 @@ public interface BookMapper {
 	void insertShare(Share share);
 	void updateSale(String saleId, String price);
 	void updateBook(String bookId, String detail);
-
+	void deleteShare(int shareId);
+	
 	void updateBidNumber(int auctionId);
 	void updatePresentPrice(int auctionId, int bidPrice);
 

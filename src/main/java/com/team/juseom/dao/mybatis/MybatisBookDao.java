@@ -130,5 +130,10 @@ public class MybatisBookDao implements BookDao{
 		bookMapper.updateBook(bookId, detail);
 	}
 
+	@Override
+	public void deleteShare(int shareId) {
+		bookMapper.deleteShare(shareId);
+	}
+
 
 }

@@ -80,7 +80,7 @@
 		ORDER BY s.bookId DESC
 	</select>
 
-	<select id="getBookListByAuction" resultType="Auction">
+	<select id="getBookListByAuction" resultType="Auction" useCache="false" flushCache="true">
 		SELECT a.auctionId AS auctionId,
 		a.presentPrice AS presentPrice,
 		a.bidNumber AS bidNumber,
@@ -95,7 +95,7 @@
 		ORDER BY a.bookId DESC
 	</select>
 
-	<select id="getBookListByShare" resultType="Share">
+	<select id="getBookListByShare" resultType="Share" useCache="false" flushCache="true">
 		SELECT s.shareId AS
 		shareId,
 		s.shareNumber AS shareNumber,
@@ -112,7 +112,7 @@
 		ORDER BY s.bookId DESC
 	</select>
 
-	<select id="getSale" resultType="Sale">
+	<select id="getSale" resultType="Sale" useCache="false" flushCache="true">
 		SELECT s.saleId AS saleId,
 		s.suggestPrice AS suggestPrice,
 		b.bookId AS "book.bookId",
@@ -131,7 +131,7 @@
 		s.saleId = ${value}
 	</select>
 
-	<select id="getOneAuction" resultType="Auction">
+	<select id="getOneAuction" resultType="Auction" useCache="false" flushCache="true">
 		SELECT a.auctionId AS auctionId,
 		a.startPrice AS startPrice,
 		a.presentPrice AS presentPrice,
@@ -154,7 +154,7 @@
 		a.auctionId = ${value}
 	</select>
 
-	<select id="getShare" resultType="Share">
+	<select id="getShare" resultType="Share" useCache="false" flushCache="true">
 		SELECT s.shareId AS shareId,
 		s.shareNumber AS shareNumber,
 		s.endTime AS endTime,
@@ -285,4 +285,8 @@
 		WHERE SHAREID = #{param2}
 	</update>
 	
+	<delete id="deleteShare">
+		delete from sharing
+		where shareId = #{param1}
+	</delete>
 </mapper>

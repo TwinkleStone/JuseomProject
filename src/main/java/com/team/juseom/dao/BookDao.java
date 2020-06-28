@@ -23,6 +23,7 @@ public interface BookDao {
 	List<Sale> getBookListBySale();
 	List<Auction> getBookListByAuction();
 	List<Share> getBookListByShare();
+	void deleteShare(int shareId);
 	
 	void updatePresentPrice(Bidder bidder);
 	void updateBidNumber(Bidder bidder);
