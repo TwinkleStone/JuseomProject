@@ -115,7 +115,7 @@ function getCommentList(){
             } else {
                 
                 html += "<div>";
-                html += "<div><table class='table'><h6><strong>등록된 댓글이 없습니다.</strong></h6>";
+                html += "<div><table class='table'><h6><strong>아직 채팅이 없습니다.</strong></h6>";
                 html += "</table></div>";
                 html += "</div>";
                 
