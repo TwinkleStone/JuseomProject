@@ -46,8 +46,8 @@
 	<div class="container">
 		<a class="navbar-brand" href="<c:url value="/index.do" />">주섬주섬</a>
 		<c:if test="${!empty userSession.user}">
-			 <a class="navbar-brand1" href="<c:url value="/user/logout.do" />">로그아웃</a>
-          </c:if>
+			<a class="navbar-brand1" href="<c:url value="/user/logout.do" />">로그아웃</a>
+		</c:if>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#ftco-nav" aria-controls="ftco-nav"
 			aria-expanded="false" aria-label="Toggle navigation">
@@ -108,7 +108,7 @@
 			<div class="col-md-12 heading-section text-center ftco-animate mb-5">
 				<h2 class="mb-2">MYPAGE</h2>
 				<br />
-				<table class="table" style="text-align: center">
+				<table class="table table-hover" style="text-align: center">
 						<tr>
 							<td><c:if test="${not empty filename}">
 									<img width="200px" height="200px"

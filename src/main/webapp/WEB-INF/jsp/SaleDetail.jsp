@@ -38,8 +38,8 @@
 	href="${pageContext.request.contextPath}/resources/css/icomoon.css">
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/style.css">
-	
-	
+
+
 </head>
 <body>
 
@@ -49,8 +49,8 @@
 	<div class="container">
 		<a class="navbar-brand" href="<c:url value="/index.do" />">주섬주섬</a>
 		<c:if test="${!empty userSession.user}">
-			 <a class="navbar-brand1" href="<c:url value="/user/logout.do" />">로그아웃</a>
-         </c:if>
+			<a class="navbar-brand1" href="<c:url value="/user/logout.do" />">로그아웃</a>
+		</c:if>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#ftco-nav" aria-controls="ftco-nav"
 			aria-expanded="false" aria-label="Toggle navigation">
@@ -116,7 +116,7 @@
 										<span style="text-decoration: line-through;"><fmt:formatNumber
 												value="${sale.book.price}" pattern="#,###" /></span>&nbsp;&nbsp;<span
 											style="font-size: 20px; color: #d4ca68" id="pri"><fmt:formatNumber
-												value="${sale.suggestPrice}" pattern="#,###"/>원</span>
+												value="${sale.suggestPrice}" pattern="#,###" />원</span>
 									</p>
 									<p>
 										상태 : <span style="text-weight: bold; color: #d4ca68">${sale.book.condition}</span>
@@ -147,16 +147,17 @@
 					<table>
 						<tr>
 							<td id="updateForm" style="display: none;" colspan=2>
-						
-				            		<div class="form-group">
-				             			<label for="price">희망가격 *</label>
-				             			<input class="form-control" id="updatePrice" value="${sale.suggestPrice}"/>
-				             		</div>
-				             		<div class="form-group">
-				                    	<label for="message">세부사항</label>
-				                    	<textarea cols="30" rows="10" class="form-control" id="updateMessage">${sale.book.detail}</textarea>
-				                  	</div>
-				            </td> 
+
+								<div class="form-group">
+									<label for="price">희망가격 *</label> <input class="form-control"
+										id="updatePrice" value="${sale.suggestPrice}" />
+								</div>
+								<div class="form-group">
+									<label for="message">세부사항</label>
+									<textarea cols="30" rows="10" class="form-control"
+										id="updateMessage">${sale.book.detail}</textarea>
+								</div>
+							</td>
 						</tr>
 					</table>
 				</div>
@@ -164,52 +165,54 @@
 					<table>
 						<tr style="text-align: center;">
 							<c:choose>
-        					<c:when test="${sale.book.status eq 'CLOSE'}">
-        						<td style="padding: 30px; background:#666666; color: white; border-radius: 30px">
-									이 책은 판매가 완료되었습니다.
-								</td>
-        					</c:when>
-        					<c:otherwise>
-        						<c:choose>
-        						<c:when test="${sale.book.userId ne userId}">
-        							<td width="200px" style="padding: 30px">
-										<div class="form-group">
-										<c:if test="${userSession.user.userId ne sale.book.userId}">
-											<c:url value="/user/chatRoom.do" var="chatUrl">
-												<c:param name="bookId" value="${sale.book.bookId}" />
-												<c:param name="sellerId" value="${sale.book.userId}" />
-											</c:url>
-											<a href="${chatUrl}" class="btn py-3 px-4 btn-primary"><c:out
-													value="구매 신청" /></a>
-										</c:if>
-										<c:if test="${userSession.user.userId eq sale.book.userId}">
-											<a class="btn py-3 px-4 btn-primary"><c:out
-													value="신청 불가" /></a>
-										</c:if>
-										</div>
-									</td>
-									<td width="50%" style="padding: 30px">
-										<div class="form-group">
-											<c:url value="/chatRoom.do" var="chatUrl">
-												<c:param name="bookId" value="${sale.book.bookId}" />
-												<c:param name="sellerId" value="${sale.book.userId}" />
-											</c:url>
-											<a href="${chatUrl}" class="btn py-3 px-4 btn-primary"><c:out
-													value="채팅이동" /></a>
-										</div>
-									</td>
-        						</c:when>
-        						<c:otherwise>
-        							<td style="display:none" id="btnOpen">
-        								<input type="button" class="btn py-3 px-4 btn-primary" value="수정하기" onclick="getJson()"/>
-        							</td>
-        							<td>
-        								<input id="toggleButton" type="button" class="btn py-3 px-4 btn-primary" value="수정하기" onclick="openUpdateForm()"/>
-        							</td>
-        						</c:otherwise>
-        						</c:choose>
-        					</c:otherwise>
-  							</c:choose>
+								<c:when test="${sale.book.status eq 'CLOSE'}">
+									<td
+										style="padding: 30px; background: #666666; color: white; border-radius: 30px">
+										이 책은 판매가 완료되었습니다.</td>
+								</c:when>
+								<c:otherwise>
+									<c:choose>
+										<c:when test="${sale.book.userId ne userId}">
+											<td width="200px" style="padding: 30px">
+												<div class="form-group">
+													<c:if test="${userSession.user.userId ne sale.book.userId}">
+														<c:url value="/user/chatRoom.do" var="chatUrl">
+															<c:param name="bookId" value="${sale.book.bookId}" />
+															<c:param name="sellerId" value="${sale.book.userId}" />
+															<c:param name="buyerId" value="${userSession.user.userId}" />
+														</c:url>
+														<a href="${chatUrl}" class="btn py-3 px-4 btn-primary"><c:out
+																value="구매 신청" /></a>
+													</c:if>
+													<c:if
+														test="${not empty userSession.user.userId and userSession.user.userId eq sale.book.userId}">
+														<a class="btn py-3 px-4 btn-primary"><c:out
+																value="신청 불가" /></a>
+													</c:if>
+												</div>
+											</td>
+											<td width="50%" style="padding: 30px">
+												<div class="form-group">
+													<c:url value="/chatRoom.do" var="chatUrl">
+														<c:param name="bookId" value="${sale.book.bookId}" />
+														<c:param name="sellerId" value="${sale.book.userId}" />
+													</c:url>
+													<a href="${chatUrl}" class="btn py-3 px-4 btn-primary"><c:out
+															value="채팅이동" /></a>
+												</div>
+											</td>
+										</c:when>
+										<c:otherwise>
+											<td style="display: none" id="btnOpen"><input
+												type="button" class="btn py-3 px-4 btn-primary" value="수정하기"
+												onclick="getJson()" /></td>
+											<td><input id="toggleButton" type="button"
+												class="btn py-3 px-4 btn-primary" value="수정하기"
+												onclick="openUpdateForm()" /></td>
+										</c:otherwise>
+									</c:choose>
+								</c:otherwise>
+							</c:choose>
 						</tr>
 					</table>
 				</div>
@@ -336,11 +339,10 @@
 
 	<!-- loader -->
 	<div id="ftco-loader" class="show fullscreen">
-		<svg class="circular" width="48px" height="48px">
-		<circle class="path-bg" cx="24" cy="24" r="22" fill="none"
-			stroke-width="4" stroke="#eeeeee" />
-		<circle class="path" cx="24" cy="24" r="22" fill="none"
-			stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg>
+		<svg class="circular" width="48px" height="48px"> <circle
+			class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4"
+			stroke="#eeeeee" /> <circle class="path" cx="24" cy="24" r="22"
+			fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg>
 	</div>
 
 

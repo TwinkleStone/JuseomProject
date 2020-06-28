@@ -15,12 +15,14 @@ import com.team.juseom.dao.BidderDao;
 import com.team.juseom.dao.BookDao;
 import com.team.juseom.dao.ChatDao;
 import com.team.juseom.dao.EventDao;
+import com.team.juseom.dao.OtoStatusDao;
 import com.team.juseom.dao.RateDao;
 import com.team.juseom.dao.UserDao;
 import com.team.juseom.domain.Applier;
 import com.team.juseom.domain.Auction;
 import com.team.juseom.domain.Bidder;
 import com.team.juseom.domain.Book;
+import com.team.juseom.domain.OtoStatus;
 import com.team.juseom.domain.Rate;
 import com.team.juseom.domain.Sale;
 import com.team.juseom.domain.Share;
@@ -57,6 +59,9 @@ public class JuseomImpl implements JuseomFacade {
 	
 	@Autowired
 	private ThreadPoolTaskScheduler scheduler2;
+	
+	@Autowired
+	private OtoStatusDao statusDao;
 	
 	@Override
 	public List<Sale> getBookListBySale() {
@@ -318,6 +323,24 @@ public class JuseomImpl implements JuseomFacade {
 	@Override
 	public Rate getRate(int rateId) {
 		return rateDao.getRate(rateId);
+	}
+
+	@Override
+	public void insertStatus(OtoStatus status) {
+		statusDao.insertStatus(status);
+		
+	}
+
+	@Override
+	public void updateSellerStatus(OtoStatus status) {
+		statusDao.updateSellerStatus(status);
+		
+	}
+
+	@Override
+	public void updateBuyerStatus(OtoStatus status) {
+		// TODO Auto-generated method stub
+		statusDao.updateBuyerStatus(status);
 	}
 
 

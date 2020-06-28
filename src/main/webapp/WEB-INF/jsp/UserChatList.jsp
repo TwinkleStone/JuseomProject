@@ -145,19 +145,20 @@
 							<td><c:url value="/user/chatRoom.do" var="chatUrl">
 									<c:param name="bookId" value="${list.book.bookId}" />
 									<c:param name="sellerId" value="${list.sellerId}" />
+									<c:param name="buyerId" value="${userSession.user.userId}" />
 								</c:url> <a href="${chatUrl}"><c:out value='${list.book.name}' /></a>
 							</td>
 							<td>${list.sellerId}</td>
 							</c:if>
 							<c:if test="${userSession.user.userId eq list.sellerId}">
-							<td><c:url value="/user/chatRoomSeller.do" var="chatUrl">
+							<td><c:url value="/user/chatRoom.do" var="chatUrl">
 									<c:param name="bookId" value="${list.book.bookId}" />
+									<c:param name="sellerId" value="${userSession.user.userId}" />
 									<c:param name="buyerId" value="${list.buyerId}" />
 								</c:url> <a href="${chatUrl}"><c:out value='${list.book.name}' /></a>
 							</td>
 							<td>${list.buyerId}</td>
 							</c:if>
-							<td>${buyer}</td>
 						</tr>
 					</c:forEach>
 				</table>

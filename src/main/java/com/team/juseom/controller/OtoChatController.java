@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.WebUtils;
+
+import com.team.juseom.domain.OtoStatus;
 import com.team.juseom.domain.otoChat;
 import com.team.juseom.service.JuseomFacade;
 
@@ -43,7 +45,8 @@ public class OtoChatController {
 
 	@RequestMapping(value = "/user/chatRoom.do", method = RequestMethod.GET)
 	public String chatRoom(@RequestParam(value = "bookId", required = false) String bookId,
-			@RequestParam(value = "sellerId", required = false) String sellerId, HttpSession session, Model model,
+			@RequestParam(value = "sellerId", required = false) String sellerId,
+			@RequestParam(value = "buyerId", required = false) String buyerId, HttpSession session, Model model,
 			HttpServletRequest request) {
 		
 		UserSession userSession = 
@@ -62,43 +65,20 @@ public class OtoChatController {
 			String to = transFormat.format(from);
 
 			chat.setChatTime(to);
+			OtoStatus status = new OtoStatus();
+			status.setChattingRoomId(chattingRoomId);
+			status.setBuyerId(buyerId);
+			status.setSellerId(sellerId);
+			status.setBookId(bookId);
+			status.setSellerStatus("OPEN");
+			status.setBuyerStatus("OPEN");
+			juseom.insertStatus(status);
 			juseom.insertOtoChat(chat);
 		}
 		
 
 		model.addAttribute("chatList", list);
 		session.setAttribute("sellerId", sellerId);
-		session.setAttribute("bookId", bookId);
-		return CHAT_VIEW;
-	}
-	
-	@RequestMapping(value = "/user/chatRoomSeller.do", method = RequestMethod.GET)
-	public String chatRoomSeller(@RequestParam(value = "bookId", required = false) String bookId,
-			@RequestParam(value = "buyerId", required = false) String buyerId, HttpSession session, Model model,
-			HttpServletRequest request) {
-		
-		UserSession userSession = 
-				(UserSession) WebUtils.getSessionAttribute(request, "userSession");
-		String userId = userSession.getUser().getUserId();
-		String chattingRoomId = bookId + "_" + buyerId;
-		System.out.println(chattingRoomId);
-	
-		//건들면 안됨
-		list = juseom.selectOtoChatByChattingRoomId(chattingRoomId);
-		
-		if (list.size() == 0) {
-			otoChat chat = new otoChat(chattingRoomId, bookId, userId, buyerId);
-			Date from = new Date();
-			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			String to = transFormat.format(from);
-
-			chat.setChatTime(to);
-			juseom.insertOtoChat(chat);
-		}
-		
-
-		model.addAttribute("chatList", list);
-		session.setAttribute("sellerId", userId);
 		session.setAttribute("bookId", bookId);
 		session.setAttribute("buyerId", buyerId);
 		return CHAT_VIEW;

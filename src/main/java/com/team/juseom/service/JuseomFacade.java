@@ -6,6 +6,7 @@ import com.team.juseom.domain.Applier;
 import com.team.juseom.domain.Auction;
 import com.team.juseom.domain.Bidder;
 import com.team.juseom.domain.Book;
+import com.team.juseom.domain.OtoStatus;
 import com.team.juseom.domain.Rate;
 import com.team.juseom.domain.Sale;
 import com.team.juseom.domain.Share;
@@ -58,4 +59,8 @@ public interface JuseomFacade {
 	List<Rate> getRateListByUser(String userId);
 	int searchRate(Rate rate);
 	Rate getRate(int rateId);
+	
+	void insertStatus(OtoStatus status);
+	void updateSellerStatus(OtoStatus status);
+	void updateBuyerStatus(OtoStatus status);
 }
