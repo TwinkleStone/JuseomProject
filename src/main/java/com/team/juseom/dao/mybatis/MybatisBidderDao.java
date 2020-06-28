@@ -24,11 +24,6 @@ public class MybatisBidderDao implements BidderDao {
 	}
 
 	@Override
-	public int getBidderCount(String auctionId) {
-		return bidderMapper.getBidderCount(auctionId);
-	}
-
-	@Override
 	public String getBid(int auctionId) {
 		return bidderMapper.getBid(auctionId);
 	}

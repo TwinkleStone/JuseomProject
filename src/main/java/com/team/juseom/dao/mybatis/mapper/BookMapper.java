@@ -41,5 +41,7 @@ public interface BookMapper {
 	void closeShareEvent(Date curTime);
 	void updateAuctionWinner(String bidWinner, int auctionId);
 	void updateShareWinner(List<String> winner, int shareId);
+	String getSalesNumber(int auctionId);
 	void updateBookStatus(String bookId);
+	int getHighBidPrice(String auctionId);
 }

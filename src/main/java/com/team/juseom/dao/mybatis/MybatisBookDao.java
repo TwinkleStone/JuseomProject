@@ -131,6 +131,11 @@ public class MybatisBookDao implements BookDao{
 	}
 
 	@Override
+	public String getSalesNumber(int auctionId) {
+		return bookMapper.getSalesNumber(auctionId);
+	}
+
+	@Override
 	public void deleteShare(int shareId) {
 		bookMapper.deleteShare(shareId);
 	}
@@ -141,5 +146,9 @@ public class MybatisBookDao implements BookDao{
 		
 	}
 
+	@Override
+	public int getHighBidPrice(String auctionId) {
+		return bookMapper.getHighBidPrice(auctionId);
+	}
 
 }

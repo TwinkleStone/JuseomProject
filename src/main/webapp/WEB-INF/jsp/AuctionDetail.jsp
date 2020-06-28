@@ -1,6 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -24,6 +25,35 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/icomoon.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css">
 	
+	<script>
+		function postJson() {
+			var form = document.getElementById("bidder");
+			var bidder = {
+				bidderId: -1,
+				userId: null,
+				auctionId: ${auction.auctionId},
+				bidNumber: form.bidNumber.value,
+				bidPrice: form.bidPrice.value
+			}
+			var jsonStr = JSON.stringify(bidder)
+	
+			$.ajax({
+				type: "post",
+				url: "../bidding.do",
+				contentType: "application/json",
+				data: jsonStr,
+				processData: false,
+				success: function(responseJson) {
+					$("#bidPrice").text(responseJson.bidPrice);
+					alert("입찰 성공!");
+				},
+				error: function() {
+					alert("입찰 실패! 다시 시도해주세요.");
+				}
+			});
+			
+		}
+	</script>
 	 
   </head>
   <body>
@@ -124,12 +154,31 @@
         					</c:when>
         					<c:otherwise>
         						<td style="padding: 30px">
-			        				<div class="form-group">
-		                    			<c:url value="/bidding.do" var="biddingForm">
-		                    				<c:param name="auctionId" value="${auction.auctionId}"/>
-		                    			</c:url>
-		                    			<a href="${biddingForm}" class="btn py-3 px-4 btn-primary"><c:out value="입찰하기"/></a>
-		                    			
+        							<div style="text-align: center; padding: 30px;">
+										<button class="btn btn-primary py-3 px-4" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+									    	입찰하기
+									  	</button>
+								  	</div>
+								  	<div class="collapse" id="collapseExample">
+									  <div class="card card-body">
+									    <form:form modelAttribute="bidder" id="bidder" class="bg-light p-5 contact-form">
+											<div class="form-group" style="width: 400px;">
+												<label for="bidNumber">책의 갯수 *</label>
+												<form:input path="bidNumber" class="form-control" id="bidNumber"/>
+												<form:errors path="bidNumber" /> <br/>
+									
+												<label for="bidPrice">입찰가 *</label>
+												<form:input path="bidPrice" class="form-control" />
+												<form:errors path="bidPrice"/> <br/>
+											</div>
+											<form:hidden path="auctionId" value="${param.auctionId}" />
+											<div class="form-group" style="text-align: center;">
+												<input type="submit" value="SEND" onclick="postJson()" class="btn btn-primary py-3 px-4">
+											</div>
+										</form:form>
+									  </div>
+									</div>
+			        				<div class="form-group" style="padding: 20px">
 		                    			<c:url value="/bidderList.do" var="bidderList">
 		                    				<c:param name="auctionId" value="${auction.auctionId}"/>
 		                    			</c:url>

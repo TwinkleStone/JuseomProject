@@ -108,7 +108,7 @@
 			<div class="col-md-12 heading-section text-center ftco-animate mb-5">
 				<h2 class="mb-2">MYPAGE</h2>
 				<br />
-				<table class="table table-hover" style="text-align: center">
+				<table class="table" style="text-align: center">
 						<tr>
 							<td><c:if test="${not empty filename}">
 									<img width="200px" height="200px"

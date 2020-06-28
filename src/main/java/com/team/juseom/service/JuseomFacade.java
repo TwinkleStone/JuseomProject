@@ -50,7 +50,6 @@ public interface JuseomFacade {
 	void insertRate(Rate rate);
 	
 	void insertBidder(Bidder bidder);
-	int getBidderCount(String auctionId);
 	List<Bidder> getBidderListByauctionId(String auctionId);
 	
 	void insertApplier(Applier applier);
@@ -65,4 +64,6 @@ public interface JuseomFacade {
 	void updateBuyerStatus(OtoStatus status);
 	OtoStatus getStatusByChattingRoomId(String chattingRoomId);
 	void updateBookStatus(String bookId);
+	String getSalesNubmer(int auctionId);
+	int getHighBidPrice(String auctionId);
 }

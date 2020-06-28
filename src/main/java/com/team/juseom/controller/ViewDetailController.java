@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.WebUtils;
 
 import com.team.juseom.domain.Auction;
+import com.team.juseom.domain.Bidder;
 import com.team.juseom.domain.Sale;
 import com.team.juseom.domain.Share;
 import com.team.juseom.service.JuseomFacade;
@@ -45,7 +46,11 @@ public class ViewDetailController {
 	public String viewAuction(@RequestParam("id") String auctionId,
 			Model model) {
 		Auction a = juseom.getOneAuction(auctionId);
+		int highBidPrice = juseom.getHighBidPrice(auctionId);
+		a.setPresentPrice(highBidPrice);
+		Bidder b = new Bidder();
 		model.addAttribute("auction", a);
+		model.addAttribute("bidder", b);
 		return "AuctionDetail"; //상세정보 view로 이동
 	}
 	

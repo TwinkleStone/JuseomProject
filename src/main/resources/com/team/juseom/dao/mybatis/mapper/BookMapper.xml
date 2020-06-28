@@ -296,4 +296,22 @@
 		SET STATUS = 'CLOSE'
 		WHERE BOOKID = #{bookId}
 	</update>
+	
+	<select id="getSalesNumber" resultType="String">
+      SELECT salesNumber
+      FROM AUCTION
+      WHERE AUCTIONID = #{auctionId}
+   </select>
+   
+   <select id="getHighBidPrice" resultType="int">
+   		SELECT BIDPRICE
+   		FROM (
+   			SELECT *
+   			FROM BIDDER
+   			WHERE AUCTIONID = #{auctionId}
+   			ORDER BY BIDPRICE DESC
+   		)
+   		WHERE ROWNUM = 1
+   </select>
+   
 </mapper>

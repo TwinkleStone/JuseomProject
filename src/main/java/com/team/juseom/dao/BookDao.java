@@ -36,5 +36,7 @@ public interface BookDao {
 	void updateAuctionWinner(String bidWinner, int auctionId);
 	void updateShareWinner(Share share, List<String> winner);
 	void updateBookStatus(String bookId);
+	String getSalesNumber(int auctionId);
+	int getHighBidPrice(String auctionId);
 
 }

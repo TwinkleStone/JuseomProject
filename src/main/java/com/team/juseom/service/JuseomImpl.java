@@ -180,7 +180,9 @@ public class JuseomImpl implements JuseomFacade {
 	
 	@Override
 	public Auction getOneAuction(String auctionId) {
+		bookDao.getHighBidPrice(auctionId);
 		return bookDao.getOneAuction(auctionId);
+		
 	}
 	
 	@Override
@@ -284,11 +286,6 @@ public class JuseomImpl implements JuseomFacade {
 	}
 
 	@Override
-	public int getBidderCount(String auctionId) {
-		return bidderDao.getBidderCount(auctionId);
-	}
-
-	@Override
 	public List<Bidder> getBidderListByauctionId(String auctionId) {
 		return bidderDao.getBidderListByauctionId(auctionId);
 	}
@@ -326,6 +323,11 @@ public class JuseomImpl implements JuseomFacade {
 	}
 
 	@Override
+	public String getSalesNubmer(int auctionId) {
+		return bookDao.getSalesNumber(auctionId);
+	}
+	
+	@Override
 	public void insertStatus(OtoStatus status) {
 		statusDao.insertStatus(status);
 		
@@ -352,6 +354,11 @@ public class JuseomImpl implements JuseomFacade {
 	public void updateBookStatus(String bookId) {
 		bookDao.updateBookStatus(bookId);
 		
+	}
+
+	@Override
+	public int getHighBidPrice(String auctionId) {
+		return bookDao.getHighBidPrice(auctionId);
 	}
 
 }
