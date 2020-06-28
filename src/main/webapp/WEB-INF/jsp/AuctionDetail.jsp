@@ -154,6 +154,7 @@
         					</c:when>
         					<c:otherwise>
         						<td style="padding: 30px">
+<<<<<<< HEAD
         							<div style="text-align: center; padding: 30px;">
 										<button class="btn btn-primary py-3 px-4" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
 									    	입찰하기
@@ -184,6 +185,28 @@
 		                    			</c:url>
 		                    			<a href="${bidderList}" class="btn py-3 px-4 btn-primary"><c:out value="입찰 현황 보기"/></a>
 		                  			</div>
+=======
+        							<c:choose>
+	        							<c:when test="${empty userSession.user.userId}">
+	        								<a href="<c:url value="/user/loginForm.do" />" class="btn py-3 px-4 btn-primary"><c:out
+																value="로그인하기" /></a>
+	        							</c:when>
+	        							<c:otherwise>
+				        					<div class="form-group">
+				        						<c:if test="${auction.book.userId ne userSession.user.userId}">
+						                    		<c:url value="/bidding.do" var="biddingForm">
+						                    			<c:param name="auctionId" value="${auction.auctionId}"/>
+						                    		</c:url>
+						                    		<a href="${biddingForm}" class="btn py-3 px-4 btn-primary"><c:out value="입찰하기"/></a>
+					                    		</c:if>
+					                    		<c:url value="/bidderList.do" var="bidderList">
+					                    			<c:param name="auctionId" value="${auction.auctionId}"/>
+					                    		</c:url>
+					                    		<a href="${bidderList}" class="btn py-3 px-4 btn-primary"><c:out value="입찰 현황 보기"/></a>
+				                  			</div>
+	        							</c:otherwise>
+        							</c:choose>
+>>>>>>> refs/remotes/origin/develop
 	 							</td>
         					</c:otherwise>
   						</c:choose>

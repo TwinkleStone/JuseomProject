@@ -147,7 +147,7 @@
 	        						<input type="submit" id="submit" value="신청하기" class="btn py-3 px-4 btn-primary" />
 	        						</div>
 	        					</form:form> --%>
-		        					<c:if test="${share.book.userId ne userId}">
+		        					<c:if test="${share.book.userId eq userSession.user.userId}">
 		        						<input type="button" class="btn py-3 px-4 btn-primary" value="신청하기" onclick="postJson()"/>
 		        					</c:if>
 		        					<c:if test="${empty userSession.user.userId}">

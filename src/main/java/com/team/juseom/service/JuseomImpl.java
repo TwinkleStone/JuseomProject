@@ -2,6 +2,7 @@ package com.team.juseom.service;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -160,13 +161,24 @@ public class JuseomImpl implements JuseomFacade {
 					String chattingRoomId = bookId + "_" + userIds.get(i);
 					chats.add(new otoChat(chattingRoomId, bookId, sellerId, userIds.get(i))); 
 					//채팅창 정렬을 위해 시간 추가
-					Date from = new Date();
-					SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-					String to = transFormat.format(from);
-	
-					chats.get(i).setChatTime(to);
-					chats.get(i).setChat("축하합니다! " + share.getBook().getName() + " 책 나눔에 당첨되셨습니다.");
-					chatDao.insertotoChat(chats.get(i));
+					String[] txt = new String[] {"null", "축하합니다! " + share.getBook().getName() + " 책 나눔에 당첨되셨습니다."};
+					for(int j = 0; j < txt.length; j++) {
+						Date from = new Date();
+						SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+						String to;
+						if(j == txt.length - 1) {
+							Calendar cal = Calendar.getInstance(); 
+							cal.setTime(from);
+							cal.add(Calendar.SECOND, 10);
+							to = transFormat.format(cal.getTime());
+						}else {
+							to = transFormat.format(from);
+						}
+		
+						chats.get(i).setChatTime(to);
+						chats.get(i).setChat(txt[j]);
+						chatDao.insertotoChat(chats.get(i));
+					}
 				}
 			}
 		};
