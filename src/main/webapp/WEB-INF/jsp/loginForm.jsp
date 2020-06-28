@@ -106,16 +106,22 @@
 				<h2 class="mb-2">Login</h2>
 				<br />
 				<form action='<c:url value="/user/login.do"/>' method="POST">
-					<table class="table" style="text-align: center">
+					<c:if test="${!empty loginForwardAction}">
+						<input type="hidden" name="loginForwardAction"
+							value='<c:url value="${loginForwardAction}"/>' />
+					</c:if>
+					<table class="table table-hover" style="text-align: center">
 						<tr>
-							<td colspan="1">Please enter your username and password.
+							<td colspan="1">Please enter your username and password.</td>
+						</tr>
+						<tr>
+							<td>ID: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+								&nbsp;<input type="text" name="userId" size="20" />
 							</td>
 						</tr>
 						<tr>
-							<td>ID: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="text" name="userId" size="20" /></td>
-						</tr>
-						<tr>
-							<td>Password: &nbsp;<input type="password" name="password" size="20" /></td>
+							<td>Password: &nbsp;<input type="password" name="password"
+								size="20" /></td>
 						</tr>
 					</table>
 					<input type="submit" value="로그인" /> <a

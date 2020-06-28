@@ -55,9 +55,11 @@
 	
  	<mvc:view-controller path="/user/loginForm.do" view-name="loginForm"/> 
 	
+	<!-- 로그인 인터셉터 추가해주세요 -->
 	<mvc:interceptors>
 		<mvc:interceptor>
     	    <mvc:mapping path="/user/*"/>
+    	    <mvc:mapping path="/chat.do"/>
         	<bean class="com.team.juseom.controller.LoginInterceptor" />
     	</mvc:interceptor>
 	</mvc:interceptors>
