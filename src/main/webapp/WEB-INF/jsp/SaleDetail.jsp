@@ -39,7 +39,62 @@
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/style.css">
 
+<script>
+	function openUpdateForm() {
+		var updateForm = document.getElementById("updateForm");
+		var btnOpen = document.getElementById("btnOpen");
+		var btn = document.getElementById("toggleButton");
+		if(updateForm.style.display=='none'){
+			btn.value="수정 취소하기";
+			btnOpen.style.display = 'block';
+			updateForm.style.display = 'block';
+		}else{
+			btn.value="수정하기"
+			btnOpen.style.display = 'none';
+			updateForm.style.display = 'none';
+		}
+	}
 
+	function getJson() {
+		var price = document.getElementById("updatePrice");
+		var detail = document.getElementById("updateMessage");
+		var reqUrl = "../update/sale.do?bookId=" + ${sale.book.bookId} + "&saleId=" + ${sale.saleId} + "&price=" + price.value + "&detail=" + detail.value;
+		var oridetail = "<c:out value='${sale.book.detail}'/>";
+		
+		openUpdateForm();
+		$.ajax({
+			type: "get",
+			url: reqUrl,
+			processData: false,
+			success: function(responseJson){	// object parsed from JSON text	
+				alert("수정되었습니다.");
+				var regexp = /\B(?=(\d{3})+(?!\d))/g;
+				var price = responseJson.suggestPrice.toString().replace(regexp, ',');
+				$("#pri").text(price + "원");
+				if(!oridetail){
+					var txt = document.getElementsByName("detail2")[0];
+					txt.style.display = 'none';
+					var nCareer = document.createElement("textarea");
+					nCareer.setAttribute("id", "message");
+					nCareer.setAttribute("cols", 30);
+					nCareer.setAttribute("rows", 10);
+					nCareer.setAttribute("class", "form-control");
+					nCareer.setAttribute("style", "font-size: 15px");
+					nCareer.setAttribute("disabled", true);
+					nCareer.value = responseJson.book.detail;
+					var txtdiv = document.getElementById("txtareadiv");
+					txtdiv.appendChild(nCareer);
+				}
+				$("#message").text(responseJson.book.detail);
+			},
+			error: function(xhr, status, error){
+				  var msg = $(xhr.responseText).filter('p').eq(1).text();
+				  alert(msg.substring(8, msg.length));
+			}
+		});
+	}
+  </script>
+  
 </head>
 <body>
 
