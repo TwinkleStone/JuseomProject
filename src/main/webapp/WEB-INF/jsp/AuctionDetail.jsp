@@ -154,38 +154,6 @@
         					</c:when>
         					<c:otherwise>
         						<td style="padding: 30px">
-<<<<<<< HEAD
-        							<div style="text-align: center; padding: 30px;">
-										<button class="btn btn-primary py-3 px-4" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-									    	입찰하기
-									  	</button>
-								  	</div>
-								  	<div class="collapse" id="collapseExample">
-									  <div class="card card-body">
-									    <form:form modelAttribute="bidder" id="bidder" class="bg-light p-5 contact-form">
-											<div class="form-group" style="width: 400px;">
-												<label for="bidNumber">책의 갯수 *</label>
-												<form:input path="bidNumber" class="form-control" id="bidNumber"/>
-												<form:errors path="bidNumber" /> <br/>
-									
-												<label for="bidPrice">입찰가 *</label>
-												<form:input path="bidPrice" class="form-control" />
-												<form:errors path="bidPrice"/> <br/>
-											</div>
-											<form:hidden path="auctionId" value="${param.auctionId}" />
-											<div class="form-group" style="text-align: center;">
-												<input type="submit" value="SEND" onclick="postJson()" class="btn btn-primary py-3 px-4">
-											</div>
-										</form:form>
-									  </div>
-									</div>
-			        				<div class="form-group" style="padding: 20px">
-		                    			<c:url value="/bidderList.do" var="bidderList">
-		                    				<c:param name="auctionId" value="${auction.auctionId}"/>
-		                    			</c:url>
-		                    			<a href="${bidderList}" class="btn py-3 px-4 btn-primary"><c:out value="입찰 현황 보기"/></a>
-		                  			</div>
-=======
         							<c:choose>
 	        							<c:when test="${empty userSession.user.userId}">
 	        								<a href="<c:url value="/user/loginForm.do" />" class="btn py-3 px-4 btn-primary"><c:out
@@ -194,10 +162,34 @@
 	        							<c:otherwise>
 				        					<div class="form-group">
 				        						<c:if test="${auction.book.userId ne userSession.user.userId}">
-						                    		<c:url value="/bidding.do" var="biddingForm">
+						                    		<%-- <c:url value="/bidding.do" var="biddingForm">
 						                    			<c:param name="auctionId" value="${auction.auctionId}"/>
 						                    		</c:url>
-						                    		<a href="${biddingForm}" class="btn py-3 px-4 btn-primary"><c:out value="입찰하기"/></a>
+						                    		<a href="${biddingForm}" class="btn py-3 px-4 btn-primary"><c:out value="입찰하기"/></a> --%>
+						                    		<div style="text-align: center; padding: 30px;">
+														<button class="btn btn-primary py-3 px-4" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+													    	입찰하기
+													  	</button>
+												  	</div>
+												  	<div class="collapse" id="collapseExample">
+													  <div class="card card-body">
+													    <form:form modelAttribute="bidder" id="bidder" class="bg-light p-5 contact-form">
+															<div class="form-group" style="width: 400px;">
+																<label for="bidNumber">책의 갯수 *</label>
+																<form:input path="bidNumber" class="form-control" id="bidNumber"/>
+																<form:errors path="bidNumber" /> <br/>
+													
+																<label for="bidPrice">입찰가 *</label>
+																<form:input path="bidPrice" class="form-control" />
+																<form:errors path="bidPrice"/> <br/>
+															</div>
+															<form:hidden path="auctionId" value="${param.auctionId}" />
+															<div class="form-group" style="text-align: center;">
+																<input type="submit" value="SEND" onclick="postJson()" class="btn btn-primary py-3 px-4">
+															</div>
+														</form:form>
+													  </div>
+													</div>
 					                    		</c:if>
 					                    		<c:url value="/bidderList.do" var="bidderList">
 					                    			<c:param name="auctionId" value="${auction.auctionId}"/>
@@ -206,7 +198,6 @@
 				                  			</div>
 	        							</c:otherwise>
         							</c:choose>
->>>>>>> refs/remotes/origin/develop
 	 							</td>
         					</c:otherwise>
   						</c:choose>
