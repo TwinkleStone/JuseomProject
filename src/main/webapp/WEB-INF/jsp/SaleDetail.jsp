@@ -244,12 +244,14 @@
 												</div>
 											</td>
 											<td>
-												<c:url value="/chatRoom.do" var="chatUrl">
-													<c:param name="bookId" value="${sale.book.bookId}" />
-													<c:param name="sellerId" value="${sale.book.userId}" />
-												</c:url>
-												<a href="${chatUrl}" class="btn py-3 px-4 btn-primary"><c:out
-														value="채팅이동" /></a>
+												<div class="form-group">
+													<c:url value="/chatRoom.do" var="chatUrl">
+														<c:param name="bookId" value="${sale.book.bookId}" />
+														<c:param name="sellerId" value="${sale.book.userId}" />
+													</c:url>
+													<a href="${chatUrl}" class="btn py-3 px-4 btn-primary"><c:out
+															value="채팅이동" /></a>
+												</div>
 											</td>
 										</c:when>
 										<c:otherwise>
@@ -267,29 +269,21 @@
 					</table>
 				</div>
 
-				<div class="pt-5 mt-5">
-					<ul class="comment-list">
-						<li class="comment">
-							<div class="comment-body">
-								<h2 class="mb-5" style="text-weight: bold">판매자 정보</h2>
-								<h3>판매자 이름</h3>
-								<div class="meta">October 17, 2019 at 2:21pm</div>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-									Pariatur quidem laborum necessitatibus, ipsam impedit vitae
-									autem, eum officia, fugiat saepe enim sapiente iste iure! Quam
-									voluptas earum impedit necessitatibus, nihil?</p>
-								<p>
-									<a href="#" class="reply">Reply</a>
-								</p>
-							</div>
-						</li>
-					</ul>
-					<!-- END comment-list -->
-				</div>
-
-			</div>
-			<!-- .col-md-8 -->
-
+				<div class="pt-5 mt-5" style="margin-left: 20px">
+              <h3 class="mb-5">판매자 정보</h3>
+              <ul class="comment-list">
+                <li class="comment">
+                  <div class="vcard bio">
+                    <img src="${pageContext.request.contextPath}/resources/images/person_1.jpg" alt="Image placeholder">
+                  </div>
+                  <div class="comment-body">
+                    <h3>${sellerName}님의 도서입니다.</h3>
+                    <p><a href="#" class="reply">Reply</a></p>
+                  </div>
+                </li>
+               </ul>
+            </div>
+          </div> <!-- .col-md-8 -->
 
 		</div>
 	</div>

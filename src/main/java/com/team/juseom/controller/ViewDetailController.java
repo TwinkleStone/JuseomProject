@@ -17,6 +17,7 @@ import com.team.juseom.domain.Auction;
 import com.team.juseom.domain.Bidder;
 import com.team.juseom.domain.Sale;
 import com.team.juseom.domain.Share;
+import com.team.juseom.domain.User;
 import com.team.juseom.service.JuseomFacade;
 
 @Controller
@@ -39,6 +40,8 @@ public class ViewDetailController {
 		if(userSession != null)
 			userId = userSession.getUser().getUserId();
 		model.addAttribute("userId", userId);
+		User u = juseom.getUserById(s.getBook().getUserId());
+		model.addAttribute("sellerName", u.getCommName());
 		return "SaleDetail"; //상세정보 view로 이동
 	}
 	
@@ -51,6 +54,8 @@ public class ViewDetailController {
 		Bidder b = new Bidder();
 		model.addAttribute("auction", a);
 		model.addAttribute("bidder", b);
+		User u = juseom.getUserById(a.getBook().getUserId());
+		model.addAttribute("sellerName", u.getCommName());
 		return "AuctionDetail"; //상세정보 view로 이동
 	}
 	
@@ -65,6 +70,8 @@ public class ViewDetailController {
 		if(userSession != null)
 			userId = userSession.getUser().getUserId();
 		model.addAttribute("userId", userId);
+		User u = juseom.getUserById(s.getBook().getUserId());
+		model.addAttribute("sellerName", u.getCommName());
 		return "ShareDetail"; //상세정보 view로 이동
 	}
 	

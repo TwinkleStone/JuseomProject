@@ -147,11 +147,11 @@
 				<table>
 	        		<tr style="text-align: center">
 	        			<c:choose>
-        					<c:when test="${auction.status eq 'CLOSE'}">
-        						<td style="padding: 30px; background:#666666; color: white; border-radius: 30px">
-									이 책은 경매가 완료되었습니다.
+       					<c:when test="${auction.status eq 'CLOSE'}">
+        						<td tyle="padding: 30px; background:#666666; color: white; border-radius: 30px">
+								이 책은 경매가 완료되었습니다.
 								</td>
-        					</c:when>
+       					</c:when>
         					<c:otherwise>
         						<td style="padding: 30px">
         							<c:choose>
@@ -205,7 +205,7 @@
         		</table>
         	</div>
         	
-        	<div class="pt-5 mt-5">
+        	<div class="pt-5 mt-5" style="margin-left: 20px">
               <h3 class="mb-5">판매자 정보</h3>
               <ul class="comment-list">
                 <li class="comment">
@@ -213,9 +213,7 @@
                     <img src="${pageContext.request.contextPath}/resources/images/person_1.jpg" alt="Image placeholder">
                   </div>
                   <div class="comment-body">
-                    <h3>John Doe</h3>
-                    <div class="meta">October 17, 2019 at 2:21pm</div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
+                    <h3>${sellerName}님의 도서입니다.</h3>
                     <p><a href="#" class="reply">Reply</a></p>
                   </div>
                 </li>
