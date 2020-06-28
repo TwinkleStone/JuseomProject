@@ -311,6 +311,7 @@
 				                  	<form:hidden path="book.publisher" value="${bookRegi.publisher}"/>
 				                  	<form:hidden path="book.date" value="${bookRegi.date}"/>
 				                  	<form:hidden path="book.price" value="${bookRegi.price}"/>
+				                  	<input type="hidden" name="isbn" value="${bookRegi.isbn}"/>
 				              		<div class="form-group">
 				                		<input type="submit" value="등록하기" class="btn btn-primary py-3 px-5">
 				              		</div>				
@@ -379,6 +380,7 @@
 				                  	<form:hidden path="book.publisher" value="${bookRegi.publisher}"/>
 				                  	<form:hidden path="book.date" value="${bookRegi.date}"/>
 				                  	<form:hidden path="book.price" value="${bookRegi.price}"/>
+				                  	<input type="hidden" name="isbn" value="${bookRegi.isbn}"/>
 				              		<div class="form-group">
 				                		<input type="submit" value="등록하기" class="btn btn-primary py-3 px-5">
 				              		</div>
@@ -460,6 +462,7 @@
 				                  	<form:hidden path="book.publisher" value="${bookRegi.publisher}"/>
 				                  	<form:hidden path="book.date" value="${bookRegi.date}"/>
 				                  	<form:hidden path="book.price" value="${bookRegi.price}"/>
+				                  	<input type="hidden" name="isbn" value="${bookRegi.isbn}"/>
 				              		<div class="form-group">
 				                		<input type="submit" value="등록하기" class="btn btn-primary py-3 px-5">
 				              		</div>

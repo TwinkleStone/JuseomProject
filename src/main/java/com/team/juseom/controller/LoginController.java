@@ -50,15 +50,20 @@ public class LoginController {
 		public ModelAndView handleRequest(HttpServletRequest request,
 				@RequestParam("userId") String userId,
 				@RequestParam("password") String password,
-				@RequestParam(value="forwardAction", required=false) String forwardAction,
+				@RequestParam(value="loginForwardAction", required=false) String forwardAction,
 				Model model) throws Exception {
+			System.out.println("forwardAction " + forwardAction);
 			System.out.println(userId + ", " + password);
 			if (userId == null || userId.equals("") || password == null || password.equals("")) {
+				if(forwardAction != null)
+					model.addAttribute("loginForwardAction", forwardAction);
 				return new ModelAndView(LOGIN_FORM, "message", 
 						"Invalid ID or password.  Login failed.");
 			}
 			User user = juseom.getUserIdPassword(userId, password);
 			if (user == null) {
+				if(forwardAction != null)
+					model.addAttribute("loginForwardAction", forwardAction);
 				return new ModelAndView(LOGIN_FORM, "message", 
 						"Invalid ID or password.  Login failed.");
 			}
