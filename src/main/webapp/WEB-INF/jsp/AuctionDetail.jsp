@@ -44,8 +44,8 @@
 				data: jsonStr,
 				processData: false,
 				success: function(responseJson) {
-					$("#bidPrice").text(responseJson.bidPrice);
 					alert("입찰 성공!");
+					location.reload();
 				},
 				error: function() {
 					alert("입찰 실패! 다시 시도해주세요.");
@@ -185,7 +185,7 @@
 															</div>
 															<form:hidden path="auctionId" value="${param.auctionId}" />
 															<div class="form-group" style="text-align: center;">
-																<input type="submit" value="SEND" onclick="postJson()" class="btn btn-primary py-3 px-4">
+																<input type="button" value="SEND" onclick="postJson()" class="btn btn-primary py-3 px-4">
 															</div>
 														</form:form>
 													  </div>
