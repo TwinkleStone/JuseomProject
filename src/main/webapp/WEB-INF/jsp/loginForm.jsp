@@ -46,6 +46,9 @@
 		id="ftco-navbar">
 	<div class="container">
 		<a class="navbar-brand" href="<c:url value="/index.do" />">주섬주섬</a>
+		<c:if test="${!empty userSession.user}">
+			 <a class="navbar-brand1" href="<c:url value="/user/logout.do" />">로그아웃</a>
+          </c:if>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#ftco-nav" aria-controls="ftco-nav"
 			aria-expanded="false" aria-label="Toggle navigation">
@@ -60,14 +63,14 @@
 					class="nav-link">경매</a></li>
 				<li class="nav-item"><a href="<c:url value="/share.do" />"
 					class="nav-link">나눔</a></li>
-				<li class="nav-item active"><a class="nav-link"
+				<li class="nav-item"><a class="nav-link"
 					href="<c:url value="/insert/search.do" />">등록</a></li>
 				<c:if test="${!empty userSession.user}">
 					<li class="nav-item"><a class="nav-link"
 						href="<c:url value="/user/mypage.do" />">마이페이지</a></li>
 				</c:if>
 				<c:if test="${empty userSession.user}">
-					<li class="nav-item"><a class="nav-link"
+					<li class="nav-item active"><a class="nav-link"
 						href="<c:url value="/user/loginForm.do" />">로그인/회원가입</a></li>
 				</c:if>
 			</ul>

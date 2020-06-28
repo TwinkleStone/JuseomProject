@@ -12,39 +12,6 @@
 <html>
 <head>
 <title>채팅</title>
-<script type="text/javascript" src="<%=cp%>/data/js/ajaxUtil.js"></script>
-
-<script type="text/javascript">
-/* var articleNo = 1000;
-
-//댓글 목록 호출
-getReplies();
-
-//댓글 목록 출력 함수
-function getReplies() {
-
- $.getJSON(&quot;/replies/all/&quot; + articleNo, function (data) {
-
-     console.log(data);
-
-     var str = &quot;&quot;;
-
-     $(data).each(function () {
-         str += &quot;&lt;li data-replyNo='&quot; + this.replyNo + &quot;' class='replyLi'&gt;&quot;
-             +   &quot;&lt;p class='replyText'&gt;&quot; + this.replyText + &quot;&lt;/p&gt;&quot;
-             +   &quot;&lt;p class='replyWriter'&gt;&quot; + this.replyWriter + &quot;&lt;/p&gt;&quot;
-             +   &quot;&lt;button type='button' class='btn btn-xs btn-success' data-toggle='modal' data-target='#modifyModal'&gt;댓글 수정&lt;/button&gt;&quot;
-             + &quot;&lt;/li&gt;&quot;
-             + &quot;&lt;hr/&gt;&quot;;
-
-     });
-
-     $(&quot;#replies&quot;).html(str);
-
- });
-
-} */
-</script>
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -83,6 +50,9 @@ function getReplies() {
 		id="ftco-navbar">
 	<div class="container">
 		<a class="navbar-brand" href="<c:url value="/index.do" />">주섬주섬</a>
+		<c:if test="${!empty userSession.user}">
+			 <a class="navbar-brand1" href="<c:url value="/user/logout.do" />">로그아웃</a>
+          </c:if>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#ftco-nav" aria-controls="ftco-nav"
 			aria-expanded="false" aria-label="Toggle navigation">
@@ -97,7 +67,7 @@ function getReplies() {
 					class="nav-link">경매</a></li>
 				<li class="nav-item"><a href="<c:url value="/share.do" />"
 					class="nav-link">나눔</a></li>
-				<li class="nav-item active"><a class="nav-link"
+				<li class="nav-item"><a class="nav-link"
 					href="<c:url value="/insert/search.do" />">등록</a></li>
 				<c:if test="${!empty userSession.user}">
 					<li class="nav-item"><a class="nav-link"

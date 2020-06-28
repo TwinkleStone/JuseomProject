@@ -29,6 +29,9 @@
 	  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
 	      <a class="navbar-brand" href="<c:url value="/index.do" />">주섬주섬</a>
+	      <c:if test="${!empty userSession.user}">
+			 <a class="navbar-brand1" href="<c:url value="/user/logout.do" />">로그아웃</a>
+          </c:if>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="oi oi-menu"></span> Menu
 	      </button>
@@ -39,6 +42,12 @@
 	          <li class="nav-item"><a href="<c:url value="/auction.do" />" class="nav-link">경매</a></li>
 	          <li class="nav-item active"><a href="<c:url value="/share.do" />" class="nav-link">나눔</a></li>
 	          <li class="nav-item"><a class="nav-link" href="<c:url value="/insert/search.do" />">등록</a></li>
+	          <c:if test="${!empty userSession.user}">
+			       <li class="nav-item"><a class="nav-link" href="<c:url value="/user/mypage.do" />">마이페이지</a></li>
+              </c:if>
+              <c:if test="${empty userSession.user}">
+			       <li class="nav-item"><a class="nav-link" href="<c:url value="/user/loginForm.do" />">로그인/회원가입</a></li>
+              </c:if>
 	          <!--  <li class="nav-item"><a href="properties.html" class="nav-link">Listing</a></li>
 	          <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
 	          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li> -->
