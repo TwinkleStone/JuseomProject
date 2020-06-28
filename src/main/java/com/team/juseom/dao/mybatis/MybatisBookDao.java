@@ -72,16 +72,13 @@ public class MybatisBookDao implements BookDao{
 	}
 
 	@Override
-	public void updateBidNumber(Bidder bidder) {
-		int auctionId = bidder.getAuctionId();
-		bookMapper.updateBidNumber(auctionId);
+	public int updateBidNumber(String auctionId) {
+		return bookMapper.updateBidNumber(auctionId);
 		
 	}
 
 	@Override
-	public void updatePresentPrice(Bidder bidder) {
-		int auctionId = bidder.getAuctionId();
-		int bidPrice = bidder.getBidPrice();
+	public void updatePresentPrice(String auctionId, int bidPrice) {
 		bookMapper.updatePresentPrice(auctionId, bidPrice);
 		
 	}
@@ -149,6 +146,11 @@ public class MybatisBookDao implements BookDao{
 	@Override
 	public int getHighBidPrice(String auctionId) {
 		return bookMapper.getHighBidPrice(auctionId);
+	}
+
+	@Override
+	public int getNowBidNumber(String auctionId) {
+		return bookMapper.getNowBidNumber(auctionId);
 	}
 
 }

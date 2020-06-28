@@ -30,8 +30,8 @@ public interface BookMapper {
 	void updateBook(String bookId, String detail);
 	void deleteShare(int shareId);
 	
-	void updateBidNumber(int auctionId);
-	void updatePresentPrice(int auctionId, int bidPrice);
+	int updateBidNumber(String auctionId);
+	void updatePresentPrice(String auctionId, int bidPrice);
 
 	List<Book> searchBookDetail(@Param("keyword")String keyword, @Param("lowPrice")String lowPrice, @Param("highPrice")String highPrice, @Param("tradeType")String tradeType);
 	List<Book> searchBookByUserId(String userId);
@@ -44,4 +44,5 @@ public interface BookMapper {
 	String getSalesNumber(int auctionId);
 	void updateBookStatus(String bookId);
 	int getHighBidPrice(String auctionId);
+	int getNowBidNumber(String auctionId);
 }

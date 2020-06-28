@@ -28,5 +28,10 @@ public class MybatisBidderDao implements BidderDao {
 		return bidderMapper.getBid(auctionId);
 	}
 
+	@Override
+	public void removeBidder(String userId, String auctionId) {
+		bidderMapper.removeBidder(userId, auctionId);
+	}
+
 
 }

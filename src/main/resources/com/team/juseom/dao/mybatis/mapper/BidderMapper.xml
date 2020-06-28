@@ -8,7 +8,8 @@
 		SELECT 
 			USERID,
 			BIDNUMBER,
-			BIDPRICE
+			BIDPRICE,
+			AUCTIONID
 		FROM BIDDER
 		WHERE AUCTIONID = #{auctionId}
 		ORDER BY BIDPRICE DESC
@@ -41,5 +42,9 @@
 		FROM BIDDER
 		WHERE BIDPRICE = (SELECT MAX(BIDPRICE) FROM BIDDER WHERE AUCTIONID = #{auctionId})
 	</select>
+	
+	<delete id="removeBidder">
+		DELETE FROM BIDDER WHERE USERID = #{param1} AND AUCTIONID = #{param2}
+	</delete>
 	
 </mapper>

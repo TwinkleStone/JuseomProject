@@ -78,6 +78,7 @@
 	        				<td>${b.userId}</td>
 	        				<td>${b.bidNumber}</td>
 	        				<td>${b.bidPrice}</td>
+	        				<td><a href="bidder/delete.do?auctionId=${b.auctionId}&userId=${b.userId}">입찰 취소</a></td>
 	        			</tr>
 	        		</c:forEach>
 	        	</table>

@@ -13,4 +13,5 @@ public interface BidderMapper {
 	void insertBidder(Bidder bidder);
 	int getBidderCount(String auctionId);
 	String getBid(int auctionId);
+	void removeBidder(String userId, String auctionId);
 }

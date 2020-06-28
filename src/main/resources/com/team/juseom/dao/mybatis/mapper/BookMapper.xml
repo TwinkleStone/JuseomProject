@@ -314,4 +314,8 @@
    		WHERE ROWNUM = 1
    </select>
    
+   <select id="getNowBidNumber" resultType="int">
+   		SELECT COUNT (*) FROM BIDDER WHERE AUCTIONID = #{auctionId}
+   </select>
+   
 </mapper>

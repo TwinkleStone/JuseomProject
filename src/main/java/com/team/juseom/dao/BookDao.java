@@ -25,8 +25,8 @@ public interface BookDao {
 	List<Share> getBookListByShare();
 	void deleteShare(int shareId);
 	
-	void updatePresentPrice(Bidder bidder);
-	void updateBidNumber(Bidder bidder);
+	void updatePresentPrice(String auctionId, int bidPrice);
+	int updateBidNumber(String auctionId);
 	
 	void updatePeopleNumber(Applier applier);
 	
@@ -38,5 +38,6 @@ public interface BookDao {
 	void updateBookStatus(String bookId);
 	String getSalesNumber(int auctionId);
 	int getHighBidPrice(String auctionId);
+	int getNowBidNumber(String auctionId);
 
 }

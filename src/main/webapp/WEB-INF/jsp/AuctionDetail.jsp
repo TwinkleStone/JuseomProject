@@ -191,10 +191,12 @@
 													  </div>
 													</div>
 					                    		</c:if>
-					                    		<c:url value="/bidderList.do" var="bidderList">
-					                    			<c:param name="auctionId" value="${auction.auctionId}"/>
-					                    		</c:url>
-					                    		<a href="${bidderList}" class="btn py-3 px-4 btn-primary"><c:out value="입찰 현황 보기"/></a>
+					                    		<div class="form-group" style="padding: 30px">
+					                    			<c:url value="/bidderList.do" var="bidderList">
+					                    				<c:param name="auctionId" value="${auction.auctionId}"/>
+					                    			</c:url>
+					                    			<a href="${bidderList}" class="btn py-3 px-4 btn-primary"><c:out value="입찰 현황 보기"/></a>
+					                    		</div>
 				                  			</div>
 	        							</c:otherwise>
         							</c:choose>

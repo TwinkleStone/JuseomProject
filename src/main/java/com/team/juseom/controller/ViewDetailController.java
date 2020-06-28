@@ -46,8 +46,13 @@ public class ViewDetailController {
 	public String viewAuction(@RequestParam("id") String auctionId,
 			Model model) {
 		Auction a = juseom.getOneAuction(auctionId);
+		
 		int highBidPrice = juseom.getHighBidPrice(auctionId);
 		a.setPresentPrice(highBidPrice);
+		
+		int bidNumber = juseom.getNowBidNumber(auctionId);
+		a.setBidNumber(bidNumber);
+		
 		Bidder b = new Bidder();
 		model.addAttribute("auction", a);
 		model.addAttribute("bidder", b);

@@ -8,4 +8,5 @@ public interface BidderDao {
 	List<Bidder> getBidderListByauctionId(String auctionId);
 	void insertBidder(Bidder bidder);
 	String getBid(int auctionId);
+	void removeBidder(String userId, String auctionId);
 }
