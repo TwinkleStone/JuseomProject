@@ -124,17 +124,26 @@
         					</c:when>
         					<c:otherwise>
         						<td style="padding: 30px">
-			        				<div class="form-group">
-		                    			<c:url value="/bidding.do" var="biddingForm">
-		                    				<c:param name="auctionId" value="${auction.auctionId}"/>
-		                    			</c:url>
-		                    			<a href="${biddingForm}" class="btn py-3 px-4 btn-primary"><c:out value="입찰하기"/></a>
-		                    			
-		                    			<c:url value="/bidderList.do" var="bidderList">
-		                    				<c:param name="auctionId" value="${auction.auctionId}"/>
-		                    			</c:url>
-		                    			<a href="${bidderList}" class="btn py-3 px-4 btn-primary"><c:out value="입찰 현황 보기"/></a>
-		                  			</div>
+        							<c:choose>
+	        							<c:when test="${empty userSession.user.userId}">
+	        								<a href="<c:url value="/user/loginForm.do" />" class="btn py-3 px-4 btn-primary"><c:out
+																value="로그인하기" /></a>
+	        							</c:when>
+	        							<c:otherwise>
+				        					<div class="form-group">
+				        						<c:if test="${auction.book.userId ne userSession.user.userId}">
+						                    		<c:url value="/bidding.do" var="biddingForm">
+						                    			<c:param name="auctionId" value="${auction.auctionId}"/>
+						                    		</c:url>
+						                    		<a href="${biddingForm}" class="btn py-3 px-4 btn-primary"><c:out value="입찰하기"/></a>
+					                    		</c:if>
+					                    		<c:url value="/bidderList.do" var="bidderList">
+					                    			<c:param name="auctionId" value="${auction.auctionId}"/>
+					                    		</c:url>
+					                    		<a href="${bidderList}" class="btn py-3 px-4 btn-primary"><c:out value="입찰 현황 보기"/></a>
+				                  			</div>
+	        							</c:otherwise>
+        							</c:choose>
 	 							</td>
         					</c:otherwise>
   						</c:choose>
