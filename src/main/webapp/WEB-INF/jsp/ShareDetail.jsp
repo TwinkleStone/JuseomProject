@@ -150,6 +150,10 @@
 		        					<c:if test="${share.book.userId ne userId}">
 		        						<input type="button" class="btn py-3 px-4 btn-primary" value="신청하기" onclick="postJson()"/>
 		        					</c:if>
+		        					<c:if test="${empty userSession.user.userId}">
+		        						<a href="<c:url value="/user/loginForm.do" />" class="btn py-3 px-4 btn-primary"><c:out
+																value="로그인하기" /></a>
+		        					</c:if>
 	 							</td>
         					</c:otherwise>
   						</c:choose>

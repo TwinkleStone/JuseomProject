@@ -172,23 +172,20 @@
 								</c:when>
 								<c:otherwise>
 									<c:choose>
+										<c:when test="${empty userId}">
+											<a href="<c:url value="/user/loginForm.do" />" class="btn py-3 px-4 btn-primary"><c:out
+																value="로그인하기" /></a>
+										</c:when>
 										<c:when test="${sale.book.userId ne userId}">
 											<td width="200px" style="padding: 30px">
 												<div class="form-group">
-													<c:if test="${userSession.user.userId ne sale.book.userId}">
-														<c:url value="/user/chatRoom.do" var="chatUrl">
-															<c:param name="bookId" value="${sale.book.bookId}" />
-															<c:param name="sellerId" value="${sale.book.userId}" />
-															<c:param name="buyerId" value="${userSession.user.userId}" />
-														</c:url>
-														<a href="${chatUrl}" class="btn py-3 px-4 btn-primary"><c:out
-																value="구매 신청" /></a>
-													</c:if>
-													<c:if
-														test="${not empty userSession.user.userId and userSession.user.userId eq sale.book.userId}">
-														<a class="btn py-3 px-4 btn-primary"><c:out
-																value="신청 불가" /></a>
-													</c:if>
+													<c:url value="/user/chatRoom.do" var="chatUrl">
+														<c:param name="bookId" value="${sale.book.bookId}" />
+														<c:param name="sellerId" value="${sale.book.userId}" />
+														<c:param name="buyerId" value="${userSession.user.userId}" />
+													</c:url>
+													<a href="${chatUrl}" class="btn py-3 px-4 btn-primary"><c:out
+															value="구매 신청" /></a>
 												</div>
 											</td>
 											<td width="50%" style="padding: 30px">
