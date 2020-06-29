@@ -169,7 +169,7 @@ public class JuseomImpl implements JuseomFacade {
 						if(j == txt.length - 1) {
 							Calendar cal = Calendar.getInstance(); 
 							cal.setTime(from);
-							cal.add(Calendar.SECOND, 10);
+							cal.add(Calendar.MINUTE, 1);
 							to = transFormat.format(cal.getTime());
 						}else {
 							to = transFormat.format(from);
