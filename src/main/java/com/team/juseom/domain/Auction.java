@@ -2,7 +2,6 @@ package com.team.juseom.domain;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 @SuppressWarnings("serial")
 public class Auction implements Serializable{

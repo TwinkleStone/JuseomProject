@@ -2,13 +2,10 @@ package com.team.juseom.dao.mybatis.mapper;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.team.juseom.domain.Applier;
 import com.team.juseom.domain.Auction;
-import com.team.juseom.domain.Bidder;
 import com.team.juseom.domain.Book;
 import com.team.juseom.domain.Sale;
 import com.team.juseom.domain.Share;

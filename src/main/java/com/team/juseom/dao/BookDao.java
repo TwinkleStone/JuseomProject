@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.team.juseom.domain.Applier;
 import com.team.juseom.domain.Auction;
-import com.team.juseom.domain.Bidder;
 import com.team.juseom.domain.Book;
 import com.team.juseom.domain.Sale;
 import com.team.juseom.domain.Share;

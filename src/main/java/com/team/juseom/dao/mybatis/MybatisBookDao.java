@@ -1,6 +1,5 @@
 package com.team.juseom.dao.mybatis;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +9,6 @@ import com.team.juseom.dao.BookDao;
 import com.team.juseom.dao.mybatis.mapper.BookMapper;
 import com.team.juseom.domain.Applier;
 import com.team.juseom.domain.Auction;
-import com.team.juseom.domain.Bidder;
 import com.team.juseom.domain.Book;
 import com.team.juseom.domain.Sale;
 import com.team.juseom.domain.Share;
