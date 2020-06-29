@@ -185,7 +185,7 @@
 	</update>
 
 	<update id="updatePresentPrice" parameterType="String">
-		<![CDATA[
+ 		<![CDATA[
 			UPDATE AUCTION
 			SET PRESENTPRICE = #{param2}
 			WHERE auctionId = ${param1}
@@ -317,5 +317,11 @@
    <select id="getNowBidNumber" resultType="int">
    		SELECT COUNT (*) FROM BIDDER WHERE AUCTIONID = #{auctionId}
    </select>
+   
+   <update id="updateMaxAuctionPrice" parameterType="String">
+   		UPDATE AUCTION
+		SET PRESENTPRICE = #{param2}
+		WHERE auctionId = ${param1}
+   </update>
    
 </mapper>

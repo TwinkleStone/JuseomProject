@@ -153,4 +153,10 @@ public class MybatisBookDao implements BookDao{
 		return bookMapper.getNowBidNumber(auctionId);
 	}
 
+	@Override
+	public void updateMaxAuctionPrice(String auctionId, int highBidPrice) {
+		bookMapper.updateMaxAuctionPrice(auctionId, highBidPrice);
+		
+	}
+
 }

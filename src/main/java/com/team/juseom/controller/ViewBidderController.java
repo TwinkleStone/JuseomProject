@@ -58,9 +58,8 @@ public class ViewBidderController {
 		
 		if (sessionUserId.equals(userId)) {
 			juseom.removeBidder(userId, auctionId);
-			System.out.println("성공적으로 삭제가 되었습니다.");
 		} else {
-			System.out.println("다른 사람의 입찰은 삭제하지 못합니다.");
+			System.out.println("다른 사람의 입찰은 삭제 불가");
 		}
 		
 		return "redirect:/auction.do";

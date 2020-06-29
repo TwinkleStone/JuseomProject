@@ -379,7 +379,7 @@ public class JuseomImpl implements JuseomFacade {
 		bidderDao.removeBidder(userId, auctionId);
 		bookDao.updateBidNumber(auctionId);
 		int highBidPrice = bookDao.getHighBidPrice(auctionId);
-		bookDao.updatePresentPrice(auctionId, highBidPrice);
+		bookDao.updateMaxAuctionPrice(auctionId, highBidPrice);
 	}
 
 	@Override

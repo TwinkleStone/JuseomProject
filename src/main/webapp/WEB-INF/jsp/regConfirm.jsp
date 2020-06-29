@@ -110,7 +110,7 @@
 				<br />
 				<form:form modelAttribute="userForm" method="post"
 					action="/juseom/user/register/registered.do">
-					<table class="table table-hover" style="text-align: center">
+					<table class="table" style="text-align: center">
 						<tr>
 							<td>다음 정보로 신청하시겠습니까?<br />
 							<br />

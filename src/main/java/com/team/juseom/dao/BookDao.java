@@ -39,5 +39,6 @@ public interface BookDao {
 	String getSalesNumber(int auctionId);
 	Integer getHighBidPrice(String auctionId);
 	int getNowBidNumber(String auctionId);
+	void updateMaxAuctionPrice(String auctionId, int highBidPrice);
 
 }

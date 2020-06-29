@@ -24,6 +24,7 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/icomoon.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css">
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
@@ -70,7 +71,7 @@
 	        	<div class="col-md-12 heading-section text-center ftco-animate mb-5">
 	        	<h2 class="mb-2">현재 경매 현황</h2>
 	        	<br/>
-	        	<table class="table table-hover">
+	        	<table class="table">
 	        		<tr><th>순번</th><th>ID</th><th>입찰수</th><th>입찰가</th></tr>
 	        		<c:forEach var="b" items="${bidderList}" varStatus="status">
 	        			<tr>
