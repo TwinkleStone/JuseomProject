@@ -82,11 +82,6 @@ public class ViewDetailController {
 			HttpServletRequest request) {
 		Share s = juseom.getShare(shareId);
 		model.addAttribute("share", s);
-		UserSession userSession = (UserSession) WebUtils.getSessionAttribute(request, "userSession");
-		String userId = null;
-		if(userSession != null)
-			userId = userSession.getUser().getUserId();
-		model.addAttribute("userId", userId);
 		User u = juseom.getUserById(s.getBook().getUserId());
 		model.addAttribute("sellerName", u.getCommName());
 		return "ShareDetail"; //상세정보 view로 이동
