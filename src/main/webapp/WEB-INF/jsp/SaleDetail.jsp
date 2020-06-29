@@ -249,11 +249,11 @@
 								</c:when>
 								<c:otherwise>
 									<c:choose>
-										<c:when test="${empty userId}">
+										<c:when test="${empty userSession.user.userId}">
 											<a href="<c:url value="/user/loginForm.do" />" class="btn py-3 px-4 btn-primary"><c:out
 																value="로그인하기" /></a>
 										</c:when>
-										<c:when test="${sale.book.userId ne userId}">
+										<c:when test="${sale.book.userId ne userSession.user.userId}">
 											<td width="200px" style="padding: 30px">
 												<div class="form-group">
 													<c:url value="/user/chatRoom.do" var="chatUrl">

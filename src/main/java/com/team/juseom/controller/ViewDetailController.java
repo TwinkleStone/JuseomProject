@@ -36,13 +36,7 @@ public class ViewDetailController {
 			Model model,
 			HttpServletRequest request) {
 		Sale s = juseom.getSale(saleId);
-		model.addAttribute("sale", s);
-		UserSession userSession = (UserSession) WebUtils.getSessionAttribute(request, "userSession");
-		String userId = null;
-		if(userSession != null)
-			userId = userSession.getUser().getUserId();
-		model.addAttribute("userId", userId);
-		
+		model.addAttribute("sale", s);	
 		User u = juseom.getUserById(s.getBook().getUserId());
 		List<Rate> rates = juseom.getRateListByUser(s.getBook().getUserId());
 		List<Rate> lately = rates.subList(0, rates.size() < 5? rates.size() : 5);
