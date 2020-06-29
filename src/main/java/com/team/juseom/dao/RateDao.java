@@ -8,6 +8,6 @@ public interface RateDao {
 	List<Rate> getRateListByUser(String userId);
 	void insertRate(Rate rating);
 	Rate getRate(int rateId);
-	int searchRate(Rate rate);
+	int searchRate(int bookId);
 	String getAvgRate(String ratedId);
 }

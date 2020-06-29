@@ -159,4 +159,9 @@ public class MybatisBookDao implements BookDao{
 		
 	}
 
+	@Override
+	public String getBidWinner(String auctionId) {
+		return bookMapper.getBidWinner(auctionId);
+	}
+
 }

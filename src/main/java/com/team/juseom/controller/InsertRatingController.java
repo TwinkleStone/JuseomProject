@@ -2,6 +2,7 @@ package com.team.juseom.controller;
 
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -53,15 +54,27 @@ public class InsertRatingController {
 	public String insertRate(
 			@ModelAttribute("rate") Rate formData,
 			HttpServletResponse response,
-			BindingResult result, HttpSession session) throws IOException {
+			BindingResult result, HttpSession session,
+			Model model) throws IOException {
 		new RatingFormValidator().validate(formData, result);
 		
 		if (result.hasErrors()) {
 			return "RatingForm";
 		}
-		juseomFacade.insertRate(formData);
+		
+		int searchRate = juseomFacade.searchRate(formData.getBookId());
+		
+		if (searchRate >= 1) {
+			System.out.println("이미 별점을 남겼습니다.");
+			List<Rate> rates = juseomFacade.getRateListByUser(formData.getRatedId());
+			model.addAttribute("ratingList", rates);
+			return "RatingList";
+		} else {
+			juseomFacade.insertRate(formData);
+		}
 		
 		//book status 변경용 코드
+		/*
 		String bookId = Integer.toString(formData.getBookId());
 		UserSession userSession = (UserSession)session.getAttribute("userSession");
 		String userId = userSession.getUser().getUserId();
@@ -87,7 +100,7 @@ public class InsertRatingController {
 		
 		if (status.getBuyerStatus().equals("CLOSE") && status.getSellerStatus().equals("CLOSE")) {
 			juseomFacade.updateBookStatus(bookId);
-		}
+		} */
 		
 		return "RatingConfirm";
 

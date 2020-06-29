@@ -62,6 +62,9 @@ public class ViewDetailController {
 		int bidNumber = juseom.getNowBidNumber(auctionId);
 		a.setBidNumber(bidNumber);
 		
+		String bidWinner = juseom.getBidWinner(auctionId);
+		a.setBidWinner(bidWinner);
+		
 		Bidder b = new Bidder();
 		model.addAttribute("auction", a);
 		model.addAttribute("bidder", b);

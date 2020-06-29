@@ -39,6 +39,7 @@
 	.star_rating span.on {color:#777;}
 	</style>
 	<script>
+	
 		function openReview(){
 			var review = document.getElementById("review");
 			if(review.style.display=='none'){
@@ -145,6 +146,9 @@
 	              						(남은시간 : <span id="timer"></span>)
 	              					</c:if>
 	              				</p>
+	              				<c:if test="${auction.status eq 'CLOSE'}">
+	              					<p>낙찰자 : ${auction.bidWinner} 님</p>
+	              				</c:if>
 	              			</div>
 	              		</td>
 	        		</tr>
@@ -170,7 +174,7 @@
 	        		<tr style="text-align: center">
 	        			<c:choose>
        					<c:when test="${auction.status eq 'CLOSE'}">
-        						<td tyle="padding: 30px; background:#666666; color: white; border-radius: 30px">
+        						<td style="padding: 30px; background:#666666; color: white; border-radius: 30px">
 								이 책은 경매가 완료되었습니다.
 								</td>
        					</c:when>

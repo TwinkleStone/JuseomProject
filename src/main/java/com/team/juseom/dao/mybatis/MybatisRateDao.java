@@ -29,8 +29,7 @@ public class MybatisRateDao implements RateDao {
 	}
 
 	@Override
-	public int searchRate(Rate rate) {
-		int bookId = rate.getBookId();
+	public int searchRate(int bookId) {
 		return rateMapper.searchRate(bookId);
 	}
 

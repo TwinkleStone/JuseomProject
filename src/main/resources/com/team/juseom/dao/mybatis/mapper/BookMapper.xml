@@ -324,4 +324,10 @@
 		WHERE auctionId = ${param1}
    </update>
    
+   <select id="getBidWinner" resultType="String">
+   		SELECT BIDWINNER
+   		FROM AUCTION
+   		WHERE AUCTIONID = #{auctionId}
+   </select>
+   
 </mapper>

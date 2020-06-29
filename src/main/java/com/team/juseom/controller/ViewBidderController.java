@@ -1,5 +1,6 @@
 package com.team.juseom.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -64,5 +65,6 @@ public class ViewBidderController {
 		
 		return "redirect:/auction.do";
 	}
+
 	
 }

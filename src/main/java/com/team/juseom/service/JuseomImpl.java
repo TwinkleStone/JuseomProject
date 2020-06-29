@@ -326,8 +326,8 @@ public class JuseomImpl implements JuseomFacade {
 	}
 
 	@Override
-	public int searchRate(Rate rate) {
-		return rateDao.searchRate(rate);
+	public int searchRate(int bookId) {
+		return rateDao.searchRate(bookId);
 	}
 
 	@Override
@@ -395,6 +395,11 @@ public class JuseomImpl implements JuseomFacade {
 	@Override
 	public String getAvgRate(String ratedId) {
 		return rateDao.getAvgRate(ratedId);
+	}
+
+	@Override
+	public String getBidWinner(String auctionId) {
+		return bookDao.getBidWinner(auctionId);
 	}
 
 

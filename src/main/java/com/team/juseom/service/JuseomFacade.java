@@ -56,7 +56,7 @@ public interface JuseomFacade {
 	int searchApplier(Applier applier);
 	
 	List<Rate> getRateListByUser(String userId);
-	int searchRate(Rate rate);
+	int searchRate(int bookId);
 	Rate getRate(int rateId);
 	String getAvgRate(String ratedId);
 	
@@ -70,4 +70,5 @@ public interface JuseomFacade {
 	void removeBidder(String userId, String auctionId);
 	int updateBidNumber(String auctionId);
 	int getNowBidNumber(String auctionId);
+	String getBidWinner(String auctionId);
 }

@@ -46,4 +46,5 @@ public interface BookMapper {
 	Integer getHighBidPrice(String auctionId);
 	int getNowBidNumber(String auctionId);
 	void updateMaxAuctionPrice(String auctionId, int highBidPrice);
+	String getBidWinner(String auctionId);
 }
