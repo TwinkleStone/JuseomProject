@@ -61,15 +61,17 @@ public class InitService implements ApplicationListener<ContextClosedEvent>, Ini
 				if(openedShareList.get(i).getRaffleTime().compareTo(curTime) == -1) {
 					insertChatting(openedShareList.get(i));
 				}else {
-					System.out.println("여기여기22");
+					System.out.println("scheduler 재 등록");
 					if(openedShareList.get(i).getEndTime().compareTo(curTime) != -1) {
-						System.out.println("여기여기33");
+						System.out.println("마감시간 재 등록");
 						scheduler.schedule(updateTableRunner, openedShareList.get(i).getEndTime());
 					}
 					((ShareRunnable) updateTableRunner2).setShare(openedShareList.get(i));
 					scheduler2.schedule(updateTableRunner2, openedShareList.get(i).getRaffleTime());  
 				}
 			}
+			
+			//경매 scheduler 재설정 작업
 			eventDao.closeAuctionEvent(curTime);
 			System.out.println("resetTableRunner is executed at " + curTime);	
 		}
