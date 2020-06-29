@@ -59,6 +59,8 @@ public class OtoChatController {
 				(UserSession) WebUtils.getSessionAttribute(request, "userSession");
 		String userId = userSession.getUser().getUserId();
 		String chattingRoomId = bookId + "_" + buyerId;
+		
+		System.out.println(chattingRoomId);
 	
 		//건들면 안됨
 		list = juseom.selectOtoChatByChattingRoomId(chattingRoomId);
@@ -68,7 +70,6 @@ public class OtoChatController {
 			Date from = new Date();
 			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String to = transFormat.format(from);
-
 			chat.setChatTime(to);
 			OtoStatus status = new OtoStatus();
 			status.setChattingRoomId(chattingRoomId);
@@ -77,6 +78,15 @@ public class OtoChatController {
 			status.setBookId(bookId);
 			juseom.insertStatus(status);
 			juseom.insertOtoChat(chat);
+		}
+		
+		if (juseom.getStatusByChattingRoomId(chattingRoomId) == null) {
+			OtoStatus status = new OtoStatus();
+			status.setChattingRoomId(chattingRoomId);
+			status.setBuyerId(buyerId);
+			status.setSellerId(sellerId);
+			status.setBookId(bookId);
+			juseom.insertStatus(status);
 		}
 		
 
