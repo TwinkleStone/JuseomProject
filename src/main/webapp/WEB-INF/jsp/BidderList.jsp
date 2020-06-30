@@ -83,6 +83,7 @@
 	        			</tr>
 	        		</c:forEach>
 	        	</table>
+	        	<br/><br/><p><a href="<c:url value='/index' />">Go to index</a></p>
 	        	</div>
         	</div>
         </div>

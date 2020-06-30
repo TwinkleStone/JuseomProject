@@ -2,6 +2,8 @@ package com.team.juseom.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,4 +33,20 @@ public class ViewRateController {
 		
 		return "RatingList";
 	}
+	
+	@RequestMapping("/myRateList.do")
+	public String getMyRateList(
+			HttpSession session,
+			Model model) {
+		UserSession userSession = (UserSession)session.getAttribute("userSession");
+		String userId = userSession.getUser().getUserId();
+		
+		List<Rate> rates = juseom.getRateListByUser(userId);
+		model.addAttribute("ratedId", userId);
+		model.addAttribute("ratingList", rates);
+		
+		return "RatingList";
+		
+	}
+	
 }

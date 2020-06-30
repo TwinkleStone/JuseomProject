@@ -171,7 +171,7 @@
 							<td><form:errors path="user.address3" /> <br /></td>
 						</tr>
 						<tr>
-							<td colspan="2"><input type="submit" value="다음 단계로" /></td>
+							<td colspan="2"><input type="submit" class="btn btn-primary py-3 px-4" value="다음 단계로" /></td>
 						</tr>
 					</table>
 				</form:form>
