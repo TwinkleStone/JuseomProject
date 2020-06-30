@@ -52,17 +52,14 @@ private static final String FORM_VIEW = "UserBookList";
 				if (type.equals("판매")) {
 					tradeId = juseom.getSaleIdByBookId(bookId);
 					r.setTradeId(tradeId);
-					System.out.println(r.getTradeType() + ", " + tradeId);
 				}
 				else if (type.equals("나눔")) {
 					tradeId = juseom.getShareIdByBookId(bookId);
 					r.setTradeId(tradeId);
-					System.out.println(r.getTradeType() + ", " + tradeId);
 				}
 				else if (type.equals("경매")){
 					tradeId = juseom.getAuctionIdByBookId(bookId);
 					r.setTradeId(tradeId);
-					System.out.println(r.getTradeType() + ", " + tradeId);
 				}
 			}
 			r.setBook(list.get(i));
