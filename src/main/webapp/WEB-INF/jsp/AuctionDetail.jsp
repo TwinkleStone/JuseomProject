@@ -71,7 +71,7 @@
 					location.reload();
 				},
 				error: function() {
-					alert("입찰 실패! 다시 시도해주세요.");
+					alert("입찰 불가! 다시 시도해주세요.");
 				}
 			});
 			

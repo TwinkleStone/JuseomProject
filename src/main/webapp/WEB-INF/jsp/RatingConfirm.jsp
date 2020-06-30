@@ -24,6 +24,20 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/icomoon.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css">
 	
+	<style>
+	.star_rating {font-size:0; letter-spacing:-4px;}
+	.star_rating span {
+	    font-size:22px;
+	    letter-spacing:0;
+	    display:inline-block;
+	    margin-left:5px;
+	    color:#ccc;
+	    text-decoration:none;
+	}
+	.star_rating span:first-child {margin-left:0;}
+	.star_rating span.on {color:gold;}
+	</style>
+	
   </head>
 </head>
 <body>
@@ -74,13 +88,52 @@
             <div class="row justify-content-center">
           		<div class="col-md-12 heading-section text-center ftco-animate mb-5">
 	          		<span class="subheading">별점</span>
-	          		<h3 class="mb-2">${rate.raterId}님이 ${rate.ratedId}님에게 별점 남기기를 성공하였습니다.</h3>
+	          		<h3 class="mb-2">${raterName}님이 ${ratedName}님에게 별점 남기기를 성공하였습니다.</h3>
           		</div>
           		<table style="background: #f8f9fa">
 	        		<tr>
 	        			<td style="padding: 30px; width: 500px">
 	        				<div class="desc">
-	        					<p>별점 : ${rate.rate}</p>
+	        						<div class="star_rating">
+	        							별점 :
+	        							<c:choose>
+	        								<c:when test="${rate.rate eq '1'}">
+				                    			<span class="on">★</span>
+											    <span>★</span>
+											    <span>★</span>
+											    <span>★</span>
+											    <span>★</span>
+				                    		</c:when>
+				                    		<c:when test="${rate.rate eq '2'}">
+				                    			<span class="on">★</span>
+											    <span class="on">★</span>
+											    <span>★</span>
+											    <span>★</span>
+											    <span>★</span>
+				                    		</c:when>
+				                    		<c:when test="${rate.rate eq '3'}">
+				                    			<span class="on">★</span>
+											    <span class="on">★</span>
+											    <span class="on">★</span>
+											    <span>★</span>
+											    <span>★</span>
+				                    		</c:when>
+				                    		<c:when test="${rate.rate eq '4'}">
+				                    			<span class="on">★</span>
+											    <span class="on">★</span>
+											    <span class="on">★</span>
+											    <span class="on">★</span>
+											    <span>★</span>
+				                    		</c:when>
+				                    		<c:when test="${rate.rate eq '5'}">
+				                    			<span class="on">★</span>
+											    <span class="on">★</span>
+											    <span class="on">★</span>
+											    <span class="on">★</span>
+											    <span class="on">★</span>
+				                    		</c:when>
+					        			</c:choose>
+	        						</div>
 	        					<p>한줄리뷰: ${rate.description}</p>
 	              			</div>
 	              		</td>
@@ -98,7 +151,7 @@
 		         			<c:url value="/rateList.do" var="rateList">
 		                    	<c:param name="ratedId" value="${rate.ratedId}"/>
 		                	</c:url>
-		                	<a href="${rateList}" class="btn py-3 px-4 btn-primary"><c:out value="${rate.ratedId}님의 별점 리스트 확인하기"/></a>
+		                	<a href="${rateList}" class="btn py-3 px-4 btn-primary"><c:out value="${ratedName}님의 별점 리스트 확인하기"/></a>
 		                	<br/><br/><p><a href="<c:url value='/index' />">Go to index</a></p>
 		         		</div>
 		         	</td>

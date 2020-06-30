@@ -20,4 +20,6 @@ public interface UserMapper {
 
 	void updateUser(User user);
 
+	String getCommnameByUserId(String userId);
+
 }

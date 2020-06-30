@@ -44,4 +44,9 @@ public class MybatisUserDao implements UserDao {
 		}
 		return null;
 	}
+
+	@Override
+	public String getCommnameByUserId(String userId) {
+		return userMapper.getCommnameByUserId(userId);
+	}
 }

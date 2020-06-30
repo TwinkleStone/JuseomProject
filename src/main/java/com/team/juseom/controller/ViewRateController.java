@@ -28,7 +28,16 @@ public class ViewRateController {
 			Model model
 			) {
 		List<Rate> rates = juseom.getRateListByUser(ratedId);
-		model.addAttribute("ratedId", ratedId);
+		
+		for (int i = 0; i < rates.size(); i++) {
+			String raterId = rates.get(i).getRaterId();
+			String nickName = juseom.getCommnameByUserId(raterId);
+			rates.get(i).setRaterId(nickName);
+		}
+		
+		String commName = juseom.getCommnameByUserId(ratedId);
+		
+		model.addAttribute("topName", commName);
 		model.addAttribute("ratingList", rates);
 		
 		return "RatingList";
@@ -42,7 +51,16 @@ public class ViewRateController {
 		String userId = userSession.getUser().getUserId();
 		
 		List<Rate> rates = juseom.getRateListByUser(userId);
-		model.addAttribute("ratedId", userId);
+		
+		for (int i = 0; i < rates.size(); i++) {
+			String raterId = rates.get(i).getRaterId();
+			String nickName = juseom.getCommnameByUserId(raterId);
+			rates.get(i).setRaterId(nickName);
+		}
+		
+		String commName = juseom.getCommnameByUserId(userId);
+		
+		model.addAttribute("topName", commName);
 		model.addAttribute("ratingList", rates);
 		
 		return "RatingList";

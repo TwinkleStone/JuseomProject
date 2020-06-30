@@ -412,6 +412,11 @@ public class JuseomImpl implements JuseomFacade {
 		return statusDao.getBuyerStatus(chattingRoomId);
 	}
 
+	@Override
+	public String getCommnameByUserId(String userId) {
+		return userDao.getCommnameByUserId(userId);
+	}
+
 
 }
 

@@ -82,4 +82,11 @@
     VALUES
       (#{userId}, #{password}, #{name}, #{phone}, #{commName}, #{profilePicUrl}, #{address1}, #{address2}, #{address3})
   </insert>
+  
+  <select id="getCommnameByUserId" resultType="String">
+  	SELECT COMMNAME
+  	FROM "User"
+  	WHERE USERID = #{userId}
+  </select>
+  
 </mapper>

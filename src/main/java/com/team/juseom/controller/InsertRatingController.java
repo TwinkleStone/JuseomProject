@@ -41,10 +41,12 @@ public class InsertRatingController {
 			@RequestParam("bookId") int bookId) {
 		Rate rate = new Rate();
 		
+		String commName = juseomFacade.getCommnameByUserId(ratedId);
+		
 		rate.setBookId(bookId);
-		rate.setRatedId(ratedId);//별점이 매겨지는 사람
+		rate.setRatedId(commName);//별점이 매겨지는 사람
 		rate.setRaterId(raterId);//별점을 매기는 사람
-		rate.setRate(3);
+
 		return rate;
 	}
 
@@ -85,11 +87,27 @@ public class InsertRatingController {
 		String userId = userSession.getUser().getUserId();
 		String sellerId = session.getAttribute("sellerId").toString();
 		String buyerId;
+		
+		String sellerCommName = juseomFacade.getCommnameByUserId(sellerId);
+		String buyerCommName = null;
+
 		if (session.getAttribute("buyerId") == null) {
 			buyerId = userSession.getUser().getUserId();
+			buyerCommName = juseomFacade.getCommnameByUserId(buyerId);
+			model.addAttribute("raterName", sellerCommName);
+			model.addAttribute("ratedName", buyerCommName);
 		}
 		else {
 			buyerId = session.getAttribute("buyerId").toString();
+			
+			buyerCommName = juseomFacade.getCommnameByUserId(buyerId);
+			if (sellerId.equals(formData.getRaterId())) {
+				model.addAttribute("raterName", sellerCommName);
+				model.addAttribute("ratedName", buyerCommName);
+			} else {
+				model.addAttribute("raterName", buyerCommName);
+				model.addAttribute("ratedName", sellerCommName);	
+			}
 		}
 		String chattingRoomId = bookId + "_" + buyerId;
 		OtoStatus status = juseomFacade.getStatusByChattingRoomId(chattingRoomId);

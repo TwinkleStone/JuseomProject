@@ -27,6 +27,20 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/icomoon.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css">
 	
+	<style>
+	.star_rating {font-size:0; letter-spacing:-4px;}
+	.star_rating span {
+	    font-size:22px;
+	    letter-spacing:0;
+	    display:inline-block;
+	    margin-left:5px;
+	    color:#ccc;
+	    text-decoration:none;
+	}
+	.star_rating span:first-child {margin-left:0;}
+	.star_rating span.on {color:gold;}
+	</style>
+	
   </head>
   <body>
 	  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
@@ -75,15 +89,55 @@
           <div class="col-md-12 ftco-animate" style="align: center">
             <div class="row justify-content-center">
           		<div class="col-md-12 heading-section text-center ftco-animate mb-5">
-	            	<h2 class="mb-2">${ratedId}님의 별점 목록</h2>
+	            	<h2 class="mb-2">${topName}님의 별점 목록</h2>
           		</div>
           		<table class="table" style="text-align:center">
 	        		<tr><th>순번</th><th>별점을 남긴 사용자</th><th>별점</th><th>리뷰 내용</th></tr>
 	        		<c:forEach var="r" items="${ratingList}" varStatus="status">
 	        			<tr>
 	        				<td>${status.count}</td>
-	        				<td>${r.raterId}</td>
-	        				<td>${r.rate}</td>
+	        				<td>${r.raterId} 님</td>
+	        				<td>
+	        					<div class="star_rating">
+	        						<c:choose>
+	        							<c:when test="${r.rate eq '1'}">
+				                    		<span class="on">★</span>
+											<span>★</span>
+											<span>★</span>
+											<span>★</span>
+											<span>★</span>
+				                    	</c:when>
+				                    	<c:when test="${r.rate eq '2'}">
+				                    			<span class="on">★</span>
+											    <span class="on">★</span>
+											    <span>★</span>
+											    <span>★</span>
+											    <span>★</span>
+				                    	</c:when>
+				                    	<c:when test="${r.rate eq '3'}">
+				                    			<span class="on">★</span>
+											    <span class="on">★</span>
+											    <span class="on">★</span>
+											    <span>★</span>
+											    <span>★</span>
+				                    	</c:when>
+				                    	<c:when test="${r.rate eq '4'}">
+				                    			<span class="on">★</span>
+											    <span class="on">★</span>
+											    <span class="on">★</span>
+											    <span class="on">★</span>
+											    <span>★</span>
+				                    	</c:when>
+				                    	<c:when test="${r.rate eq '5'}">
+				                    			<span class="on">★</span>
+											    <span class="on">★</span>
+											    <span class="on">★</span>
+											    <span class="on">★</span>
+											    <span class="on">★</span>
+				                    	</c:when>
+					        		</c:choose>
+	        					</div>	
+	        				</td>
 	        				<td>${r.description}</td>
 	        			</tr>
 	        		</c:forEach>
