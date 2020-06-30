@@ -40,6 +40,7 @@
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/style.css">
 </head>
+
 <body>
 	<nav
 		class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light"
@@ -113,7 +114,7 @@
 						<input type="hidden" name="loginForwardAction"
 							value='<c:url value="${loginForwardAction}"/>' />
 					</c:if>
-					<table class="table" style="text-align: center">
+					<table class="table table-borderless" style="text-align: center">
 						<tr>
 							<td colspan="1">Please enter your username and password.</td>
 						</tr>
@@ -127,8 +128,11 @@
 								size="20" /></td>
 						</tr>
 					</table>
-					<input type="submit" value="로그인" /> <a
-						href="<c:url value="/user/register/step1.do" />">회원 가입</a><br>
+					<br/>
+					<div class="form-group" style="text-align: center">
+						<input type="submit" class="btn btn-primary py-2 px-3" value="로그인" /> 
+						<a href="<c:url value="/user/register/step1.do" />">회원 가입</a><br>
+					</div>
 				</form>
 			</div>
 		</div>

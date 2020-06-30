@@ -98,7 +98,7 @@
 		         			<c:url value="/rateList.do" var="rateList">
 		                    	<c:param name="ratedId" value="${rate.ratedId}"/>
 		                	</c:url>
-		                	<a href="${rateList}" class="btn py-3 px-4 btn-primary"><c:out value="별점 리스트 확인하기"/></a>
+		                	<a href="${rateList}" class="btn py-3 px-4 btn-primary"><c:out value="${rate.ratedId}님의 별점 리스트 확인하기"/></a>
 		                	<br/><br/><p><a href="<c:url value='/index' />">Go to index</a></p>
 		         		</div>
 		         	</td>

@@ -75,7 +75,7 @@
           <div class="col-md-12 ftco-animate" style="align: center">
             <div class="row justify-content-center">
           		<div class="col-md-12 heading-section text-center ftco-animate mb-5">
-	            	<h2 class="mb-2"><%= ratedId %>님의 별점 목록</h2>
+	            	<h2 class="mb-2">${ratedId}님의 별점 목록</h2>
           		</div>
           		<table class="table" style="text-align:center">
 	        		<tr><th>순번</th><th>별점을 남긴 사용자</th><th>별점</th><th>리뷰 내용</th></tr>
@@ -87,8 +87,8 @@
 	        				<td>${r.description}</td>
 	        			</tr>
 	        		</c:forEach>
-	        		
         		</table>
+        		<br/><br/><p><a href="<c:url value='/index' />">Go to index</a></p>
         	</div>
           </div>
         </div>

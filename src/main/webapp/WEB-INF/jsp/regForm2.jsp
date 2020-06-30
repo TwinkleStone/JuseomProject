@@ -144,7 +144,7 @@
 						</tr>
 						<tr>
 							<td colspan="2"><a href="step1.do">[이전 단계로]</a> &nbsp;&nbsp;
-								<input type="submit" value="다음 단계로" /></td>
+								<input type="submit" class="btn btn-primary py-3 px-4" value="다음 단계로" /></td>
 						</tr>
 					</table>
 				</form:form>

@@ -184,7 +184,7 @@
 									path="user.commName" /></td>
 						</tr>
 						<tr>
-							<td colspan = "2"><input type="submit" value="수정하기" /></td>
+							<td colspan = "2"><input type="submit" class="btn btn-primary py-3 px-4" value="수정하기" /></td>
 						</tr>
 					</table>
 					<br />
@@ -196,6 +196,9 @@
 				</h3>
 				<h3>
 					<b><a href='<c:url value="/user/saleList.do"/>'>판매 리스트</a></b>
+				</h3>
+				<h3>
+					<b><a href='<c:url value="/myRateList.do"/>'>나의 별점 리스트</a></b>
 				</h3>
 
 			</div>
