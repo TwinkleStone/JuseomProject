@@ -83,7 +83,6 @@ public class MybatisBookDao implements BookDao{
 
 	@Override
 	public List<Book> searchBookDetail(String keyword, String lowPrice, String highPrice, String tradeType) {
-		System.out.println("MyBatisBookDao" + keyword + ", " + lowPrice + ", " + highPrice + ", " + tradeType);
 		return bookMapper.searchBookDetail(keyword, lowPrice, highPrice, tradeType);
 	}
 	
