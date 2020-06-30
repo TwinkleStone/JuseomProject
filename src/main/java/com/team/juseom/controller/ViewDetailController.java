@@ -68,7 +68,12 @@ public class ViewDetailController {
 		model.addAttribute("auction", a);
 		model.addAttribute("bidder", b);
 		User u = juseom.getUserById(a.getBook().getUserId());
+		List<Rate> rates = juseom.getRateListByUser(a.getBook().getUserId());
+		List<Rate> lately = rates.subList(0, rates.size() < 5? rates.size() : 5);
+		String avg = juseom.getAvgRate(a.getBook().getUserId());
 		model.addAttribute("sellerName", u.getCommName());
+		model.addAttribute("lately", lately);
+		model.addAttribute("avg", avg);
 		return "AuctionDetail"; //상세정보 view로 이동
 	}
 	
@@ -79,7 +84,12 @@ public class ViewDetailController {
 		Share s = juseom.getShare(shareId);
 		model.addAttribute("share", s);
 		User u = juseom.getUserById(s.getBook().getUserId());
+		List<Rate> rates = juseom.getRateListByUser(s.getBook().getUserId());
+		List<Rate> lately = rates.subList(0, rates.size() < 5? rates.size() : 5);
+		String avg = juseom.getAvgRate(s.getBook().getUserId());
 		model.addAttribute("sellerName", u.getCommName());
+		model.addAttribute("lately", lately);
+		model.addAttribute("avg", avg);
 		return "ShareDetail"; //상세정보 view로 이동
 	}
 	
