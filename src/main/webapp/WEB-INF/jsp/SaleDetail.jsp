@@ -90,15 +90,7 @@
 	function getJson() {
 		var price = document.getElementById("updatePrice");
 		var detail = document.getElementById("updateMessage");
-		var reqUrl = "../update/sale.do?bookId=" + $
-		{
-			sale.book.bookId
-		}
-		+"&saleId=" + $
-		{
-			sale.saleId
-		}
-		+"&price=" + price.value + "&detail=" + detail.value;
+		var reqUrl = "../update/sale.do?bookId=" + ${sale.book.bookId} + "&saleId=" + ${sale.saleId} + "&price=" + price.value + "&detail=" + detail.value;
 		var oridetail = "<c:out value='${sale.book.detail}'/>";
 
 		openUpdateForm();
