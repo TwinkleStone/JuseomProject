@@ -2,7 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.team.juseom.dao.mybatis.mapper.BookMapper">
-	<cache />
 
 	<select id="getAuction" resultType="Auction">
 		SELECT
@@ -24,10 +23,10 @@
 		</selectKey>
 		INSERT INTO BOOK
 		(BOOKID, USERID, IMAGEURL, NAME, AUTHOR, PUBLISHER, PUBLICATIONDATE, PRICE,
-		CONDITION, DETAIL, TRADETYPE)
+		CONDITION, DETAIL, TRADETYPE, STATUS)
 		VALUES
 		(#{bookId}, #{userId}, #{imageUrl}, #{name}, #{author}, #{publisher}, #{date},
-		#{price}, #{condition}, #{detail}, #{tradeType})
+		#{price}, #{condition}, #{detail}, #{tradeType}, 'OPEN')
 	</insert>
 
 	<insert id="insertSale" parameterType="Sale">
