@@ -1,7 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -40,38 +40,48 @@
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/style.css">
 <style>
-.star_rating {font-size:0; letter-spacing:-4px;}
-.star_rating span {
-    font-size:22px;
-    letter-spacing:0;
-    display:inline-block;
-    margin-left:5px;
-    color:#ccc;
-    text-decoration:none;
+.star_rating {
+	font-size: 0;
+	letter-spacing: -4px;
 }
-.star_rating span:first-child {margin-left:0;}
-.star_rating span.on {color:#777;}
+
+.star_rating span {
+	font-size: 22px;
+	letter-spacing: 0;
+	display: inline-block;
+	margin-left: 5px;
+	color: #ccc;
+	text-decoration: none;
+}
+
+.star_rating span:first-child {
+	margin-left: 0;
+}
+
+.star_rating span.on {
+	color: #777;
+}
 </style>
 <script>
-	function openReview(){
+	function openReview() {
 		var review = document.getElementById("review");
-		if(review.style.display=='none'){
+		if (review.style.display == 'none') {
 			review.style.display = 'block';
-		}else{
+		} else {
 			review.style.display = 'none';
 		}
 	}
-	
+
 	function openUpdateForm() {
 		var updateForm = document.getElementById("updateForm");
 		var btnOpen = document.getElementById("btnOpen");
 		var btn = document.getElementById("toggleButton");
-		if(updateForm.style.display=='none'){
-			btn.value="수정 취소하기";
+		if (updateForm.style.display == 'none') {
+			btn.value = "수정 취소하기";
 			btnOpen.style.display = 'block';
 			updateForm.style.display = 'block';
-		}else{
-			btn.value="수정하기"
+		} else {
+			btn.value = "수정하기"
 			btnOpen.style.display = 'none';
 			updateForm.style.display = 'none';
 		}
@@ -80,20 +90,29 @@
 	function getJson() {
 		var price = document.getElementById("updatePrice");
 		var detail = document.getElementById("updateMessage");
-		var reqUrl = "../update/sale.do?bookId=" + ${sale.book.bookId} + "&saleId=" + ${sale.saleId} + "&price=" + price.value + "&detail=" + detail.value;
+		var reqUrl = "../update/sale.do?bookId=" + $
+		{
+			sale.book.bookId
+		}
+		+"&saleId=" + $
+		{
+			sale.saleId
+		}
+		+"&price=" + price.value + "&detail=" + detail.value;
 		var oridetail = "<c:out value='${sale.book.detail}'/>";
-		
+
 		openUpdateForm();
 		$.ajax({
-			type: "get",
-			url: reqUrl,
-			processData: false,
-			success: function(responseJson){	// object parsed from JSON text	
+			type : "get",
+			url : reqUrl,
+			processData : false,
+			success : function(responseJson) { // object parsed from JSON text	
 				alert("수정되었습니다.");
 				var regexp = /\B(?=(\d{3})+(?!\d))/g;
-				var price = responseJson.suggestPrice.toString().replace(regexp, ',');
+				var price = responseJson.suggestPrice.toString().replace(
+						regexp, ',');
 				$("#pri").text(price + "원");
-				if(!oridetail){
+				if (!oridetail) {
 					var txt = document.getElementsByName("detail2")[0];
 					txt.style.display = 'none';
 					var nCareer = document.createElement("textarea");
@@ -109,14 +128,14 @@
 				}
 				$("#message").text(responseJson.book.detail);
 			},
-			error: function(xhr, status, error){
-				  var msg = $(xhr.responseText).filter('p').eq(1).text();
-				  alert(msg.substring(8, msg.length));
+			error : function(xhr, status, error) {
+				var msg = $(xhr.responseText).filter('p').eq(1).text();
+				alert(msg.substring(8, msg.length));
 			}
 		});
 	}
-  </script>
-  
+</script>
+
 </head>
 <body>
 
@@ -144,7 +163,8 @@
 					class="nav-link">나눔</a></li>
 				<li class="nav-item"><a class="nav-link"
 					href="<c:url value="/insert/search.do" />">등록</a></li>
-				<li class="nav-item"><a class="nav-link" href="<c:url value="/search.do" />">검색</a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="<c:url value="/search.do" />">검색</a></li>
 				<c:if test="${!empty userSession.user}">
 					<li class="nav-item"><a class="nav-link"
 						href="<c:url value="/user/mypage.do" />">마이페이지</a></li>
@@ -259,31 +279,22 @@
 								<c:otherwise>
 									<c:choose>
 										<c:when test="${empty userSession.user.userId}">
-											<a href="<c:url value="/user/loginForm.do" />" class="btn py-3 px-4 btn-primary"><c:out
-																value="로그인하기" /></a>
+											<a href="<c:url value="/user/loginForm.do" />"
+												class="btn py-3 px-4 btn-primary"><c:out value="로그인하기" /></a>
 										</c:when>
 										<c:when test="${sale.book.userId ne userSession.user.userId}">
-											<td width="200px" style="padding: 30px">
-												<div class="form-group">
-													<c:url value="/user/chatRoom.do" var="chatUrl">
-														<c:param name="bookId" value="${sale.book.bookId}" />
-														<c:param name="sellerId" value="${sale.book.userId}" />
-														<c:param name="buyerId" value="${userSession.user.userId}" />
-													</c:url>
-													<a href="${chatUrl}" class="btn py-3 px-4 btn-primary"><c:out
-															value="구매 신청" /></a>
-												</div>
-											</td>
-											<td>
-												<div class="form-group">
-													<c:url value="/chatRoom.do" var="chatUrl">
-														<c:param name="bookId" value="${sale.book.bookId}" />
-														<c:param name="sellerId" value="${sale.book.userId}" />
-													</c:url>
-													<a href="${chatUrl}" class="btn py-3 px-4 btn-primary"><c:out
-															value="채팅이동" /></a>
-												</div>
-											</td>
+											<td width="200px" style="padding: 30px"><c:url
+													value="/user/chatRoom.do" var="chatUrl">
+													<c:param name="bookId" value="${sale.book.bookId}" />
+													<c:param name="sellerId" value="${sale.book.userId}" />
+													<c:param name="buyerId" value="${userSession.user.userId}" />
+												</c:url> <a href="${chatUrl}" class="btn py-3 px-4 btn-primary"><c:out
+														value="구매 신청" /></a></td>
+											<td><c:url value="/chatRoom.do" var="chatUrl">
+													<c:param name="bookId" value="${sale.book.bookId}" />
+													<c:param name="sellerId" value="${sale.book.userId}" />
+												</c:url> <a href="${chatUrl}" class="btn py-3 px-4 btn-primary"><c:out
+														value="채팅이동" /></a></td>
 										</c:when>
 										<c:otherwise>
 											<td style="display: none" id="btnOpen"><input
@@ -292,6 +303,11 @@
 											<td><input id="toggleButton" type="button"
 												class="btn py-3 px-4 btn-primary" value="수정하기"
 												onclick="openUpdateForm()" /></td>
+											<td><c:url value="/chatRoom.do" var="chatUrl">
+													<c:param name="bookId" value="${sale.book.bookId}" />
+													<c:param name="sellerId" value="${sale.book.userId}" />
+												</c:url> <a href="${chatUrl}" class="btn py-3 px-4 btn-primary"><c:out
+														value="채팅이동" /></a></td>
 										</c:otherwise>
 									</c:choose>
 								</c:otherwise>
@@ -301,91 +317,102 @@
 				</div>
 
 				<div class="pt-5 mt-5" style="margin-left: 20px">
-              <h3 class="mb-5">판매자 정보</h3>
-              <ul class="comment-list">
-                <li class="comment">
-                  <div class="vcard bio">
-                    <img src="${pageContext.request.contextPath}/resources/images/person_1.jpg" alt="Image placeholder">
-                  </div>
-                  <div class="comment-body">
-                    <h3>${sellerName}님의 도서입니다.</h3>
-                  	  평점 : ${avg}점
-                    <div class="star_rating">
-                    	<c:choose>
-                    		<c:when test="${avg eq '1'}">
-                    			<span class="on">★</span>
-							    <span>★</span>
-							    <span>★</span>
-							    <span>★</span>
-							    <span>★</span>
-                    		</c:when>
-                    		<c:when test="${avg eq '2'}">
-                    			<span class="on">★</span>
-							    <span class="on">★</span>
-							    <span>★</span>
-							    <span>★</span>
-							    <span>★</span>
-                    		</c:when>
-                    		<c:when test="${avg eq '3'}">
-                    			<span class="on">★</span>
-							    <span class="on">★</span>
-							    <span class="on">★</span>
-							    <span>★</span>
-							    <span>★</span>
-                    		</c:when>
-                    		<c:when test="${avg eq '4'}">
-                    			<span class="on">★</span>
-							    <span class="on">★</span>
-							    <span class="on">★</span>
-							    <span class="on">★</span>
-							    <span>★</span>
-                    		</c:when>
-                    		<c:when test="${avg eq '5'}">
-                    			<span class="on">★</span>
-							    <span class="on">★</span>
-							    <span class="on">★</span>
-							    <span class="on">★</span>
-							    <span class="on">★</span>
-                    		</c:when>
-                    		<c:otherwise>
-                    			<span>★</span>
-							    <span>★</span>
-							    <span>★</span>
-							    <span>★</span>
-							    <span>★</span>
-                    		</c:otherwise>
-                    	</c:choose>				    
-					</div>
-					
-                    <p>최근 리뷰&nbsp;&nbsp;<a href="javascript:openReview();" class="reply">Reply</a></p>
-                
-                    <table class="table" style="text-align:center;">
-                    	<tbody style="display:none" id="review">
-		        			<tr><th>순번</th><th>별점을 남긴 사용자</th><th>별점</th><th>리뷰 내용</th></tr>
-		        			<c:choose>
-		        				<c:when test="${fn:length(lately) == 0}">
-		        					<tr>
-		        						<td colspan="4">남겨진 리뷰가 없습니다.</td>
-		        					</tr>
-		        				</c:when>
-		        				<c:otherwise>
-			        				<c:forEach var="r" items="${lately}" varStatus="status">
-					        			<tr>
-					        				<td>${status.count}</td>
-					        				<td>${r.raterId}</td>
-					        				<td>${r.rate}</td>
-					        				<td>${r.description}</td>
-					        			</tr>
-					        		</c:forEach>
-		        				</c:otherwise>
-		        			</c:choose>
-	        			</tbody>
-        			</table>
-                  </div>
-                </li>
-               </ul>
-            </div>
-          </div> <!-- .col-md-8 -->
+					<h3 class="mb-5">판매자 정보</h3>
+					<ul class="comment-list">
+						<li class="comment">
+							<div class="vcard bio">
+								<img
+									src="${pageContext.request.contextPath}/resources/images/person_1.jpg"
+									alt="Image placeholder">
+							</div>
+							<div class="comment-body">
+								<h3>${sellerName}님의도서입니다.</h3>
+								평점 : ${avg}점
+								<div class="star_rating">
+									<c:choose>
+										<c:when test="${avg eq '1'}">
+											<span class="on">★</span>
+											<span>★</span>
+											<span>★</span>
+											<span>★</span>
+											<span>★</span>
+										</c:when>
+										<c:when test="${avg eq '2'}">
+											<span class="on">★</span>
+											<span class="on">★</span>
+											<span>★</span>
+											<span>★</span>
+											<span>★</span>
+										</c:when>
+										<c:when test="${avg eq '3'}">
+											<span class="on">★</span>
+											<span class="on">★</span>
+											<span class="on">★</span>
+											<span>★</span>
+											<span>★</span>
+										</c:when>
+										<c:when test="${avg eq '4'}">
+											<span class="on">★</span>
+											<span class="on">★</span>
+											<span class="on">★</span>
+											<span class="on">★</span>
+											<span>★</span>
+										</c:when>
+										<c:when test="${avg eq '5'}">
+											<span class="on">★</span>
+											<span class="on">★</span>
+											<span class="on">★</span>
+											<span class="on">★</span>
+											<span class="on">★</span>
+										</c:when>
+										<c:otherwise>
+											<span>★</span>
+											<span>★</span>
+											<span>★</span>
+											<span>★</span>
+											<span>★</span>
+										</c:otherwise>
+									</c:choose>
+								</div>
+
+								<p>
+									최근 리뷰&nbsp;&nbsp;<a href="javascript:openReview();"
+										class="reply">Reply</a>
+								</p>
+
+								<table class="table" style="text-align: center;">
+									<tbody style="display: none" id="review">
+										<tr>
+											<th>순번</th>
+											<th>별점을 남긴 사용자</th>
+											<th>별점</th>
+											<th>리뷰 내용</th>
+										</tr>
+										<c:choose>
+											<c:when test="${fn:length(lately) == 0}">
+												<tr>
+													<td colspan="4">남겨진 리뷰가 없습니다.</td>
+												</tr>
+											</c:when>
+											<c:otherwise>
+												<c:forEach var="r" items="${lately}" varStatus="status">
+													<tr>
+														<td>${status.count}</td>
+														<td>${r.raterId}</td>
+														<td>${r.rate}</td>
+														<td>${r.description}</td>
+													</tr>
+												</c:forEach>
+											</c:otherwise>
+										</c:choose>
+									</tbody>
+								</table>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!-- .col-md-8 -->
 
 		</div>
 	</div>
@@ -470,7 +497,9 @@
 				<p>
 					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 					Copyright &copy;
-					<script>document.write(new Date().getFullYear());</script>
+					<script>
+						document.write(new Date().getFullYear());
+					</script>
 					All rights reserved | This template is made with <i
 						class="icon-heart color-danger" aria-hidden="true"></i> by <a
 						href="https://colorlib.com" target="_blank">Colorlib</a>
