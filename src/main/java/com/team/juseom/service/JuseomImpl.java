@@ -427,6 +427,11 @@ public class JuseomImpl implements JuseomFacade {
 	public String getSaleIdByBookId(String bookId) {
 		return bookDao.getSaleIdByBookId(bookId);
 	}
+
+	@Override
+	public String getShareIdByBookId(String bookId) {
+		return bookDao.getShareIdByBookId(bookId);
+	}
 }
 
 
