@@ -371,4 +371,10 @@
    		WHERE BOOKID = #{bookId}
    </select>
    
+   <select id="getStartPrice" resultType="int">
+         SELECT STARTPRICE
+         FROM AUCTION
+         WHERE AUCTIONID = #{auctionId}
+   </select>
+   
 </mapper>

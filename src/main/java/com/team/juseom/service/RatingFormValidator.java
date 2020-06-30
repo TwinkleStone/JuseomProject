@@ -21,7 +21,7 @@ public class RatingFormValidator implements Validator {
 		
 		String description = rate.getDescription();
 		
-		if (description.length() > 50) {
+		if (description.length() > 150) {
 			errors.rejectValue("description", "tooLong");
 		}
 		

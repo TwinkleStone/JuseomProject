@@ -43,5 +43,6 @@ public interface BookDao {
 	String getShareIdByBookId(String bookId);
 	String getAuctionIdByBookId(String bookId);
 	String getSaleIdByBookId(String bookId);
+	int getStartPrice(int auctionId);
 
 }
