@@ -90,14 +90,20 @@ public class MyPageController implements ApplicationContextAware {
 	public String step2(HttpServletRequest request, HttpSession session,
 			@Valid @ModelAttribute("userForm") UserForm userForm,
 			BindingResult result, Model model) throws Exception {
+		UserSession userSession = new UserSession(juseom.getUserById(userForm.getUser().getUserId()));
 		try {
-			userForm.getUser().setProfilePicUrl(session.getAttribute("filename").toString());
+			if (session.getAttribute("filename") != null) {
+				userForm.getUser().setProfilePicUrl(session.getAttribute("filename").toString());
+			}
+			else {
+				String img = userSession.getUser().getProfilePicUrl();
+				userForm.getUser().setProfilePicUrl(img);
+			}
 			juseom.updateUser(userForm.getUser());
 		} catch (DataIntegrityViolationException ex) {
 			return formViewName; 
 		}
-		System.out.println(userForm.getUser().getProfilePicUrl());
-		UserSession userSession = new UserSession(juseom.getUserById(userForm.getUser().getUserId()));
+		
 		session.setAttribute("userSession", userSession);
 		session.removeAttribute("filename");
 		return formViewName;
