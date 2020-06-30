@@ -243,7 +243,7 @@
 		b.PRICE ,
 		b.CONDITION ,
 		b.DETAIL ,
-		b.TRADETYPE
+		b.TRADETYPE ,
 		b.STATUS
 		from book b, auction a, sharing s, sale sa
 		where (b.name LIKE '%${keyword}%' or b.author like '%${keyword}%' or
