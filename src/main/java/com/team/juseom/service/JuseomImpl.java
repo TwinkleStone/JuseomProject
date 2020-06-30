@@ -378,7 +378,12 @@ public class JuseomImpl implements JuseomFacade {
 	public void removeBidder(String userId, String auctionId) {
 		bidderDao.removeBidder(userId, auctionId);
 		bookDao.updateBidNumber(auctionId);
-		int highBidPrice = bookDao.getHighBidPrice(auctionId);
+		Integer highBidPrice = bookDao.getHighBidPrice(auctionId);
+		
+		if (highBidPrice == null) {
+			highBidPrice = bookDao.getStartPrice(Integer.parseInt(auctionId));
+		}
+		
 		bookDao.updateMaxAuctionPrice(auctionId, highBidPrice);
 	}
 

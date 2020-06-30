@@ -55,7 +55,7 @@ public class ViewBidderController {
 			HttpServletRequest request) {
 		
 		UserSession userSession = (UserSession) WebUtils.getSessionAttribute(request, "userSession");
-		String sessionUserId = userSession.getUser().getUserId();
+		String sessionUserId = userSession.getUser().getUserId();	
 		
 		if (sessionUserId.equals(userId)) {
 			juseom.removeBidder(userId, auctionId);
