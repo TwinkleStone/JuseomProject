@@ -2,7 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.team.juseom.dao.mybatis.mapper.BookMapper">
-	<cache />
 
 	<select id="getAuction" resultType="Auction">
 		SELECT
@@ -24,10 +23,10 @@
 		</selectKey>
 		INSERT INTO BOOK
 		(BOOKID, USERID, IMAGEURL, NAME, AUTHOR, PUBLISHER, PUBLICATIONDATE, PRICE,
-		CONDITION, DETAIL)
+		CONDITION, DETAIL, TRADETYPE, STATUS)
 		VALUES
 		(#{bookId}, #{userId}, #{imageUrl}, #{name}, #{author}, #{publisher}, #{date},
-		#{price}, #{condition}, #{detail})
+		#{price}, #{condition}, #{detail}, #{tradeType}, 'OPEN')
 	</insert>
 
 	<insert id="insertSale" parameterType="Sale">
@@ -244,7 +243,8 @@
 		b.PRICE ,
 		b.CONDITION ,
 		b.DETAIL ,
-		b.TRADETYPE
+		b.TRADETYPE ,
+		b.STATUS
 		from book b, auction a, sharing s, sale sa
 		where (b.name LIKE '%${keyword}%' or b.author like '%${keyword}%' or
 		b.publisher like '%${keyword}%' or b.detail like '%${keyword}%')
@@ -350,6 +350,25 @@
    		SELECT BIDWINNER
    		FROM AUCTION
    		WHERE AUCTIONID = #{auctionId}
+   </select>
+   
+   <!-- 검색결과를 위한 sql문 -->
+   <select id="getShareIdByBookId" resultType="String">
+   		SELECT SHAREID
+   		FROM SHARING
+   		WHERE BOOKID = #{bookId}
+   </select>
+   
+   <select id="getAuctionIdByBookId" resultType="String">
+   		SELECT AUCTIONID
+   		FROM AUCTION
+   		WHERE BOOKID = #{bookId}
+   </select>
+   
+   <select id="getSaleIdByBookId" resultType="String">
+   		SELECT SALEID
+   		FROM SALE
+   		WHERE BOOKID = #{bookId}
    </select>
    
 </mapper>

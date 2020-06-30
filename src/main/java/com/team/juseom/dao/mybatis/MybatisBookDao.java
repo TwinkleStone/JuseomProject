@@ -83,7 +83,6 @@ public class MybatisBookDao implements BookDao{
 
 	@Override
 	public List<Book> searchBookDetail(String keyword, String lowPrice, String highPrice, String tradeType) {
-		System.out.println("MyBatisBookDao" + keyword + ", " + lowPrice + ", " + highPrice + ", " + tradeType);
 		return bookMapper.searchBookDetail(keyword, lowPrice, highPrice, tradeType);
 	}
 	
@@ -162,5 +161,18 @@ public class MybatisBookDao implements BookDao{
 		return bookMapper.getOpenShare();
 	}
 
+	@Override
+	public String getShareIdByBookId(String bookId) {
+		return bookMapper.getShareIdByBookId(bookId);
+	}
 
+	@Override
+	public String getAuctionIdByBookId(String bookId) {
+		return bookMapper.getAuctionIdByBookId(bookId);
+	}
+
+	@Override
+	public String getSaleIdByBookId(String bookId) {
+		return bookMapper.getSaleIdByBookId(bookId);
+	}
 }

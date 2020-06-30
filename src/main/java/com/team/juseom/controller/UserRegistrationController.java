@@ -94,8 +94,6 @@ public class UserRegistrationController implements ApplicationContextAware {
 		uploadFile(report);	
 		
         String filename = report.getOriginalFilename();
-        // 다른 controller에서는 이미 저장된 filename을 데이터베이스로부터 검색해 옴
-        // ...
 		
 		userForm.setReport(report);
 		userForm.getUser().setProfilePicUrl(filename);

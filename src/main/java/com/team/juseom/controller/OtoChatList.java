@@ -29,8 +29,6 @@ public class OtoChatList implements Serializable  {
 		this.sellerId = sellerId;
 	}
 
-
-
 	public String getBuyerId() {
 		return buyerId;
 	}

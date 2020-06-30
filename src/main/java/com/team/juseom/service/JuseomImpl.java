@@ -169,7 +169,7 @@ public class JuseomImpl implements JuseomFacade {
 						if(j == txt.length - 1) {
 							Calendar cal = Calendar.getInstance(); 
 							cal.setTime(from);
-							cal.add(Calendar.MINUTE, 1);
+							cal.add(Calendar.SECOND, 10);
 							to = transFormat.format(cal.getTime());
 						}else {
 							to = transFormat.format(from);
@@ -418,6 +418,15 @@ public class JuseomImpl implements JuseomFacade {
 	}
 
 
+	@Override
+	public String getAuctionIdByBookId(String bookId) {
+		return bookDao.getAuctionIdByBookId(bookId);
+	}
+
+	@Override
+	public String getSaleIdByBookId(String bookId) {
+		return bookDao.getSaleIdByBookId(bookId);
+	}
 }
 
 

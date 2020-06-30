@@ -74,4 +74,8 @@ public interface JuseomFacade {
 	String getBidWinner(String auctionId);
 	String getSellerStatus(String chattingRoomId);
 	String getBuyerStatus(String chattingRoomId);
+	
+	String getShareIdByBookId(String bookId);
+	String getAuctionIdByBookId(String bookId);
+	String getSaleIdByBookId(String bookId);
 }

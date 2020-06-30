@@ -52,8 +52,6 @@ public class LoginController {
 				@RequestParam("password") String password,
 				@RequestParam(value="loginForwardAction", required=false) String forwardAction,
 				Model model) throws Exception {
-			System.out.println("forwardAction " + forwardAction);
-			System.out.println(userId + ", " + password);
 			if (userId == null || userId.equals("") || password == null || password.equals("")) {
 				if(forwardAction != null)
 					model.addAttribute("loginForwardAction", forwardAction);
@@ -76,18 +74,5 @@ public class LoginController {
 					return new ModelAndView("redirect:/index");
 			}
 		}
-	
-	
-/*
-	@ModelAttribute
-	public LoginCommand formBacking() {
-		return new LoginCommand();
-	}
-
-	@GetMapping
-	public String form() {
-		return LOGIN_FORM;
-	}
-*/
 
 }
