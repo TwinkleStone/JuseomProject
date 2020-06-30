@@ -175,4 +175,9 @@ public class MybatisBookDao implements BookDao{
 	public String getSaleIdByBookId(String bookId) {
 		return bookMapper.getSaleIdByBookId(bookId);
 	}
+
+	@Override
+	public int getStartPrice(int auctionId) {
+		return bookMapper.getStartPrice(auctionId);
+	}
 }
