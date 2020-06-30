@@ -244,12 +244,15 @@
 		b.CONDITION ,
 		b.DETAIL ,
 		b.TRADETYPE
-		from book b
+		b.STATUS
+		from book b, auction a, sharing s, sale sa
 		where (b.name LIKE '%${keyword}%' or b.author like '%${keyword}%' or
 		b.publisher like '%${keyword}%' or b.detail like '%${keyword}%')
 		and (price between ${lowPrice} and ${highPrice})
 		and (tradeType like '%${tradeType}%')
-		and (b.status = 'OPEN')
+		and (((b.BOOKID = a.BOOKID) AND a.status = 'OPEN') OR ((b.BOOKID =
+		s.BOOKID) AND s.status = 'OPEN')
+		OR ((b.BOOKID = sa.BOOKID) AND sa.status = 'OPEN'))
 	</select>
 
 	<!-- 마이페이지 글 검색 -->
