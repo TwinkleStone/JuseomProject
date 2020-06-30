@@ -24,10 +24,10 @@
 		</selectKey>
 		INSERT INTO BOOK
 		(BOOKID, USERID, IMAGEURL, NAME, AUTHOR, PUBLISHER, PUBLICATIONDATE, PRICE,
-		CONDITION, DETAIL)
+		CONDITION, DETAIL, TRADETYPE)
 		VALUES
 		(#{bookId}, #{userId}, #{imageUrl}, #{name}, #{author}, #{publisher}, #{date},
-		#{price}, #{condition}, #{detail})
+		#{price}, #{condition}, #{detail}, #{tradeType})
 	</insert>
 
 	<insert id="insertSale" parameterType="Sale">

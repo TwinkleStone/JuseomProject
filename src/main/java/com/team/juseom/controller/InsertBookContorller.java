@@ -111,7 +111,7 @@ public class InsertBookContorller {
 		UserSession userSession = (UserSession) WebUtils.getSessionAttribute(request, "userSession");
 		String userId = userSession.getUser().getUserId();
 		formData.getBook().setUserId(userId);
-		
+		formData.getBook().setTradeType("판매");
 		formData.setStatus("OPEN");
 		juseomFacade.insertSale(formData);
 		if(model.getAttribute("conditionCodes") != null) {
@@ -141,6 +141,7 @@ public class InsertBookContorller {
 		
 		Auction a = new Auction();
 		a.setBook(formData.getBook());
+		a.getBook().setTradeType("경매");
 		a.setStartPrice(formData.getStartPrice());
 		a.setPresentPrice(Integer.parseInt(formData.getStartPrice()));
 		a.setSalesNumber(formData.getSalesNumber());
@@ -174,6 +175,7 @@ public class InsertBookContorller {
 		
 		Share s = new Share();
 		s.setBook(formData.getBook());
+		s.getBook().setTradeType("나눔");
 		s.setShareNumber(formData.getShareNumber());
 		s.setRaffleTime(formData.dateFormChange(formData.getRaffleTime()));
 		s.setPeopleNumber(0);
