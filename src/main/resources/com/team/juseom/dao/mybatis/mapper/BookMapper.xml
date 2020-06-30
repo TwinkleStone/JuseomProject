@@ -352,4 +352,23 @@
    		WHERE AUCTIONID = #{auctionId}
    </select>
    
+   <!-- 검색결과를 위한 sql문 -->
+   <select id="getShareIdByBookId" resultType="String">
+   		SELECT SHAREID
+   		FROM SHARING
+   		WHERE BOOKID = #{bookId}
+   </select>
+   
+   <select id="getAuctionIdByBookId" resultType="String">
+   		SELECT AUCTIONID
+   		FROM AUCTION
+   		WHERE BOOKID = #{bookId}
+   </select>
+   
+   <select id="getSaleIdByBookId" resultType="String">
+   		SELECT SALEID
+   		FROM SALE
+   		WHERE BOOKID = #{bookId}
+   </select>
+   
 </mapper>

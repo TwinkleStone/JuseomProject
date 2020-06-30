@@ -412,7 +412,20 @@ public class JuseomImpl implements JuseomFacade {
 		return statusDao.getBuyerStatus(chattingRoomId);
 	}
 
+	@Override
+	public String getShareIdByBookId(String bookId) {
+		return bookDao.getShareIdByBookId(bookId);
+	}
 
+	@Override
+	public String getAuctionIdByBookId(String bookId) {
+		return bookDao.getAuctionIdByBookId(bookId);
+	}
+
+	@Override
+	public String getSaleIdByBookId(String bookId) {
+		return bookDao.getSaleIdByBookId(bookId);
+	}
 }
 
 

@@ -161,5 +161,18 @@ public class MybatisBookDao implements BookDao{
 		return bookMapper.getOpenShare();
 	}
 
+	@Override
+	public String getShareIdByBookId(String bookId) {
+		return bookMapper.getShareIdByBookId(bookId);
+	}
 
+	@Override
+	public String getAuctionIdByBookId(String bookId) {
+		return bookMapper.getAuctionIdByBookId(bookId);
+	}
+
+	@Override
+	public String getSaleIdByBookId(String bookId) {
+		return bookMapper.getSaleIdByBookId(bookId);
+	}
 }

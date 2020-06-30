@@ -2,6 +2,7 @@ package com.team.juseom.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -39,7 +40,37 @@ private static final String FORM_VIEW = "UserBookList";
 				(UserSession) WebUtils.getSessionAttribute(request, "userSession");
 		String userId = userSession.getUser().getUserId();
 		List<Book> list = juseom.searchBookByUserId(userId);
-		PagedListHolder<Book> rsltList = new PagedListHolder<Book>(list);
+		List<SearchDetailResult> rslt = new ArrayList<SearchDetailResult>();
+		
+		for (int i=0; i < list.size(); i++) {
+			SearchDetailResult r = new SearchDetailResult();
+			r.setTradeType(list.get(i).getTradeType());
+			String type = r.getTradeType();
+			String tradeId;
+			String bookId = Integer.toString(list.get(i).getBookId());
+			if (type != null) {
+				if (type.equals("판매")) {
+					tradeId = juseom.getSaleIdByBookId(bookId);
+					r.setTradeId(tradeId);
+					System.out.println(r.getTradeType() + ", " + tradeId);
+				}
+				else if (type.equals("나눔")) {
+					tradeId = juseom.getShareIdByBookId(bookId);
+					r.setTradeId(tradeId);
+					System.out.println(r.getTradeType() + ", " + tradeId);
+				}
+				else if (type.equals("경매")){
+					tradeId = juseom.getAuctionIdByBookId(bookId);
+					r.setTradeId(tradeId);
+					System.out.println(r.getTradeType() + ", " + tradeId);
+				}
+			}
+			r.setBook(list.get(i));
+			rslt.add(r);
+		}
+		
+		
+		PagedListHolder<SearchDetailResult> rsltList = new PagedListHolder<SearchDetailResult>(rslt);
 		model.addAttribute("searchList", rsltList);
 		return FORM_VIEW;
 	}

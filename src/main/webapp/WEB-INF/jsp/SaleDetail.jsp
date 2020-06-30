@@ -144,6 +144,15 @@
 					class="nav-link">나눔</a></li>
 				<li class="nav-item"><a class="nav-link"
 					href="<c:url value="/insert/search.do" />">등록</a></li>
+				<li class="nav-item"><a class="nav-link" href="<c:url value="/search.do" />">검색</a></li>
+				<c:if test="${!empty userSession.user}">
+					<li class="nav-item"><a class="nav-link"
+						href="<c:url value="/user/mypage.do" />">마이페이지</a></li>
+				</c:if>
+				<c:if test="${empty userSession.user}">
+					<li class="nav-item active"><a class="nav-link"
+						href="<c:url value="/user/loginForm.do" />">로그인/회원가입</a></li>
+				</c:if>
 				<!--  <li class="nav-item"><a href="properties.html" class="nav-link">Listing</a></li>
 	          <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
 	          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li> -->

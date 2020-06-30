@@ -60,6 +60,7 @@
 	          <li class="nav-item"><a href="<c:url value="/auction.do" />" class="nav-link">경매</a></li>
 	          <li class="nav-item"><a href="<c:url value="/share.do" />" class="nav-link">나눔</a></li>
 	          <li class="nav-item active"><a class="nav-link" href="<c:url value="/insert/search.do" />">등록</a></li>
+	          <li class="nav-item"><a class="nav-link" href="<c:url value="/search.do" />">검색</a></li>
 	          <c:if test="${!empty userSession.user}">
 			       <li class="nav-item"><a class="nav-link" href="<c:url value="/user/mypage.do" />">마이페이지</a></li>
               </c:if>
@@ -155,9 +156,24 @@
 			<c:forEach var="book" items="${searchList.pageList}" varStatus="status">
 	        	<div class="col-md-4">
 	        		<div class="property-wrap ftco-animate">
-	        			<div class="img d-flex align-items-center justify-content-center" style="background-image: url(${book.imageUrl});">
-	        					<span class="ion-ios-link"></span>
-	        				</a>
+	        			<div class="img d-flex align-items-center justify-content-center" style="background-image: url(${book.book.imageUrl});">
+	        			<c:choose>
+	        				<c:when test="${book.book.tradeType eq '판매'}">
+	        					<a href="<c:url value="/view/sale.do?id=${book.tradeId}" />" class="icon d-flex align-items-center justify-content-center btn-custom">
+        						<span class="ion-ios-link"></span>
+        						</a>
+	        				</c:when>
+	        				<c:when test="${book.book.tradeType eq '경매'}">
+	        					<a href="<c:url value="/view/auction.do?id=${book.tradeId}" />" class="icon d-flex align-items-center justify-content-center btn-custom">
+        						<span class="ion-ios-link"></span>
+        						</a>
+	        				</c:when>
+	        				<c:when test="${book.book.tradeType eq '나눔'}">
+	        					<a href="<c:url value="/view/share.do?id=${book.tradeId}" />" class="icon d-flex align-items-center justify-content-center btn-custom">
+        						<span class="ion-ios-link"></span>
+        						</a>
+	        				</c:when>
+	        			</c:choose>
 	        				<div class="list-agent d-flex align-items-center">
 	        					<!-- <a href="#" class="agent-info d-flex align-items-center">
 	        						<div class="img-2 rounded-circle" style="background-image: url(images/person_1.jpg);"></div>
@@ -179,26 +195,26 @@
 	        				<table style="font-size: 14px">
 	        					<tr>
 	        						<td>저자</td>
-	        						<td style="padding-left: 20px">${book.author}</td>
+	        						<td style="padding-left: 20px">${book.book.author}</td>
 	        					</tr>
 	        					<tr>
 	        						<td>출판사</td>
-	        						<td style="padding-left: 20px">${book.publisher}</td>
+	        						<td style="padding-left: 20px">${book.book.publisher}</td>
 	        					</tr>
 	        					<tr>
 	        						<td>출판일</td>
 	        						<td style="padding-left: 20px">
-	        							<fmt:parseDate value="${book.date}" pattern="yyyyMMdd" var="parseDate"/>
+	        							<fmt:parseDate value="${book.book.date}" pattern="yyyyMMdd" var="parseDate"/>
 	        							<fmt:formatDate value="${parseDate}" pattern="yyyy년MM월dd일" />
 	        						</td>
 	        					</tr>
 	        					<tr>
 	        						<td>정가</td>
-	        						<td style="padding-left: 20px"><fmt:formatNumber value="${book.price}" pattern="#,###"/>원</td>
+	        						<td style="padding-left: 20px"><fmt:formatNumber value="${book.book.price}" pattern="#,###"/>원</td>
 	        					</tr>
 	        					<tr>
 	        						<td>거래종류</td>
-	        						<td style="padding-left: 20px">${book.tradeType}</td>
+	        						<td style="padding-left: 20px">${book.book.tradeType}</td>
 	        					</tr>
 	        				</table>
 	        			</div>
