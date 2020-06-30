@@ -37,7 +37,7 @@
   <select id="searchRate" resultType="int">
   		SELECT count(*)
   		FROM RATE
-  		WHERE bookId = #{value}
+  		WHERE bookId = #{param1} AND raterId = #{param2}
   </select>
   
   <select id="getAvgRate" resultType="String" parameterType="String">

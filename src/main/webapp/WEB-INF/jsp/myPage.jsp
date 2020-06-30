@@ -132,7 +132,7 @@
 				</form:form>
 				<form:form modelAttribute="userForm" method="post"
 					action="/juseom/user/mypage/edit.do" enctype="multipart/form-data">
-					<table class="table table-hover" style="text-align: center">
+					<table class="table" style="text-align: center">
 						<tr>
 							<td>User ID:</td>
 							<td>${userSession.user.userId}</td>

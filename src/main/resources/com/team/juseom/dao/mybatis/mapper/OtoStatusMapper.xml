@@ -28,4 +28,16 @@
 		FROM OTOSTATUS
 		WHERE CHATTINGROOMID=#{chattingRoomId}
 	</select>
+	
+	<select id="getSellerStatus" resultType="String">
+		SELECT SELLERSTATUS
+		FROM OTOSTATUS
+		WHERE CHATTINGROOMID = #{chattingRoomId}
+	</select>
+	
+	<select id="getBuyerStatus" resultType="String">
+		SELECT BUYERSTATUS
+		FROM OTOSTATUS
+		WHERE CHATTINGROOMID = #{chattingRoomId}
+	</select>
 </mapper>

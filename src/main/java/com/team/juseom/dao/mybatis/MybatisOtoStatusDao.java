@@ -36,4 +36,14 @@ public class MybatisOtoStatusDao implements OtoStatusDao {
 		
 	}
 
+	@Override
+	public String getSellerStatus(String chattingRoomId) {
+		return statusMapper.getSellerStatus(chattingRoomId);
+	}
+
+	@Override
+	public String getBuyerStatus(String chattingRoomId) {
+		return statusMapper.getBuyerStatus(chattingRoomId);
+	}
+
 }

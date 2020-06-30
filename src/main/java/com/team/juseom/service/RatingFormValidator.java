@@ -17,7 +17,6 @@ public class RatingFormValidator implements Validator {
 	public void validate(Object obj, Errors errors) {
 		Rate rate = (Rate) obj;
 		
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "rate", "required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "description", "required");	
 		
 		String description = rate.getDescription();

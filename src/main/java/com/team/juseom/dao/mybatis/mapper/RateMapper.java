@@ -11,7 +11,7 @@ public interface RateMapper {
 	List<Rate> getRateListByUser(String userId);
 	void insertRate(Rate rate);
 	Rate getRate(int rateId);
-	int searchRate(int bookId);
+	int searchRate(int bookId, String raterId);
 	String getAvgRate(String ratedId);
 }
 

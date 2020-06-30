@@ -7,5 +7,7 @@ public interface OtoStatusMapper {
 	void updateSellerStatus(OtoStatus status);
 	void updateBuyerStatus(OtoStatus status);
 	OtoStatus getStatusByChattingRoomId(String chattingRoomId);
+	String getSellerStatus(String chattingRoomId);
+	String getBuyerStatus(String chattingRoomId);
 
 }

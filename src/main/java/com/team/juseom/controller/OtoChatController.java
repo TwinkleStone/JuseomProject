@@ -60,8 +60,9 @@ public class OtoChatController {
 		String userId = userSession.getUser().getUserId();
 		String chattingRoomId = bookId + "_" + buyerId;
 		
-		System.out.println(chattingRoomId);
-	
+		String sellerStatus = juseom.getSellerStatus(chattingRoomId);
+		String buyerStatus = juseom.getBuyerStatus(chattingRoomId);
+		
 		//건들면 안됨
 		list = juseom.selectOtoChatByChattingRoomId(chattingRoomId);
 		
@@ -76,6 +77,9 @@ public class OtoChatController {
 			status.setBuyerId(buyerId);
 			status.setSellerId(sellerId);
 			status.setBookId(bookId);
+			status.setSellerStatus(sellerStatus);
+			status.setBuyerStatus(buyerStatus);
+			
 			juseom.insertStatus(status);
 			juseom.insertOtoChat(chat);
 		}
@@ -86,10 +90,14 @@ public class OtoChatController {
 			status.setBuyerId(buyerId);
 			status.setSellerId(sellerId);
 			status.setBookId(bookId);
+			status.setSellerStatus(sellerStatus);
+			status.setBuyerStatus(buyerStatus);
+			
 			juseom.insertStatus(status);
 		}
 		
-
+		model.addAttribute("buyerStatus", buyerStatus);
+		model.addAttribute("sellerStatus", sellerStatus);
 		model.addAttribute("chatList", list);
 		session.setAttribute("sellerId", sellerId);
 		session.setAttribute("bookId", bookId);

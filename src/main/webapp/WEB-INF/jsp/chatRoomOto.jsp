@@ -146,26 +146,39 @@
 						</tr>
 					</table>
 				</form:form> -->
-				<c:if test="${userSession.user.userId eq sellerId}">
-					<!-- 판매자용 거래 완료버튼 -->
-					<c:url value="/rating.do" var="RateForm">
-						<c:param name="ratedId" value="${userSession.user.userId}"/>
-						<c:param name="raterId" value="${sellerId}"/>
-						<!-- book status 바꾸려면 필요해서 추가했습니다. -->
-						<c:param name="bookId" value="${bookId}"/>
-                	</c:url>
-                	<a href="${RateForm}" class="btn py-3 px-4 btn-primary"><c:out value="거래 완료"/></a>
-				</c:if>
 				
-				<c:if test="${userSession.user.userId ne sellerId}">
-					<!-- 구매자용 거래 완료버튼 -->
-					<c:url value="/rating.do" var="RateForm">
-						<c:param name="ratedId" value="${sellerId}"/>
-						<c:param name="raterId" value="${userSession.user.userId}"/>
-						<c:param name="bookId" value="${bookId}"/>
-                	</c:url>
-                	<a href="${RateForm}" class="btn py-3 px-4 btn-primary"><c:out value="거래 완료"/></a>
-				</c:if>
+				<c:choose>
+					<c:when test="${userSession.user.userId eq sellerId}">
+						<c:choose>
+							<c:when test="${sellerStatus eq 'CLOSE'}" >
+								<div style="padding: 30px; background: #666666; color: white;">거래를 완료했습니다.</div>
+							</c:when>
+							<c:otherwise>
+								<c:url value="/rating.do" var="RateForm">
+									<c:param name="ratedId" value="${buyerId}"/>
+									<c:param name="raterId" value="${userSession.user.userId}"/>
+									<c:param name="bookId" value="${bookId}"/>
+			                	</c:url>
+		                		<a href="${RateForm}" class="btn py-3 px-4 btn-primary"><c:out value="거래 완료"/></a>
+							</c:otherwise>
+						</c:choose>
+					</c:when>
+	 				<c:when test="${userSession.user.userId ne sellerId}">
+	 					<c:choose>
+	 						<c:when test="${buyerStatus eq 'CLOSE'}">
+	 							<div style="padding: 30px; background: #666666; color: white;">거래를 완료했습니다.</div>
+	 						</c:when>
+	 						<c:otherwise>
+	 							<c:url value="/rating.do" var="RateForm">
+									<c:param name="ratedId" value="${sellerId}"/>
+									<c:param name="raterId" value="${userSession.user.userId}"/>
+									<c:param name="bookId" value="${bookId}"/>
+			                	</c:url>
+		                		<a href="${RateForm}" class="btn py-3 px-4 btn-primary"><c:out value="거래 완료"/></a>
+	 						</c:otherwise>
+	 					</c:choose>
+	 				</c:when>
+				</c:choose>
 			</div>
 		</div>
 	</div>
